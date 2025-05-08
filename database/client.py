@@ -23,3 +23,9 @@ def get_collection():
     client = get_client()
     db = client["resume_db"]
     return db["resumes"]
+
+
+def get_skills_titles_collection():
+    client = get_client()
+    db = client["resume_db"]
+    return db["skills_titles"]

@@ -148,3 +148,100 @@
 2025-05-03 23:30:33,749 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
 2025-05-03 23:30:37,549 - INFO - Connected to MongoDB successfully!
 2025-05-03 23:30:37,592 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-05 19:20:10,641 - INFO - Use pytorch device_name: cpu
+2025-05-05 19:20:10,642 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-05 19:20:43,597 - INFO - Use pytorch device_name: cpu
+2025-05-05 19:20:43,598 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-05 19:20:48,172 - INFO - Connected to MongoDB successfully!
+2025-05-05 19:20:48,289 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-05 19:26:40,913 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-05 19:26:56,871 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-05 19:27:10,823 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 22:29:15,946 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:29:15,947 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:29:46,982 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:29:46,983 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:29:50,800 - INFO - Connected to MongoDB successfully!
+2025-05-08 22:29:50,841 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 22:30:39,907 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:32:17,147 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:32:43,281 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:32:43,281 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:32:47,107 - INFO - Connected to MongoDB successfully!
+2025-05-08 22:32:47,158 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 22:32:47,530 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:33:44,019 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:34:01,476 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:35:25,126 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:35:25,127 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:35:53,611 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:35:53,612 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:35:57,792 - INFO - Connected to MongoDB successfully!
+2025-05-08 22:35:57,847 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 22:36:14,746 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:39:23,969 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:39:23,970 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:39:54,264 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:39:54,264 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:39:58,106 - INFO - Connected to MongoDB successfully!
+2025-05-08 22:39:58,154 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 22:39:59,084 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:40:00,035 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:57:34,462 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:57:34,462 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:57:59,220 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:57:59,220 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:58:02,750 - INFO - Connected to MongoDB successfully!
+2025-05-08 22:58:02,789 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 22:58:24,681 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 22:58:46,568 - INFO - Use pytorch device_name: cpu
+2025-05-08 22:58:46,568 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 22:58:50,351 - INFO - Connected to MongoDB successfully!
+2025-05-08 22:58:50,403 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 22:59:58,291 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-05-08 23:00:21,003 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:00:21,003 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:00:24,428 - INFO - Connected to MongoDB successfully!
+2025-05-08 23:00:24,469 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 23:00:25,941 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:01:06,278 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:07:42,273 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:07:42,273 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:08:08,063 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:08:08,063 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:08:11,655 - INFO - Connected to MongoDB successfully!
+2025-05-08 23:08:11,709 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 23:08:25,196 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:08:59,167 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:10:30,011 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:11:32,397 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:12:03,279 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:12:03,279 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:12:07,074 - INFO - Connected to MongoDB successfully!
+2025-05-08 23:12:07,116 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 23:12:08,469 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:15:34,352 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:15:34,352 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:15:38,417 - INFO - Connected to MongoDB successfully!
+2025-05-08 23:15:38,462 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 23:15:40,043 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:15:41,568 - INFO - Added skills: ['Deep understanding of solar energy technologies, their benefits, and applications', 'Proven experience in field marketing management, with a focus on the solar industry', 'Proficient in market research, data analysis, and strategic planning', 'Excellent communication and presentation abilities']
+2025-05-08 23:15:41,568 - INFO - Added experience titles: ['Solar Sales and Project Manager']
+2025-05-08 23:20:18,619 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:20:18,619 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:20:22,373 - INFO - Connected to MongoDB successfully!
+2025-05-08 23:20:22,431 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 23:22:37,070 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:22:37,071 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:22:40,983 - INFO - Connected to MongoDB successfully!
+2025-05-08 23:22:41,021 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 23:24:34,253 - INFO - Use pytorch device_name: cpu
+2025-05-08 23:24:34,254 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-08 23:24:37,985 - INFO - Connected to MongoDB successfully!
+2025-05-08 23:24:38,030 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-08 23:25:37,671 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:25:38,886 - INFO - Added skills: ['Financial Analysis', 'Banking Operations', 'Credit Analysis', 'Customer Service', 'Business Analysis', 'Relationship Management', 'Business Process Analysis', 'MS Office', 'Good Communication Skills', 'Ability to work in Team', 'Time Management', 'Analytical and Problem solving']
+2025-05-08 23:25:38,886 - INFO - Added experience titles: []
+2025-05-08 23:26:03,133 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-08 23:26:03,957 - INFO - Added skills: ['python', 'Azure(cloud)', 'Pandas', 'Flask', 'Langchain', 'git', 'Javascript', 'Docker', 'Html,CSS', 'Azure devops']
+2025-05-08 23:26:03,957 - INFO - Added experience titles: ['Python Developer']

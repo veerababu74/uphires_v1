@@ -3,24 +3,26 @@ import os
 from fastapi import File, UploadFile, HTTPException
 from pathlib import Path
 import logging
+import json
 from datetime import datetime, timedelta
 from .text_extraction import extract_and_clean_text
 from .main import ResumeParser
 from Expericecal.total_exp import format_experience, calculator
-from database.operations import ResumeOperations
-from database.client import get_collection
+from database.operations import ResumeOperations, SkillsTitlesOperations
+from database.client import get_collection, get_skills_titles_collection
 from core.vectorizer import Vectorizer
 
 # Initialize your parser with API keys (replace with your actual keys)
-API_KEYS = [
-    "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",
-    # Add more keys if you have
-]
 
-parser = ResumeParser(API_KEYS)
+
+parser = ResumeParser()
 collection = get_collection()
+skills_titles_collection = get_skills_titles_collection()
+# Initialize database operations
+skills_ops = SkillsTitlesOperations(skills_titles_collection)
 vectorizer = Vectorizer()
 resume_ops = ResumeOperations(collection, vectorizer)
+
 # Create a router instance
 router = APIRouter()
 
@@ -84,14 +86,45 @@ async def extract_clean_text_llam3_3b(file: UploadFile = File(...)):
         print(cleaned_text)
         resume_parser = parser.process_resume(cleaned_text)
         print(resume_parser)
+        # Check if the resume_parser is empty or not
+
+        resume_parser = json.dumps(resume_parser, indent=4)
+        # print(resume_parser)
+        print(type(resume_parser))
+
+        resume_parser = json.loads(resume_parser)
+        print(resume_parser)
+        print(type(resume_parser))
+
+        if not resume_parser:
+            raise HTTPException(status_code=400, detail="No resume data found.")
+
+        # Initialize total_experience if not present
         if "total_experience" not in resume_parser:
             resume_parser["total_experience"] = 0
-        print(resume_parser["total_experience"])
-        resume_parser_exp = resume_parser["experience"]
+
+        # Calculate experience
         res = calculator.calculate_experience(resume_parser)
         resume_parser["total_experience"] = format_experience(res[0], res[1])
 
+        # Fix the experience titles extraction
+        experience_titles = []
+        if "experience" in resume_parser:
+            for experience in resume_parser["experience"]:
+                if "title" in experience:
+                    experience_titles.append(experience["title"])
+
+        # Fix the skills extraction
+        skills = []
+        if "skills" in resume_parser:
+            skills = resume_parser["skills"]
+
         resume_ops.create_resume(resume_parser)
+        skills_ops.add_multiple_skills(skills)
+        skills_ops.add_multiple_titles(experience_titles)
+
+        logging.info(f"Added skills: {skills}")
+        logging.info(f"Added experience titles: {experience_titles}")
 
         # Delete the temporary file
         os.remove(file_location)

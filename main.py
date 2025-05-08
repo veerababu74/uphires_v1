@@ -6,6 +6,7 @@ from api import (
     manual_resume_search,
     manual,
     ai_resume_search,
+    skills_experince_title,
 )
 from fastapi.middleware.cors import CORSMiddleware
 from masking.routes import router as masking_router
@@ -14,7 +15,7 @@ from indexes.search_indexes import (
     create_vector_search_index,
     verify_vector_search_index,
 )
-from database.client import get_collection
+from database.client import get_collection, get_skills_titles_collection
 from core.custom_logger import CustomLogger
 
 # Initialize logger
@@ -33,6 +34,8 @@ app.add_middleware(
 )
 # Initialize database collection
 collection = get_collection()
+skills_titles_collection = get_skills_titles_collection()
+# Initialize logger
 
 # Create vector search index
 create_vector_search_index(collection)
@@ -42,6 +45,7 @@ create_vector_search_index(collection)
 app.include_router(autocomplete_job_title_skills.router)
 app.include_router(autocomplete_city.router)
 app.include_router(manual_resume_search.router)
+app.include_router(skills_experince_title.router)
 # app.include_router(manual.router)
 app.include_router(ai_resume_search.enhanced_search_router)
 app.include_router(masking_router, prefix="/masking", tags=["Masking"])
@@ -91,5 +95,5 @@ async def startup_event():
 if __name__ == "__main__":
     import uvicorn
 
-    # uvicorn.run("main:app", port=8000, reload=True)
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+    uvicorn.run("main:app", port=8000, reload=True)
+    # uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

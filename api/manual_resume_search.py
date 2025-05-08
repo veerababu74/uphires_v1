@@ -28,6 +28,11 @@ class ManualSearchRequest(BaseModel):
         description="Minimum required experience",
         example="2 years 6 months",
     )
+    max_experience: Optional[str] = Field(
+        default=None,
+        description="Maximum required experience",
+        example="5 years",
+    )
     locations: Optional[List[str]] = Field(
         default=None,
         description="Preferred locations",
@@ -137,11 +142,18 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                 status_code=400, detail="At least one experience title is required"
             )
 
-        # Parse min_experience string to months
+        # Parse min and max experience strings to months
         min_experience_months = 0
+        max_experience_months = float("inf")  # Default to infinity if not specified
+
         if search_params.min_experience:
             min_experience_months = parse_experience_to_months(
                 search_params.min_experience
+            )
+
+        if search_params.max_experience:
+            max_experience_months = parse_experience_to_months(
+                search_params.max_experience
             )
 
         # Step 1: Build the base query for experience titles
@@ -249,8 +261,8 @@ async def manual_resume_search(search_params: ManualSearchRequest):
 
                     match_score += highest_level  # Add score based on education level
 
-            # Filter by minimum experience if provided
-            if min_experience_months > 0:
+            # Replace the existing experience filtering block with this:
+            if min_experience_months > 0 or max_experience_months < float("inf"):
                 # Try to parse total_experience field
                 total_exp = resume.get("total_experience", "")
                 resume_exp_months = 0
@@ -265,14 +277,18 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                             exp_months = parse_experience_to_months(duration)
                             resume_exp_months += exp_months
 
-                if resume_exp_months < min_experience_months:
-                    continue  # Skip if experience requirement not met
+                # Check both min and max experience conditions
+                if (
+                    resume_exp_months < min_experience_months
+                    or resume_exp_months > max_experience_months
+                ):
+                    continue  # Skip if experience requirements not met
 
                 # Add score based on experience match
-                if resume_exp_months <= min_experience_months * 1.5:
-                    match_score += 10  # Closer to required experience
-                else:
-                    match_score += 5  # Much more than required experience
+                if min_experience_months <= resume_exp_months <= max_experience_months:
+                    match_score += 10  # Perfect range match
+                elif resume_exp_months <= min_experience_months * 1.5:
+                    match_score += 5  # Close to required minimum experience
 
             # Filter by locations if provided
             if search_params.locations and len(search_params.locations) > 0:

@@ -89,3 +89,131 @@ class ResumeOperations:
                 updated_count += 1
 
         return {"message": f"Updated vector embeddings for {updated_count} resumes"}
+
+
+# ...existing code...
+
+
+class SkillsTitlesOperations:
+    def __init__(self, collection: Collection):
+        self.collection = collection
+
+    def _preprocess_text(self, text: str) -> str:
+        """Preprocess the text by removing extra spaces and converting to lowercase"""
+        return text.strip().lower()
+
+    def add_skill(self, skill: str) -> Dict[str, str]:
+        """Add a new skill if it doesn't exist"""
+        processed_skill = self._preprocess_text(skill)
+
+        # Check if skill already exists
+        existing_skill = self.collection.find_one(
+            {"type": "skill", "value": processed_skill}
+        )
+        if existing_skill:
+            return {"message": f"Skill '{skill}' already exists"}
+
+        result = self.collection.insert_one(
+            {
+                "type": "skill",
+                "value": processed_skill,
+            }
+        )
+
+        return {"message": f"Skill '{skill}' added successfully"}
+
+    def add_title(self, title: str) -> Dict[str, str]:
+        """Add a new title if it doesn't exist"""
+        processed_title = self._preprocess_text(title)
+
+        # Check if title already exists
+        existing_title = self.collection.find_one(
+            {"type": "title", "value": processed_title}
+        )
+        if existing_title:
+            return {"message": f"Title '{title}' already exists"}
+
+        result = self.collection.insert_one(
+            {
+                "type": "title",
+                "value": processed_title,
+            }
+        )
+
+        return {"message": f"Title '{title}' added successfully"}
+
+    def add_multiple_skills(self, skills: List[str]) -> Dict[str, Any]:
+        """Add multiple skills at once"""
+        added_count = 0
+        existing_count = 0
+
+        for skill in skills:
+            processed_skill = self._preprocess_text(skill)
+            if not self.collection.find_one(
+                {"type": "skill", "value": processed_skill}
+            ):
+                self.collection.insert_one(
+                    {
+                        "type": "skill",
+                        "value": processed_skill,
+                    }
+                )
+                added_count += 1
+            else:
+                existing_count += 1
+
+        return {
+            "message": f"Added {added_count} new skills, {existing_count} were already present"
+        }
+
+    def add_multiple_titles(self, titles: List[str]) -> Dict[str, Any]:
+        """Add multiple titles at once"""
+        added_count = 0
+        existing_count = 0
+
+        for title in titles:
+            processed_title = self._preprocess_text(title)
+            if not self.collection.find_one(
+                {"type": "title", "value": processed_title}
+            ):
+                self.collection.insert_one(
+                    {
+                        "type": "title",
+                        "value": processed_title,
+                    }
+                )
+                added_count += 1
+            else:
+                existing_count += 1
+
+        return {
+            "message": f"Added {added_count} new titles, {existing_count} were already present"
+        }
+
+    def get_all_skills(self) -> List[str]:
+        """Get all skills"""
+        skills = self.collection.find({"type": "skill"})
+        return [skill["value"] for skill in skills]
+
+    def get_all_titles(self) -> List[str]:
+        """Get all titles"""
+        titles = self.collection.find({"type": "title"})
+        return [title["value"] for title in titles]
+
+    def delete_skill(self, skill: str) -> Dict[str, str]:
+        """Delete a skill"""
+        processed_skill = self._preprocess_text(skill)
+        result = self.collection.delete_one({"type": "skill", "value": processed_skill})
+
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail=f"Skill '{skill}' not found")
+        return {"message": f"Skill '{skill}' deleted successfully"}
+
+    def delete_title(self, title: str) -> Dict[str, str]:
+        """Delete a title"""
+        processed_title = self._preprocess_text(title)
+        result = self.collection.delete_one({"type": "title", "value": processed_title})
+
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail=f"Title '{title}' not found")
+        return {"message": f"Title '{title}' deleted successfully"}

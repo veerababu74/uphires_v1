@@ -28,3 +28,4 @@ htmlcov/
 *.pkl
 *.h5
 *.model
+.env
