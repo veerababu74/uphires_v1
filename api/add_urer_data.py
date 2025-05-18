@@ -248,6 +248,50 @@ async def submit_resume_details(resume_data: ResumeData):
         resume_dict = resume_data.model_dump()
         resume_dict["created_at"] = datetime.utcnow()
 
+        # Check for existing records with same PAN card, Aadhar card, mobile number, or email
+        contact_details = resume_dict["contact_details"]
+
+        # Create a query to check for existing records
+        existing_query = {
+            "$or": [
+                {"contact_details.pan_card": contact_details["pan_card"]},
+                {"contact_details.aadhar_card": contact_details["aadhar_card"]},
+                {"contact_details.phone": contact_details["phone"]},
+                {"contact_details.email": contact_details["email"]},
+            ]
+        }
+
+        # Check if any matching records exist
+        existing_record = collection.find_one(existing_query)
+        if existing_record:
+            # Determine which field(s) caused the conflict
+            conflicts = []
+            if (
+                existing_record["contact_details"].get("pan_card")
+                == contact_details["pan_card"]
+            ):
+                conflicts.append("PAN Card")
+            if (
+                existing_record["contact_details"].get("aadhar_card")
+                == contact_details["aadhar_card"]
+            ):
+                conflicts.append("Aadhar Card")
+            if (
+                existing_record["contact_details"].get("phone")
+                == contact_details["phone"]
+            ):
+                conflicts.append("Mobile Number")
+            if (
+                existing_record["contact_details"].get("email")
+                == contact_details["email"]
+            ):
+                conflicts.append("Email")
+
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Record already exists with the same {', '.join(conflicts)}",
+            )
+
         # Convert datetime objects to strings for MongoDB compatibility
         for exp in resume_dict["experience"]:
             exp["from_date"] = exp["from_date"].isoformat()
@@ -283,9 +327,11 @@ Contact Details:
   Phone: {contact_details['phone']}
   Alternative Phone: {contact_details.get('alternative_phone', 'N/A')}
   Current City: {contact_details['current_city']}
-  Looking for jobs in: {contact_details['looking_for_jobs_in']}
+  Looking for jobs in: {', '.join(contact_details['looking_for_jobs_in'])}
   Gender: {contact_details.get('gender', 'N/A')}
   Age: {contact_details.get('age', 'N/A')}
+  PAN Card: {contact_details['pan_card']}
+  Aadhar Card: {contact_details['aadhar_card']}
 
 PROFESSIONAL SUMMARY
 -------------------
