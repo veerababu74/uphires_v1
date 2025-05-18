@@ -1,9 +1,8 @@
-# resume_api/api/autocomplete.py
 from fastapi import APIRouter, Query, Body, Depends, HTTPException
 from database.client import get_collection
 from core.vectorizer import Vectorizer
 from core.helpers import format_resume
-from typing import List, Dict
+from typing import List, Dict, Any
 import pymongo
 import re
 
@@ -16,6 +15,47 @@ collection = get_collection()
 vectorizer = Vectorizer()
 
 
+def process_results(results, key):
+    """
+    Process the results by converting to lowercase, stripping whitespace,
+    and removing duplicates while maintaining order.
+    Also filters out empty or blank strings.
+    """
+    processed = []
+    seen = set()
+    for result in results:
+        value = result.get(key)
+        if not isinstance(value, str):
+            continue  # Skip invalid or None values
+        stripped = value.strip()
+        if not stripped:  # Skip empty or whitespace-only strings
+            continue
+        lower_value = stripped.lower()
+        if lower_value not in seen:
+            seen.add(lower_value)
+            processed.append(value)  # Preserve original casing
+    return processed
+
+
+def extract_skills(raw_data: str) -> List[str]:
+    if not raw_data or not isinstance(raw_data, str):
+        return []
+
+    cleaned = re.sub(r".*?:", "", raw_data)
+    parenthetical_content = re.findall(r"\((.*?)\)", cleaned)
+    cleaned = re.sub(r"\(.*?\)", ",", cleaned)
+    skills = re.split(r"[,/&]|\band\b", cleaned)
+    for content in parenthetical_content:
+        skills.extend(re.split(r"[,\s]+", content))
+
+    processed_skills = []
+    for skill in skills:
+        skill = re.sub(r"[^\w\s-]", "", skill).strip().lower()
+        if skill and skill not in {"others", "and", "in", "of"}:
+            processed_skills.append(skill)
+    return processed_skills
+
+
 @router.get(
     "/job_titles/",
     response_model=List[str],
@@ -23,15 +63,12 @@ vectorizer = Vectorizer()
     description="""
     Get autocomplete suggestions for job titles based on input prefix.
     Uses both exact matching and semantic search for better results.
-    
     **Parameters:**
     - prefix: Text to search for in job titles (e.g., "software eng")
     - limit: Maximum number of suggestions to return
-    
     **Returns:**
     List of matching job titles sorted by relevance
-    
-    **Example Usage:**
+    **examples Usage:**
     - prefix="soft" might return ["Software Engineer", "Software Developer", "Software Architect"]
     - prefix="data" might return ["Data Scientist", "Data Engineer", "Data Analyst"]
     """,
@@ -40,12 +77,12 @@ vectorizer = Vectorizer()
             "description": "Successful job title suggestions",
             "content": {
                 "application/json": {
-                    "example": [
-                        "Software Engineer",
-                        "Software Developer",
-                        "Senior Software Engineer",
-                        "Software Architect",
-                        "Software Team Lead",
+                    "examples": [
+                        "software engineer",
+                        "software developer",
+                        "senior software engineer",
+                        "software architect",
+                        "software team lead",
                     ]
                 }
             },
@@ -54,7 +91,7 @@ vectorizer = Vectorizer()
             "description": "Bad Request",
             "content": {
                 "application/json": {
-                    "example": {"detail": "Search prefix cannot be empty"}
+                    "examples": {"detail": "Search prefix cannot be empty"}
                 }
             },
         },
@@ -65,10 +102,10 @@ async def autocomplete_titles(
         ...,
         description="Job title prefix to search for",
         min_length=2,
-        example="software eng",
+        examples="software eng",
     ),
     limit: int = Query(
-        default=10, description="Maximum number of suggestions", ge=1, le=50, example=5
+        default=10, description="Maximum number of suggestions", ge=1, le=50, examples=5
     ),
 ):
     try:
@@ -83,13 +120,11 @@ async def autocomplete_titles(
             {"$limit": limit},
             {"$project": {"title": "$_id", "_id": 0}},
         ]
-
         results = list(collection.aggregate(pipeline))
-        titles = [doc["title"] for doc in results]
+        titles = process_results(results, "title")
 
         if len(titles) < limit:
             query_embedding = vectorizer.generate_embedding(prefix)
-
             semantic_pipeline = [
                 {
                     "$search": {
@@ -105,15 +140,18 @@ async def autocomplete_titles(
                 {"$project": {"title": "$experience.title"}},
                 {"$limit": limit},
             ]
-
             semantic_results = list(collection.aggregate(semantic_pipeline))
-            semantic_titles = [
-                doc["title"] for doc in semantic_results if doc["title"] not in titles
-            ]
-            titles.extend(semantic_titles[: limit - len(titles)])
+            semantic_titles = process_results(semantic_results, "title")
+            titles.extend(
+                [
+                    title
+                    for title in semantic_titles
+                    if title.lower().strip()
+                    not in map(str.lower, map(str.strip, titles))
+                ]
+            )
 
-        return titles
-
+        return titles[:limit]
     except Exception as e:
         raise HTTPException(
             status_code=500, detail=f"Title autocomplete failed: {str(e)}"
@@ -121,35 +159,32 @@ async def autocomplete_titles(
 
 
 @router.get(
-    "/job_skills/",
+    "/job_skillsv1/",
     response_model=List[str],
     summary="Autocomplete Technical Skills",
     description="""
     Get autocomplete suggestions for technical skills based on input prefix.
     Uses both exact matching and semantic search for better results.
-    
     **Parameters:**
     - prefix: Text to search for in skills (e.g., "py" for Python)
     - limit: Maximum number of suggestions to return
-    
     **Returns:**
     List of matching skills sorted by relevance
-    
-    **Example Usage:**
-    - prefix="py" might return ["Python", "PyTorch", "PyQt"]
-    - prefix="java" might return ["JavaScript", "Java", "Java Spring"]
+    **examples Usage:**
+    - prefix="py" might return ["python", "pytorch", "pyqt"]
+    - prefix="java" might return ["javascript", "java", "java spring"]
     """,
     responses={
         200: {
             "description": "Successful skill suggestions",
             "content": {
                 "application/json": {
-                    "example": [
-                        "Python",
-                        "PyTorch",
-                        "Python Django",
-                        "Python Flask",
-                        "Python Scripting",
+                    "examples": [
+                        "python",
+                        "pytorch",
+                        "python django",
+                        "python flask",
+                        "python scripting",
                     ]
                 }
             },
@@ -158,7 +193,7 @@ async def autocomplete_titles(
             "description": "Bad Request",
             "content": {
                 "application/json": {
-                    "example": {"detail": "Search prefix cannot be empty"}
+                    "examples": {"detail": "Search prefix cannot be empty"}
                 }
             },
         },
@@ -166,10 +201,10 @@ async def autocomplete_titles(
 )
 async def autocomplete_skills(
     prefix: str = Query(
-        ..., description="Skill prefix to search for", min_length=2, example="py"
+        ..., description="Skill prefix to search for", min_length=2, examples="py"
     ),
     limit: int = Query(
-        default=10, description="Maximum number of suggestions", ge=1, le=50, example=5
+        default=10, description="Maximum number of suggestions", ge=1, le=50, examples=5
     ),
 ):
     try:
@@ -177,78 +212,65 @@ async def autocomplete_skills(
             {"$unwind": "$skills"},
             {"$match": {"skills": {"$regex": f".*{prefix}.*", "$options": "i"}}},
             {"$group": {"_id": "$skills"}},
-            {"$limit": limit},
-            {"$project": {"skill": "$_id", "_id": 0}},
+            {"$limit": limit * 5},  # Increase limit to account for splitting
+            {"$project": {"raw_skill": "$_id", "_id": 0}},
+        ]
+        raw_results = list(collection.aggregate(pipeline))
+        raw_skills = [
+            result["raw_skill"] for result in raw_results if result.get("raw_skill")
         ]
 
-        results = list(collection.aggregate(pipeline))
-        skills = [doc["skill"] for doc in results]
+        extracted_skills = [
+            skill for raw_skill in raw_skills for skill in extract_skills(raw_skill)
+        ]
 
-        if len(skills) < limit:
-            query_embedding = vectorizer.generate_embedding(prefix)
+        unique_skills = list({skill for skill in extracted_skills})
+        sorted_skills = sorted(
+            unique_skills, key=lambda s: (not s.startswith(prefix.lower()), s)
+        )
 
-            semantic_pipeline = [
-                {
-                    "$search": {
-                        "index": "vector_search_index",
-                        "knnBeta": {
-                            "vector": query_embedding,
-                            "path": "skills_vector",
-                            "k": limit,
-                        },
-                    }
-                },
-                {"$unwind": "$skills"},
-                {"$project": {"skill": "$skills"}},
-                {"$limit": limit},
-            ]
-
-            semantic_results = list(collection.aggregate(semantic_pipeline))
-            semantic_skills = [
-                doc["skill"] for doc in semantic_results if doc["skill"] not in skills
-            ]
-            skills.extend(semantic_skills[: limit - len(skills)])
-
-        return skills
-
+        return sorted_skills[:limit]
     except Exception as e:
         raise HTTPException(
             status_code=500, detail=f"Skills autocomplete failed: {str(e)}"
         )
 
 
+# New combined route
 @router.get(
-    "/search/skills/job_titles/",
+    "/jobs_and_skills/",
     response_model=Dict[str, List[str]],
-    summary="Combined Job Title and Skills Search",
+    summary="Autocomplete Job Titles and Skills",
     description="""
-    Search for both job titles and skills simultaneously.
-    Returns matching suggestions for both categories.
-    
+    Get autocomplete suggestions for both job titles and technical skills based on input prefix.
+    Combines results from exact matching and semantic search.
     **Parameters:**
-    - prefix: Text to search for in both titles and skills
-    - limit: Maximum number of suggestions per category
-    
+    - prefix: Text to search for in both job titles and skills (e.g., "py" for Python-related jobs and skills)
+    - limit: Maximum number of suggestions for each category
     **Returns:**
-    Dictionary with two lists:
-    - titles: Matching job titles
-    - skills: Matching technical skills
-    
-    **Example Usage:**
-    - prefix="python" returns both Python-related job titles and skills
+    Object containing two arrays: one for matching job titles and one for matching skills
+    **examples Response:**
+    {
+      "titles": ["Python Developer", "Senior Python Engineer", "Python Team Lead"],
+      "skills": ["Python", "Python Django", "Python Flask"]
+    }
     """,
     responses={
         200: {
-            "description": "Successful combined search results",
+            "description": "Successful job title and skill suggestions",
             "content": {
                 "application/json": {
-                    "example": {
+                    "examples": {
                         "titles": [
                             "Python Developer",
                             "Senior Python Engineer",
                             "Python Team Lead",
                         ],
-                        "skills": ["Python", "Python Django", "Python Flask"],
+                        "skills": [
+                            "Python",
+                            "Python Django",
+                            "Python Flask",
+                        ],
                     }
                 }
             },
@@ -257,29 +279,25 @@ async def autocomplete_skills(
             "description": "Bad Request",
             "content": {
                 "application/json": {
-                    "example": {"detail": "Search prefix cannot be empty"}
+                    "examples": {"detail": "Search prefix cannot be empty"}
                 }
             },
         },
     },
 )
-async def autocomplete_search(
+async def autocomplete_jobs_and_skills(
     prefix: str = Query(
         ...,
-        description="Text to search in both titles and skills",
+        description="Prefix to search in titles and skills",
         min_length=2,
-        example="python",
+        examples="py",
     ),
     limit: int = Query(
-        default=10,
-        description="Maximum suggestions per category",
-        ge=1,
-        le=50,
-        example=5,
+        default=5, description="Maximum number of suggestions per category", ge=1, le=50
     ),
 ):
     try:
-        # Get titles
+        # --- Fetch and process job titles ---
         title_pipeline = [
             {"$unwind": "$experience"},
             {
@@ -291,85 +309,65 @@ async def autocomplete_search(
             {"$limit": limit},
             {"$project": {"title": "$_id", "_id": 0}},
         ]
-
         title_results = list(collection.aggregate(title_pipeline))
-        titles = [doc["title"] for doc in title_results]
+        titles = process_results(title_results, "title")
 
-        # Get skills
+        if len(titles) < limit:
+            query_embedding = vectorizer.generate_embedding(prefix)
+            title_semantic_pipeline = [
+                {
+                    "$search": {
+                        "index": "vector_search_index",
+                        "knnBeta": {
+                            "vector": query_embedding,
+                            "path": "experience_text_vector",
+                            "k": limit,
+                        },
+                    }
+                },
+                {"$unwind": "$experience"},
+                {"$project": {"title": "$experience.title"}},
+                {"$limit": limit},
+            ]
+            semantic_title_results = list(collection.aggregate(title_semantic_pipeline))
+            semantic_titles = process_results(semantic_title_results, "title")
+            titles.extend(
+                [
+                    title
+                    for title in semantic_titles
+                    if title.lower().strip()
+                    not in map(str.lower, map(str.strip, titles))
+                ]
+            )
+
+        # --- Fetch and process skills ---
         skill_pipeline = [
             {"$unwind": "$skills"},
             {"$match": {"skills": {"$regex": f".*{prefix}.*", "$options": "i"}}},
             {"$group": {"_id": "$skills"}},
-            {"$limit": limit},
-            {"$project": {"skill": "$_id", "_id": 0}},
+            {"$limit": limit * 5},
+            {"$project": {"raw_skill": "$_id", "_id": 0}},
         ]
+        raw_skill_results = list(collection.aggregate(skill_pipeline))
+        raw_skills = [
+            result["raw_skill"]
+            for result in raw_skill_results
+            if result.get("raw_skill")
+        ]
+        extracted_skills = [
+            skill for raw_skill in raw_skills for skill in extract_skills(raw_skill)
+        ]
+        unique_skills = list(set(extracted_skills))
+        sorted_skills = sorted(
+            unique_skills, key=lambda s: (not s.startswith(prefix.lower()), s)
+        )
 
-        skill_results = list(collection.aggregate(skill_pipeline))
-        skills = [doc["skill"] for doc in skill_results]
-
-        # If results are less than limit, use semantic search
-        if len(titles) < limit or len(skills) < limit:
-            query_embedding = vectorizer.generate_embedding(prefix)
-
-            # Semantic search for titles
-            if len(titles) < limit:
-                title_semantic_pipeline = [
-                    {
-                        "$search": {
-                            "index": "vector_search_index",
-                            "knnBeta": {
-                                "vector": query_embedding,
-                                "path": "experience_text_vector",
-                                "k": limit,
-                            },
-                        }
-                    },
-                    {"$unwind": "$experience"},
-                    {"$project": {"title": "$experience.title"}},
-                    {"$limit": limit},
-                ]
-
-                semantic_title_results = list(
-                    collection.aggregate(title_semantic_pipeline)
-                )
-                semantic_titles = [
-                    doc["title"]
-                    for doc in semantic_title_results
-                    if doc["title"] not in titles
-                ]
-                titles.extend(semantic_titles[: limit - len(titles)])
-
-            # Semantic search for skills
-            if len(skills) < limit:
-                skill_semantic_pipeline = [
-                    {
-                        "$search": {
-                            "index": "vector_search_index",
-                            "knnBeta": {
-                                "vector": query_embedding,
-                                "path": "skills_vector",
-                                "k": limit,
-                            },
-                        }
-                    },
-                    {"$unwind": "$skills"},
-                    {"$project": {"skill": "$skills"}},
-                    {"$limit": limit},
-                ]
-
-                semantic_skill_results = list(
-                    collection.aggregate(skill_semantic_pipeline)
-                )
-                semantic_skills = [
-                    doc["skill"]
-                    for doc in semantic_skill_results
-                    if doc["skill"] not in skills
-                ]
-                skills.extend(semantic_skills[: limit - len(skills)])
-
-        return {"titles": titles, "skills": skills}
+        return {
+            "titles": titles[:limit],
+            "skills": sorted_skills[:limit],
+        }
 
     except Exception as e:
         raise HTTPException(
-            status_code=500, detail=f"Combined autocomplete search failed: {str(e)}"
+            status_code=500, detail=f"Combined autocomplete failed: {str(e)}"
         )
