@@ -132,49 +132,51 @@ router = APIRouter(
 
 
 class Experience(BaseModel):
-    company: str
-    title: str
-    from_date: date
-    until: Optional[date]
+    company: str  # Required
+    title: str  # Required
+    from_date: date  # Required
+    until: Optional[date] = None
 
 
 class Education(BaseModel):
-    education: str
-    college: str
-    pass_year: int
+    education: str  # Required
+    college: str  # Required
+    pass_year: int  # Required
 
 
 class ContactDetails(BaseModel):
-    name: Optional[str] = None
-    email: EmailStr
-    phone: str
+    name: str  # Required
+    email: EmailStr  # Required
+    phone: str  # Required
     alternative_phone: Optional[str] = None
-    current_city: str
-    looking_for_jobs_in: str
+    current_city: str  # Required
+    looking_for_jobs_in: List[str]  # Required, list of preferred locations
     gender: Optional[str] = None
     age: Optional[int] = None
     naukri_profile: Optional[HttpUrl] = None
     linkedin_profile: Optional[HttpUrl] = None
     portfolio_link: Optional[HttpUrl] = None
+    pan_card: str  # Required
+    aadhar_card: str  # Required
 
 
 class ResumeData(BaseModel):
     user_id: str
     username: str
     contact_details: ContactDetails
-    total_experience: float
-    notice_period: int
-    currency: str
-    pay_duration: str
-    current_salary: float
+    total_experience: float  # Required
+    notice_period: int  # Required
+    currency: str  # Required
+    pay_duration: str  # Required
+    current_salary: float  # Required
     hike: float
-    expected_salary: float
-    skills: List[str]
-    may_also_known_skills: List[str]
-    labels: List[str]
-    experience: List[Experience]
-    academic_details: List[Education]
-    source: str
+    expected_salary: float  # Required
+    skills: List[str]  # Required
+    may_also_known_skills: List[str]  # Required
+    labels: List[str]  # Required
+    experience: List[Experience]  # Required
+    academic_details: List[Education]  # Required
+    source: str  # Required
     last_working_day: Optional[date]
     is_tier1_mba: bool
     is_tier1_engineering: bool
