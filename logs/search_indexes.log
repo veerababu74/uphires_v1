@@ -1,0 +1,920 @@
+2025-05-13 10:38:19 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 10:38:19 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 10:38:19 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 10:38:19 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 10:38:44 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 10:38:44 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 10:38:44 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 10:38:44 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 10:38:45 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 10:38:45 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 10:38:45 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 10:38:45 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 10:38:45 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 10:38:45 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 10:38:45 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 10:38:45 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 10:38:45 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 10:38:45 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 10:38:45 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 10:38:45 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:06:03 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:06:03 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:06:03 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:06:03 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:06:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:06:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:06:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:06:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:06:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:06:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:06:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:06:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:06:30 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:06:30 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:06:30 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:06:30 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:06:30 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:06:30 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:06:30 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:06:30 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:23:27 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:23:27 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:23:27 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:23:27 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:23:28 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:23:28 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:23:28 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:23:28 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:23:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:23:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:23:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:23:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:23:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:23:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:23:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:23:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:25:37 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:25:37 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:25:37 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:25:37 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:26:08 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:26:08 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:26:08 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:26:08 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:26:08 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:26:08 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:26:08 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:26:08 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:26:09 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:26:09 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:26:09 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:26:09 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:26:09 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:26:09 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:26:09 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:26:09 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:29:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:29:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:29:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:29:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:29:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:29:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:29:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:29:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:29:30 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:29:30 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:29:30 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:29:30 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:29:30 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:29:30 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:29:30 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:29:30 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:32:51 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:32:51 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:32:51 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:32:51 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:32:52 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:32:52 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:32:52 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:32:52 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:32:53 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:32:53 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:32:53 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:32:53 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:32:53 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:32:53 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:32:53 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:32:53 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:39:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:39:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:39:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:39:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:39:15 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:39:15 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:39:15 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:39:15 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:39:15 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:39:15 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:39:15 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:39:15 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:39:15 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:39:15 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:39:15 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:39:15 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:48:27 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:48:27 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:48:27 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:48:27 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:48:27 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:48:27 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:48:27 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:48:27 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:48:28 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:48:28 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:48:28 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:48:28 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:48:28 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:48:28 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:48:28 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:48:28 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:53:01 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:53:01 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:53:01 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:53:01 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:53:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:53:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:53:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:53:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:53:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:53:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:53:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:53:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:53:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:53:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:53:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:53:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:55:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:55:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:55:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:55:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:55:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:55:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:55:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:55:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:55:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:55:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:55:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:55:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-13 23:55:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-13 23:55:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-13 23:55:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-13 23:55:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:00:00 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:00:00 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:00:00 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:00:00 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:00:01 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:00:01 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:00:01 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:00:01 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:00:01 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:00:01 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:00:01 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:00:01 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:00:01 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:00:01 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:00:01 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:00:01 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:05:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:05:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:05:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:05:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:05:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:05:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:05:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:05:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:05:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:05:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:05:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:05:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 00:05:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 00:05:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 00:05:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 00:05:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:14:08 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:14:08 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:14:08 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:14:08 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:14:32 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:14:32 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:14:32 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:14:32 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:14:33 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:14:33 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:14:33 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:14:33 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:14:33 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:14:33 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:14:33 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:14:33 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:14:33 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:14:33 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:14:33 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:14:33 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:18:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:18:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:18:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:18:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:18:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:18:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:18:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:18:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:18:17 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:18:17 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:18:17 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:18:17 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:18:17 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:18:17 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:18:17 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:18:17 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:20:17 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:20:17 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:20:17 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:20:17 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:20:17 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:20:17 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:20:17 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:20:17 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:20:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:20:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:20:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:20:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:20:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:20:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:20:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:20:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:40:17 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:40:17 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:40:17 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:40:17 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:40:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:40:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:40:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:40:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:40:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:40:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:40:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:40:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:40:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:40:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:40:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:40:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:42:54 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:42:54 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:42:54 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:42:54 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:42:54 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:42:54 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:42:54 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:42:54 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:42:55 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:42:55 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:42:55 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:42:55 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:42:55 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:42:55 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:42:55 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:42:55 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:44:20 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:44:20 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:44:20 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:44:20 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:44:21 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:44:21 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:44:21 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:44:21 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:44:21 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:44:21 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:44:21 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:44:21 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:44:21 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:44:21 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:44:21 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:44:21 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:48:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:48:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:48:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:48:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:48:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:48:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:48:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:48:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:48:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:48:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:48:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:48:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:48:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:48:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:48:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:48:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:49:51 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:49:51 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:49:51 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:49:51 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:49:52 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:49:52 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:49:52 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:49:52 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:49:52 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:49:52 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:49:52 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:49:52 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:49:52 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:49:52 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:49:52 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:49:52 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:51:56 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:51:56 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:51:56 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:51:56 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:51:56 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:51:56 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:51:56 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:51:56 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:51:57 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:51:57 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:51:57 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:51:57 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:51:57 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:51:57 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:51:57 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:51:57 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:53:43 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:53:43 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:53:43 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:53:43 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:53:44 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:53:44 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:53:44 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:53:44 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:53:44 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:53:44 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:53:44 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:53:44 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:53:44 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:53:44 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:53:44 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:53:44 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:54:58 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:54:58 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:54:58 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:54:58 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:54:59 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:54:59 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:54:59 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:54:59 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:54:59 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:54:59 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:54:59 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:54:59 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:54:59 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:54:59 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:54:59 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:54:59 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:58:08 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:58:08 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:58:08 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:58:08 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:58:08 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:58:08 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:58:08 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:58:08 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:58:09 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:58:09 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:58:09 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:58:09 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-14 22:58:09 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-14 22:58:09 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-14 22:58:09 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-14 22:58:09 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:23:10 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:23:10 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:23:10 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:23:10 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:23:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:23:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:23:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:23:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:23:30 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:23:30 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:23:30 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:23:30 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:23:31 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:23:31 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:23:31 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:23:31 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:23:31 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:23:31 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:23:31 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:23:31 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:33:05 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:33:05 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:33:05 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:33:05 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:33:27 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:33:27 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:33:27 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:33:27 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:33:27 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:33:27 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:33:27 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:33:27 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:33:28 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:33:28 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:33:28 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:33:28 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:33:28 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:33:28 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:33:28 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:33:28 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:35:15 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:35:15 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:35:15 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:35:15 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:35:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:35:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:35:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:35:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:35:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:35:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:35:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:35:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:35:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:35:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:35:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:35:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:38:13 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:38:13 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:38:13 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:38:13 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:38:13 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:38:13 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:38:13 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:38:13 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:38:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:38:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:38:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:38:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 20:38:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 20:38:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 20:38:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 20:38:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:13:35 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:13:35 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:13:35 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:13:35 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:13:36 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:13:36 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:13:36 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:13:36 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:13:36 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:13:36 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:13:36 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:13:36 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:13:36 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:13:36 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:13:36 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:13:36 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:29:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:29:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:29:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:29:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:29:36 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:29:36 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:29:36 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:29:36 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:29:37 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:29:37 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:29:37 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:29:37 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:29:37 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:29:37 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:29:37 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:29:37 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:29:37 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:29:37 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:29:37 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:29:37 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:44:57 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:44:57 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:44:57 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:44:57 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:44:57 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:44:57 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:44:57 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:44:57 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:44:58 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:44:58 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:44:58 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:44:58 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:44:58 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:44:58 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:44:58 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:44:58 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:52:19 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:52:19 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:52:19 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:52:19 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:52:20 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:52:20 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:52:20 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:52:20 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:52:20 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:52:20 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:52:20 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:52:20 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 21:52:20 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 21:52:20 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 21:52:20 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 21:52:20 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 22:38:59 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 22:38:59 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 22:38:59 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 22:38:59 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 22:38:59 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 22:38:59 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 22:38:59 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 22:38:59 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 22:39:00 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 22:39:00 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 22:39:00 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 22:39:00 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-15 22:39:00 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-15 22:39:00 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-15 22:39:00 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-15 22:39:00 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-17 22:35:49 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-17 22:35:49 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-17 22:35:49 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-17 22:35:49 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-17 22:36:28 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-17 22:36:28 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-17 22:36:28 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-17 22:36:28 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-17 22:36:29 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-17 22:36:29 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-17 22:36:29 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-17 22:36:29 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-17 22:36:30 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-17 22:36:30 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-17 22:36:30 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-17 22:36:30 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-17 22:36:30 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-17 22:36:30 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-17 22:36:30 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-17 22:36:30 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:37:34 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:37:34 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:37:34 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:37:34 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:37:54 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:37:54 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:37:54 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:37:54 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:37:55 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:37:55 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:37:55 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:37:55 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:37:55 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:37:55 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:37:55 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:37:55 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:37:55 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:37:55 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:37:55 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:37:55 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:42:39 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:42:39 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:42:39 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:42:39 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:42:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:42:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:42:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:42:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:42:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:42:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:42:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:42:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:42:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:42:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:42:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:42:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:44:05 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:44:05 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:44:05 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:44:05 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:44:05 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:44:05 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:44:05 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:44:05 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:44:06 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:44:06 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:44:06 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:44:06 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:44:06 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:44:06 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:44:06 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:44:06 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:51:44 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:51:44 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:51:44 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:51:44 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:51:44 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:51:44 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:51:44 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:51:44 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:51:45 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:51:45 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:51:45 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:51:45 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:51:45 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:51:45 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:51:45 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:51:45 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:54:36 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:54:36 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:54:36 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:54:36 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:54:37 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:54:37 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:54:37 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:54:37 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:54:37 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:54:37 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:54:37 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:54:37 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:54:37 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:54:37 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:54:37 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:54:37 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:59:39 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:59:39 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:59:39 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:59:39 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:59:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:59:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:59:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:59:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:59:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:59:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:59:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:59:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 21:59:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 21:59:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 21:59:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 21:59:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:15:52 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:15:52 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:15:52 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:15:52 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:15:52 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:15:52 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:15:52 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:15:52 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:15:53 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:15:53 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:15:53 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:15:53 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:15:53 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:15:53 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:15:53 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:15:53 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:18:01 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:18:01 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:18:01 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:18:01 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:18:01 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:18:01 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:18:01 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:18:01 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:18:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:18:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:18:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:18:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:18:02 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:18:02 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:18:02 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:18:02 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:22:26 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:22:26 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:22:26 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:22:26 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:22:26 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:22:26 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:22:26 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:22:26 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:22:27 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:22:27 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:22:27 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:22:27 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:22:27 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:22:27 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:22:27 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:22:27 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:25:38 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:25:38 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:25:38 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:25:38 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:25:38 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:25:38 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:25:38 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:25:38 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:25:39 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:25:39 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:25:39 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:25:39 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:25:39 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:25:39 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:25:39 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:25:39 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:30:42 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:30:42 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:30:42 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:30:42 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:30:42 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:30:42 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:30:42 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:30:42 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:30:43 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:30:43 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:30:43 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:30:43 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:30:43 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:30:43 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:30:43 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:30:43 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:32:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:32:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:32:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:32:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:32:41 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:32:41 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:32:41 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:32:41 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:32:42 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:32:42 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:32:42 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:32:42 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:32:42 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:32:42 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:32:42 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:32:42 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:33:39 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:33:39 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:33:39 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:33:39 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:33:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:33:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:33:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:33:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:33:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:33:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:33:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:33:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:33:40 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:33:40 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:33:40 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:33:40 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:47:15 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:47:15 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:47:15 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:47:15 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:47:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:47:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:47:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:47:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:47:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:47:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:47:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:47:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:47:16 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:47:16 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:47:16 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:47:16 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:57:17 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:57:17 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:57:17 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:57:17 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:57:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:57:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:57:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:57:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:57:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:57:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:57:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:57:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 22:57:18 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 22:57:18 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 22:57:18 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 22:57:18 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:02:25 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:02:25 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:02:25 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:02:25 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:02:25 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:02:25 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:02:25 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:02:25 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:02:26 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:02:26 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:02:26 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:02:26 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:02:26 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:02:26 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:02:26 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:02:26 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:07:23 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:07:23 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:07:23 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:07:23 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:07:24 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:07:24 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:07:24 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:07:24 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:07:24 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:07:24 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:07:24 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:07:24 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:07:24 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:07:24 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:07:24 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:07:24 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:12:11 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:12:11 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:12:11 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:12:11 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:12:35 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:12:35 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:12:35 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:12:35 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:12:35 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:12:35 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:12:35 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:12:35 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:12:36 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:12:36 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:12:36 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:12:36 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:12:36 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:12:36 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:12:36 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:12:36 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:18:12 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:18:12 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:18:12 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:18:12 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:18:13 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:18:13 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:18:13 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:18:13 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:18:13 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:18:13 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:18:13 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:18:13 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:18:13 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:18:13 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:18:13 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:18:13 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:21:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:21:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:21:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:21:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:21:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:21:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:21:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:21:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:21:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:21:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:21:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:21:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:21:14 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:21:14 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:21:14 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:21:14 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:26:11 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:26:11 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:26:11 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:26:11 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:26:11 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:26:11 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:26:11 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:26:11 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:26:12 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:26:12 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:26:12 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:26:12 - search_indexes - ERROR - 3. Have appropriate permissions
+2025-05-18 23:26:12 - search_indexes - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-18 23:26:12 - search_indexes - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-18 23:26:12 - search_indexes - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-18 23:26:12 - search_indexes - ERROR - 3. Have appropriate permissions

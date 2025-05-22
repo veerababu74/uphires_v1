@@ -14,5 +14,4 @@ typing-extensions==4.8.0
 gunicorn==21.2.0
 torch==2.1.0
 transformers==4.35.0
-
-
+pydantic[email]

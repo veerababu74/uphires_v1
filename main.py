@@ -7,6 +7,7 @@ from api import (
     manual,
     ai_resume_search,
     skills_experince_title,
+    add_urer_data,
 )
 from fastapi.middleware.cors import CORSMiddleware
 from masking.routes import router as masking_router
@@ -50,6 +51,8 @@ app.include_router(skills_experince_title.router)
 app.include_router(ai_resume_search.enhanced_search_router)
 app.include_router(masking_router, prefix="/masking", tags=["Masking"])
 app.include_router(groqcloud_router, prefix="/groqcloud", tags=["GroqcloudLLM"])
+
+app.include_router(add_urer_data.router)
 
 
 @app.on_event("startup")

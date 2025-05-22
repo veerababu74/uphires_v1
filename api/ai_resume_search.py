@@ -1,12 +1,50 @@
 import re
+import os
 import numpy as np
-from fastapi import APIRouter, Body, HTTPException, status
+from fastapi import APIRouter, Body, HTTPException, status, UploadFile, File
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel
 from database.client import get_collection
 from core.helpers import format_resume
 from core.vectorizer import Vectorizer
 from models.search import VectorSearchQuery
+from GroqcloudLLM.text_extraction import extract_and_clean_text
+from pathlib import Path
+import logging
+from datetime import datetime, timedelta
+
+BASE_FOLDER = "dummy_data_save"
+TEMP_FOLDER = os.path.join(BASE_FOLDER, "temp_text_extract")
+TEMP_DIR = Path(os.path.join(BASE_FOLDER, "temp_files"))
+
+# Ensure the directories exist
+if not os.path.exists(TEMP_FOLDER):
+    os.makedirs(TEMP_FOLDER)
+if not TEMP_DIR.exists():
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+
+# Configure logging
+logging.basicConfig(
+    filename="cleanup.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
+
+
+def cleanup_temp_directory(age_limit_minutes: int = 60):
+    """
+    Cleanup temporary directory by deleting files older than the specified age limit.
+    """
+    now = datetime.now()
+    for file_path in TEMP_DIR.iterdir():
+        if file_path.is_file():
+            file_age = now - datetime.fromtimestamp(file_path.stat().st_mtime)
+            if file_age > timedelta(minutes=age_limit_minutes):
+                try:
+                    file_path.unlink()
+                    logging.info(f"Deleted old file: {file_path}")
+                except Exception as e:
+                    logging.error(f"Failed to delete file {file_path}: {e}")
 
 
 """
@@ -185,6 +223,125 @@ async def vector_search(search_query: VectorSearchQuery):
             },
             {"$set": {"score": {"$meta": "searchScore"}}},
             {"$match": {"score": {"$gte": search_query.min_score}}},
+            {
+                "$project": {
+                    "name": 1,
+                    "contact_details": 1,
+                    "education": 1,
+                    "experience": 1,
+                    "projects": 1,
+                    "total_experience": 1,
+                    "skills": 1,
+                    "certifications": 1,
+                    "score": 1,
+                }
+            },
+            {"$sort": {"score": -1}},
+        ]
+
+        try:
+            results = list(resumes_collection.aggregate(pipeline))
+        except Exception as e:
+            raise SearchError(f"Database query failed: {str(e)}")
+
+        if not results:
+            return []
+
+        formatted_results = [format_resume(result) for result in results]
+
+        # Add relevance score to results
+        for result in formatted_results:
+            result["relevance_score"] = round(result.get("score", 0) * 100, 2)
+
+        return formatted_results
+
+    except SearchError as se:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(se))
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"An unexpected error occurred: {str(e)}",
+        )
+
+
+@enhanced_search_router.post(
+    "/search-by-jd",
+    response_model=List[Dict[str, Any]],
+    summary="AI-Powered Resume Search Based on Job Description File",
+    description="""
+    Upload a job description file (.txt, .pdf, or .docx) and find matching resumes.
+    
+    The system will extract and clean the text from the file and use AI to find semantically relevant candidates.
+    """,
+)
+async def search_by_jd(
+    file: UploadFile = File(...),
+    field: str = "full_text",
+    num_results: int = 10,
+    min_score: float = 0.0,
+):
+    try:
+        # Step 1: Save uploaded file to temp directory
+        file_location = os.path.join(TEMP_FOLDER, file.filename)
+
+        with open(file_location, "wb") as temp_file:
+            content = await file.read()
+            temp_file.write(content)
+
+        # Step 2: Extract and clean text from file
+        try:
+            _, file_extension = os.path.splitext(file.filename)
+            if file_extension.lower() not in [".txt", ".pdf", ".docx"]:
+                raise SearchError(
+                    "Unsupported file type. Only .txt, .pdf, and .docx are supported."
+                )
+
+            jd_text = extract_and_clean_text(file_location)
+            if not jd_text.strip():
+                raise SearchError("Extracted job description is empty.")
+        finally:
+            # Clean up the temporary file
+            try:
+                os.remove(file_location)
+                logging.info(f"Deleted temporary file: {file_location}")
+            except Exception as e:
+                logging.error(f"Failed to delete temporary file {file_location}: {e}")
+
+        # Step 3: Generate embedding from cleaned JD text
+        try:
+            query_embedding = vectorizer.generate_embedding(jd_text)
+        except Exception as e:
+            raise SearchError(f"Failed to generate embedding from JD: {str(e)}")
+
+        # Step 4: Map field to vector path
+        vector_field_mapping = {
+            "skills": "skills_vector",
+            "experience": "experience_text_vector",
+            "education": "education_text_vector",
+            "projects": "projects_text_vector",
+            "full_text": "total_resume_vector",
+        }
+
+        vector_field = vector_field_mapping.get(field)
+        if not vector_field:
+            raise SearchError(
+                f"Invalid field name. Choose from: {', '.join(vector_field_mapping.keys())}"
+            )
+
+        # Step 5: Run vector search pipeline
+        pipeline = [
+            {
+                "$search": {
+                    "index": "vector_search_index",
+                    "knnBeta": {
+                        "vector": query_embedding,
+                        "path": vector_field,
+                        "k": num_results,
+                    },
+                }
+            },
+            {"$set": {"score": {"$meta": "searchScore"}}},
+            {"$match": {"score": {"$gte": min_score}}},
             {
                 "$project": {
                     "name": 1,

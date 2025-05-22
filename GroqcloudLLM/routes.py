@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException
 import os
-from fastapi import File, UploadFile, HTTPException
+from fastapi import File, UploadFile, HTTPException, Request
 from pathlib import Path
 import logging
 import json
 from datetime import datetime, timedelta
-from .text_extraction import extract_and_clean_text
+from .text_extraction import extract_and_clean_text, clean_text
 from .main import ResumeParser
 from Expericecal.total_exp import format_experience, calculator
 from database.operations import ResumeOperations, SkillsTitlesOperations
@@ -135,5 +135,76 @@ async def extract_clean_text_llam3_3b(file: UploadFile = File(...)):
             "resume_parser": resume_parser,
             # "resume_parser_exp": resume_parser_exp,
         }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+from pydantic import BaseModel
+from typing import List, Dict, Any
+
+
+class ResumeData(BaseModel):
+    text: str
+    # Add other fields as necessary
+
+
+@router.post("/grouqcloud-text/")
+async def extract_clean_text_from_raw(request: ResumeData):
+    """
+    Endpoint to extract and clean text from raw resume text input for LLM model.
+    """
+    try:
+
+        resume_text = request.text
+
+        if not resume_text:
+            raise HTTPException(status_code=400, detail="No resume text provided.")
+
+        # Clean the input text
+        cleaned_text = clean_text(resume_text)
+
+        # Parse the cleaned resume
+        resume_parser = parser.process_resume(cleaned_text)
+
+        if not resume_parser:
+            raise HTTPException(status_code=400, detail="No resume data found.")
+
+        # Convert to dict if needed (already is in dict if process_resume returns it)
+        if isinstance(resume_parser, str):
+            resume_parser = json.loads(resume_parser)
+
+        # Initialize total_experience if not present
+        if "total_experience" not in resume_parser:
+            resume_parser["total_experience"] = 0
+
+        # Calculate experience
+        res = calculator.calculate_experience(resume_parser)
+        resume_parser["total_experience"] = format_experience(res[0], res[1])
+
+        # Extract experience titles
+        experience_titles = []
+        if "experience" in resume_parser:
+            for experience in resume_parser["experience"]:
+                if "title" in experience:
+                    experience_titles.append(experience["title"])
+
+        # Extract skills
+        skills = []
+        if "skills" in resume_parser:
+            skills = resume_parser["skills"]
+
+        # Store in database
+        resume_ops.create_resume(resume_parser)
+        skills_ops.add_multiple_skills(skills)
+        skills_ops.add_multiple_titles(experience_titles)
+
+        logging.info(f"Added skills: {skills}")
+        logging.info(f"Added experience titles: {experience_titles}")
+
+        return {
+            "cleaned_text": cleaned_text,
+            "resume_parser": resume_parser,
+        }
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

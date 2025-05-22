@@ -1,9 +1,32 @@
 # resume_api/indexes/search_indexes.py
 from fastapi import HTTPException
+from core.custom_logger import CustomLogger
+
+# Initialize logger
+logger = CustomLogger().get_logger("search_indexes")
+
+
+def check_atlas_search_availability(collection):
+    """Check if Atlas Search is available for the collection"""
+    try:
+        collection.database.command({"listSearchIndexes": collection.name})
+        return True
+    except Exception as e:
+        if "CommandNotFound" in str(e):
+            logger.error("Atlas Search is not enabled. Please ensure you are:")
+            logger.error("1. Using MongoDB Atlas (not standalone MongoDB)")
+            logger.error("2. Have enabled Atlas Search in your cluster settings")
+            logger.error("3. Have appropriate permissions")
+            return False
+        raise e
 
 
 def create_vector_search_index(collection):
     try:
+        # First check if Atlas Search is available
+        if not check_atlas_search_availability(collection):
+            return False
+
         # First check if index exists
         existing_indexes = (
             collection.database.command({"listSearchIndexes": collection.name})
@@ -22,6 +45,7 @@ def create_vector_search_index(collection):
                     "experience_text_vector",
                     "education_text_vector",
                     "projects_text_vector",
+                    "total_resume_vector",
                 ]
 
                 # Check if all required fields exist with correct configuration
@@ -32,12 +56,12 @@ def create_vector_search_index(collection):
                     and fields[field].get("dimensions") == 384
                     for field in required_fields
                 ):
-                    print(
+                    logger.info(
                         "Vector search index already exists with correct configuration"
                     )
                     return True
                 else:
-                    print(
+                    logger.info(
                         "Existing index found but with incorrect configuration. Recreating..."
                     )
                     # Drop the existing index
@@ -79,6 +103,11 @@ def create_vector_search_index(collection):
                         "dimensions": 384,
                         "similarity": "cosine",
                     },
+                    "total_resume_vector": {
+                        "type": "knnVector",
+                        "dimensions": 384,
+                        "similarity": "cosine",
+                    },
                 },
             }
         }
@@ -93,17 +122,20 @@ def create_vector_search_index(collection):
             }
         )
 
-        print(f"Vector search index created successfully: {result}")
+        logger.info(f"Vector search index created successfully: {result}")
         return True
 
     except Exception as e:
-        print(f"Error managing vector search index: {str(e)}")
+        logger.error(f"Error managing vector search index: {str(e)}, full error: {e}")
         return False
 
 
-# Add this function to verify the index creation
 def verify_vector_search_index(collection):
     try:
+        # First check if Atlas Search is available
+        if not check_atlas_search_availability(collection):
+            return False
+
         indexes = (
             collection.database.command({"listSearchIndexes": collection.name})
             .get("cursor", {})
@@ -112,11 +144,11 @@ def verify_vector_search_index(collection):
 
         for index in indexes:
             if index.get("name") == "vector_search_index":
-                print("Vector search index exists and seems properly configured")
+                logger.info("Vector search index exists and seems properly configured")
                 return True
 
-        print("Vector search index not found!")
+        logger.info("Vector search index not found!")
         return False
     except Exception as e:
-        print(f"Error verifying index: {e}")
+        logger.error(f"Error verifying index: {str(e)}, full error: {e}")
         return False
