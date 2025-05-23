@@ -131,17 +131,21 @@ router = APIRouter(
 )
 
 
+from pydantic import BaseModel, EmailStr, HttpUrl
+from typing import List, Optional
+
+
 class Experience(BaseModel):
     company: str  # Required
     title: str  # Required
-    from_date: date  # Required
-    until: Optional[date] = None
+    from_: str  # Required, format: 'YYYY-MM'
+    to: Optional[str] = None  # Optional, format: 'YYYY-MM'
 
 
 class Education(BaseModel):
     education: str  # Required
     college: str  # Required
-    pass_year: int  # Required
+    passing_year: int  # Required
 
 
 class ContactDetails(BaseModel):
@@ -150,38 +154,38 @@ class ContactDetails(BaseModel):
     phone: str  # Required
     alternative_phone: Optional[str] = None
     current_city: str  # Required
-    looking_for_jobs_in: List[str]  # Required, list of preferred locations
+    looking_for_jobs_in: List[str]  # Required
     gender: Optional[str] = None
     age: Optional[int] = None
     naukri_profile: Optional[HttpUrl] = None
     linkedin_profile: Optional[HttpUrl] = None
     portfolio_link: Optional[HttpUrl] = None
     pan_card: str  # Required
-    aadhar_card: Optional[str]  # Required
+    aadhar_card: Optional[str] = None  # Optional
 
 
 class ResumeData(BaseModel):
     user_id: str
     username: str
     contact_details: ContactDetails
-    total_experience: float  # Required
-    notice_period: int  # Required
-    currency: str  # Required
-    pay_duration: str  # Required
-    current_salary: float  # Required
-    hike: Optional[float]
-    expected_salary: float  # Required
-    skills: List[str]  # Required
-    may_also_known_skills: List[str]  # Required
-    labels: List[str]  # Required
-    experience: Optional[List[Experience]]  # Now optional
-    academic_details: Optional[List[Education]]  # Now optional
-    source: str  # Required
-    last_working_day: Optional[date]
-    is_tier1_mba: Optional[bool]
-    is_tier1_engineering: Optional[bool]
-    comment: Optional[str]
-    exit_reason: Optional[str]
+    total_experience: str  # Changed from float to string (e.g., "1.5 year")
+    notice_period: int
+    currency: str
+    pay_duration: str
+    current_salary: float
+    hike: Optional[float] = None
+    expected_salary: float
+    skills: List[str]
+    may_also_known_skills: List[str]
+    labels: List[str]
+    experience: Optional[List[Experience]] = None
+    academic_details: Optional[List[Education]] = None
+    source: str
+    last_working_day: Optional[str] = None  # Should be ISO format date string
+    is_tier1_mba: Optional[bool] = None
+    is_tier1_engineering: Optional[bool] = None
+    comment: Optional[str] = None
+    exit_reason: Optional[str] = None
 
 
 @router.post("/upload")
