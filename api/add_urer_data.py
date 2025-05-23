@@ -157,7 +157,7 @@ class ContactDetails(BaseModel):
     linkedin_profile: Optional[HttpUrl] = None
     portfolio_link: Optional[HttpUrl] = None
     pan_card: str  # Required
-    aadhar_card: str  # Required
+    aadhar_card: Optional[str]  # Required
 
 
 class ResumeData(BaseModel):
@@ -169,17 +169,17 @@ class ResumeData(BaseModel):
     currency: str  # Required
     pay_duration: str  # Required
     current_salary: float  # Required
-    hike: float
+    hike: Optional[float]
     expected_salary: float  # Required
     skills: List[str]  # Required
     may_also_known_skills: List[str]  # Required
     labels: List[str]  # Required
-    experience: List[Experience]  # Required
-    academic_details: List[Education]  # Required
+    experience: Optional[List[Experience]]  # Now optional
+    academic_details: Optional[List[Education]]  # Now optional
     source: str  # Required
     last_working_day: Optional[date]
-    is_tier1_mba: bool
-    is_tier1_engineering: bool
+    is_tier1_mba: Optional[bool]
+    is_tier1_engineering: Optional[bool]
     comment: Optional[str]
     exit_reason: Optional[str]
 
