@@ -145,7 +145,7 @@ class Experience(BaseModel):
 class Education(BaseModel):
     education: str  # Required
     college: str  # Required
-    passing_year: int  # Required
+    pass_year: int  # Required
 
 
 class ContactDetails(BaseModel):
@@ -296,11 +296,12 @@ async def submit_resume_details(resume_data: ResumeData):
                 detail=f"Record already exists with the same {', '.join(conflicts)}",
             )
 
-        # Convert datetime objects to strings for MongoDB compatibility
+        # Handle experience dates - they're already strings based on the model
         for exp in resume_dict["experience"]:
-            exp["from_date"] = exp["from_date"].isoformat()
-            if exp["until"]:
-                exp["until"] = exp["until"].isoformat()
+            # Ensure the field names match between model and processing
+            if "to" in exp and exp["to"] is not None:
+                exp["until"] = exp["to"]
+                del exp["to"]
 
         # Convert contact details URLs to strings
         contact_details = resume_dict["contact_details"]
@@ -313,11 +314,8 @@ async def submit_resume_details(resume_data: ResumeData):
         if contact_details.get("portfolio_link"):
             contact_details["portfolio_link"] = str(contact_details["portfolio_link"])
 
-        # Convert last_working_day to string if present
-        if resume_dict.get("last_working_day"):
-            resume_dict["last_working_day"] = resume_dict[
-                "last_working_day"
-            ].isoformat()
+        # last_working_day is already a string based on the model definition
+        # No conversion needed
 
         # Combine all data into one proper resume format for text representation
         combined_resume = f"""

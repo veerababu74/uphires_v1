@@ -218,3 +218,13 @@
 2025-05-18 23:21:14 - main - ERROR - Failed to connect to MongoDB: Index verification failed
 2025-05-18 23:26:12 - main - INFO - Connected to MongoDB successfully!
 2025-05-18 23:26:12 - main - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:32:43 - main - INFO - Connected to MongoDB successfully!
+2025-05-24 19:32:43 - main - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:33:59 - main - INFO - Connected to MongoDB successfully!
+2025-05-24 19:33:59 - main - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:42:51 - main - INFO - Connected to MongoDB successfully!
+2025-05-24 19:42:51 - main - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:47:31 - main - INFO - Connected to MongoDB successfully!
+2025-05-24 19:47:32 - main - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:51:00 - main - INFO - Connected to MongoDB successfully!
+2025-05-24 19:51:00 - main - ERROR - Failed to connect to MongoDB: Index verification failed

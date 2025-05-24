@@ -1682,3 +1682,148 @@
 2025-05-18 23:27:33,352 - INFO - Added experience titles: ['string']
 2025-05-24 18:34:39,363 - INFO - Use pytorch device_name: cpu
 2025-05-24 18:34:39,363 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:32:33,368 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:32:33,369 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:32:36,876 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:32:36,876 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:32:40,006 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:32:40,006 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:32:42,559 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:32:42,560 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:32:42,560 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:32:42,560 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:32:43,152 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:32:43,153 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:32:43,153 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:32:43,153 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:32:43,598 - INFO - Connected to MongoDB successfully!
+2025-05-24 19:32:43,617 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:32:43,618 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:32:43,618 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:32:43,618 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:32:43,639 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:32:43,640 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:32:43,640 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:32:43,640 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:32:43,640 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:33:24,342 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:33:24,342 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:33:28,201 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:33:28,201 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:33:31,400 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:33:31,400 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:33:34,129 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:33:34,129 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:33:34,129 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:33:34,129 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:33:46,647 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:33:46,647 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:33:51,664 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:33:51,664 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:33:55,678 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:33:55,678 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:33:58,535 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:33:58,536 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:33:58,536 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:33:58,537 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:33:58,988 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:33:58,989 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:33:58,989 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:33:58,989 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:33:59,582 - INFO - Connected to MongoDB successfully!
+2025-05-24 19:33:59,608 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:33:59,609 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:33:59,609 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:33:59,609 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:33:59,675 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:33:59,675 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:33:59,676 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:33:59,676 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:33:59,676 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:38:07,462 - ERROR - Error in submit_resume_details: 400: Record already exists with the same Mobile Number, Email
+2025-05-24 19:38:47,763 - ERROR - Error in submit_resume_details: 'str' object has no attribute 'isoformat'
+2025-05-24 19:42:40,210 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:42:40,210 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:42:44,250 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:42:44,250 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:42:47,908 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:42:47,908 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:42:50,634 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:42:50,635 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:42:50,635 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:42:50,635 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:42:51,121 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:42:51,122 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:42:51,122 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:42:51,123 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:42:51,557 - INFO - Connected to MongoDB successfully!
+2025-05-24 19:42:51,574 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:42:51,575 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:42:51,576 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:42:51,576 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:42:51,594 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:42:51,594 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:42:51,595 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:42:51,596 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:42:51,597 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:46:56,881 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:46:56,881 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:47:01,095 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:47:01,095 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:47:04,764 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:47:04,765 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:47:07,579 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:47:07,580 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:47:07,581 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:47:07,581 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:47:19,847 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:47:19,848 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:47:24,492 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:47:24,492 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:47:28,444 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:47:28,445 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:47:31,195 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:47:31,195 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:47:31,196 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:47:31,196 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:47:31,582 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:47:31,583 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:47:31,583 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:47:31,583 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:47:31,998 - INFO - Connected to MongoDB successfully!
+2025-05-24 19:47:32,016 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:47:32,016 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:47:32,016 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:47:32,017 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:47:32,036 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:47:32,036 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:47:32,036 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:47:32,037 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:47:32,037 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:48:58,855 - ERROR - Error in submit_resume_details: 'pass_year'
+2025-05-24 19:50:49,868 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:50:49,868 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:50:54,071 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:50:54,071 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:50:57,086 - INFO - Use pytorch device_name: cpu
+2025-05-24 19:50:57,086 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-05-24 19:50:59,919 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:50:59,922 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:50:59,922 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:50:59,922 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:51:00,414 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:51:00,415 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:51:00,415 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:51:00,416 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:51:00,880 - INFO - Connected to MongoDB successfully!
+2025-05-24 19:51:00,902 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:51:00,902 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:51:00,903 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:51:00,903 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:51:00,925 - ERROR - Atlas Search is not enabled. Please ensure you are:
+2025-05-24 19:51:00,925 - ERROR - 1. Using MongoDB Atlas (not standalone MongoDB)
+2025-05-24 19:51:00,925 - ERROR - 2. Have enabled Atlas Search in your cluster settings
+2025-05-24 19:51:00,926 - ERROR - 3. Have appropriate permissions
+2025-05-24 19:51:00,926 - ERROR - Failed to connect to MongoDB: Index verification failed
+2025-05-24 19:51:41,943 - INFO - Added skills: ['string', 'string']
+2025-05-24 19:51:41,943 - INFO - Added experience titles: ['string']
