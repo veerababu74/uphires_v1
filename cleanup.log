@@ -1680,3 +1680,5 @@
 2025-05-18 23:26:12,290 - ERROR - Failed to connect to MongoDB: Index verification failed
 2025-05-18 23:27:33,352 - INFO - Added skills: ['string', 'string']
 2025-05-18 23:27:33,352 - INFO - Added experience titles: ['string']
+2025-05-24 18:34:39,363 - INFO - Use pytorch device_name: cpu
+2025-05-24 18:34:39,363 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2

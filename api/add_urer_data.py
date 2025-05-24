@@ -138,7 +138,7 @@ from typing import List, Optional
 class Experience(BaseModel):
     company: str  # Required
     title: str  # Required
-    from_: str  # Required, format: 'YYYY-MM'
+    from_date: str  # Required, format: 'YYYY-MM'
     to: Optional[str] = None  # Optional, format: 'YYYY-MM'
 
 
