@@ -157,9 +157,9 @@ class ContactDetails(BaseModel):
     looking_for_jobs_in: List[str]  # Required
     gender: Optional[str] = None
     age: Optional[int] = None
-    naukri_profile: Optional[HttpUrl] = None
-    linkedin_profile: Optional[HttpUrl] = None
-    portfolio_link: Optional[HttpUrl] = None
+    naukri_profile: Optional[str] = None
+    linkedin_profile: Optional[str] = None
+    portfolio_link: Optional[str] = None
     pan_card: str  # Required
     aadhar_card: Optional[str] = None  # Optional
 
