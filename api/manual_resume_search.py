@@ -20,8 +20,10 @@ class ManualSearchRequest(BaseModel):
         description="Technical skills to match",
         example=["Python", "React", "AWS"],
     )
-    min_education: Optional[str] = Field(
-        default=None, description="Minimum education qualification", example="BTech"
+    min_education: Optional[List[str]] = Field(
+        default=None,
+        description="List of minimum education qualifications",
+        example=["BTech", "BSc"],
     )
     min_experience: Optional[str] = Field(
         default=None,
@@ -213,7 +215,7 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                     continue
 
             # Filter by minimum education if provided
-            if search_params.min_education:
+            if search_params.min_education and len(search_params.min_education) > 0:
                 # Define education hierarchy
                 education_levels = {
                     "10th": 1,
@@ -245,8 +247,14 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                     "doctorate": 6,
                 }
 
-                min_level = education_levels.get(search_params.min_education.lower(), 0)
-                if min_level > 0:  # Only apply filter if education level recognized
+                # Get minimum required levels from search parameters
+                min_levels = [
+                    education_levels.get(edu.lower(), 0)
+                    for edu in search_params.min_education
+                ]
+                min_levels = [level for level in min_levels if level > 0]
+
+                if min_levels:  # Only apply filter if valid education levels found
                     # Extract highest education level from resume
                     highest_level = 0
                     for edu in resume.get("education", []):
@@ -256,8 +264,9 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                             if level_name in degree:
                                 highest_level = max(highest_level, level_value)
 
-                    if highest_level < min_level:
-                        continue  # Skip if education requirement not met
+                    # Check if highest level meets any of the minimum requirements
+                    if not any(highest_level >= min_level for min_level in min_levels):
+                        continue  # Skip if education requirements not met
 
                     match_score += highest_level  # Add score based on education level
 
