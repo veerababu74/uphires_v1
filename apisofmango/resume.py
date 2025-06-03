@@ -2,17 +2,28 @@ from fastapi import APIRouter, Depends, HTTPException
 from typing import List, Dict, Any
 from pymongo.collection import Collection
 from mangodatabase.operations import ResumeOperations
-from embeddings.vectorizer import Vectorizer
+from embeddings.vectorizer import AddUserDataVectorizer
 from core.database import get_database
-from core.vectorizer import get_vectorizer
+from mangodatabase.client import get_collection
 
 router = APIRouter(prefix="/resumes", tags=["resumes crud"])
+
+# Global vectorizer instance
+_vectorizer = None
+
+
+def get_vectorizer() -> AddUserDataVectorizer:
+    """Get or create the AddUserDataVectorizer instance"""
+    global _vectorizer
+    if _vectorizer is None:
+        _vectorizer = AddUserDataVectorizer()
+    return _vectorizer
 
 
 def get_resume_operations(
     db: Collection = Depends(get_database),
-    vectorizer: Vectorizer = Depends(get_vectorizer),
 ) -> ResumeOperations:
+    vectorizer = get_vectorizer()
     return ResumeOperations(db, vectorizer)
 
 
@@ -22,7 +33,16 @@ async def create_resume(
     operations: ResumeOperations = Depends(get_resume_operations),
 ):
     """Create a new resume with vector embeddings"""
-    return operations.create_resume(resume_data)
+    try:
+        if not resume_data:
+            raise HTTPException(status_code=400, detail="Resume data cannot be empty")
+
+        result = operations.create_resume(resume_data)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 @router.put("/{resume_id}", response_model=Dict[str, str])
@@ -32,7 +52,19 @@ async def update_resume(
     operations: ResumeOperations = Depends(get_resume_operations),
 ):
     """Update an existing resume with vector embeddings"""
-    return operations.update_resume(resume_id, resume_data)
+    try:
+        if not resume_id.strip():
+            raise HTTPException(status_code=400, detail="Resume ID cannot be empty")
+
+        if not resume_data:
+            raise HTTPException(status_code=400, detail="Resume data cannot be empty")
+
+        result = operations.update_resume(resume_id, resume_data)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 @router.get("/{resume_id}", response_model=Dict[str, Any])
@@ -40,7 +72,16 @@ async def get_resume(
     resume_id: str, operations: ResumeOperations = Depends(get_resume_operations)
 ):
     """Get a resume by ID"""
-    return operations.get_resume(resume_id)
+    try:
+        if not resume_id.strip():
+            raise HTTPException(status_code=400, detail="Resume ID cannot be empty")
+
+        result = operations.get_resume(resume_id)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 @router.delete("/{resume_id}", response_model=Dict[str, str])
@@ -48,7 +89,16 @@ async def delete_resume(
     resume_id: str, operations: ResumeOperations = Depends(get_resume_operations)
 ):
     """Delete a resume by ID"""
-    return operations.delete_resume(resume_id)
+    try:
+        if not resume_id.strip():
+            raise HTTPException(status_code=400, detail="Resume ID cannot be empty")
+
+        result = operations.delete_resume(resume_id)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 @router.get("/", response_model=List[Dict[str, Any]])
@@ -58,7 +108,23 @@ async def list_resumes(
     operations: ResumeOperations = Depends(get_resume_operations),
 ):
     """List all resumes with pagination"""
-    return operations.list_resumes(skip, limit)
+    try:
+        if skip < 0:
+            raise HTTPException(
+                status_code=400, detail="Skip parameter cannot be negative"
+            )
+
+        if limit <= 0 or limit > 100:
+            raise HTTPException(
+                status_code=400, detail="Limit must be between 1 and 100"
+            )
+
+        result = operations.list_resumes(skip, limit)
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 
 @router.post("/update-embeddings", response_model=Dict[str, str])
@@ -66,4 +132,8 @@ async def update_all_embeddings(
     operations: ResumeOperations = Depends(get_resume_operations),
 ):
     """Update vector embeddings for all resumes"""
-    return operations.update_all_vector_embeddings()
+    try:
+        result = operations.update_all_vector_embeddings()
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")

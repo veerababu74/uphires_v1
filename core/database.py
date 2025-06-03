@@ -2,10 +2,7 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 from typing import Optional
 import os
-
-# MongoDB connection settings
-MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
-DATABASE_NAME = os.getenv("DATABASE_NAME", "resume_db")
+from .config import AppConfig
 
 # Global MongoDB client
 _client: Optional[MongoClient] = None
@@ -16,7 +13,7 @@ def get_database() -> Collection:
     global _client
 
     if _client is None:
-        _client = MongoClient(MONGODB_URL)
+        _client = MongoClient(AppConfig.MONGODB_URI)
 
-    db = _client[DATABASE_NAME]
-    return db["resumes"]
+    db = _client[AppConfig.DB_NAME]
+    return db[AppConfig.COLLECTION_NAME]

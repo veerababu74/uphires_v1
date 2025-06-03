@@ -1,91 +1,159 @@
 # resume_api/database/operations.py
 from pymongo.collection import Collection
 from bson import ObjectId
-from typing import Dict, Any
-from embeddings.vectorizer import Vectorizer
+from typing import Dict, Any, Union
+from embeddings.vectorizer import Vectorizer, AddUserDataVectorizer
 from core.helpers import format_resume
 from fastapi import HTTPException
 from typing import List
 
 
 class ResumeOperations:
-    def __init__(self, collection: Collection, vectorizer: Vectorizer):
+    def __init__(
+        self,
+        collection: Collection,
+        vectorizer: Union[Vectorizer, AddUserDataVectorizer],
+    ):
         self.collection = collection
         self.vectorizer = vectorizer
 
     def create_resume(self, resume_data: Dict[str, Any]) -> Dict[str, str]:
         """Create a new resume with vector embeddings"""
-        resume_with_vectors = self.vectorizer.generate_resume_embeddings(resume_data)
-        result = self.collection.insert_one(resume_with_vectors)
-        return {
-            "id": str(result.inserted_id),
-            "message": "Resume created successfully with vector embeddings",
-        }
+        try:
+            if not resume_data:
+                raise ValueError("Resume data cannot be empty")
+
+            resume_with_vectors = self.vectorizer.generate_resume_embeddings(
+                resume_data
+            )
+            result = self.collection.insert_one(resume_with_vectors)
+            return {
+                "id": str(result.inserted_id),
+                "message": "Resume created successfully with vector embeddings",
+            }
+        except Exception as e:
+            raise ValueError(f"Failed to create resume: {str(e)}")
 
     def update_resume(
         self, resume_id: str, resume_data: Dict[str, Any]
     ) -> Dict[str, str]:
         """Update a resume by ID with vector embeddings"""
-        existing = self.collection.find_one({"_id": ObjectId(resume_id)})
-        if not existing:
-            raise HTTPException(status_code=404, detail="Resume not found")
+        try:
+            if not ObjectId.is_valid(resume_id):
+                raise ValueError("Invalid resume ID format")
 
-        resume_with_vectors = self.vectorizer.generate_resume_embeddings(resume_data)
-        result = self.collection.update_one(
-            {"_id": ObjectId(resume_id)}, {"$set": resume_with_vectors}
-        )
+            existing = self.collection.find_one({"_id": ObjectId(resume_id)})
+            if not existing:
+                raise HTTPException(status_code=404, detail="Resume not found")
 
-        if result.modified_count == 1:
-            return {"message": "Resume updated successfully with vector embeddings"}
-        return {"message": "No changes made to the resume"}
+            if not resume_data:
+                raise ValueError("Resume data cannot be empty")
+
+            resume_with_vectors = self.vectorizer.generate_resume_embeddings(
+                resume_data
+            )
+            result = self.collection.update_one(
+                {"_id": ObjectId(resume_id)}, {"$set": resume_with_vectors}
+            )
+
+            if result.modified_count == 1:
+                return {"message": "Resume updated successfully with vector embeddings"}
+            return {"message": "No changes made to the resume"}
+        except HTTPException:
+            raise
+        except Exception as e:
+            raise ValueError(f"Failed to update resume: {str(e)}")
 
     def get_resume(self, resume_id: str) -> Dict:
         """Get a resume by ID"""
-        resume = self.collection.find_one({"_id": ObjectId(resume_id)})
-        if not resume:
-            raise HTTPException(status_code=404, detail="Resume not found")
-        return format_resume(resume)
+        try:
+            if not ObjectId.is_valid(resume_id):
+                raise ValueError("Invalid resume ID format")
+
+            resume = self.collection.find_one({"_id": ObjectId(resume_id)})
+            if not resume:
+                raise HTTPException(status_code=404, detail="Resume not found")
+            return format_resume(resume)
+        except HTTPException:
+            raise
+        except Exception as e:
+            raise ValueError(f"Failed to retrieve resume: {str(e)}")
 
     def delete_resume(self, resume_id: str) -> Dict:
         """Delete a resume by ID"""
-        result = self.collection.delete_one({"_id": ObjectId(resume_id)})
-        if result.deleted_count != 1:
-            raise HTTPException(status_code=404, detail="Resume not found")
-        return {"message": "Resume deleted successfully"}
+        try:
+            if not ObjectId.is_valid(resume_id):
+                raise ValueError("Invalid resume ID format")
+
+            result = self.collection.delete_one({"_id": ObjectId(resume_id)})
+            if result.deleted_count != 1:
+                raise HTTPException(status_code=404, detail="Resume not found")
+            return {"message": "Resume deleted successfully"}
+        except HTTPException:
+            raise
+        except Exception as e:
+            raise ValueError(f"Failed to delete resume: {str(e)}")
 
     def list_resumes(self, skip: int = 0, limit: int = 10) -> List[Dict]:
         """List all resumes with pagination"""
-        cursor = self.collection.find().skip(skip).limit(limit)
-        return [format_resume(doc) for doc in cursor]
+        try:
+            if skip < 0:
+                raise ValueError("Skip parameter cannot be negative")
+
+            if limit <= 0 or limit > 100:
+                raise ValueError("Limit must be between 1 and 100")
+
+            cursor = self.collection.find().skip(skip).limit(limit)
+            return [format_resume(doc) for doc in cursor]
+        except Exception as e:
+            raise ValueError(f"Failed to list resumes: {str(e)}")
 
     def update_all_vector_embeddings(self) -> Dict:
         """Update vector embeddings for all resumes"""
-        resumes = list(self.collection.find({}))
-        updated_count = 0
+        try:
+            resumes = list(self.collection.find({}))
+            updated_count = 0
+            failed_count = 0
 
-        for resume in resumes:
-            resume_with_vectors = self.vectorizer.generate_resume_embeddings(resume)
-            result = self.collection.update_one(
-                {"_id": resume["_id"]},
-                {
-                    "$set": {
-                        "skills_vector": resume_with_vectors.get("skills_vector"),
-                        "experience_text_vector": resume_with_vectors.get(
-                            "experience_text_vector"
-                        ),
-                        "academic_details_vector": resume_with_vectors.get(
-                            "academic_details_vector"
-                        ),
-                        "combined_resume_vector": resume_with_vectors.get(
-                            "combined_resume_vector"
-                        ),
-                    }
-                },
-            )
-            if result.modified_count > 0:
-                updated_count += 1
+            for resume in resumes:
+                try:
+                    resume_with_vectors = self.vectorizer.generate_resume_embeddings(
+                        resume
+                    )
+                    result = self.collection.update_one(
+                        {"_id": resume["_id"]},
+                        {
+                            "$set": {
+                                "skills_vector": resume_with_vectors.get(
+                                    "skills_vector"
+                                ),
+                                "experience_text_vector": resume_with_vectors.get(
+                                    "experience_text_vector"
+                                ),
+                                "education_text_vector": resume_with_vectors.get(
+                                    "education_text_vector"
+                                ),
+                                "combined_resume_vector": resume_with_vectors.get(
+                                    "combined_resume_vector"
+                                ),
+                            }
+                        },
+                    )
+                    if result.modified_count > 0:
+                        updated_count += 1
+                except Exception as e:
+                    failed_count += 1
+                    print(
+                        f"Failed to update embeddings for resume {resume.get('_id')}: {str(e)}"
+                    )
 
-        return {"message": f"Updated vector embeddings for {updated_count} resumes"}
+            message = f"Updated vector embeddings for {updated_count} resumes"
+            if failed_count > 0:
+                message += f", {failed_count} failed"
+
+            return {"message": message}
+        except Exception as e:
+            raise ValueError(f"Failed to update embeddings: {str(e)}")
 
 
 # ...existing code...
