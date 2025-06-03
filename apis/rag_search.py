@@ -6,7 +6,7 @@ from core.custom_logger import CustomLogger
 from pydantic import BaseModel, Field
 import os
 from pathlib import Path
-import logging
+
 from datetime import datetime, timedelta
 from GroqcloudLLM.text_extraction import extract_and_clean_text
 
@@ -25,11 +25,6 @@ if not TEMP_DIR.exists():
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Configure logging
-logging.basicConfig(
-    filename="cleanup.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
 
 
 class SearchError(Exception):
@@ -64,9 +59,9 @@ def cleanup_temp_directory(age_limit_minutes: int = 60):
             if file_age > timedelta(minutes=age_limit_minutes):
                 try:
                     file_path.unlink()
-                    logging.info(f"Deleted old file: {file_path}")
+                    logger.info(f"Deleted old file: {file_path}")
                 except Exception as e:
-                    logging.error(f"Failed to delete file {file_path}: {e}")
+                    logger.error(f"Failed to delete file {file_path}: {e}")
 
 
 # Create router instance
@@ -250,9 +245,9 @@ async def search_by_jd(
             # Clean up the temporary file
             try:
                 os.remove(file_location)
-                logging.info(f"Deleted temporary file: {file_location}")
+                logger.info(f"Deleted temporary file: {file_location}")
             except Exception as e:
-                logging.error(f"Failed to delete temporary file {file_location}: {e}")
+                logger.error(f"Failed to delete temporary file {file_location}: {e}")
 
         # Step 3: Generate embedding from cleaned JD text
         try:
@@ -314,9 +309,9 @@ async def search_by_jd(
             # Clean up the temporary file
             try:
                 os.remove(file_location)
-                logging.info(f"Deleted temporary file: {file_location}")
+                logger.info(f"Deleted temporary file: {file_location}")
             except Exception as e:
-                logging.error(f"Failed to delete temporary file {file_location}: {e}")
+                logger.error(f"Failed to delete temporary file {file_location}: {e}")
 
         # Step 3: Generate embedding from cleaned JD text
         try:

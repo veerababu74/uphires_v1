@@ -10,7 +10,7 @@ from embeddings.vectorizer import Vectorizer
 from schemas.vector_search_scehma import VectorSearchQuery
 from GroqcloudLLM.text_extraction import extract_and_clean_text
 from pathlib import Path
-import logging
+
 from datetime import datetime, timedelta
 
 BASE_FOLDER = "dummy_data_save"
@@ -24,11 +24,10 @@ if not TEMP_DIR.exists():
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Configure logging
-logging.basicConfig(
-    filename="cleanup.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+from core.custom_logger import CustomLogger
+
+logger_manager = CustomLogger()
+logging = logger_manager.get_logger("vector_search_api")
 
 
 def cleanup_temp_directory(age_limit_minutes: int = 60):

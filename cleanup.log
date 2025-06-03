@@ -16,3 +16,13 @@
 2025-06-03 16:51:57,505 - INFO - Use pytorch device_name: cpu
 2025-06-03 16:51:57,506 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
 2025-06-03 16:52:00,704 - INFO - Starting up FastAPI application...
+2025-06-03 16:52:03,078 - INFO - Search index 'vector_search_index' already exists
+2025-06-03 16:52:03,080 - INFO - Search index already exists, skipping creation
+2025-06-03 16:52:03,187 - INFO - Search index manager initialized successfully
+2025-06-03 16:52:03,927 - INFO - Connected to MongoDB successfully!
+2025-06-03 16:52:04,376 - INFO - Connected to Skills & Titles collection successfully!
+2025-06-03 16:52:04,431 - INFO - Creating standard MongoDB indexes...
+2025-06-03 16:52:04,432 - INFO - Standard MongoDB indexes creation completed
+2025-06-03 16:52:04,497 - INFO - Creating skills collection indexes...
+2025-06-03 16:52:04,498 - INFO - Skills collection indexes creation completed
+2025-06-03 16:52:04,498 - INFO - Application startup completed successfully!
