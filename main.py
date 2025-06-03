@@ -1,4 +1,17 @@
 # resume_api/main.py
+import warnings
+
+# Suppress cryptography deprecation warnings from PyMongo SSL certificates
+try:
+    from cryptography.utils import CryptographyDeprecationWarning
+
+    warnings.filterwarnings("ignore", category=CryptographyDeprecationWarning)
+except ImportError:
+    pass
+warnings.filterwarnings(
+    "ignore", category=DeprecationWarning, module="pymongo.pyopenssl_context"
+)
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
