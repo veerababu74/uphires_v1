@@ -2,15 +2,16 @@ from fastapi import APIRouter, HTTPException
 import os
 from fastapi import File, UploadFile, HTTPException, Request
 from pathlib import Path
-import logging
 import json
 from datetime import datetime, timedelta
+from typing import List
 from .text_extraction import extract_and_clean_text, clean_text
 from .main import ResumeParser
 from Expericecal.total_exp import format_experience, calculator
-from database.operations import ResumeOperations, SkillsTitlesOperations
-from database.client import get_collection, get_skills_titles_collection
-from core.vectorizer import Vectorizer
+from mangodatabase.operations import ResumeOperations, SkillsTitlesOperations
+from mangodatabase.client import get_collection, get_skills_titles_collection
+from embeddings.vectorizer import Vectorizer
+from core.custom_logger import CustomLogger
 
 # Initialize your parser with API keys (replace with your actual keys)
 
@@ -38,11 +39,8 @@ if not TEMP_DIR.exists():
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Configure logging
-logging.basicConfig(
-    filename="cleanup.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+logger_manager = CustomLogger()
+logging = logger_manager.get_logger("groqcloud_llm")
 
 
 def cleanup_temp_directory(age_limit_minutes: int = 60):
@@ -59,6 +57,36 @@ def cleanup_temp_directory(age_limit_minutes: int = 60):
                     logging.info(f"Deleted old file: {file_path}")
                 except Exception as e:
                     logging.error(f"Failed to delete file {file_path}: {e}")
+
+
+def normalize_text_data(text: str) -> str:
+    """
+    Normalize text data by converting to lowercase and removing extra spaces.
+
+    Args:
+        text (str): The input text to normalize
+
+    Returns:
+        str: Normalized text (lowercase, trimmed spaces)
+    """
+    if not text or not isinstance(text, str):
+        return text
+    return text.strip().lower()
+
+
+def normalize_text_list(text_list: List[str]) -> List[str]:
+    """
+    Normalize a list of text strings by converting to lowercase and removing extra spaces.
+
+    Args:
+        text_list (List[str]): List of text strings to normalize
+
+    Returns:
+        List[str]: List of normalized text strings
+    """
+    if not text_list or not isinstance(text_list, list):
+        return text_list
+    return [normalize_text_data(text) for text in text_list if text]
 
 
 @router.post("/grouqcloud/")
@@ -101,30 +129,54 @@ async def extract_clean_text_llam3_3b(file: UploadFile = File(...)):
 
         # Initialize total_experience if not present
         if "total_experience" not in resume_parser:
-            resume_parser["total_experience"] = 0
-
-        # Calculate experience
+            resume_parser["total_experience"] = 0  # Calculate experience
         res = calculator.calculate_experience(resume_parser)
         resume_parser["total_experience"] = format_experience(res[0], res[1])
 
-        # Fix the experience titles extraction
+        # Normalize skills and may_also_known_skills
+        if "skills" in resume_parser and resume_parser["skills"]:
+            resume_parser["skills"] = normalize_text_list(resume_parser["skills"])
+
+        if (
+            "may_also_known_skills" in resume_parser
+            and resume_parser["may_also_known_skills"]
+        ):
+            resume_parser["may_also_known_skills"] = normalize_text_list(
+                resume_parser["may_also_known_skills"]
+            )
+
+        # Normalize job titles in experience
+        if "experience" in resume_parser:
+            for experience in resume_parser["experience"]:
+                if "title" in experience and experience["title"]:
+                    experience["title"] = normalize_text_data(experience["title"])
+
+        # Fix the experience titles extraction (already normalized)
         experience_titles = []
         if "experience" in resume_parser:
             for experience in resume_parser["experience"]:
                 if "title" in experience:
-                    experience_titles.append(experience["title"])
-
-        # Fix the skills extraction
+                    experience_titles.append(
+                        experience["title"]
+                    )  # Fix the skills extraction (already normalized)
         skills = []
         if "skills" in resume_parser:
             skills = resume_parser["skills"]
 
-        resume_ops.create_resume(resume_parser)
-        skills_ops.add_multiple_skills(skills)
-        skills_ops.add_multiple_titles(experience_titles)
+        # Ensure skills and experience_titles are normalized before adding to skills_titles collection
+        normalized_skills = normalize_text_list(skills) if skills else []
+        normalized_experience_titles = (
+            normalize_text_list(experience_titles) if experience_titles else []
+        )
 
-        logging.info(f"Added skills: {skills}")
-        logging.info(f"Added experience titles: {experience_titles}")
+        resume_ops.create_resume(resume_parser)
+        skills_ops.add_multiple_skills(normalized_skills)
+        skills_ops.add_multiple_titles(normalized_experience_titles)
+
+        logging.info(f"Added normalized skills: {normalized_skills}")
+        logging.info(
+            f"Added normalized experience titles: {normalized_experience_titles}"
+        )
 
         # Delete the temporary file
         os.remove(file_location)
@@ -175,31 +227,53 @@ async def extract_clean_text_from_raw(request: ResumeData):
 
         # Initialize total_experience if not present
         if "total_experience" not in resume_parser:
-            resume_parser["total_experience"] = 0
-
-        # Calculate experience
+            resume_parser["total_experience"] = 0  # Calculate experience
         res = calculator.calculate_experience(resume_parser)
         resume_parser["total_experience"] = format_experience(res[0], res[1])
 
-        # Extract experience titles
+        # Normalize skills and may_also_known_skills
+        if "skills" in resume_parser and resume_parser["skills"]:
+            resume_parser["skills"] = normalize_text_list(resume_parser["skills"])
+
+        if (
+            "may_also_known_skills" in resume_parser
+            and resume_parser["may_also_known_skills"]
+        ):
+            resume_parser["may_also_known_skills"] = normalize_text_list(
+                resume_parser["may_also_known_skills"]
+            )
+
+        # Normalize job titles in experience
+        if "experience" in resume_parser:
+            for experience in resume_parser["experience"]:
+                if "title" in experience and experience["title"]:
+                    experience["title"] = normalize_text_data(experience["title"])
+
+        # Extract experience titles (already normalized)
         experience_titles = []
         if "experience" in resume_parser:
             for experience in resume_parser["experience"]:
                 if "title" in experience:
-                    experience_titles.append(experience["title"])
-
-        # Extract skills
+                    experience_titles.append(
+                        experience["title"]
+                    )  # Extract skills (already normalized)
         skills = []
         if "skills" in resume_parser:
             skills = resume_parser["skills"]
 
-        # Store in database
+        # Ensure skills and experience_titles are normalized before adding to skills_titles collection
+        normalized_skills = normalize_text_list(skills) if skills else []
+        normalized_experience_titles = (
+            normalize_text_list(experience_titles) if experience_titles else []
+        )  # Store in database
         resume_ops.create_resume(resume_parser)
-        skills_ops.add_multiple_skills(skills)
-        skills_ops.add_multiple_titles(experience_titles)
+        skills_ops.add_multiple_skills(normalized_skills)
+        skills_ops.add_multiple_titles(normalized_experience_titles)
 
-        logging.info(f"Added skills: {skills}")
-        logging.info(f"Added experience titles: {experience_titles}")
+        logging.info(f"Added normalized skills: {normalized_skills}")
+        logging.info(
+            f"Added normalized experience titles: {normalized_experience_titles}"
+        )
 
         return {
             "cleaned_text": cleaned_text,

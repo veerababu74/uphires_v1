@@ -1,0 +1,102 @@
+2025-05-31 18:52:10 - search_index_manager - INFO - Search index 'vector_search_index' does not exist
+2025-05-31 18:52:10 - search_index_manager - INFO - Search index created successfully: {'indexesCreated': [{'id': '683b0281d99d82060d764590', 'name': 'vector_search_index'}], 'ok': 1.0, '$clusterTime': {'clusterTime': Timestamp(1748697728, 3), 'signature': {'hash': b'\xf9\xb9dV\xa5\xa1\xd6\x98\xe6\x18\x069\xb2\x98\xca\xd4\x8f\x02\x0e\xff', 'keyId': 7485320233838706694}}, 'operationTime': Timestamp(1748697728, 3)}
+2025-05-31 18:52:10 - search_index_manager - INFO - Search index created during initialization
+2025-05-31 19:08:43 - search_index_manager - INFO - Search index 'vector_search_index' does not exist
+2025-05-31 19:08:44 - search_index_manager - INFO - Search index created successfully: {'indexesCreated': [{'id': '683b0663d653016ca336ba64', 'name': 'vector_search_index'}], 'ok': 1.0, '$clusterTime': {'clusterTime': Timestamp(1748698722, 1), 'signature': {'hash': b'r.\xc1\x0f2\\O\xab-\xf9h\xade\x08\xcf\xa3\xbaI\xc6\xdc', 'keyId': 7485320233838706694}}, 'operationTime': Timestamp(1748698722, 1)}
+2025-05-31 19:08:44 - search_index_manager - INFO - Search index created during initialization
+2025-05-31 19:10:07 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:10:07 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:10:42 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:10:42 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:12:28 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:12:28 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:19:11 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:19:11 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:21:15 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:21:15 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:31:42 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:31:42 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:36:47 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:36:47 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:41:33 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:41:33 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:45:14 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:45:14 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:46:32 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:46:32 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:48:22 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:48:22 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 19:51:25 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 19:51:25 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 20:21:05 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 20:21:05 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 20:23:22 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 20:23:22 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 20:35:35 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 20:35:35 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 20:36:30 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 20:36:30 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 20:45:27 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 20:45:27 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 20:45:55 - search_index_manager - INFO - Found 1 search indexes
+2025-05-31 20:46:09 - search_index_manager - INFO - Found 1 search indexes
+2025-05-31 20:46:11 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 20:46:11 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-05-31 20:46:41 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-05-31 20:46:41 - search_index_manager - INFO - Found 1 search indexes
+2025-06-02 12:46:37 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 12:46:37 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 12:56:14 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 12:56:14 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 13:06:45 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 13:06:45 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 13:32:12 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 13:32:12 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 13:33:54 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 13:33:54 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 13:37:04 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 13:37:04 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 13:43:42 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 13:43:42 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 13:55:37 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 13:55:37 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 14:00:10 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 14:00:10 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 14:01:27 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 14:01:27 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 14:03:17 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 14:03:17 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 14:13:23 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 14:13:23 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-02 15:15:30 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-02 15:15:30 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 13:42:32 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 13:42:32 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 14:08:20 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 14:08:20 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 14:21:37 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 14:21:37 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 14:26:41 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 14:26:41 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 14:28:55 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 14:28:55 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 14:33:35 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 14:33:35 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 15:08:41 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 15:08:41 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 15:09:13 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 15:09:13 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 15:25:07 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 15:25:07 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 15:47:18 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 15:47:18 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 15:50:49 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 15:50:49 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 15:56:39 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 15:56:39 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 15:59:26 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 15:59:26 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 16:02:54 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 16:02:54 - search_index_manager - INFO - Search index already exists, skipping creation
+2025-06-03 16:07:59 - search_index_manager - INFO - Search index 'vector_search_index' already exists
+2025-06-03 16:07:59 - search_index_manager - INFO - Search index already exists, skipping creation

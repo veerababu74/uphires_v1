@@ -1,0 +1,1 @@
+2025-05-31 20:06:44 - search_index_api - ERROR - Error listing search indexes: SearchIndexManager.list_search_indexes() missing 1 required positional argument: 'self'

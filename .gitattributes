@@ -1,0 +1,40 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.py text
+*.md text
+*.txt text
+*.json text
+*.yml text
+*.yaml text
+*.ini text
+*.cfg text
+*.conf text
+
+# Declare files that will always have CRLF line endings on checkout.
+*.bat text eol=crlf
+
+# Declare files that will always have LF line endings on checkout.
+*.sh text eol=lf
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.pkl binary
+*.h5 binary
+*.model binary
+
+# Jupyter notebooks - treat as text but don't auto-convert line endings
+*.ipynb text eol=lf
+
+# Environment example files
+.env.example text eol=lf

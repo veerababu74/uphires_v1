@@ -3,9 +3,10 @@ from fastapi.responses import FileResponse
 from pathlib import Path
 import os
 import uuid
-import logging
+
 from datetime import datetime, timedelta
 from .maskingut import mask_pdf, mask_docx, mask_txt
+from core.custom_logger import CustomLogger
 
 # Create a router instance
 router = APIRouter()
@@ -21,11 +22,7 @@ if not TEMP_DIR.exists():
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Configure logging
-logging.basicConfig(
-    filename="cleanup.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
+logging = CustomLogger().get_logger("masking_routes")
 
 
 def cleanup_temp_directory(age_limit_minutes: int = 60):

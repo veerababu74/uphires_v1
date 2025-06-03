@@ -1,1 +1,12 @@
-2025-05-13 21:42:22 - init_db - INFO - Search index created successfully: {'indexesCreated': [{'id': '68236f66c265c016eb2dd085', 'name': 'vector_search_index'}], 'ok': 1.0, '$clusterTime': {'clusterTime': Timestamp(1747152741, 4), 'signature': {'hash': b'\xec:\xd9\xee$\x0c;\x98^\xe5#\x04x\xb5\xebz\x8b#\xb8\xe6', 'keyId': 7464323495938228229}}, 'operationTime': Timestamp(1747152741, 4)}
+2025-05-31 00:01:15 - init_db - INFO - Search index created successfully: {'indexesCreated': [{'id': '6839f972995c3f7a679d7825', 'name': 'vector_search_index'}], 'ok': 1.0, '$clusterTime': {'clusterTime': Timestamp(1748629874, 6), 'signature': {'hash': b'^e\xb9V\x9e\x8d=`\xec;9\xc3}\xab`\xc9Bu{\xf0', 'keyId': 7485320233838706694}}, 'operationTime': Timestamp(1748629874, 6)}
+2025-05-31 10:31:57 - init_db - ERROR - Error fetching search indexes: command not found, full error: {'ok': 0, 'errmsg': 'command not found', 'code': 59, 'codeName': 'CommandNotFound'}
+2025-05-31 10:31:57 - init_db - ERROR - Failed to initialize database: command not found, full error: {'ok': 0, 'errmsg': 'command not found', 'code': 59, 'codeName': 'CommandNotFound'}
+2025-05-31 18:21:54 - init_db - INFO - Search index 'vector_search_index' does not exist
+2025-05-31 18:21:55 - init_db - INFO - Search index created successfully: {'indexesCreated': [{'id': '683afb6a3c673267b0ac50b6', 'name': 'vector_search_index'}], 'ok': 1.0, '$clusterTime': {'clusterTime': Timestamp(1748695911, 1), 'signature': {'hash': b"B\x1a\x8bG;\xa9\xb6\x83\x9a\xec\x99\xd0'OT\x1aL\xa0\xe7\x98", 'keyId': 7485320233838706694}}, 'operationTime': Timestamp(1748695911, 1)}
+2025-05-31 18:21:55 - init_db - INFO - Search index created during initialization
+2025-05-31 18:23:36 - init_db - INFO - Search index 'vector_search_index' already exists
+2025-05-31 18:23:36 - init_db - INFO - Search index already exists, skipping creation
+2025-05-31 18:32:25 - init_db - INFO - Search index 'vector_search_index' already exists
+2025-05-31 18:32:25 - init_db - INFO - Search index already exists, skipping creation
+2025-05-31 18:33:20 - init_db - INFO - Search index 'vector_search_index' already exists
+2025-05-31 18:33:20 - init_db - INFO - Search index already exists, skipping creation

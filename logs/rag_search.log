@@ -1,0 +1,1 @@
+2025-06-03 16:00:57 - rag_search - ERROR - LLM context search failed: type object 'RAGConfig' has no attribute 'MONGODB_URI'

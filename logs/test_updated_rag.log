@@ -1,0 +1,27 @@
+2025-06-02 16:01:11 - test_updated_rag - INFO - === Updated RAG Application Test Suite ===
+2025-06-02 16:01:11 - test_updated_rag - INFO - Testing RAG Application Initialization...
+2025-06-02 16:01:11 - test_updated_rag - ERROR - Failed to initialize RAG application: 1 validation error for JinaEmbeddings
+  Value error, Did not find jina_api_key, please add an environment variable `JINA_API_KEY` which contains it, or pass `jina_api_key` as a named parameter. [type=value_error, input_value={'model_name': 'jina-embe...ask': 'retrieval.query'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error
+2025-06-02 16:01:11 - test_updated_rag - INFO - 
+--- Testing Backward Compatibility ---
+2025-06-02 16:01:11 - test_updated_rag - INFO - Testing get_relevant_ids_and_context...
+2025-06-02 16:01:11 - test_updated_rag - ERROR - Backward compatibility test failed: 1 validation error for JinaEmbeddings
+  Value error, Did not find jina_api_key, please add an environment variable `JINA_API_KEY` which contains it, or pass `jina_api_key` as a named parameter. [type=value_error, input_value={'model_name': 'jina-embe...ask': 'retrieval.query'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error
+2025-06-02 16:01:11 - test_updated_rag - INFO - === Test Suite Complete ===
+2025-06-02 16:33:18 - test_updated_rag - INFO - Testing RAG Application Initialization...
+2025-06-02 16:33:27 - test_updated_rag - ERROR - Failed to initialize RAG application: Collection objects do not implement truth value testing or bool(). Please compare with None instead: collection is not None
+2025-06-02 16:33:27 - test_updated_rag - INFO - 
+--- Testing Backward Compatibility ---
+2025-06-02 16:33:27 - test_updated_rag - INFO - Testing get_relevant_ids_and_context...
+2025-06-02 16:33:32 - test_updated_rag - ERROR - Backward compatibility test failed: Collection objects do not implement truth value testing or bool(). Please compare with None instead: collection is not None
+2025-06-02 16:34:52 - test_updated_rag - INFO - Testing RAG Application Initialization...
+2025-06-02 16:34:59 - test_updated_rag - ERROR - Failed to initialize RAG application: Collection objects do not implement truth value testing or bool(). Please compare with None instead: collection is not None
+2025-06-02 16:34:59 - test_updated_rag - INFO - Setting up RAG Application for tests...
+2025-06-02 16:35:04 - test_updated_rag - ERROR - Failed to initialize RAG application for tests: Collection objects do not implement truth value testing or bool(). Please compare with None instead: collection is not None
+2025-06-02 16:35:04 - test_updated_rag - ERROR - RAG application not available for testing
+2025-06-02 16:35:04 - test_updated_rag - INFO - 
+--- Testing Backward Compatibility ---
+2025-06-02 16:35:04 - test_updated_rag - INFO - Testing get_relevant_ids_and_context...
+2025-06-02 16:35:08 - test_updated_rag - ERROR - Backward compatibility test failed: Collection objects do not implement truth value testing or bool(). Please compare with None instead: collection is not None
