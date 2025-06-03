@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List, Optional, Tuple
 from bson import ObjectId
-from langchain_community.vectorstores import MongoDBAtlasVectorSearch
+from langchain_mongodb import MongoDBAtlasVectorSearch
 from pymongo.collection import Collection
 
 from core.custom_logger import CustomLogger

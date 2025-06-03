@@ -10352,3 +10352,61 @@
 2025-06-03 16:09:13,667 - INFO - 1 change detected
 2025-06-03 16:09:14,025 - INFO - 1 change detected
 2025-06-03 16:09:14,340 - INFO - Shutting down FastAPI application...
+2025-06-03 16:34:46,888 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:34:46,888 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:34:50,255 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:34:50,255 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:34:53,502 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:34:53,503 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:34:56,638 - INFO - Vectorizer initialized successfully
+2025-06-03 16:34:57,419 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-03 16:34:57,421 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:34:57,421 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:35:00,965 - INFO - Vectorizer and embedding adapter initialized successfully
+2025-06-03 16:35:01,699 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-03 16:35:01,700 - INFO - LangChain vector store initialized successfully
+2025-06-03 16:35:02,462 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:35:02,463 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:35:06,477 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:35:06,478 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:35:09,891 - INFO - Starting up FastAPI application...
+2025-06-03 16:35:12,515 - INFO - Search index 'vector_search_index' already exists
+2025-06-03 16:35:12,516 - INFO - Search index already exists, skipping creation
+2025-06-03 16:35:12,607 - INFO - Search index manager initialized successfully
+2025-06-03 16:35:13,255 - INFO - Connected to MongoDB successfully!
+2025-06-03 16:35:13,613 - INFO - Connected to Skills & Titles collection successfully!
+2025-06-03 16:35:13,659 - INFO - Creating standard MongoDB indexes...
+2025-06-03 16:35:13,660 - INFO - Standard MongoDB indexes creation completed
+2025-06-03 16:35:13,709 - INFO - Creating skills collection indexes...
+2025-06-03 16:35:13,709 - INFO - Skills collection indexes creation completed
+2025-06-03 16:35:13,709 - INFO - Application startup completed successfully!
+2025-06-03 16:42:08,236 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:42:08,236 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:42:11,291 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:42:11,291 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:42:14,754 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:42:14,754 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:42:17,507 - INFO - Vectorizer initialized successfully
+2025-06-03 16:42:18,342 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-03 16:42:18,345 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:42:18,345 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:42:21,268 - INFO - Vectorizer and embedding adapter initialized successfully
+2025-06-03 16:42:21,993 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-03 16:42:21,993 - INFO - LangChain vector store initialized successfully
+2025-06-03 16:42:22,729 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:42:22,729 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:42:26,333 - INFO - Use pytorch device_name: cpu
+2025-06-03 16:42:26,333 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-03 16:42:29,280 - INFO - Starting up FastAPI application...
+2025-06-03 16:42:31,522 - INFO - Search index 'vector_search_index' already exists
+2025-06-03 16:42:31,523 - INFO - Search index already exists, skipping creation
+2025-06-03 16:42:31,626 - INFO - Search index manager initialized successfully
+2025-06-03 16:42:32,542 - INFO - Connected to MongoDB successfully!
+2025-06-03 16:42:32,978 - INFO - Connected to Skills & Titles collection successfully!
+2025-06-03 16:42:33,039 - INFO - Creating standard MongoDB indexes...
+2025-06-03 16:42:33,039 - INFO - Standard MongoDB indexes creation completed
+2025-06-03 16:42:33,105 - INFO - Creating skills collection indexes...
+2025-06-03 16:42:33,106 - INFO - Skills collection indexes creation completed
+2025-06-03 16:42:33,106 - INFO - Application startup completed successfully!
+2025-06-03 16:42:33,107 - INFO - Shutting down FastAPI application...
+2025-06-03 16:45:40,290 - INFO - Shutting down FastAPI application...
