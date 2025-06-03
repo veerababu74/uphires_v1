@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 import os
 from fastapi import File, UploadFile, HTTPException
 from pathlib import Path
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, timezone
 from GroqcloudLLM.text_extraction import extract_and_clean_text, clean_text
 from GroqcloudLLM.main import ResumeParser
 from Expericecal.total_exp import format_experience, calculator
@@ -239,7 +239,7 @@ def clean_resume_data(resume_dict: dict) -> dict:
 
 
 @router.post("/submit-details")
-async def submit_resume_details(resume_data: ResumeData):
+async def add_user_resume_details(resume_data: ResumeData):
     """
     Submit resume details and save to MongoDB with proper vector embeddings
     """
@@ -248,7 +248,7 @@ async def submit_resume_details(resume_data: ResumeData):
             "Starting submit_resume_details function"
         )  # Convert Pydantic model to dictionary
         resume_dict = resume_data.model_dump()
-        resume_dict["created_at"] = datetime.utcnow()
+        resume_dict["created_at"] = datetime.now(timezone.utc)
 
         # Clean all empty/whitespace-only strings from the data
         resume_dict = clean_resume_data(resume_dict)

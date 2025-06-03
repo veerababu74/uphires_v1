@@ -145,7 +145,7 @@ router = APIRouter(
                             ],
                             "skills": ["Python", "React", "AWS"],
                             "may_also_known_skills": ["Docker", "Kubernetes"],
-                            "total_experience": 2.5,
+                            "total_experience": "2 years 6 months",  # Changed from 2.5 to string
                             "expected_salary": 1500000.0,
                             "current_salary": 1200000.0,
                             "notice_period": "30 days",

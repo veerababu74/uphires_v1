@@ -35,18 +35,17 @@ class ResumeData(BaseModel):
     user_id: str
     username: str
     contact_details: ContactDetails
-    total_experience: Optional[float] = (
-        None  # Changed from float to string (e.g., "1.5 year")
-    )
+    total_experience: Optional[str] = None  # ✅ Already changed to string
+
     notice_period: Optional[str] = None  # e.g., "Immediate", "30 days"
     currency: Optional[str] = None  # e.g., "INR", "USD"
     pay_duration: Optional[str] = None  # e.g., "monthly", "yearly"
     current_salary: Optional[float] = None
     hike: Optional[float] = None
-    expected_salary: float
+    expected_salary: Optional[float] = None  # Changed from required to optional
     skills: List[str]
     may_also_known_skills: List[str]
-    labels: Optional[List[str]]
+    labels: Optional[List[str]] = None  # Added = None for consistency
     experience: Optional[List[Experience]] = None
     academic_details: Optional[List[Education]] = None
     source: Optional[str] = None  # Source of the resume (e.g., "LinkedIn", "Naukri")
