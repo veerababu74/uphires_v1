@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List, Optional, Tuple
 from bson import ObjectId
-from langchain_mongodb import MongoDBAtlasVectorSearch
+from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from pymongo.collection import Collection
 
 from core.custom_logger import CustomLogger
@@ -11,6 +11,16 @@ from .utils import DocumentProcessor
 from .chains import ChainManager
 
 logger = CustomLogger().get_logger("search_engines")
+
+
+def safe_log(message: str) -> str:
+    """Safely encode log messages to handle Unicode characters"""
+    try:
+        # Try to encode and decode to catch problematic characters
+        return message.encode("ascii", errors="replace").decode("ascii")
+    except Exception:
+        # If all else fails, replace non-ASCII characters
+        return "".join(char if ord(char) < 128 else "?" for char in message)
 
 
 class VectorSearchEngine:
@@ -27,7 +37,7 @@ class VectorSearchEngine:
             return {"error": "Vector store not initialized"}
 
         try:
-            logger.info(f"Performing vector similarity search for: {query}")
+            logger.info(f"Performing vector similarity search for: {safe_log(query)}")
             logger.info(f"Retrieval limit: {limit}")
 
             # Perform similarity search with scores
@@ -67,7 +77,10 @@ class VectorSearchEngine:
             return {
                 "results": processed_results,
                 "total_found": len(processed_results),
-                "statistics": {"retrieved": len(processed_results), "query": query},
+                "statistics": {
+                    "retrieved": len(processed_results),
+                    "query": safe_log(query),
+                },
             }
 
         except Exception as e:
@@ -92,7 +105,7 @@ class LLMSearchEngine:
     def search(self, query: str, context_size: int = 5) -> Dict:
         """Perform LLM-based search with user-controlled context size"""
         try:
-            logger.info(f"Performing LLM search for: {query}")
+            logger.info(f"Performing LLM search for: {safe_log(query)}")
             logger.info(f"Context size: {context_size}")
 
             # First get documents using vector search
@@ -160,17 +173,39 @@ class LLMSearchEngine:
 
         return "\n\n---\n\n".join(context_parts)
 
-    def _format_llm_results(
-        self, result: Dict, query: str, retrieved_count: int
-    ) -> Dict:
+    def _format_llm_results(self, result, query: str, retrieved_count: int) -> Dict:
         """Format LLM results into standardized format"""
-        if isinstance(result, dict) and "matches" in result:
+        # Handle both Pydantic model objects and dictionaries
+        matches = None
+
+        if hasattr(result, "matches"):
+            # Pydantic model object
+            matches = result.matches
+        elif isinstance(result, dict) and "matches" in result:
+            # Dictionary format
+            matches = result["matches"]
+
+        if matches is not None:
             formatted_results = []
-            for match in result["matches"]:
-                if isinstance(match, dict) and "_id" in match:
-                    complete_doc = self.collection.find_one(
-                        {"_id": ObjectId(match["_id"])}
-                    )
+            for match in matches:
+                # Handle both Pydantic model objects and dictionaries
+                match_id = None
+                relevance_score = 0.0
+                match_reason = "No explanation provided"
+
+                if hasattr(match, "id"):
+                    # Pydantic model object
+                    match_id = match.id
+                    relevance_score = match.relevance_score
+                    match_reason = match.match_reason
+                elif isinstance(match, dict):
+                    # Dictionary format
+                    match_id = match.get("_id") or match.get("id")
+                    relevance_score = match.get("relevance_score", 0.0)
+                    match_reason = match.get("match_reason", "No explanation provided")
+
+                if match_id:
+                    complete_doc = self.collection.find_one({"_id": ObjectId(match_id)})
 
                     if complete_doc:
                         formatted_doc = DocumentProcessor.format_complete_document(
@@ -178,12 +213,8 @@ class LLMSearchEngine:
                         )
                         formatted_doc.update(
                             {
-                                "relevance_score": float(
-                                    match.get("relevance_score", 0.0)
-                                ),
-                                "match_reason": str(
-                                    match.get("match_reason", "No explanation provided")
-                                ),
+                                "relevance_score": float(relevance_score),
+                                "match_reason": str(match_reason),
                             }
                         )
                         formatted_results.append(formatted_doc)
@@ -197,7 +228,7 @@ class LLMSearchEngine:
                 "statistics": {
                     "retrieved": retrieved_count,
                     "analyzed": len(formatted_results),
-                    "query": query,
+                    "query": safe_log(query),
                 },
             }
         else:

@@ -3,9 +3,10 @@ from typing import Dict, List, Optional, Any
 from pydantic import BaseModel
 import os
 from Retrivers.retriver import MangoRetriever, LangChainRetriever
+import logging
 from GroqcloudLLM.text_extraction import extract_and_clean_text
 from core.config import AppConfig
-from core.custom_logger import CustomLogger
+
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -26,7 +27,11 @@ TEMP_DIR = Path(TEMP_FOLDER)
 TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Configure logging
-logging = CustomLogger().get_logger("retriever_api")
+logging.basicConfig(
+    filename="retriever_cleanup.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
 
 
 def cleanup_temp_directory(age_limit_minutes: int = 60):
@@ -90,7 +95,7 @@ async def search_langchain(request: SearchRequest):
 
 @router.post(
     "/mango/search-by-jd",
-    response_model=List[Dict[str, Any]],
+    response_model=SearchResponse,
     summary="AI-Powered Resume Search Based on Job Description File",
     description="""
     Upload a job description file (.txt, .pdf, or .docx) and find matching resumes.
@@ -148,7 +153,7 @@ async def search_by_jd(
 
 @router.post(
     "/langchain/search-by-jd",
-    response_model=List[Dict[str, Any]],
+    response_model=SearchResponse,
     summary="AI-Powered Resume Search Based on Job Description File",
     description="""
     Upload a job description file (.txt, .pdf, or .docx) and find matching resumes.

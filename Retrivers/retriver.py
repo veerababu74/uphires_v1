@@ -12,7 +12,7 @@ from core.config import AppConfig
 from core.helpers import JSONEncoder
 
 # LangChain imports
-from langchain_mongodb import MongoDBAtlasVectorSearch
+from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from langchain_core.documents import Document
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -529,5 +529,5 @@ def main():
         print(f"💥 An error occurred: {str(e)}")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

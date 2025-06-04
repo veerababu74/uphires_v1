@@ -1,0 +1,1131 @@
+2025-06-04 17:12:48,506 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:12:48,507 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:12:51,377 - INFO - Vectorizer initialized successfully
+2025-06-04 17:12:52,091 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-04 17:12:52,094 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:12:52,094 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:12:55,206 - INFO - Vectorizer and embedding adapter initialized successfully
+2025-06-04 17:12:55,920 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-04 17:12:55,921 - INFO - LangChain vector store initialized successfully
+2025-06-04 17:12:56,662 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:12:56,662 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:13:00,266 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:13:00,266 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:13:23,090 - INFO - 1 change detected
+2025-06-04 17:13:24,101 - INFO - 3 changes detected
+2025-06-04 17:13:24,460 - INFO - 1 change detected
+2025-06-04 17:13:31,392 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:13:31,392 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:13:34,774 - INFO - Vectorizer initialized successfully
+2025-06-04 17:13:35,498 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-04 17:13:35,499 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:13:35,499 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:13:39,126 - INFO - Vectorizer and embedding adapter initialized successfully
+2025-06-04 17:13:40,126 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-04 17:13:40,127 - INFO - LangChain vector store initialized successfully
+2025-06-04 17:13:41,428 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:13:41,428 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:13:45,663 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:13:45,664 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:13:49,089 - INFO - Starting up FastAPI application...
+2025-06-04 17:13:49,120 - INFO - 6 changes detected
+2025-06-04 17:13:49,581 - INFO - 1 change detected
+2025-06-04 17:13:49,993 - INFO - 1 change detected
+2025-06-04 17:13:50,395 - INFO - 1 change detected
+2025-06-04 17:13:50,797 - INFO - 1 change detected
+2025-06-04 17:13:51,214 - INFO - 1 change detected
+2025-06-04 17:13:51,401 - INFO - Search index 'vector_search_index' already exists
+2025-06-04 17:13:51,401 - INFO - Search index already exists, skipping creation
+2025-06-04 17:13:51,500 - INFO - Search index manager initialized successfully
+2025-06-04 17:13:51,616 - INFO - 1 change detected
+2025-06-04 17:13:52,018 - INFO - 1 change detected
+2025-06-04 17:13:52,160 - INFO - Connected to MongoDB successfully!
+2025-06-04 17:13:52,424 - INFO - 1 change detected
+2025-06-04 17:13:52,546 - INFO - Connected to Skills & Titles collection successfully!
+2025-06-04 17:13:52,599 - INFO - Creating standard MongoDB indexes...
+2025-06-04 17:13:52,599 - INFO - Standard MongoDB indexes creation completed
+2025-06-04 17:13:52,650 - INFO - Creating skills collection indexes...
+2025-06-04 17:13:52,650 - INFO - Skills collection indexes creation completed
+2025-06-04 17:13:52,650 - INFO - Application startup completed successfully!
+2025-06-04 17:13:52,827 - INFO - 1 change detected
+2025-06-04 17:13:53,231 - INFO - 1 change detected
+2025-06-04 17:13:53,636 - INFO - 1 change detected
+2025-06-04 17:13:54,040 - INFO - 1 change detected
+2025-06-04 17:13:54,444 - INFO - 1 change detected
+2025-06-04 17:13:54,847 - INFO - 1 change detected
+2025-06-04 17:13:55,250 - INFO - 1 change detected
+2025-06-04 17:13:55,653 - INFO - 1 change detected
+2025-06-04 17:13:56,057 - INFO - 1 change detected
+2025-06-04 17:13:56,424 - INFO - 1 change detected
+2025-06-04 17:13:56,835 - INFO - 1 change detected
+2025-06-04 17:13:57,236 - INFO - 1 change detected
+2025-06-04 17:13:57,650 - INFO - 1 change detected
+2025-06-04 17:13:58,054 - INFO - 1 change detected
+2025-06-04 17:13:58,458 - INFO - 1 change detected
+2025-06-04 17:13:58,861 - INFO - 1 change detected
+2025-06-04 17:13:59,264 - INFO - 1 change detected
+2025-06-04 17:13:59,668 - INFO - 1 change detected
+2025-06-04 17:14:00,071 - INFO - 1 change detected
+2025-06-04 17:14:00,474 - INFO - 1 change detected
+2025-06-04 17:14:00,877 - INFO - 1 change detected
+2025-06-04 17:14:01,282 - INFO - 1 change detected
+2025-06-04 17:14:01,684 - INFO - 1 change detected
+2025-06-04 17:14:02,085 - INFO - 1 change detected
+2025-06-04 17:14:02,490 - INFO - 1 change detected
+2025-06-04 17:14:02,905 - INFO - 1 change detected
+2025-06-04 17:14:03,309 - INFO - 1 change detected
+2025-06-04 17:14:03,712 - INFO - 1 change detected
+2025-06-04 17:14:04,117 - INFO - 1 change detected
+2025-06-04 17:14:04,521 - INFO - 1 change detected
+2025-06-04 17:14:04,923 - INFO - 1 change detected
+2025-06-04 17:14:05,341 - INFO - 1 change detected
+2025-06-04 17:14:05,757 - INFO - 1 change detected
+2025-06-04 17:14:06,112 - INFO - 1 change detected
+2025-06-04 17:14:06,519 - INFO - 1 change detected
+2025-06-04 17:14:06,925 - INFO - 1 change detected
+2025-06-04 17:14:07,330 - INFO - 1 change detected
+2025-06-04 17:14:07,746 - INFO - 1 change detected
+2025-06-04 17:14:08,152 - INFO - 1 change detected
+2025-06-04 17:14:08,556 - INFO - 1 change detected
+2025-06-04 17:14:08,960 - INFO - 1 change detected
+2025-06-04 17:14:09,367 - INFO - 1 change detected
+2025-06-04 17:14:09,781 - INFO - 1 change detected
+2025-06-04 17:14:10,148 - INFO - 1 change detected
+2025-06-04 17:14:10,556 - INFO - 1 change detected
+2025-06-04 17:14:10,960 - INFO - 1 change detected
+2025-06-04 17:14:11,376 - INFO - 1 change detected
+2025-06-04 17:14:11,783 - INFO - 1 change detected
+2025-06-04 17:14:12,198 - INFO - 1 change detected
+2025-06-04 17:14:12,603 - INFO - 1 change detected
+2025-06-04 17:14:13,007 - INFO - 1 change detected
+2025-06-04 17:14:13,409 - INFO - 1 change detected
+2025-06-04 17:14:13,762 - INFO - 1 change detected
+2025-06-04 17:14:14,167 - INFO - 1 change detected
+2025-06-04 17:14:14,572 - INFO - 1 change detected
+2025-06-04 17:14:14,975 - INFO - 1 change detected
+2025-06-04 17:14:15,379 - INFO - 1 change detected
+2025-06-04 17:14:15,786 - INFO - 1 change detected
+2025-06-04 17:14:16,200 - INFO - 1 change detected
+2025-06-04 17:14:16,602 - INFO - 1 change detected
+2025-06-04 17:14:17,009 - INFO - 1 change detected
+2025-06-04 17:14:17,424 - INFO - 1 change detected
+2025-06-04 17:14:17,829 - INFO - 1 change detected
+2025-06-04 17:14:18,195 - INFO - 1 change detected
+2025-06-04 17:14:18,604 - INFO - 1 change detected
+2025-06-04 17:14:19,007 - INFO - 1 change detected
+2025-06-04 17:14:19,422 - INFO - 1 change detected
+2025-06-04 17:14:19,826 - INFO - 1 change detected
+2025-06-04 17:14:20,229 - INFO - 1 change detected
+2025-06-04 17:14:20,633 - INFO - 1 change detected
+2025-06-04 17:14:21,050 - INFO - 1 change detected
+2025-06-04 17:14:21,466 - INFO - 1 change detected
+2025-06-04 17:14:21,869 - INFO - 1 change detected
+2025-06-04 17:14:22,235 - INFO - 1 change detected
+2025-06-04 17:14:22,642 - INFO - 1 change detected
+2025-06-04 17:14:23,047 - INFO - 1 change detected
+2025-06-04 17:14:23,507 - INFO - 1 change detected
+2025-06-04 17:14:23,918 - INFO - 1 change detected
+2025-06-04 17:14:24,320 - INFO - 1 change detected
+2025-06-04 17:14:24,725 - INFO - 1 change detected
+2025-06-04 17:14:25,090 - INFO - 1 change detected
+2025-06-04 17:14:25,499 - INFO - 1 change detected
+2025-06-04 17:14:25,903 - INFO - 1 change detected
+2025-06-04 17:14:26,309 - INFO - 1 change detected
+2025-06-04 17:14:26,725 - INFO - 1 change detected
+2025-06-04 17:14:27,131 - INFO - 1 change detected
+2025-06-04 17:14:27,532 - INFO - 1 change detected
+2025-06-04 17:14:27,936 - INFO - 1 change detected
+2025-06-04 17:14:28,341 - INFO - 1 change detected
+2025-06-04 17:14:28,744 - INFO - 1 change detected
+2025-06-04 17:14:29,146 - INFO - 1 change detected
+2025-06-04 17:14:29,551 - INFO - 1 change detected
+2025-06-04 17:14:29,955 - INFO - 1 change detected
+2025-06-04 17:14:30,363 - INFO - 1 change detected
+2025-06-04 17:14:30,728 - INFO - 1 change detected
+2025-06-04 17:14:31,134 - INFO - 1 change detected
+2025-06-04 17:14:31,536 - INFO - 1 change detected
+2025-06-04 17:14:31,939 - INFO - 1 change detected
+2025-06-04 17:14:32,342 - INFO - 1 change detected
+2025-06-04 17:14:32,745 - INFO - 1 change detected
+2025-06-04 17:14:33,163 - INFO - 1 change detected
+2025-06-04 17:14:33,579 - INFO - 1 change detected
+2025-06-04 17:14:33,982 - INFO - 1 change detected
+2025-06-04 17:14:34,389 - INFO - 1 change detected
+2025-06-04 17:14:34,749 - INFO - 1 change detected
+2025-06-04 17:14:35,166 - INFO - 1 change detected
+2025-06-04 17:14:35,571 - INFO - 1 change detected
+2025-06-04 17:14:35,976 - INFO - 1 change detected
+2025-06-04 17:14:36,381 - INFO - 1 change detected
+2025-06-04 17:14:36,783 - INFO - 1 change detected
+2025-06-04 17:14:37,185 - INFO - 1 change detected
+2025-06-04 17:14:37,589 - INFO - 1 change detected
+2025-06-04 17:14:37,992 - INFO - 1 change detected
+2025-06-04 17:14:38,398 - INFO - 1 change detected
+2025-06-04 17:14:38,802 - INFO - 1 change detected
+2025-06-04 17:14:39,207 - INFO - 1 change detected
+2025-06-04 17:14:39,624 - INFO - 1 change detected
+2025-06-04 17:14:40,027 - INFO - 1 change detected
+2025-06-04 17:14:40,431 - INFO - 1 change detected
+2025-06-04 17:14:40,834 - INFO - 1 change detected
+2025-06-04 17:14:41,240 - INFO - 1 change detected
+2025-06-04 17:14:41,603 - INFO - 1 change detected
+2025-06-04 17:14:42,011 - INFO - 1 change detected
+2025-06-04 17:14:42,429 - INFO - 1 change detected
+2025-06-04 17:14:42,832 - INFO - 1 change detected
+2025-06-04 17:14:43,237 - INFO - 1 change detected
+2025-06-04 17:14:43,640 - INFO - 1 change detected
+2025-06-04 17:14:44,046 - INFO - 1 change detected
+2025-06-04 17:14:44,449 - INFO - 1 change detected
+2025-06-04 17:14:44,851 - INFO - 1 change detected
+2025-06-04 17:14:45,267 - INFO - 1 change detected
+2025-06-04 17:14:45,634 - INFO - 1 change detected
+2025-06-04 17:14:46,039 - INFO - 1 change detected
+2025-06-04 17:14:46,443 - INFO - 1 change detected
+2025-06-04 17:14:46,859 - INFO - 1 change detected
+2025-06-04 17:14:47,266 - INFO - 1 change detected
+2025-06-04 17:14:47,668 - INFO - 1 change detected
+2025-06-04 17:14:48,070 - INFO - 1 change detected
+2025-06-04 17:14:48,475 - INFO - 1 change detected
+2025-06-04 17:14:48,876 - INFO - 1 change detected
+2025-06-04 17:14:49,281 - INFO - 1 change detected
+2025-06-04 17:14:49,685 - INFO - 1 change detected
+2025-06-04 17:14:50,102 - INFO - 1 change detected
+2025-06-04 17:14:50,505 - INFO - 1 change detected
+2025-06-04 17:14:50,907 - INFO - 1 change detected
+2025-06-04 17:14:51,310 - INFO - 1 change detected
+2025-06-04 17:14:51,714 - INFO - 1 change detected
+2025-06-04 17:14:52,117 - INFO - 1 change detected
+2025-06-04 17:14:52,533 - INFO - 1 change detected
+2025-06-04 17:14:52,938 - INFO - 1 change detected
+2025-06-04 17:14:53,340 - INFO - 1 change detected
+2025-06-04 17:14:53,699 - INFO - 1 change detected
+2025-06-04 17:14:54,105 - INFO - 1 change detected
+2025-06-04 17:14:54,507 - INFO - 1 change detected
+2025-06-04 17:14:54,911 - INFO - 1 change detected
+2025-06-04 17:14:55,320 - INFO - 1 change detected
+2025-06-04 17:14:55,723 - INFO - 1 change detected
+2025-06-04 17:14:56,130 - INFO - 1 change detected
+2025-06-04 17:14:56,535 - INFO - 1 change detected
+2025-06-04 17:14:56,950 - INFO - 1 change detected
+2025-06-04 17:14:57,355 - INFO - 1 change detected
+2025-06-04 17:14:57,758 - INFO - 1 change detected
+2025-06-04 17:14:58,174 - INFO - 1 change detected
+2025-06-04 17:14:58,577 - INFO - 1 change detected
+2025-06-04 17:14:58,981 - INFO - 1 change detected
+2025-06-04 17:14:59,385 - INFO - 1 change detected
+2025-06-04 17:14:59,788 - INFO - 1 change detected
+2025-06-04 17:15:00,192 - INFO - 1 change detected
+2025-06-04 17:15:00,597 - INFO - 1 change detected
+2025-06-04 17:15:00,964 - INFO - 1 change detected
+2025-06-04 17:15:01,371 - INFO - 1 change detected
+2025-06-04 17:15:01,772 - INFO - 1 change detected
+2025-06-04 17:15:02,188 - INFO - 1 change detected
+2025-06-04 17:15:02,591 - INFO - 1 change detected
+2025-06-04 17:15:02,997 - INFO - 1 change detected
+2025-06-04 17:15:03,350 - INFO - 1 change detected
+2025-06-04 17:15:03,760 - INFO - 1 change detected
+2025-06-04 17:15:04,164 - INFO - 1 change detected
+2025-06-04 17:15:04,579 - INFO - 1 change detected
+2025-06-04 17:15:04,986 - INFO - 1 change detected
+2025-06-04 17:15:05,389 - INFO - 1 change detected
+2025-06-04 17:15:05,792 - INFO - 1 change detected
+2025-06-04 17:15:06,195 - INFO - 1 change detected
+2025-06-04 17:15:06,600 - INFO - 1 change detected
+2025-06-04 17:15:07,003 - INFO - 1 change detected
+2025-06-04 17:15:07,407 - INFO - 1 change detected
+2025-06-04 17:15:07,813 - INFO - 1 change detected
+2025-06-04 17:15:08,218 - INFO - 1 change detected
+2025-06-04 17:15:08,633 - INFO - 1 change detected
+2025-06-04 17:15:08,988 - INFO - 1 change detected
+2025-06-04 17:15:09,395 - INFO - 1 change detected
+2025-06-04 17:15:09,801 - INFO - 1 change detected
+2025-06-04 17:15:10,205 - INFO - 1 change detected
+2025-06-04 17:15:10,609 - INFO - 1 change detected
+2025-06-04 17:15:11,011 - INFO - 1 change detected
+2025-06-04 17:15:11,417 - INFO - 1 change detected
+2025-06-04 17:15:11,834 - INFO - 1 change detected
+2025-06-04 17:15:12,238 - INFO - 1 change detected
+2025-06-04 17:15:12,641 - INFO - 1 change detected
+2025-06-04 17:15:13,057 - INFO - 1 change detected
+2025-06-04 17:15:13,416 - INFO - 1 change detected
+2025-06-04 17:15:13,820 - INFO - 1 change detected
+2025-06-04 17:15:14,225 - INFO - 1 change detected
+2025-06-04 17:15:14,630 - INFO - 1 change detected
+2025-06-04 17:15:15,044 - INFO - 1 change detected
+2025-06-04 17:15:15,447 - INFO - 1 change detected
+2025-06-04 17:15:15,851 - INFO - 1 change detected
+2025-06-04 17:15:16,266 - INFO - 1 change detected
+2025-06-04 17:15:16,668 - INFO - 1 change detected
+2025-06-04 17:15:17,071 - INFO - 1 change detected
+2025-06-04 17:15:17,475 - INFO - 1 change detected
+2025-06-04 17:15:17,839 - INFO - 1 change detected
+2025-06-04 17:15:18,247 - INFO - 1 change detected
+2025-06-04 17:15:18,660 - INFO - 1 change detected
+2025-06-04 17:15:19,068 - INFO - 1 change detected
+2025-06-04 17:15:19,481 - INFO - 1 change detected
+2025-06-04 17:15:19,884 - INFO - 1 change detected
+2025-06-04 17:15:20,250 - INFO - 1 change detected
+2025-06-04 17:15:20,656 - INFO - 1 change detected
+2025-06-04 17:15:21,062 - INFO - 1 change detected
+2025-06-04 17:15:21,466 - INFO - 1 change detected
+2025-06-04 17:15:21,882 - INFO - 1 change detected
+2025-06-04 17:15:22,298 - INFO - 1 change detected
+2025-06-04 17:15:22,712 - INFO - 1 change detected
+2025-06-04 17:15:23,115 - INFO - 1 change detected
+2025-06-04 17:15:23,520 - INFO - 1 change detected
+2025-06-04 17:15:23,925 - INFO - 1 change detected
+2025-06-04 17:15:24,327 - INFO - 1 change detected
+2025-06-04 17:15:24,731 - INFO - 1 change detected
+2025-06-04 17:15:25,133 - INFO - 1 change detected
+2025-06-04 17:15:25,538 - INFO - 1 change detected
+2025-06-04 17:15:25,940 - INFO - 1 change detected
+2025-06-04 17:15:26,342 - INFO - 1 change detected
+2025-06-04 17:15:26,745 - INFO - 1 change detected
+2025-06-04 17:15:27,148 - INFO - 1 change detected
+2025-06-04 17:15:27,554 - INFO - 1 change detected
+2025-06-04 17:15:27,918 - INFO - 1 change detected
+2025-06-04 17:15:28,322 - INFO - 1 change detected
+2025-06-04 17:15:28,736 - INFO - 1 change detected
+2025-06-04 17:15:29,140 - INFO - 1 change detected
+2025-06-04 17:15:29,546 - INFO - 1 change detected
+2025-06-04 17:15:29,950 - INFO - 1 change detected
+2025-06-04 17:15:30,353 - INFO - 1 change detected
+2025-06-04 17:15:30,757 - INFO - 1 change detected
+2025-06-04 17:15:31,162 - INFO - 1 change detected
+2025-06-04 17:15:31,527 - INFO - 1 change detected
+2025-06-04 17:15:31,935 - INFO - 1 change detected
+2025-06-04 17:15:32,341 - INFO - 1 change detected
+2025-06-04 17:15:32,743 - INFO - 1 change detected
+2025-06-04 17:15:33,147 - INFO - 1 change detected
+2025-06-04 17:15:33,549 - INFO - 1 change detected
+2025-06-04 17:15:33,953 - INFO - 1 change detected
+2025-06-04 17:15:34,357 - INFO - 1 change detected
+2025-06-04 17:15:34,764 - INFO - 1 change detected
+2025-06-04 17:15:35,178 - INFO - 1 change detected
+2025-06-04 17:15:35,580 - INFO - 1 change detected
+2025-06-04 17:15:35,983 - INFO - 1 change detected
+2025-06-04 17:15:36,389 - INFO - 1 change detected
+2025-06-04 17:15:36,807 - INFO - 1 change detected
+2025-06-04 17:15:37,223 - INFO - 1 change detected
+2025-06-04 17:15:37,629 - INFO - 1 change detected
+2025-06-04 17:15:38,034 - INFO - 1 change detected
+2025-06-04 17:15:38,438 - INFO - 1 change detected
+2025-06-04 17:15:38,842 - INFO - 1 change detected
+2025-06-04 17:15:39,207 - INFO - 1 change detected
+2025-06-04 17:15:39,614 - INFO - 1 change detected
+2025-06-04 17:15:40,017 - INFO - 1 change detected
+2025-06-04 17:15:40,435 - INFO - 1 change detected
+2025-06-04 17:15:40,843 - INFO - 1 change detected
+2025-06-04 17:15:41,249 - INFO - 1 change detected
+2025-06-04 17:15:41,651 - INFO - 1 change detected
+2025-06-04 17:15:42,053 - INFO - 1 change detected
+2025-06-04 17:15:42,456 - INFO - 1 change detected
+2025-06-04 17:15:42,860 - INFO - 1 change detected
+2025-06-04 17:15:43,262 - INFO - 1 change detected
+2025-06-04 17:15:43,670 - INFO - 1 change detected
+2025-06-04 17:15:44,036 - INFO - 1 change detected
+2025-06-04 17:15:44,445 - INFO - 1 change detected
+2025-06-04 17:15:44,847 - INFO - 1 change detected
+2025-06-04 17:15:45,252 - INFO - 1 change detected
+2025-06-04 17:15:45,656 - INFO - 1 change detected
+2025-06-04 17:15:46,072 - INFO - 1 change detected
+2025-06-04 17:15:46,488 - INFO - 1 change detected
+2025-06-04 17:15:46,893 - INFO - 1 change detected
+2025-06-04 17:15:47,298 - INFO - 1 change detected
+2025-06-04 17:15:47,701 - INFO - 1 change detected
+2025-06-04 17:15:48,103 - INFO - 1 change detected
+2025-06-04 17:15:48,507 - INFO - 1 change detected
+2025-06-04 17:15:48,909 - INFO - 1 change detected
+2025-06-04 17:15:49,265 - INFO - 1 change detected
+2025-06-04 17:15:49,672 - INFO - 1 change detected
+2025-06-04 17:15:50,090 - INFO - 1 change detected
+2025-06-04 17:15:50,506 - INFO - 1 change detected
+2025-06-04 17:15:50,870 - INFO - 1 change detected
+2025-06-04 17:15:51,278 - INFO - 1 change detected
+2025-06-04 17:15:51,634 - INFO - Deleted temporary file: dummy_data_save\temp_text_extract\Job Title Python Developer.txt
+2025-06-04 17:15:51,731 - INFO - 3 changes detected
+2025-06-04 17:15:52,093 - INFO - 1 change detected
+2025-06-04 17:15:52,500 - INFO - 1 change detected
+2025-06-04 17:15:52,902 - INFO - 1 change detected
+2025-06-04 17:15:53,309 - INFO - 1 change detected
+2025-06-04 17:15:53,715 - INFO - 1 change detected
+2025-06-04 17:15:54,118 - INFO - 1 change detected
+2025-06-04 17:15:54,521 - INFO - 1 change detected
+2025-06-04 17:15:54,886 - INFO - 1 change detected
+2025-06-04 17:15:55,292 - INFO - 1 change detected
+2025-06-04 17:15:55,697 - INFO - 1 change detected
+2025-06-04 17:15:56,102 - INFO - 1 change detected
+2025-06-04 17:15:56,518 - INFO - 1 change detected
+2025-06-04 17:15:56,921 - INFO - 1 change detected
+2025-06-04 17:15:57,337 - INFO - 1 change detected
+2025-06-04 17:15:57,740 - INFO - 1 change detected
+2025-06-04 17:15:58,144 - INFO - 1 change detected
+2025-06-04 17:15:58,550 - INFO - 1 change detected
+2025-06-04 17:15:58,951 - INFO - 1 change detected
+2025-06-04 17:15:59,358 - INFO - 1 change detected
+2025-06-04 17:15:59,763 - INFO - 1 change detected
+2025-06-04 17:16:00,164 - INFO - 1 change detected
+2025-06-04 17:16:00,570 - INFO - 1 change detected
+2025-06-04 17:16:00,974 - INFO - 1 change detected
+2025-06-04 17:16:01,377 - INFO - 1 change detected
+2025-06-04 17:16:01,742 - INFO - 1 change detected
+2025-06-04 17:16:02,147 - INFO - 1 change detected
+2025-06-04 17:16:02,254 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:16:02,254 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:16:02,553 - INFO - 1 change detected
+2025-06-04 17:16:02,956 - INFO - 1 change detected
+2025-06-04 17:16:03,358 - INFO - 1 change detected
+2025-06-04 17:16:03,774 - INFO - 1 change detected
+2025-06-04 17:16:04,177 - INFO - 1 change detected
+2025-06-04 17:16:04,580 - INFO - 1 change detected
+2025-06-04 17:16:04,986 - INFO - 1 change detected
+2025-06-04 17:16:05,393 - INFO - 1 change detected
+2025-06-04 17:16:05,479 - INFO - Internal vectorizer (SentenceTransformer all-MiniLM-L6-v2) initialized successfully
+2025-06-04 17:16:05,810 - INFO - 1 change detected
+2025-06-04 17:16:06,213 - INFO - 1 change detected
+2025-06-04 17:16:06,411 - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-04 17:16:06,412 - INFO - MongoDB Atlas Vector Search initialized with index 'vector_search_index' on field 'combined_resume_vector'
+2025-06-04 17:16:06,626 - INFO - 1 change detected
+2025-06-04 17:16:07,041 - INFO - 1 change detected
+2025-06-04 17:16:07,337 - INFO - Groq Cloud LLM (gemma2-9b-it) initialized
+2025-06-04 17:16:07,339 - INFO - Chain manager initialized successfully
+2025-06-04 17:16:07,339 - INFO - RAG Application initialized successfully
+2025-06-04 17:16:07,339 - INFO - Performing vector similarity search for: string
+2025-06-04 17:16:07,340 - INFO - Retrieval limit: 50
+2025-06-04 17:16:07,400 - INFO - 1 change detected
+2025-06-04 17:16:07,808 - INFO - 1 change detected
+2025-06-04 17:16:08,224 - INFO - 1 change detected
+2025-06-04 17:16:08,554 - INFO - === VECTOR SEARCH RESULTS ===
+2025-06-04 17:16:08,555 - INFO - Rank 1: ID: 683f1b84021110f8916bfdfd, Score: 0.6051
+2025-06-04 17:16:08,555 - INFO - Rank 2: ID: 68402cfd43b377f5f7320ba5, Score: 0.6000
+2025-06-04 17:16:08,555 - INFO - Rank 3: ID: 683b0b0d1aa118b254288ba2, Score: 0.5192
+2025-06-04 17:16:08,556 - INFO - Rank 4: ID: 683b0a471aa118b254288b62, Score: 0.5161
+2025-06-04 17:16:08,556 - INFO - Rank 5: ID: 683b0a6d1aa118b254288b78, Score: 0.5097
+2025-06-04 17:16:08,556 - INFO - Rank 6: ID: 683b0a591aa118b254288b6d, Score: 0.5071
+2025-06-04 17:16:08,557 - INFO - Rank 7: ID: 683b0aad1aa118b254288b8a, Score: 0.5069
+2025-06-04 17:16:08,557 - INFO - Rank 8: ID: 683b080c629dfdbe4a90ff90, Score: 0.5056
+2025-06-04 17:16:08,557 - INFO - Rank 9: ID: 683b0aba1aa118b254288b95, Score: 0.5048
+2025-06-04 17:16:08,557 - INFO - Rank 10: ID: 683d76f73aaa46236f0eaee9, Score: 0.5012
+2025-06-04 17:16:08,557 - INFO - Rank 11: ID: 683b0a9f1aa118b254288b80, Score: 0.4980
+2025-06-04 17:16:08,558 - INFO - Rank 12: ID: 683b0b1a1aa118b254288bae, Score: 0.4889
+2025-06-04 17:16:08,558 - INFO - Rank 13: ID: 683f3b35dd74fe0ea5db5664, Score: 0.4821
+2025-06-04 17:16:08,558 - INFO - Rank 14: ID: 683b0e4e742fd80f85748294, Score: 0.4814
+2025-06-04 17:16:08,558 - INFO - Rank 15: ID: 683f3b9bdd74fe0ea5db5666, Score: 0.4741
+2025-06-04 17:16:08,559 - INFO - === END OF RESULTS ===
+2025-06-04 17:16:08,640 - INFO - 1 change detected
+2025-06-04 17:16:09,048 - INFO - 1 change detected
+2025-06-04 17:16:09,454 - INFO - 1 change detected
+2025-06-04 17:16:09,818 - INFO - 1 change detected
+2025-06-04 17:16:10,222 - INFO - 1 change detected
+2025-06-04 17:16:10,625 - INFO - 1 change detected
+2025-06-04 17:16:11,028 - INFO - 1 change detected
+2025-06-04 17:16:11,431 - INFO - 1 change detected
+2025-06-04 17:16:11,846 - INFO - 1 change detected
+2025-06-04 17:16:12,248 - INFO - 1 change detected
+2025-06-04 17:16:12,652 - INFO - 1 change detected
+2025-06-04 17:16:13,057 - INFO - 1 change detected
+2025-06-04 17:16:13,462 - INFO - 1 change detected
+2025-06-04 17:16:13,868 - INFO - 1 change detected
+2025-06-04 17:16:14,278 - INFO - 1 change detected
+2025-06-04 17:16:14,682 - INFO - 1 change detected
+2025-06-04 17:16:15,094 - INFO - 1 change detected
+2025-06-04 17:16:15,496 - INFO - 1 change detected
+2025-06-04 17:16:15,904 - INFO - 1 change detected
+2025-06-04 17:16:16,308 - INFO - 1 change detected
+2025-06-04 17:16:16,712 - INFO - 1 change detected
+2025-06-04 17:16:17,114 - INFO - 1 change detected
+2025-06-04 17:16:17,517 - INFO - 1 change detected
+2025-06-04 17:16:17,880 - INFO - 1 change detected
+2025-06-04 17:16:18,289 - INFO - 1 change detected
+2025-06-04 17:16:18,704 - INFO - 1 change detected
+2025-06-04 17:16:19,109 - INFO - 1 change detected
+2025-06-04 17:16:19,514 - INFO - 1 change detected
+2025-06-04 17:16:19,917 - INFO - 1 change detected
+2025-06-04 17:16:20,334 - INFO - 1 change detected
+2025-06-04 17:16:20,743 - INFO - 1 change detected
+2025-06-04 17:16:21,146 - INFO - 1 change detected
+2025-06-04 17:16:21,549 - INFO - 1 change detected
+2025-06-04 17:16:21,954 - INFO - 1 change detected
+2025-06-04 17:16:22,322 - INFO - 1 change detected
+2025-06-04 17:16:22,730 - INFO - 1 change detected
+2025-06-04 17:16:23,133 - INFO - 1 change detected
+2025-06-04 17:16:23,538 - INFO - 1 change detected
+2025-06-04 17:16:23,940 - INFO - 1 change detected
+2025-06-04 17:16:24,346 - INFO - 1 change detected
+2025-06-04 17:16:24,749 - INFO - 1 change detected
+2025-06-04 17:16:25,151 - INFO - 1 change detected
+2025-06-04 17:16:25,554 - INFO - 1 change detected
+2025-06-04 17:16:25,960 - INFO - 1 change detected
+2025-06-04 17:16:26,376 - INFO - 1 change detected
+2025-06-04 17:16:26,791 - INFO - 1 change detected
+2025-06-04 17:16:27,195 - INFO - 1 change detected
+2025-06-04 17:16:27,598 - INFO - 1 change detected
+2025-06-04 17:16:28,003 - INFO - 1 change detected
+2025-06-04 17:16:28,405 - INFO - 1 change detected
+2025-06-04 17:16:28,811 - INFO - 1 change detected
+2025-06-04 17:16:29,177 - INFO - 1 change detected
+2025-06-04 17:16:29,587 - INFO - 1 change detected
+2025-06-04 17:16:29,989 - INFO - 1 change detected
+2025-06-04 17:16:30,391 - INFO - 1 change detected
+2025-06-04 17:16:30,799 - INFO - 1 change detected
+2025-06-04 17:16:31,203 - INFO - 1 change detected
+2025-06-04 17:16:31,605 - INFO - 1 change detected
+2025-06-04 17:16:31,886 - INFO - Performing LLM search for: clinci department
+2025-06-04 17:16:31,886 - INFO - Context size: 5
+2025-06-04 17:16:31,887 - INFO - Performing vector similarity search for: clinci department
+2025-06-04 17:16:31,887 - INFO - Retrieval limit: 5
+2025-06-04 17:16:32,021 - INFO - 1 change detected
+2025-06-04 17:16:32,424 - INFO - 1 change detected
+2025-06-04 17:16:32,476 - INFO - === VECTOR SEARCH RESULTS ===
+2025-06-04 17:16:32,476 - INFO - Rank 1: ID: 683b0b0d1aa118b254288ba2, Score: 0.6064
+2025-06-04 17:16:32,476 - INFO - Rank 2: ID: 683b0aad1aa118b254288b8a, Score: 0.6015
+2025-06-04 17:16:32,477 - INFO - Rank 3: ID: 683b0b1a1aa118b254288bae, Score: 0.5906
+2025-06-04 17:16:32,477 - INFO - Rank 4: ID: 683b0aba1aa118b254288b95, Score: 0.5884
+2025-06-04 17:16:32,477 - INFO - Rank 5: ID: 683b0a591aa118b254288b6d, Score: 0.5833
+2025-06-04 17:16:32,477 - INFO - === END OF RESULTS ===
+2025-06-04 17:16:32,543 - INFO - Invoking LLM for document analysis...
+2025-06-04 17:16:32,829 - INFO - 1 change detected
+2025-06-04 17:16:33,195 - INFO - 11 changes detected
+2025-06-04 17:16:33,553 - INFO - 1 change detected
+2025-06-04 17:16:33,650 - WARNING - Failed to multipart ingest runs: langsmith.utils.LangSmithError: Failed to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. HTTPError('403 Client Error: Forbidden for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Forbidden"}\n')
+2025-06-04 17:16:33,912 - INFO - 1 change detected
+2025-06-04 17:16:34,268 - INFO - 1 change detected
+2025-06-04 17:16:34,451 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 17:16:34,625 - INFO - 1 change detected
+2025-06-04 17:16:34,978 - INFO - 1 change detected
+2025-06-04 17:16:35,246 - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithError: Failed to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. HTTPError('403 Client Error: Forbidden for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Forbidden"}\n')
+2025-06-04 17:16:35,334 - INFO - 1 change detected
+2025-06-04 17:16:35,743 - INFO - 1 change detected
+2025-06-04 17:16:36,146 - INFO - 1 change detected
+2025-06-04 17:16:36,552 - INFO - 1 change detected
+2025-06-04 17:16:36,969 - INFO - 1 change detected
+2025-06-04 17:16:37,381 - INFO - 1 change detected
+2025-06-04 17:16:37,747 - INFO - 1 change detected
+2025-06-04 17:16:38,155 - INFO - 1 change detected
+2025-06-04 17:16:38,572 - INFO - 1 change detected
+2025-06-04 17:16:38,975 - INFO - 1 change detected
+2025-06-04 17:16:39,380 - INFO - 1 change detected
+2025-06-04 17:16:39,782 - INFO - 1 change detected
+2025-06-04 17:16:40,184 - INFO - 1 change detected
+2025-06-04 17:16:40,588 - INFO - 1 change detected
+2025-06-04 17:16:40,992 - INFO - 1 change detected
+2025-06-04 17:16:41,395 - INFO - 1 change detected
+2025-06-04 17:16:41,798 - INFO - 1 change detected
+2025-06-04 17:16:42,202 - INFO - 1 change detected
+2025-06-04 17:16:42,568 - INFO - 1 change detected
+2025-06-04 17:16:42,977 - INFO - 1 change detected
+2025-06-04 17:16:43,391 - INFO - 1 change detected
+2025-06-04 17:16:43,794 - INFO - 1 change detected
+2025-06-04 17:16:44,196 - INFO - 1 change detected
+2025-06-04 17:16:44,601 - INFO - 1 change detected
+2025-06-04 17:16:45,004 - INFO - 1 change detected
+2025-06-04 17:16:45,408 - INFO - 1 change detected
+2025-06-04 17:16:45,824 - INFO - 1 change detected
+2025-06-04 17:16:46,180 - INFO - 1 change detected
+2025-06-04 17:16:46,536 - INFO - 1 change detected
+2025-06-04 17:16:46,890 - INFO - 1 change detected
+2025-06-04 17:16:47,243 - INFO - 1 change detected
+2025-06-04 17:16:47,598 - INFO - 1 change detected
+2025-06-04 17:16:48,007 - INFO - 1 change detected
+2025-06-04 17:16:48,373 - INFO - 1 change detected
+2025-06-04 17:16:48,781 - INFO - 1 change detected
+2025-06-04 17:16:49,197 - INFO - 1 change detected
+2025-06-04 17:16:49,602 - INFO - 1 change detected
+2025-06-04 17:16:50,003 - INFO - 1 change detected
+2025-06-04 17:16:50,409 - INFO - 1 change detected
+2025-06-04 17:16:50,812 - INFO - 1 change detected
+2025-06-04 17:16:51,215 - INFO - 1 change detected
+2025-06-04 17:16:51,620 - INFO - 1 change detected
+2025-06-04 17:16:52,022 - INFO - 1 change detected
+2025-06-04 17:16:52,438 - INFO - 1 change detected
+2025-06-04 17:16:52,844 - INFO - 1 change detected
+2025-06-04 17:16:53,248 - INFO - 1 change detected
+2025-06-04 17:16:53,651 - INFO - 1 change detected
+2025-06-04 17:16:54,007 - INFO - 1 change detected
+2025-06-04 17:16:54,415 - INFO - 1 change detected
+2025-06-04 17:16:54,818 - INFO - 1 change detected
+2025-06-04 17:16:55,222 - INFO - 1 change detected
+2025-06-04 17:16:55,626 - INFO - 1 change detected
+2025-06-04 17:16:56,031 - INFO - 1 change detected
+2025-06-04 17:16:56,435 - INFO - 1 change detected
+2025-06-04 17:16:56,839 - INFO - 1 change detected
+2025-06-04 17:16:57,245 - INFO - 1 change detected
+2025-06-04 17:16:57,648 - INFO - 1 change detected
+2025-06-04 17:16:58,053 - INFO - 1 change detected
+2025-06-04 17:16:58,458 - INFO - 1 change detected
+2025-06-04 17:16:58,860 - INFO - 1 change detected
+2025-06-04 17:16:59,269 - INFO - 1 change detected
+2025-06-04 17:16:59,673 - INFO - 1 change detected
+2025-06-04 17:17:00,078 - INFO - 1 change detected
+2025-06-04 17:17:00,495 - INFO - 1 change detected
+2025-06-04 17:17:00,899 - INFO - 1 change detected
+2025-06-04 17:17:01,302 - INFO - 1 change detected
+2025-06-04 17:17:01,717 - INFO - 1 change detected
+2025-06-04 17:17:02,119 - INFO - 1 change detected
+2025-06-04 17:17:02,484 - INFO - 1 change detected
+2025-06-04 17:17:02,890 - INFO - 1 change detected
+2025-06-04 17:17:03,292 - INFO - 1 change detected
+2025-06-04 17:17:03,697 - INFO - 1 change detected
+2025-06-04 17:17:04,100 - INFO - 1 change detected
+2025-06-04 17:17:04,506 - INFO - 1 change detected
+2025-06-04 17:17:04,908 - INFO - 1 change detected
+2025-06-04 17:17:05,312 - INFO - 1 change detected
+2025-06-04 17:17:05,717 - INFO - 1 change detected
+2025-06-04 17:17:06,120 - INFO - 1 change detected
+2025-06-04 17:17:06,524 - INFO - 1 change detected
+2025-06-04 17:17:06,933 - INFO - 1 change detected
+2025-06-04 17:17:07,350 - INFO - 1 change detected
+2025-06-04 17:17:07,766 - INFO - 1 change detected
+2025-06-04 17:17:08,171 - INFO - 1 change detected
+2025-06-04 17:17:08,576 - INFO - 1 change detected
+2025-06-04 17:17:08,956 - INFO - 1 change detected
+2025-06-04 17:17:09,362 - INFO - 1 change detected
+2025-06-04 17:17:09,764 - INFO - 1 change detected
+2025-06-04 17:17:10,167 - INFO - 1 change detected
+2025-06-04 17:17:10,574 - INFO - 1 change detected
+2025-06-04 17:17:10,987 - INFO - 1 change detected
+2025-06-04 17:17:11,393 - INFO - 1 change detected
+2025-06-04 17:17:11,794 - INFO - 1 change detected
+2025-06-04 17:17:12,158 - INFO - 1 change detected
+2025-06-04 17:17:12,563 - INFO - 1 change detected
+2025-06-04 17:17:12,967 - INFO - 1 change detected
+2025-06-04 17:17:13,381 - INFO - 1 change detected
+2025-06-04 17:17:13,797 - INFO - 1 change detected
+2025-06-04 17:17:14,200 - INFO - 1 change detected
+2025-06-04 17:17:14,607 - INFO - 1 change detected
+2025-06-04 17:17:14,974 - INFO - 1 change detected
+2025-06-04 17:17:15,385 - INFO - 1 change detected
+2025-06-04 17:17:15,788 - INFO - 1 change detected
+2025-06-04 17:17:16,192 - INFO - 1 change detected
+2025-06-04 17:17:16,597 - INFO - 1 change detected
+2025-06-04 17:17:17,013 - INFO - 1 change detected
+2025-06-04 17:17:17,416 - INFO - 1 change detected
+2025-06-04 17:17:17,818 - INFO - 1 change detected
+2025-06-04 17:17:18,223 - INFO - 1 change detected
+2025-06-04 17:17:18,630 - INFO - 1 change detected
+2025-06-04 17:17:19,046 - INFO - 1 change detected
+2025-06-04 17:17:19,412 - INFO - 1 change detected
+2025-06-04 17:17:19,820 - INFO - 1 change detected
+2025-06-04 17:17:20,035 - INFO - Cleaned job description text: "Seeking a Python Developer to design, develop, and maintain scalable applications. Proficiency in Python, frameworks like Django/Flask, and database management is required. Strong problem-solving ski...
+2025-06-04 17:17:20,035 - INFO - Deleted temporary file: dummy_data_save\temp_text_extract\Job Title Python Developer.txt
+2025-06-04 17:17:20,036 - INFO - Initializing RAG application for JD search with limit: 10
+2025-06-04 17:17:20,036 - INFO - Performing LLM context search with text length: 219
+2025-06-04 17:17:20,036 - INFO - Performing LLM search for: "Seeking a Python Developer to design, develop, and maintain scalable applications. Proficiency in Python, frameworks like Django/Flask, and database management is required. Strong problem-solving skills are essential."
+2025-06-04 17:17:20,036 - INFO - Context size: 10
+2025-06-04 17:17:20,036 - INFO - Performing vector similarity search for: "Seeking a Python Developer to design, develop, and maintain scalable applications. Proficiency in Python, frameworks like Django/Flask, and database management is required. Strong problem-solving skills are essential."
+2025-06-04 17:17:20,036 - INFO - Retrieval limit: 10
+2025-06-04 17:17:20,225 - INFO - 4 changes detected
+2025-06-04 17:17:20,641 - INFO - 1 change detected
+2025-06-04 17:17:21,005 - INFO - === VECTOR SEARCH RESULTS ===
+2025-06-04 17:17:21,005 - INFO - Rank 1: ID: 683b0a6d1aa118b254288b78, Score: 0.6518
+2025-06-04 17:17:21,005 - INFO - Rank 2: ID: 683b080c629dfdbe4a90ff90, Score: 0.6324
+2025-06-04 17:17:21,007 - INFO - 1 change detected
+2025-06-04 17:17:21,007 - INFO - Rank 3: ID: 683b0a9f1aa118b254288b80, Score: 0.6242
+2025-06-04 17:17:21,007 - INFO - Rank 4: ID: 683b0aad1aa118b254288b8a, Score: 0.6235
+2025-06-04 17:17:21,008 - INFO - Rank 5: ID: 683b0a471aa118b254288b62, Score: 0.6233
+2025-06-04 17:17:21,008 - INFO - Rank 6: ID: 683d76f73aaa46236f0eaee9, Score: 0.6192
+2025-06-04 17:17:21,009 - INFO - Rank 7: ID: 683f3b9bdd74fe0ea5db5666, Score: 0.6191
+2025-06-04 17:17:21,009 - INFO - Rank 8: ID: 683b0b1a1aa118b254288bae, Score: 0.6142
+2025-06-04 17:17:21,009 - INFO - Rank 9: ID: 683b0e4e742fd80f85748294, Score: 0.6132
+2025-06-04 17:17:21,009 - INFO - Rank 10: ID: 683f3b35dd74fe0ea5db5664, Score: 0.6046
+2025-06-04 17:17:21,010 - INFO - === END OF RESULTS ===
+2025-06-04 17:17:21,074 - INFO - Invoking LLM for document analysis...
+2025-06-04 17:17:21,415 - INFO - 1 change detected
+2025-06-04 17:17:21,818 - INFO - 1 change detected
+2025-06-04 17:17:21,937 - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithError: Failed to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. HTTPError('403 Client Error: Forbidden for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Forbidden"}\n')
+2025-06-04 17:17:22,230 - INFO - 1 change detected
+2025-06-04 17:17:22,646 - INFO - 1 change detected
+2025-06-04 17:17:22,856 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 17:17:22,859 - WARNING - No valid JSON structure found in cleaned text: "is_tier1_engineering": "True", "is_tier1_mba": "True", "is_tier1_engineering": "True", "is_tier1_en...
+2025-06-04 17:17:22,860 - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-06-04 17:17:22,861 - INFO - LLM context search completed. Result type: <class 'dict'>
+2025-06-04 17:17:22,863 - INFO - Result keys: ['results', 'total_analyzed', 'statistics']
+2025-06-04 17:17:22,863 - INFO - LLM context search by JD completed successfully
+2025-06-04 17:17:23,048 - INFO - 1 change detected
+2025-06-04 17:17:23,414 - INFO - 1 change detected
+2025-06-04 17:17:23,651 - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithError: Failed to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. HTTPError('403 Client Error: Forbidden for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Forbidden"}\n')
+2025-06-04 17:17:23,819 - INFO - 1 change detected
+2025-06-04 17:17:24,239 - INFO - 1 change detected
+2025-06-04 17:17:24,646 - INFO - 1 change detected
+2025-06-04 17:17:25,049 - INFO - 1 change detected
+2025-06-04 17:17:25,455 - INFO - 1 change detected
+2025-06-04 17:17:25,857 - INFO - 1 change detected
+2025-06-04 17:17:26,268 - INFO - 1 change detected
+2025-06-04 17:17:26,671 - INFO - 1 change detected
+2025-06-04 17:17:27,073 - INFO - 1 change detected
+2025-06-04 17:17:27,480 - INFO - 1 change detected
+2025-06-04 17:17:27,895 - INFO - 1 change detected
+2025-06-04 17:17:28,300 - INFO - 1 change detected
+2025-06-04 17:17:28,706 - INFO - 1 change detected
+2025-06-04 17:17:29,072 - INFO - 1 change detected
+2025-06-04 17:17:29,478 - INFO - 1 change detected
+2025-06-04 17:17:29,881 - INFO - 1 change detected
+2025-06-04 17:17:30,286 - INFO - 1 change detected
+2025-06-04 17:17:30,703 - INFO - 1 change detected
+2025-06-04 17:17:31,105 - INFO - 1 change detected
+2025-06-04 17:17:31,510 - INFO - 1 change detected
+2025-06-04 17:17:31,928 - INFO - 1 change detected
+2025-06-04 17:17:32,294 - INFO - 1 change detected
+2025-06-04 17:17:32,701 - INFO - 1 change detected
+2025-06-04 17:17:33,108 - INFO - 1 change detected
+2025-06-04 17:17:33,511 - INFO - 1 change detected
+2025-06-04 17:17:33,925 - INFO - 1 change detected
+2025-06-04 17:17:34,329 - INFO - 1 change detected
+2025-06-04 17:17:34,735 - INFO - 1 change detected
+2025-06-04 17:17:35,099 - INFO - 1 change detected
+2025-06-04 17:17:35,511 - INFO - 1 change detected
+2025-06-04 17:17:35,751 - INFO - Cleaned job description text: "Seeking a Python Developer to design, develop, and maintain scalable applications. Proficiency in Python, frameworks like Django/Flask, and database management is required. Strong problem-solving ski...
+2025-06-04 17:17:35,751 - INFO - Deleted temporary file: dummy_data_save\temp_text_extract\Job Title Python Developer.txt
+2025-06-04 17:17:35,751 - INFO - Initializing RAG application for JD search with limit: 10
+2025-06-04 17:17:35,751 - INFO - Performing LLM context search with text length: 219
+2025-06-04 17:17:35,751 - INFO - Performing LLM search for: "Seeking a Python Developer to design, develop, and maintain scalable applications. Proficiency in Python, frameworks like Django/Flask, and database management is required. Strong problem-solving skills are essential."
+2025-06-04 17:17:35,752 - INFO - Context size: 10
+2025-06-04 17:17:35,752 - INFO - Performing vector similarity search for: "Seeking a Python Developer to design, develop, and maintain scalable applications. Proficiency in Python, frameworks like Django/Flask, and database management is required. Strong problem-solving skills are essential."
+2025-06-04 17:17:35,752 - INFO - Retrieval limit: 10
+2025-06-04 17:17:35,947 - INFO - 4 changes detected
+2025-06-04 17:17:36,311 - INFO - 1 change detected
+2025-06-04 17:17:36,716 - INFO - 1 change detected
+2025-06-04 17:17:36,751 - INFO - === VECTOR SEARCH RESULTS ===
+2025-06-04 17:17:36,752 - INFO - Rank 1: ID: 683b0a6d1aa118b254288b78, Score: 0.6518
+2025-06-04 17:17:36,752 - INFO - Rank 2: ID: 683b080c629dfdbe4a90ff90, Score: 0.6324
+2025-06-04 17:17:36,752 - INFO - Rank 3: ID: 683b0a9f1aa118b254288b80, Score: 0.6242
+2025-06-04 17:17:36,752 - INFO - Rank 4: ID: 683b0aad1aa118b254288b8a, Score: 0.6235
+2025-06-04 17:17:36,752 - INFO - Rank 5: ID: 683b0a471aa118b254288b62, Score: 0.6233
+2025-06-04 17:17:36,753 - INFO - Rank 6: ID: 683d76f73aaa46236f0eaee9, Score: 0.6192
+2025-06-04 17:17:36,753 - INFO - Rank 7: ID: 683f3b9bdd74fe0ea5db5666, Score: 0.6191
+2025-06-04 17:17:36,753 - INFO - Rank 8: ID: 683b0b1a1aa118b254288bae, Score: 0.6142
+2025-06-04 17:17:36,753 - INFO - Rank 9: ID: 683b0e4e742fd80f85748294, Score: 0.6132
+2025-06-04 17:17:36,753 - INFO - Rank 10: ID: 683f3b35dd74fe0ea5db5664, Score: 0.6046
+2025-06-04 17:17:36,753 - INFO - === END OF RESULTS ===
+2025-06-04 17:17:36,816 - INFO - Invoking LLM for document analysis...
+2025-06-04 17:17:37,131 - INFO - 1 change detected
+2025-06-04 17:17:37,535 - INFO - 1 change detected
+2025-06-04 17:17:37,650 - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithError: Failed to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. HTTPError('403 Client Error: Forbidden for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Forbidden"}\n')
+2025-06-04 17:17:37,950 - INFO - 1 change detected
+2025-06-04 17:17:38,355 - INFO - 1 change detected
+2025-06-04 17:17:38,710 - INFO - 1 change detected
+2025-06-04 17:17:38,857 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-04 17:17:38,860 - WARNING - No valid JSON structure found in cleaned text: "is_tier1_engineering": "True", "is_tier1_mba": "True", "is_tier1_engineering": "True", "is_tier1_en...
+2025-06-04 17:17:38,860 - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-06-04 17:17:38,862 - INFO - LLM context search completed. Result type: <class 'dict'>
+2025-06-04 17:17:38,863 - INFO - Result keys: ['results', 'total_analyzed', 'statistics']
+2025-06-04 17:17:38,863 - INFO - LLM context search by JD completed successfully
+2025-06-04 17:17:39,117 - INFO - 1 change detected
+2025-06-04 17:17:39,520 - INFO - 1 change detected
+2025-06-04 17:17:39,718 - WARNING - Failed to send compressed multipart ingest: langsmith.utils.LangSmithError: Failed to POST https://api.smith.langchain.com/runs/multipart in LangSmith API. HTTPError('403 Client Error: Forbidden for url: https://api.smith.langchain.com/runs/multipart', '{"error":"Forbidden"}\n')
+2025-06-04 17:17:39,925 - INFO - 1 change detected
+2025-06-04 17:17:40,327 - INFO - 1 change detected
+2025-06-04 17:17:40,731 - INFO - 1 change detected
+2025-06-04 17:17:41,135 - INFO - 1 change detected
+2025-06-04 17:17:41,540 - INFO - 1 change detected
+2025-06-04 17:17:41,945 - INFO - 1 change detected
+2025-06-04 17:17:42,348 - INFO - 1 change detected
+2025-06-04 17:17:42,753 - INFO - 1 change detected
+2025-06-04 17:17:43,160 - INFO - 1 change detected
+2025-06-04 17:17:43,562 - INFO - 1 change detected
+2025-06-04 17:17:43,967 - INFO - 1 change detected
+2025-06-04 17:17:44,369 - INFO - 1 change detected
+2025-06-04 17:17:44,774 - INFO - 1 change detected
+2025-06-04 17:17:45,179 - INFO - 1 change detected
+2025-06-04 17:17:45,584 - INFO - 1 change detected
+2025-06-04 17:17:45,986 - INFO - 1 change detected
+2025-06-04 17:17:46,388 - INFO - 2 changes detected
+2025-06-04 17:17:46,791 - INFO - 1 change detected
+2025-06-04 17:17:47,209 - INFO - 5 changes detected
+2025-06-04 17:17:47,612 - INFO - 2 changes detected
+2025-06-04 17:17:48,016 - INFO - 1 change detected
+2025-06-04 17:17:48,422 - INFO - 1 change detected
+2025-06-04 17:17:48,827 - INFO - 1 change detected
+2025-06-04 17:17:49,230 - INFO - 1 change detected
+2025-06-04 17:17:49,633 - INFO - 1 change detected
+2025-06-04 17:17:50,038 - INFO - 1 change detected
+2025-06-04 17:17:50,439 - INFO - 1 change detected
+2025-06-04 17:17:50,842 - INFO - 1 change detected
+2025-06-04 17:17:51,244 - INFO - 1 change detected
+2025-06-04 17:17:51,650 - INFO - 1 change detected
+2025-06-04 17:17:52,051 - INFO - 1 change detected
+2025-06-04 17:17:52,453 - INFO - 1 change detected
+2025-06-04 17:17:52,862 - INFO - 1 change detected
+2025-06-04 17:17:53,263 - INFO - 1 change detected
+2025-06-04 17:17:53,667 - INFO - 1 change detected
+2025-06-04 17:17:54,083 - INFO - 1 change detected
+2025-06-04 17:17:54,485 - INFO - 1 change detected
+2025-06-04 17:17:54,889 - INFO - 1 change detected
+2025-06-04 17:17:55,294 - INFO - 1 change detected
+2025-06-04 17:17:55,697 - INFO - 1 change detected
+2025-06-04 17:17:56,099 - INFO - 1 change detected
+2025-06-04 17:17:56,465 - INFO - 1 change detected
+2025-06-04 17:17:56,873 - INFO - 1 change detected
+2025-06-04 17:17:57,289 - INFO - 1 change detected
+2025-06-04 17:17:57,693 - INFO - 1 change detected
+2025-06-04 17:17:58,108 - INFO - 1 change detected
+2025-06-04 17:17:58,515 - INFO - 1 change detected
+2025-06-04 17:17:58,917 - INFO - 1 change detected
+2025-06-04 17:17:59,324 - INFO - 1 change detected
+2025-06-04 17:17:59,726 - INFO - 1 change detected
+2025-06-04 17:18:00,128 - INFO - 1 change detected
+2025-06-04 17:18:00,533 - INFO - 1 change detected
+2025-06-04 17:18:00,936 - INFO - 1 change detected
+2025-06-04 17:18:01,342 - INFO - 1 change detected
+2025-06-04 17:18:01,747 - INFO - 1 change detected
+2025-06-04 17:18:02,150 - INFO - 1 change detected
+2025-06-04 17:18:02,504 - INFO - 1 change detected
+2025-06-04 17:18:02,916 - INFO - 1 change detected
+2025-06-04 17:18:03,330 - INFO - 1 change detected
+2025-06-04 17:18:03,737 - INFO - 1 change detected
+2025-06-04 17:18:04,102 - INFO - 1 change detected
+2025-06-04 17:18:04,509 - INFO - 1 change detected
+2025-06-04 17:18:04,915 - INFO - 1 change detected
+2025-06-04 17:18:05,319 - INFO - 1 change detected
+2025-06-04 17:18:05,725 - INFO - 1 change detected
+2025-06-04 17:18:06,127 - INFO - 1 change detected
+2025-06-04 17:18:06,532 - INFO - 1 change detected
+2025-06-04 17:18:06,937 - INFO - 1 change detected
+2025-06-04 17:18:07,342 - INFO - 1 change detected
+2025-06-04 17:18:07,757 - INFO - 1 change detected
+2025-06-04 17:18:08,160 - INFO - 1 change detected
+2025-06-04 17:18:08,566 - INFO - 1 change detected
+2025-06-04 17:18:08,969 - INFO - 1 change detected
+2025-06-04 17:18:09,372 - INFO - 1 change detected
+2025-06-04 17:18:09,777 - INFO - 1 change detected
+2025-06-04 17:18:10,190 - INFO - 1 change detected
+2025-06-04 17:18:10,594 - INFO - 1 change detected
+2025-06-04 17:18:10,959 - INFO - 1 change detected
+2025-06-04 17:18:11,368 - INFO - 1 change detected
+2025-06-04 17:18:11,784 - INFO - 1 change detected
+2025-06-04 17:18:12,201 - INFO - 1 change detected
+2025-06-04 17:18:12,605 - INFO - 1 change detected
+2025-06-04 17:18:13,008 - INFO - 1 change detected
+2025-06-04 17:18:13,411 - INFO - 1 change detected
+2025-06-04 17:18:13,815 - INFO - 1 change detected
+2025-06-04 17:18:14,180 - INFO - 1 change detected
+2025-06-04 17:18:14,591 - INFO - 1 change detected
+2025-06-04 17:18:14,993 - INFO - 1 change detected
+2025-06-04 17:18:15,398 - INFO - 1 change detected
+2025-06-04 17:18:15,815 - INFO - 1 change detected
+2025-06-04 17:18:16,218 - INFO - 1 change detected
+2025-06-04 17:18:16,585 - INFO - 1 change detected
+2025-06-04 17:18:16,992 - INFO - 1 change detected
+2025-06-04 17:18:17,398 - INFO - 1 change detected
+2025-06-04 17:18:17,800 - INFO - 1 change detected
+2025-06-04 17:18:18,203 - INFO - 1 change detected
+2025-06-04 17:18:18,607 - INFO - 1 change detected
+2025-06-04 17:18:19,012 - INFO - 1 change detected
+2025-06-04 17:18:19,417 - INFO - 1 change detected
+2025-06-04 17:18:19,821 - INFO - 1 change detected
+2025-06-04 17:18:20,236 - INFO - 1 change detected
+2025-06-04 17:18:20,692 - INFO - 1 change detected
+2025-06-04 17:18:21,057 - INFO - 1 change detected
+2025-06-04 17:18:21,466 - INFO - 1 change detected
+2025-06-04 17:18:21,869 - INFO - 1 change detected
+2025-06-04 17:18:22,282 - INFO - 1 change detected
+2025-06-04 17:18:22,686 - INFO - 1 change detected
+2025-06-04 17:18:23,088 - INFO - 1 change detected
+2025-06-04 17:18:23,492 - INFO - 1 change detected
+2025-06-04 17:18:23,896 - INFO - 1 change detected
+2025-06-04 17:18:24,299 - INFO - 1 change detected
+2025-06-04 17:18:24,704 - INFO - 1 change detected
+2025-06-04 17:18:25,107 - INFO - 1 change detected
+2025-06-04 17:18:25,512 - INFO - 1 change detected
+2025-06-04 17:18:25,914 - INFO - 1 change detected
+2025-06-04 17:18:26,318 - INFO - 1 change detected
+2025-06-04 17:18:26,722 - INFO - 1 change detected
+2025-06-04 17:18:27,138 - INFO - 1 change detected
+2025-06-04 17:18:27,502 - INFO - 1 change detected
+2025-06-04 17:18:27,912 - INFO - 1 change detected
+2025-06-04 17:18:28,317 - INFO - 1 change detected
+2025-06-04 17:18:28,721 - INFO - 1 change detected
+2025-06-04 17:18:29,136 - INFO - 1 change detected
+2025-06-04 17:18:29,541 - INFO - 1 change detected
+2025-06-04 17:18:29,945 - INFO - 1 change detected
+2025-06-04 17:18:30,306 - INFO - 1 change detected
+2025-06-04 17:18:30,714 - INFO - 1 change detected
+2025-06-04 17:18:31,116 - INFO - 1 change detected
+2025-06-04 17:18:31,522 - INFO - 1 change detected
+2025-06-04 17:18:31,926 - INFO - 1 change detected
+2025-06-04 17:18:32,330 - INFO - 1 change detected
+2025-06-04 17:18:32,732 - INFO - 1 change detected
+2025-06-04 17:18:33,137 - INFO - 1 change detected
+2025-06-04 17:18:33,538 - INFO - 1 change detected
+2025-06-04 17:18:33,946 - INFO - 1 change detected
+2025-06-04 17:18:34,363 - INFO - 1 change detected
+2025-06-04 17:18:34,766 - INFO - 1 change detected
+2025-06-04 17:18:35,172 - INFO - 1 change detected
+2025-06-04 17:18:35,578 - INFO - 1 change detected
+2025-06-04 17:18:35,984 - INFO - 1 change detected
+2025-06-04 17:18:36,387 - INFO - 1 change detected
+2025-06-04 17:18:36,743 - INFO - 1 change detected
+2025-06-04 17:18:37,153 - INFO - 1 change detected
+2025-06-04 17:18:37,559 - INFO - 1 change detected
+2025-06-04 17:18:37,961 - INFO - 1 change detected
+2025-06-04 17:18:38,068 - INFO - Deleted temporary file: dummy_data_save\temp_text_extract\Job Title Python Developer.txt
+2025-06-04 17:18:38,068 - INFO - Performing vector similarity search for: "Seeking a Python Developer to design, develop, and maintain scalable applications. Proficiency in Python, frameworks like Django/Flask, and database management is required. Strong problem-solving skills are essential."
+2025-06-04 17:18:38,069 - INFO - Retrieval limit: 10
+2025-06-04 17:18:38,366 - INFO - 3 changes detected
+2025-06-04 17:18:38,772 - INFO - 1 change detected
+2025-06-04 17:18:39,094 - INFO - === VECTOR SEARCH RESULTS ===
+2025-06-04 17:18:39,094 - INFO - Rank 1: ID: 683b0a6d1aa118b254288b78, Score: 0.6518
+2025-06-04 17:18:39,094 - INFO - Rank 2: ID: 683b080c629dfdbe4a90ff90, Score: 0.6324
+2025-06-04 17:18:39,094 - INFO - Rank 3: ID: 683b0a9f1aa118b254288b80, Score: 0.6242
+2025-06-04 17:18:39,094 - INFO - Rank 4: ID: 683b0aad1aa118b254288b8a, Score: 0.6235
+2025-06-04 17:18:39,095 - INFO - Rank 5: ID: 683b0a471aa118b254288b62, Score: 0.6233
+2025-06-04 17:18:39,095 - INFO - Rank 6: ID: 683d76f73aaa46236f0eaee9, Score: 0.6192
+2025-06-04 17:18:39,095 - INFO - Rank 7: ID: 683f3b9bdd74fe0ea5db5666, Score: 0.6191
+2025-06-04 17:18:39,095 - INFO - Rank 8: ID: 683b0b1a1aa118b254288bae, Score: 0.6142
+2025-06-04 17:18:39,095 - INFO - Rank 9: ID: 683b0e4e742fd80f85748294, Score: 0.6132
+2025-06-04 17:18:39,096 - INFO - Rank 10: ID: 683f3b35dd74fe0ea5db5664, Score: 0.6046
+2025-06-04 17:18:39,096 - INFO - === END OF RESULTS ===
+2025-06-04 17:18:39,188 - INFO - 1 change detected
+2025-06-04 17:18:39,596 - INFO - 1 change detected
+2025-06-04 17:18:39,999 - INFO - 1 change detected
+2025-06-04 17:18:40,363 - INFO - 1 change detected
+2025-06-04 17:18:40,772 - INFO - 1 change detected
+2025-06-04 17:18:41,177 - INFO - 1 change detected
+2025-06-04 17:18:41,581 - INFO - 1 change detected
+2025-06-04 17:18:41,997 - INFO - 1 change detected
+2025-06-04 17:18:42,361 - INFO - 1 change detected
+2025-06-04 17:18:42,768 - INFO - 1 change detected
+2025-06-04 17:18:43,175 - INFO - 1 change detected
+2025-06-04 17:18:43,579 - INFO - 1 change detected
+2025-06-04 17:18:43,982 - INFO - 1 change detected
+2025-06-04 17:18:44,385 - INFO - 1 change detected
+2025-06-04 17:18:44,789 - INFO - 1 change detected
+2025-06-04 17:18:45,197 - INFO - 1 change detected
+2025-06-04 17:18:45,598 - INFO - 1 change detected
+2025-06-04 17:18:46,003 - INFO - 1 change detected
+2025-06-04 17:18:46,418 - INFO - 1 change detected
+2025-06-04 17:18:46,783 - INFO - 1 change detected
+2025-06-04 17:18:47,190 - INFO - 1 change detected
+2025-06-04 17:18:47,605 - INFO - 1 change detected
+2025-06-04 17:18:48,008 - INFO - 1 change detected
+2025-06-04 17:18:48,412 - INFO - 1 change detected
+2025-06-04 17:18:48,815 - INFO - 1 change detected
+2025-06-04 17:18:49,218 - INFO - 1 change detected
+2025-06-04 17:18:49,621 - INFO - 1 change detected
+2025-06-04 17:18:50,024 - INFO - 1 change detected
+2025-06-04 17:18:50,389 - INFO - 1 change detected
+2025-06-04 17:18:50,798 - INFO - 1 change detected
+2025-06-04 17:18:51,207 - INFO - 1 change detected
+2025-06-04 17:18:51,623 - INFO - 1 change detected
+2025-06-04 17:18:52,028 - INFO - 1 change detected
+2025-06-04 17:18:52,433 - INFO - 1 change detected
+2025-06-04 17:18:52,800 - INFO - 1 change detected
+2025-06-04 17:18:53,207 - INFO - 1 change detected
+2025-06-04 17:18:53,613 - INFO - 1 change detected
+2025-06-04 17:18:54,016 - INFO - 1 change detected
+2025-06-04 17:18:54,421 - INFO - 1 change detected
+2025-06-04 17:18:54,828 - INFO - 1 change detected
+2025-06-04 17:18:55,232 - INFO - 1 change detected
+2025-06-04 17:18:55,638 - INFO - 1 change detected
+2025-06-04 17:18:56,043 - INFO - 1 change detected
+2025-06-04 17:18:56,444 - INFO - 1 change detected
+2025-06-04 17:18:56,850 - INFO - 1 change detected
+2025-06-04 17:18:57,255 - INFO - 1 change detected
+2025-06-04 17:18:57,670 - INFO - 1 change detected
+2025-06-04 17:18:58,075 - INFO - 1 change detected
+2025-06-04 17:18:58,237 - INFO - Use pytorch device_name: cpu
+2025-06-04 17:18:58,238 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-04 17:18:58,481 - INFO - 1 change detected
+2025-06-04 17:18:58,882 - INFO - 1 change detected
+2025-06-04 17:18:59,248 - INFO - 1 change detected
+2025-06-04 17:18:59,655 - INFO - 1 change detected
+2025-06-04 17:19:00,062 - INFO - 1 change detected
+2025-06-04 17:19:00,478 - INFO - 1 change detected
+2025-06-04 17:19:00,882 - INFO - 1 change detected
+2025-06-04 17:19:01,285 - INFO - 1 change detected
+2025-06-04 17:19:01,701 - INFO - 1 change detected
+2025-06-04 17:19:02,067 - INFO - 1 change detected
+2025-06-04 17:19:02,471 - INFO - 1 change detected
+2025-06-04 17:19:02,874 - INFO - 1 change detected
+2025-06-04 17:19:03,277 - INFO - 1 change detected
+2025-06-04 17:19:03,685 - INFO - 1 change detected
+2025-06-04 17:19:04,100 - INFO - 1 change detected
+2025-06-04 17:19:04,502 - INFO - 1 change detected
+2025-06-04 17:19:04,907 - INFO - 1 change detected
+2025-06-04 17:19:05,309 - INFO - 1 change detected
+2025-06-04 17:19:05,715 - INFO - 1 change detected
+2025-06-04 17:19:06,117 - INFO - 1 change detected
+2025-06-04 17:19:06,520 - INFO - 1 change detected
+2025-06-04 17:19:06,938 - INFO - 1 change detected
+2025-06-04 17:19:07,341 - INFO - 1 change detected
+2025-06-04 17:19:07,705 - INFO - 1 change detected
+2025-06-04 17:19:08,116 - INFO - 1 change detected
+2025-06-04 17:19:08,519 - INFO - 1 change detected
+2025-06-04 17:19:08,923 - INFO - 1 change detected
+2025-06-04 17:19:09,328 - INFO - 1 change detected
+2025-06-04 17:19:09,731 - INFO - 1 change detected
+2025-06-04 17:19:10,134 - INFO - 1 change detected
+2025-06-04 17:19:10,538 - INFO - 1 change detected
+2025-06-04 17:19:10,944 - INFO - 1 change detected
+2025-06-04 17:19:11,351 - INFO - 1 change detected
+2025-06-04 17:19:11,765 - INFO - 1 change detected
+2025-06-04 17:19:12,182 - INFO - 1 change detected
+2025-06-04 17:19:12,589 - INFO - 1 change detected
+2025-06-04 17:19:12,996 - INFO - 1 change detected
+2025-06-04 17:19:13,397 - INFO - 1 change detected
+2025-06-04 17:19:13,802 - INFO - 1 change detected
+2025-06-04 17:19:14,166 - INFO - 1 change detected
+2025-06-04 17:19:14,572 - INFO - 1 change detected
+2025-06-04 17:19:14,977 - INFO - 1 change detected
+2025-06-04 17:19:15,368 - INFO - Retrieved 5 documents from MongoDB
+2025-06-04 17:19:15,368 - INFO - Successfully formatted and sorted 5 results
+2025-06-04 17:19:15,380 - INFO - 1 change detected
+2025-06-04 17:19:15,784 - INFO - 1 change detected
+2025-06-04 17:19:16,187 - INFO - 1 change detected
+2025-06-04 17:19:16,605 - INFO - 1 change detected
+2025-06-04 17:19:17,007 - INFO - 1 change detected
+2025-06-04 17:19:17,412 - INFO - 1 change detected
+2025-06-04 17:19:17,815 - INFO - 1 change detected
+2025-06-04 17:19:18,218 - INFO - 1 change detected
+2025-06-04 17:19:18,621 - INFO - 1 change detected
+2025-06-04 17:19:19,037 - INFO - 1 change detected
+2025-06-04 17:19:19,403 - INFO - 1 change detected
+2025-06-04 17:19:19,808 - INFO - 1 change detected
+2025-06-04 17:19:20,222 - INFO - 1 change detected
+2025-06-04 17:19:20,626 - INFO - 1 change detected
+2025-06-04 17:19:21,031 - INFO - 1 change detected
+2025-06-04 17:19:21,436 - INFO - 1 change detected
+2025-06-04 17:19:21,839 - INFO - 1 change detected
+2025-06-04 17:19:22,243 - INFO - 1 change detected
+2025-06-04 17:19:22,646 - INFO - 1 change detected
+2025-06-04 17:19:23,048 - INFO - 1 change detected
+2025-06-04 17:19:23,450 - INFO - 1 change detected
+2025-06-04 17:19:23,854 - INFO - 1 change detected
+2025-06-04 17:19:24,219 - INFO - 1 change detected
+2025-06-04 17:19:24,627 - INFO - 1 change detected
+2025-06-04 17:19:25,033 - INFO - 1 change detected
+2025-06-04 17:19:25,382 - INFO - Retrieved 5 documents using LangChain
+2025-06-04 17:19:25,383 - INFO - Successfully formatted and sorted 5 results
+2025-06-04 17:19:25,442 - INFO - 1 change detected
+2025-06-04 17:19:25,849 - INFO - 1 change detected
+2025-06-04 17:19:26,304 - INFO - 1 change detected
+2025-06-04 17:19:26,666 - INFO - 1 change detected
+2025-06-04 17:19:27,073 - INFO - 1 change detected
+2025-06-04 17:19:27,477 - INFO - 1 change detected
+2025-06-04 17:19:27,895 - INFO - 1 change detected
+2025-06-04 17:19:28,302 - INFO - 1 change detected
+2025-06-04 17:19:28,705 - INFO - 1 change detected
+2025-06-04 17:19:29,108 - INFO - 1 change detected
+2025-06-04 17:19:29,512 - INFO - 1 change detected
+2025-06-04 17:19:29,878 - INFO - 1 change detected
+2025-06-04 17:19:30,283 - INFO - 1 change detected
+2025-06-04 17:19:30,718 - INFO - 1 change detected
+2025-06-04 17:19:31,126 - INFO - 1 change detected
+2025-06-04 17:19:31,532 - INFO - 1 change detected
+2025-06-04 17:19:31,934 - INFO - 1 change detected
+2025-06-04 17:19:32,299 - INFO - 1 change detected
+2025-06-04 17:19:32,707 - INFO - 1 change detected
+2025-06-04 17:19:33,111 - INFO - 1 change detected
+2025-06-04 17:19:33,515 - INFO - 1 change detected
+2025-06-04 17:19:33,917 - INFO - 1 change detected
+2025-06-04 17:19:34,333 - INFO - 1 change detected
+2025-06-04 17:19:34,737 - INFO - 1 change detected
+2025-06-04 17:19:35,143 - INFO - 1 change detected
+2025-06-04 17:19:35,547 - INFO - 1 change detected
+2025-06-04 17:19:35,952 - INFO - 1 change detected
+2025-06-04 17:19:36,365 - INFO - 1 change detected
+2025-06-04 17:19:36,771 - INFO - 1 change detected
+2025-06-04 17:19:37,136 - INFO - 1 change detected
+2025-06-04 17:19:37,544 - INFO - 1 change detected
+2025-06-04 17:19:37,948 - INFO - 1 change detected
+2025-06-04 17:19:38,352 - INFO - 1 change detected
+2025-06-04 17:19:38,757 - INFO - 1 change detected
+2025-06-04 17:19:39,159 - INFO - 1 change detected
+2025-06-04 17:19:39,561 - INFO - 1 change detected
+2025-06-04 17:19:39,965 - INFO - 1 change detected
+2025-06-04 17:19:40,380 - INFO - 1 change detected
+2025-06-04 17:19:40,786 - INFO - 1 change detected
+2025-06-04 17:19:41,189 - INFO - 1 change detected
+2025-06-04 17:19:41,291 - INFO - Deleted temporary file: temp_uploads\Job Title Python Developer.txt
+2025-06-04 17:19:41,443 - INFO - Retrieved 10 documents from MongoDB
+2025-06-04 17:19:41,443 - INFO - Successfully formatted and sorted 10 results
+2025-06-04 17:19:41,590 - INFO - 3 changes detected
+2025-06-04 17:19:41,993 - INFO - 1 change detected
+2025-06-04 17:19:42,395 - INFO - 1 change detected
+2025-06-04 17:19:42,799 - INFO - 1 change detected
+2025-06-04 17:19:43,201 - INFO - 1 change detected
+2025-06-04 17:19:43,604 - INFO - 1 change detected
+2025-06-04 17:19:44,009 - INFO - 1 change detected
+2025-06-04 17:19:44,428 - INFO - 1 change detected
+2025-06-04 17:19:44,793 - INFO - 1 change detected
+2025-06-04 17:19:45,202 - INFO - 1 change detected
+2025-06-04 17:19:45,581 - INFO - Deleted temporary file: temp_uploads\Job Title Python Developer.txt
+2025-06-04 17:19:45,660 - INFO - 4 changes detected
+2025-06-04 17:19:45,734 - INFO - Retrieved 10 documents from MongoDB
+2025-06-04 17:19:45,735 - INFO - Successfully formatted and sorted 10 results
+2025-06-04 17:19:46,025 - INFO - 1 change detected
+2025-06-04 17:19:46,433 - INFO - 1 change detected
+2025-06-04 17:19:46,838 - INFO - 1 change detected
+2025-06-04 17:19:47,254 - INFO - 1 change detected
+2025-06-04 17:19:47,664 - INFO - 1 change detected
+2025-06-04 17:19:48,067 - INFO - 1 change detected
+2025-06-04 17:19:48,472 - INFO - 1 change detected
+2025-06-04 17:19:48,877 - INFO - 1 change detected
+2025-06-04 17:19:49,294 - INFO - 1 change detected
+2025-06-04 17:19:49,660 - INFO - 1 change detected
+2025-06-04 17:19:50,065 - INFO - 1 change detected
+2025-06-04 17:19:50,471 - INFO - 1 change detected
+2025-06-04 17:19:50,874 - INFO - 1 change detected
+2025-06-04 17:19:51,279 - INFO - 1 change detected
+2025-06-04 17:19:51,683 - INFO - 1 change detected
+2025-06-04 17:19:52,085 - INFO - 1 change detected
+2025-06-04 17:19:52,488 - INFO - 1 change detected
+2025-06-04 17:19:52,892 - INFO - 1 change detected
+2025-06-04 17:19:53,294 - INFO - 1 change detected
+2025-06-04 17:19:53,702 - INFO - 1 change detected
+2025-06-04 17:19:54,102 - INFO - 1 change detected
+2025-06-04 17:19:54,509 - INFO - 1 change detected
+2025-06-04 17:19:54,910 - INFO - 1 change detected
+2025-06-04 17:19:55,315 - INFO - 1 change detected
+2025-06-04 17:19:55,720 - INFO - 1 change detected
+2025-06-04 17:19:56,122 - INFO - 1 change detected
+2025-06-04 17:19:56,539 - INFO - 1 change detected
+2025-06-04 17:19:56,941 - INFO - 1 change detected
+2025-06-04 17:19:57,345 - INFO - 1 change detected
+2025-06-04 17:19:57,750 - INFO - 1 change detected
+2025-06-04 17:19:58,155 - INFO - 1 change detected
+2025-06-04 17:19:58,562 - INFO - 1 change detected
+2025-06-04 17:19:58,965 - INFO - 1 change detected
+2025-06-04 17:19:59,369 - INFO - 1 change detected
+2025-06-04 17:19:59,734 - INFO - 1 change detected
+2025-06-04 17:20:00,141 - INFO - 1 change detected
+2025-06-04 17:20:00,548 - INFO - 1 change detected
+2025-06-04 17:20:00,951 - INFO - 1 change detected
+2025-06-04 17:20:01,357 - INFO - Deleted temporary file: temp_uploads\Job Title Python Developer.txt
+2025-06-04 17:20:01,457 - INFO - 4 changes detected
+2025-06-04 17:20:01,693 - INFO - Retrieved 10 documents using LangChain
+2025-06-04 17:20:01,693 - INFO - Successfully formatted and sorted 10 results
+2025-06-04 17:20:01,816 - INFO - 1 change detected
+2025-06-04 17:20:02,172 - INFO - 1 change detected
+2025-06-04 17:20:02,528 - INFO - 1 change detected
+2025-06-04 17:20:02,937 - INFO - 1 change detected
+2025-06-04 17:20:03,340 - INFO - 1 change detected
+2025-06-04 17:20:03,756 - INFO - 1 change detected
+2025-06-04 17:20:04,161 - INFO - 1 change detected
+2025-06-04 17:20:04,574 - INFO - 1 change detected
+2025-06-04 17:20:04,976 - INFO - 1 change detected
+2025-06-04 17:20:05,330 - INFO - 1 change detected
+2025-06-04 17:20:05,741 - INFO - 1 change detected
+2025-06-04 17:20:06,144 - INFO - 1 change detected
+2025-06-04 17:20:06,562 - INFO - 1 change detected
+2025-06-04 17:20:06,965 - INFO - 1 change detected
+2025-06-04 17:20:07,370 - INFO - 1 change detected
+2025-06-04 17:20:07,774 - INFO - 1 change detected
+2025-06-04 17:20:08,175 - INFO - 1 change detected
+2025-06-04 17:20:08,579 - INFO - 1 change detected
+2025-06-04 17:20:08,985 - INFO - 1 change detected
+2025-06-04 17:20:09,351 - INFO - 1 change detected
+2025-06-04 17:20:09,757 - INFO - 1 change detected
+2025-06-04 17:20:10,162 - INFO - 1 change detected
+2025-06-04 17:20:10,566 - INFO - 1 change detected
+2025-06-04 17:20:10,972 - INFO - 1 change detected
+2025-06-04 17:20:11,387 - INFO - 1 change detected
+2025-06-04 17:20:11,753 - INFO - 1 change detected
+2025-06-04 17:20:12,160 - INFO - 1 change detected
+2025-06-04 17:20:12,566 - INFO - 1 change detected
+2025-06-04 17:20:12,983 - INFO - 1 change detected
+2025-06-04 17:20:13,388 - INFO - 1 change detected
+2025-06-04 17:20:13,804 - INFO - 1 change detected
+2025-06-04 17:20:14,206 - INFO - 1 change detected
+2025-06-04 17:20:14,571 - INFO - 1 change detected
+2025-06-04 17:20:15,045 - INFO - Shutting down FastAPI application...

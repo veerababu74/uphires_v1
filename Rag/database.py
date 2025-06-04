@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from langchain_mongodb import MongoDBAtlasVectorSearch
+from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from .config import RAGConfig
 from core.custom_logger import CustomLogger
 

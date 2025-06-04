@@ -11,3 +11,5 @@
 2025-06-03 16:03:06 - database_manager - INFO - MongoDB Atlas Vector Search initialized with index 'vector_search_index' on field 'combined_resume_vector'
 2025-06-03 16:08:40 - database_manager - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
 2025-06-03 16:08:40 - database_manager - INFO - MongoDB Atlas Vector Search initialized with index 'vector_search_index' on field 'combined_resume_vector'
+2025-06-04 17:16:06 - database_manager - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-06-04 17:16:06 - database_manager - INFO - MongoDB Atlas Vector Search initialized with index 'vector_search_index' on field 'combined_resume_vector'
