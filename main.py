@@ -31,6 +31,7 @@ from GroqcloudLLM.routes import router as groqcloud_router
 from apisofmango.resume import router as resume_router
 from apis.resumerpaser import router as resume_parser_router
 from apis.add_userdata import router as add_urer_data
+from apis.manual import router as manual_search_router_old
 from core.custom_logger import CustomLogger
 from core.config import config
 
@@ -117,6 +118,7 @@ app.include_router(
     retriever_api_router,
 )
 app.include_router(add_urer_data)
+app.include_router(manual_search_router_old)
 
 
 @app.get("/")
