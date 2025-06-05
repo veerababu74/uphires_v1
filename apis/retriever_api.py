@@ -13,7 +13,7 @@ from pathlib import Path
 # Initialize router
 router = APIRouter(
     prefix="/search",
-    tags=["retriver apis"],
+    tags=["enhanced ai vector search - retriever"],
     responses={404: {"description": "Not found"}},
 )
 

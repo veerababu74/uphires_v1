@@ -50,8 +50,12 @@ class ManualSearchRequest(BaseModel):
         description="Maximum expected salary",
         example=1500000.0,
     )
-    limit: int = Field(
-        default=10, ge=1, le=100, description="Maximum number of results", example=10
+    limit: Optional[int] = Field(
+        default=None,
+        ge=1,
+        le=100,
+        description="Maximum number of results (optional)",
+        example=10,
     )
 
 
@@ -97,17 +101,28 @@ router = APIRouter(
     4. Bachelor's (BTech/BE/BSc/BA/BCom)
     5. Master's (MTech/ME/MSc/MA/MCom/MBA)
     6. PhD/Doctorate
+      **Enhanced Scoring System:**
+    - Experience Title Match: 20 points per matching title (searches ALL provided titles)
+    - Skills Match: 15 points per matching skill (includes may_also_known_skills, searches ALL provided skills)
+    - Education Level Match: 3-18 points based on education level (1-6 × 3, searches ALL provided education levels)
+    - Experience Duration Match: 12 points for exact range match, 6 points for close match
+    - Location Match: 10 points (current_city), 8 points (looking_for_jobs_in, searches ALL provided locations)
+    - Salary Range Match: 10 points for within range
+    - Field Match Bonus: 25 points per different field type that has matches
     
-    **Scoring System:**
-    - Experience Title Match: 10 points per match
-    - Skills Match: Up to 10 points based on percentage match (includes may_also_known_skills)
-    - Education Level Match: Points based on level (1-6)
-    - Experience Duration Match: 5-10 points
-    - Location Match: 5 points (current_city), 3 points (looking_for_jobs_in)
-    - Salary Range Match: 5-8 points based on match type
+    **Priority Ranking:**
+    1. Primary: Number of different field types matched (experience, skills, education, location, etc.)
+    2. Secondary: Total match score (base score + field match bonus)
+    3. Tertiary: Total individual matches across all fields
+    
+    **Enhanced Search Features:**
+    - Comprehensive keyword matching: finds ALL candidates matching ANY of the provided keywords
+    - Detailed match tracking: shows exactly which keywords matched for each candidate
+    - Field-based prioritization: candidates matching more field types appear first
+    - Enhanced match details: includes matched_experience_titles, matched_skills, matched_education, matched_locations
     
     **Returns:**
-    Sorted list of matching resumes with scores (highest match score first)
+    Sorted list of matching resumes with comprehensive match details and scores (best matches first)
     """,
     responses={
         200: {
@@ -149,7 +164,26 @@ router = APIRouter(
                             "expected_salary": 1500000.0,
                             "current_salary": 1200000.0,
                             "notice_period": "30 days",
-                            "match_score": 85.5,
+                            "match_score": 128.5,
+                            "base_score": 103.5,
+                            "field_match_bonus": 25,
+                            "match_details": {
+                                "experience_title_matches": 1,
+                                "skills_matches": 3,
+                                "education_matches": 1,
+                                "location_matches": 2,
+                                "experience_range_match": True,
+                                "salary_range_match": True,
+                                "matched_experience_titles": ["Software Engineer"],
+                                "matched_skills": ["Python", "React", "AWS"],
+                                "matched_education": ["BTech"],
+                                "matched_locations": [
+                                    "Mumbai (current)",
+                                    "Mumbai (preference)",
+                                ],
+                                "fields_matched": 5,
+                            },
+                            "total_individual_matches": 9,
                         }
                     ]
                 }
@@ -174,8 +208,7 @@ router = APIRouter(
     },
 )
 async def manual_resume_search(search_params: ManualSearchRequest):
-    try:
-        # Check if at least one search criteria is provided
+    try:  # Check if at least one search criteria is provided
         has_criteria = any(
             [
                 search_params.experience_titles,
@@ -193,45 +226,65 @@ async def manual_resume_search(search_params: ManualSearchRequest):
             # If no criteria provided, return all resumes sorted by most recent
             results = list(resumes_collection.find({}))
         else:
-            # Build query based on provided criteria
-            query_conditions = []
+            # Enhanced query building to capture ALL matching candidates
+            # Use comprehensive OR logic to find any resume matching any criteria
+            or_conditions = []
 
-            # Add experience title conditions if provided
+            # Add experience title conditions - search for ALL titles
             if search_params.experience_titles:
-                title_patterns = [
-                    re.compile(f".*{re.escape(title)}.*", re.IGNORECASE)
-                    for title in search_params.experience_titles
-                ]
-                query_conditions.append(
-                    {
-                        "$or": [
-                            {"experience.title": {"$regex": pattern}}
-                            for pattern in title_patterns
-                        ]
-                    }
-                )
+                for title in search_params.experience_titles:
+                    title_pattern = re.compile(f".*{re.escape(title)}.*", re.IGNORECASE)
+                    or_conditions.append(
+                        {"experience.title": {"$regex": title_pattern}}
+                    )
 
-            # Add skills conditions if provided
+            # Add skills conditions - search for ALL skills in both fields
             if search_params.skills:
-                skill_conditions = []
                 for skill in search_params.skills:
                     skill_pattern = re.compile(f".*{re.escape(skill)}.*", re.IGNORECASE)
-                    skill_conditions.extend(
+                    or_conditions.extend(
                         [
                             {"skills": {"$regex": skill_pattern}},
                             {"may_also_known_skills": {"$regex": skill_pattern}},
                         ]
                     )
-                query_conditions.append({"$or": skill_conditions})
 
-            # Build final query
-            if query_conditions:
-                final_query = (
-                    {"$or": query_conditions}
-                    if len(query_conditions) == 1
-                    else {"$and": query_conditions}
-                )
+            # Add education conditions - search for ALL education levels
+            if search_params.min_education:
+                for edu in search_params.min_education:
+                    education_pattern = re.compile(
+                        f".*{re.escape(edu)}.*", re.IGNORECASE
+                    )
+                    or_conditions.append(
+                        {"academic_details.education": {"$regex": education_pattern}}
+                    )
+
+            # Add location conditions - search for ALL locations
+            if search_params.locations:
+                for location in search_params.locations:
+                    location_pattern = re.compile(
+                        f".*{re.escape(location)}.*", re.IGNORECASE
+                    )
+                    or_conditions.extend(
+                        [
+                            {
+                                "contact_details.current_city": {
+                                    "$regex": location_pattern
+                                }
+                            },
+                            {
+                                "contact_details.looking_for_jobs_in": {
+                                    "$regex": location_pattern
+                                }
+                            },
+                        ]
+                    )
+
+            # Build final query to get ALL potentially matching candidates
+            if or_conditions:
+                final_query = {"$or": or_conditions}
             else:
+                # If only experience/salary filters, get all resumes for post-processing
                 final_query = {}
 
             results = list(resumes_collection.find(final_query))
@@ -248,45 +301,61 @@ async def manual_resume_search(search_params: ManualSearchRequest):
         if search_params.max_experience:
             max_experience_months = parse_experience_to_months(
                 search_params.max_experience
-            )
-
-        # Calculate scores and apply additional filters
+            )  # Calculate scores and apply additional filters
         scored_results = []
 
         for resume in results:
             match_score = 0
+            match_details = {
+                "experience_title_matches": 0,
+                "skills_matches": 0,
+                "education_matches": 0,
+                "location_matches": 0,
+                "experience_range_match": False,
+                "salary_range_match": False,
+                "matched_experience_titles": [],
+                "matched_skills": [],
+                "matched_education": [],
+                "matched_locations": [],
+                "fields_matched": 0,  # Track number of different fields that have matches
+            }
             should_include = True
 
-            # Calculate experience title match score
+            # Calculate experience title match score - Enhanced to find ALL matching titles
             if search_params.experience_titles:
-                exp_title_matches = 0
+                field_has_match = False
                 for exp in resume.get("experience", []):
                     exp_title = exp.get("title", "").lower()
                     for title in search_params.experience_titles:
                         if title.lower() in exp_title:
-                            exp_title_matches += 1
-                            break
-                match_score += exp_title_matches * 10
+                            match_details["experience_title_matches"] += 1
+                            match_details["matched_experience_titles"].append(title)
+                            match_score += 20  # Higher weight for title matches
+                            field_has_match = True
+                if field_has_match:
+                    match_details["fields_matched"] += 1
 
-            # Calculate skills match score
+            # Calculate skills match score - Enhanced to find ALL matching skills
             if search_params.skills:
+                field_has_match = False
                 resume_skills = [skill.lower() for skill in resume.get("skills", [])]
                 may_also_known_skills = [
                     skill.lower() for skill in resume.get("may_also_known_skills", [])
                 ]
                 all_resume_skills = resume_skills + may_also_known_skills
 
-                skill_matches = sum(
-                    1
-                    for skill in search_params.skills
-                    if skill.lower() in all_resume_skills
-                )
+                for skill in search_params.skills:
+                    if skill.lower() in all_resume_skills:
+                        match_details["skills_matches"] += 1
+                        match_details["matched_skills"].append(skill)
+                        match_score += 15  # High weight for skills
+                        field_has_match = True
+                if field_has_match:
+                    match_details["fields_matched"] += 1
 
-                if skill_matches > 0:
-                    match_score += (skill_matches / len(search_params.skills)) * 10
-
-            # Education level scoring
+            # Education level scoring - Enhanced to find ALL matching education levels
             if search_params.min_education:
+                field_has_match = False
                 education_levels = {
                     "10th": 1,
                     "ssc": 1,
@@ -317,26 +386,22 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                     "doctorate": 6,
                 }
 
-                min_levels = [
-                    education_levels.get(edu.lower(), 0)
-                    for edu in search_params.min_education
-                ]
-                min_levels = [level for level in min_levels if level > 0]
-
-                if min_levels:
-                    highest_level = 0
-                    for edu in resume.get("academic_details", []):
-                        education = edu.get("education", "").lower()
-                        for level_name, level_value in education_levels.items():
-                            if level_name in education:
-                                highest_level = max(highest_level, level_value)
-
-                    if any(highest_level >= min_level for min_level in min_levels):
-                        match_score += highest_level
-                    else:
-                        should_include = False
-
-            # Experience duration filtering and scoring
+                for edu in resume.get("academic_details", []):
+                    education = edu.get("education", "").lower()
+                    for search_edu in search_params.min_education:
+                        if search_edu.lower() in education:
+                            match_details["education_matches"] += 1
+                            match_details["matched_education"].append(search_edu)
+                            # Get education level for scoring
+                            for level_name, level_value in education_levels.items():
+                                if level_name in education:
+                                    match_score += level_value * 3  # Increased weight
+                                    field_has_match = True
+                                    break
+                if field_has_match:
+                    match_details[
+                        "fields_matched"
+                    ] += 1  # Experience duration filtering and scoring
             if min_experience_months > 0 or max_experience_months < float("inf"):
                 total_exp = resume.get("total_experience", "")
                 resume_exp_months = 0
@@ -351,48 +416,53 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                         resume_exp_months += exp_months
 
                 if (
-                    resume_exp_months < min_experience_months
-                    or resume_exp_months > max_experience_months
+                    resume_exp_months >= min_experience_months
+                    and resume_exp_months <= max_experience_months
                 ):
-                    should_include = False
+                    match_details["experience_range_match"] = True
+                    match_score += 12  # Increased score for experience match
+                    match_details["fields_matched"] += 1
                 elif (
-                    min_experience_months <= resume_exp_months <= max_experience_months
-                ):
-                    match_score += 10
-                elif resume_exp_months <= min_experience_months * 1.5:
-                    match_score += 5
+                    resume_exp_months >= min_experience_months * 0.8
+                ):  # 80% of min experience
+                    match_score += 6  # Partial score for close match
 
-            # Location filtering and scoring
+            # Location filtering and scoring - Enhanced to track all matching locations
             if search_params.locations:
+                field_has_match = False
                 current_city = resume.get("contact_details", {}).get("current_city", "")
                 looking_for_jobs_in = resume.get("contact_details", {}).get(
                     "looking_for_jobs_in", []
                 )
 
-                location_match = False
-
-                if current_city and current_city != "N/A":
-                    for location in search_params.locations:
+                for location in search_params.locations:
+                    # Check current city
+                    if current_city and current_city != "N/A":
                         if search_city_in_location(current_city, location):
-                            location_match = True
-                            match_score += 5
-                            break
+                            match_details["location_matches"] += 1
+                            match_details["matched_locations"].append(
+                                f"{location} (current)"
+                            )
+                            match_score += 10  # Higher score for current city match
+                            field_has_match = True
 
-                if not location_match and looking_for_jobs_in:
-                    for job_location in looking_for_jobs_in:
-                        if job_location and job_location != "N/A":
-                            for location in search_params.locations:
+                    # Check looking for jobs in
+                    if looking_for_jobs_in:
+                        for job_location in looking_for_jobs_in:
+                            if job_location and job_location != "N/A":
                                 if search_city_in_location(job_location, location):
-                                    location_match = True
-                                    match_score += 3
-                                    break
-                        if location_match:
-                            break
+                                    match_details["location_matches"] += 1
+                                    match_details["matched_locations"].append(
+                                        f"{location} (preference)"
+                                    )
+                                    match_score += (
+                                        8  # Good score for location preference
+                                    )
+                                    field_has_match = True
+                if field_has_match:
+                    match_details["fields_matched"] += 1
 
-                if not location_match:
-                    should_include = False
-
-            # Salary filtering and scoring
+            # Salary filtering and scoring - Enhanced with better tracking
             if (
                 search_params.min_salary is not None
                 or search_params.max_salary is not None
@@ -405,54 +475,74 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                     else current_salary
                 )
 
-                if not candidate_salary or candidate_salary <= 0:
-                    should_include = False
-                elif (
-                    search_params.min_salary is not None
-                    and candidate_salary < search_params.min_salary
-                ):
-                    should_include = False
-                elif (
-                    search_params.max_salary is not None
-                    and candidate_salary > search_params.max_salary
-                ):
-                    should_include = False
-                else:
-                    # Add salary match bonus
+                if candidate_salary and candidate_salary > 0:
+                    salary_in_range = True
+
                     if (
                         search_params.min_salary is not None
-                        and search_params.max_salary is not None
-                        and search_params.min_salary
-                        <= candidate_salary
-                        <= search_params.max_salary
+                        and candidate_salary < search_params.min_salary
                     ):
-                        match_score += 8
-                    elif (
-                        search_params.min_salary is not None
-                        and candidate_salary >= search_params.min_salary
-                    ):
-                        match_score += 5
-                    elif (
+                        salary_in_range = False
+
+                    if (
                         search_params.max_salary is not None
-                        and candidate_salary <= search_params.max_salary
+                        and candidate_salary > search_params.max_salary
                     ):
-                        match_score += 5
+                        salary_in_range = False
 
-            # Include resume if it passes all filters
-            if should_include:
-                formatted_resume = format_resume(resume)
-                if "total_resume_text" in formatted_resume:
-                    del formatted_resume["total_resume_text"]
-                formatted_resume["match_score"] = match_score
-                scored_results.append(formatted_resume)
+                    if salary_in_range:
+                        match_details["salary_range_match"] = True
+                        match_score += 10  # Good score for salary range match
+                        match_details[
+                            "fields_matched"
+                        ] += 1  # Include resume with enhanced match details
+            formatted_resume = format_resume(resume)
+            if "total_resume_text" in formatted_resume:
+                del formatted_resume["total_resume_text"]
 
-        # Sort by match score in descending order
+            # Add comprehensive match scoring with field priority
+            field_match_bonus = (
+                match_details["fields_matched"] * 25
+            )  # Bonus for matching more fields
+            final_score = match_score + field_match_bonus
+
+            formatted_resume["match_score"] = round(final_score, 2)
+            formatted_resume["base_score"] = round(match_score, 2)
+            formatted_resume["field_match_bonus"] = field_match_bonus
+            formatted_resume["match_details"] = match_details
+            formatted_resume["total_individual_matches"] = sum(
+                [
+                    match_details["experience_title_matches"],
+                    match_details["skills_matches"],
+                    match_details["education_matches"],
+                    match_details["location_matches"],
+                    1 if match_details["experience_range_match"] else 0,
+                    1 if match_details["salary_range_match"] else 0,
+                ]
+            )
+
+            scored_results.append(formatted_resume)
+
+        # Enhanced sorting: prioritize by fields matched, then by total score, then by individual matches
         sorted_results = sorted(
-            scored_results, key=lambda x: x.get("match_score", 0), reverse=True
+            scored_results,
+            key=lambda x: (
+                x.get("match_details", {}).get(
+                    "fields_matched", 0
+                ),  # Primary: number of different fields matched
+                x.get("match_score", 0),  # Secondary: total match score
+                x.get(
+                    "total_individual_matches", 0
+                ),  # Tertiary: total individual matches
+            ),
+            reverse=True,
         )
 
-        # Return top results up to limit
-        return sorted_results[: search_params.limit]
+        # Return results based on limit (if provided)
+        if search_params.limit and search_params.limit > 0:
+            return sorted_results[: search_params.limit]
+        else:
+            return sorted_results
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Manual search failed: {str(e)}")

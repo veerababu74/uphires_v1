@@ -9,6 +9,8 @@ from pathlib import Path
 import logging
 from datetime import datetime, timedelta
 from GroqcloudLLM.text_extraction import extract_and_clean_text
+from core.custom_logger import CustomLogger
+
 
 # Initialize logger
 logger = CustomLogger().get_logger("rag_search")
@@ -25,11 +27,6 @@ if not TEMP_DIR.exists():
     TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 # Configure logging
-logging.basicConfig(
-    filename="cleanup.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
 
 
 class SearchError(Exception):
@@ -156,7 +153,7 @@ def cleanup_temp_directory(age_limit_minutes: int = 60):
 # Create router instance
 router = APIRouter(
     prefix="/rag",
-    tags=["RAG Search"],
+    tags=["ai rag search"],
     responses={404: {"description": "Not found"}},
 )
 
