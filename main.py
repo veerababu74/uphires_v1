@@ -19,6 +19,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from apis.add_userdata import router as add_urer_data
 from apis.citys import router as citys_router
 from apis.manual_search import router as manual_search_router
+from apis.manual_recent_search_save import router as manual_search_save_recent_router
 from apis.autocomplete_skills_titiles import router as autocomplete_router
 from apis.skills_experince_titles import router as skills_experience_titles_router
 from apis.vector_search import enhanced_search_router as vector_search_router
@@ -34,6 +35,12 @@ from apis.add_userdata import router as add_urer_data
 from apis.manual import router as manual_search_router_old
 from core.custom_logger import CustomLogger
 from core.config import config
+from apis.ai_recent_saved_searchs import (
+    router as manual_search_save_recent_router,
+)
+from apis.ai_recent_saved_searchs import (
+    router as ai_search_save_recent_router,
+)
 
 # from apis.healthcheck import router as health_router
 
@@ -98,6 +105,9 @@ app.include_router(
     manual_search_router,
 )
 app.include_router(
+    manual_search_save_recent_router,
+)
+app.include_router(
     autocomplete_router,
 )
 app.include_router(
@@ -119,6 +129,7 @@ app.include_router(
 )
 app.include_router(add_urer_data)
 app.include_router(manual_search_router_old)
+app.include_router(ai_search_save_recent_router)
 
 
 @app.get("/")
@@ -151,5 +162,5 @@ async def general_exception_handler(request, exc):
 if __name__ == "__main__":
     import uvicorn
 
-    # uvicorn.run("main:app", port=8000, reload=True)
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+    uvicorn.run("main:app", port=8000, reload=True)
+    # uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

@@ -29,3 +29,27 @@ def get_skills_titles_collection():
     client = get_client()
     db = client["resume_db"]
     return db["skills_titles"]
+
+
+def get_ai_recent_search_collection():
+    client = get_client()
+    db = client["resume_db"]
+    return db["ai_recent_search"]
+
+
+def get_ai_saved_searches_collection():
+    client = get_client()
+    db = client["resume_db"]
+    return db["ai_saved_searches"]
+
+
+def get_manual_recent_search_collection():
+    client = get_client()
+    db = client["resume_db"]
+    return db["manual_recent_search"]
+
+
+def get_manual_saved_searches_collection():
+    client = get_client()
+    db = client["resume_db"]
+    return db["manual_saved_searches"]

@@ -1,0 +1,617 @@
+2025-06-08 21:55:56,998 - INFO - Use pytorch device_name: cpu
+2025-06-08 21:55:56,999 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 21:56:00,953 - INFO - Use pytorch device_name: cpu
+2025-06-08 21:56:00,954 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:47:12,230 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:47:12,231 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:47:16,170 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:47:16,170 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:47:55,388 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:47:55,388 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:47:59,834 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:47:59,834 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:48:03,600 - INFO - 2 changes detected
+2025-06-08 22:48:03,724 - INFO - Starting up FastAPI application...
+2025-06-08 22:48:03,958 - INFO - 5 changes detected
+2025-06-08 22:48:04,316 - INFO - 1 change detected
+2025-06-08 22:48:04,669 - INFO - 1 change detected
+2025-06-08 22:48:05,027 - INFO - 1 change detected
+2025-06-08 22:48:05,382 - INFO - 1 change detected
+2025-06-08 22:48:05,791 - INFO - 1 change detected
+2025-06-08 22:48:06,195 - INFO - 2 changes detected
+2025-06-08 22:48:06,500 - INFO - Search index 'vector_search_index' already exists
+2025-06-08 22:48:06,505 - INFO - Search index already exists, skipping creation
+2025-06-08 22:48:06,561 - INFO - 1 change detected
+2025-06-08 22:48:06,656 - INFO - Search index manager initialized successfully
+2025-06-08 22:48:06,917 - INFO - 1 change detected
+2025-06-08 22:48:07,322 - INFO - 1 change detected
+2025-06-08 22:48:07,686 - INFO - 1 change detected
+2025-06-08 22:48:07,737 - INFO - Connected to MongoDB successfully!
+2025-06-08 22:48:08,091 - INFO - 1 change detected
+2025-06-08 22:48:08,180 - INFO - Connected to Skills & Titles collection successfully!
+2025-06-08 22:48:08,181 - ERROR - Startup failed: create_standard_indexes() takes 1 positional argument but 2 were given
+2025-06-08 22:48:08,181 - WARNING - Some indexes may not have been created, but the application will continue to run
+2025-06-08 22:48:08,181 - ERROR - Application startup failed: create_standard_indexes() takes 1 positional argument but 2 were given
+2025-06-08 22:48:08,504 - INFO - 1 change detected
+2025-06-08 22:48:08,911 - INFO - 1 change detected
+2025-06-08 22:48:09,327 - INFO - 1 change detected
+2025-06-08 22:48:09,730 - INFO - 1 change detected
+2025-06-08 22:48:10,135 - INFO - 4 changes detected
+2025-06-08 22:48:10,537 - INFO - 1 change detected
+2025-06-08 22:48:10,941 - INFO - 1 change detected
+2025-06-08 22:48:11,343 - INFO - 1 change detected
+2025-06-08 22:48:11,748 - INFO - 1 change detected
+2025-06-08 22:48:12,153 - INFO - 1 change detected
+2025-06-08 22:48:12,558 - INFO - 1 change detected
+2025-06-08 22:48:12,973 - INFO - 1 change detected
+2025-06-08 22:48:13,377 - INFO - 1 change detected
+2025-06-08 22:48:13,781 - INFO - 1 change detected
+2025-06-08 22:48:14,188 - INFO - 1 change detected
+2025-06-08 22:48:14,592 - INFO - 1 change detected
+2025-06-08 22:48:14,998 - INFO - 1 change detected
+2025-06-08 22:48:15,402 - INFO - 1 change detected
+2025-06-08 22:48:15,806 - INFO - 1 change detected
+2025-06-08 22:48:16,211 - INFO - 1 change detected
+2025-06-08 22:48:16,614 - INFO - 1 change detected
+2025-06-08 22:48:16,969 - INFO - 1 change detected
+2025-06-08 22:48:17,376 - INFO - 1 change detected
+2025-06-08 22:48:17,792 - INFO - 1 change detected
+2025-06-08 22:48:18,197 - INFO - 1 change detected
+2025-06-08 22:48:18,598 - INFO - 1 change detected
+2025-06-08 22:48:19,003 - INFO - 1 change detected
+2025-06-08 22:48:19,408 - INFO - 1 change detected
+2025-06-08 22:48:19,812 - INFO - 1 change detected
+2025-06-08 22:48:20,216 - INFO - 1 change detected
+2025-06-08 22:48:20,571 - INFO - 1 change detected
+2025-06-08 22:48:20,979 - INFO - 1 change detected
+2025-06-08 22:48:21,381 - INFO - 1 change detected
+2025-06-08 22:48:21,783 - INFO - 1 change detected
+2025-06-08 22:48:22,190 - INFO - 1 change detected
+2025-06-08 22:48:22,594 - INFO - 1 change detected
+2025-06-08 22:48:22,997 - INFO - 1 change detected
+2025-06-08 22:48:23,405 - INFO - 1 change detected
+2025-06-08 22:48:23,812 - INFO - 1 change detected
+2025-06-08 22:48:24,215 - INFO - 1 change detected
+2025-06-08 22:48:24,688 - INFO - 1 change detected
+2025-06-08 22:48:25,048 - INFO - 1 change detected
+2025-06-08 22:48:25,455 - INFO - 1 change detected
+2025-06-08 22:48:25,858 - INFO - 1 change detected
+2025-06-08 22:48:26,260 - INFO - 1 change detected
+2025-06-08 22:48:26,715 - INFO - 1 change detected
+2025-06-08 22:48:27,078 - INFO - 1 change detected
+2025-06-08 22:48:27,485 - INFO - 1 change detected
+2025-06-08 22:48:27,890 - INFO - 1 change detected
+2025-06-08 22:48:28,293 - INFO - 1 change detected
+2025-06-08 22:48:28,697 - INFO - 1 change detected
+2025-06-08 22:48:29,101 - INFO - 1 change detected
+2025-06-08 22:48:29,507 - INFO - 1 change detected
+2025-06-08 22:48:29,912 - INFO - 1 change detected
+2025-06-08 22:48:30,317 - INFO - 1 change detected
+2025-06-08 22:48:30,722 - INFO - 1 change detected
+2025-06-08 22:48:31,087 - INFO - 1 change detected
+2025-06-08 22:48:31,495 - INFO - 1 change detected
+2025-06-08 22:48:31,900 - INFO - 1 change detected
+2025-06-08 22:48:32,301 - INFO - 1 change detected
+2025-06-08 22:48:32,716 - INFO - 1 change detected
+2025-06-08 22:48:33,120 - INFO - 1 change detected
+2025-06-08 22:48:33,486 - INFO - 1 change detected
+2025-06-08 22:48:33,898 - INFO - 1 change detected
+2025-06-08 22:48:34,315 - INFO - 1 change detected
+2025-06-08 22:48:34,682 - INFO - 1 change detected
+2025-06-08 22:48:35,090 - INFO - 1 change detected
+2025-06-08 22:48:35,496 - INFO - 1 change detected
+2025-06-08 22:48:35,899 - INFO - 1 change detected
+2025-06-08 22:48:36,304 - INFO - 1 change detected
+2025-06-08 22:48:36,708 - INFO - 1 change detected
+2025-06-08 22:48:37,112 - INFO - 1 change detected
+2025-06-08 22:48:37,517 - INFO - 1 change detected
+2025-06-08 22:48:37,933 - INFO - 1 change detected
+2025-06-08 22:48:38,339 - INFO - 1 change detected
+2025-06-08 22:48:38,741 - INFO - 1 change detected
+2025-06-08 22:48:39,152 - INFO - 1 change detected
+2025-06-08 22:48:39,555 - INFO - 1 change detected
+2025-06-08 22:48:39,959 - INFO - 1 change detected
+2025-06-08 22:48:40,365 - INFO - 1 change detected
+2025-06-08 22:48:40,771 - INFO - 1 change detected
+2025-06-08 22:48:41,172 - INFO - 1 change detected
+2025-06-08 22:48:41,588 - INFO - 1 change detected
+2025-06-08 22:48:41,994 - INFO - 1 change detected
+2025-06-08 22:48:42,398 - INFO - 1 change detected
+2025-06-08 22:48:42,799 - INFO - 1 change detected
+2025-06-08 22:48:43,202 - INFO - 1 change detected
+2025-06-08 22:48:43,608 - INFO - 1 change detected
+2025-06-08 22:48:43,964 - INFO - 1 change detected
+2025-06-08 22:48:44,372 - INFO - 1 change detected
+2025-06-08 22:48:44,775 - INFO - 1 change detected
+2025-06-08 22:48:45,180 - INFO - 1 change detected
+2025-06-08 22:48:45,738 - INFO - 1 change detected
+2025-06-08 22:48:46,098 - INFO - 1 change detected
+2025-06-08 22:48:46,506 - INFO - 1 change detected
+2025-06-08 22:48:46,908 - INFO - 1 change detected
+2025-06-08 22:48:47,362 - INFO - 1 change detected
+2025-06-08 22:48:47,724 - INFO - 1 change detected
+2025-06-08 22:48:48,131 - INFO - 1 change detected
+2025-06-08 22:48:48,532 - INFO - 1 change detected
+2025-06-08 22:48:48,936 - INFO - 1 change detected
+2025-06-08 22:48:49,340 - INFO - 1 change detected
+2025-06-08 22:48:49,747 - INFO - 1 change detected
+2025-06-08 22:48:50,150 - INFO - 1 change detected
+2025-06-08 22:48:50,858 - INFO - 1 change detected
+2025-06-08 22:48:51,217 - INFO - 1 change detected
+2025-06-08 22:48:51,577 - INFO - 1 change detected
+2025-06-08 22:48:51,994 - INFO - 1 change detected
+2025-06-08 22:48:52,404 - INFO - 1 change detected
+2025-06-08 22:48:52,758 - INFO - 1 change detected
+2025-06-08 22:48:53,130 - INFO - 1 change detected
+2025-06-08 22:48:53,485 - INFO - 1 change detected
+2025-06-08 22:48:53,839 - INFO - 1 change detected
+2025-06-08 22:48:54,194 - INFO - 1 change detected
+2025-06-08 22:48:54,606 - INFO - 1 change detected
+2025-06-08 22:48:55,007 - INFO - 1 change detected
+2025-06-08 22:48:55,412 - INFO - 1 change detected
+2025-06-08 22:48:55,815 - INFO - 1 change detected
+2025-06-08 22:48:56,219 - INFO - 1 change detected
+2025-06-08 22:48:56,626 - INFO - 1 change detected
+2025-06-08 22:48:57,042 - INFO - 1 change detected
+2025-06-08 22:48:57,457 - INFO - 1 change detected
+2025-06-08 22:48:57,862 - INFO - 1 change detected
+2025-06-08 22:48:58,266 - INFO - 1 change detected
+2025-06-08 22:48:58,619 - INFO - 1 change detected
+2025-06-08 22:48:59,028 - INFO - 1 change detected
+2025-06-08 22:48:59,442 - INFO - 1 change detected
+2025-06-08 22:48:59,797 - INFO - 1 change detected
+2025-06-08 22:49:04,064 - INFO - 1 change detected
+2025-06-08 22:49:55,895 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:49:55,895 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:50:00,585 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:50:00,585 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:50:07,377 - INFO - 1 change detected
+2025-06-08 22:50:08,701 - INFO - 4 changes detected
+2025-06-08 22:50:37,447 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:50:37,448 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:50:41,415 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:50:41,415 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:50:44,957 - INFO - Starting up FastAPI application...
+2025-06-08 22:50:44,969 - INFO - 2 changes detected
+2025-06-08 22:50:45,325 - INFO - 1 change detected
+2025-06-08 22:50:45,730 - INFO - 1 change detected
+2025-06-08 22:50:46,137 - INFO - 1 change detected
+2025-06-08 22:50:46,552 - INFO - 1 change detected
+2025-06-08 22:50:46,917 - INFO - 1 change detected
+2025-06-08 22:50:47,324 - INFO - 1 change detected
+2025-06-08 22:50:47,349 - INFO - Search index 'vector_search_index' already exists
+2025-06-08 22:50:47,350 - INFO - Search index already exists, skipping creation
+2025-06-08 22:50:47,499 - INFO - Search index manager initialized successfully
+2025-06-08 22:50:47,732 - INFO - 1 change detected
+2025-06-08 22:50:48,134 - INFO - 1 change detected
+2025-06-08 22:50:48,547 - INFO - 1 change detected
+2025-06-08 22:50:48,637 - INFO - Connected to MongoDB successfully!
+2025-06-08 22:50:48,914 - INFO - 1 change detected
+2025-06-08 22:50:49,053 - INFO - Connected to Skills & Titles collection successfully!
+2025-06-08 22:50:49,118 - INFO - Creating standard MongoDB indexes...
+2025-06-08 22:50:49,119 - INFO - Standard MongoDB indexes creation completed
+2025-06-08 22:50:49,183 - INFO - Creating skills collection indexes...
+2025-06-08 22:50:49,185 - INFO - Skills collection indexes creation completed
+2025-06-08 22:50:49,316 - INFO - 1 change detected
+2025-06-08 22:50:49,580 - INFO - Creating manual recent search collection indexes...
+2025-06-08 22:50:49,681 - INFO - Created manual recent search index: user_id
+2025-06-08 22:50:49,732 - INFO - 1 change detected
+2025-06-08 22:50:49,765 - INFO - Created manual recent search index: timestamp
+2025-06-08 22:50:49,860 - INFO - Created manual recent search compound index: user_id_1_timestamp_-1
+2025-06-08 22:50:49,952 - INFO - Created manual recent search compound index: user_id_1_timestamp_1
+2025-06-08 22:50:49,952 - INFO - Manual recent search collection indexes creation completed
+2025-06-08 22:50:50,146 - INFO - 1 change detected
+2025-06-08 22:50:50,458 - INFO - Creating manual recent search collection indexes...
+2025-06-08 22:50:50,548 - INFO - 1 change detected
+2025-06-08 22:50:50,553 - INFO - Created manual saved search index: user_id
+2025-06-08 22:50:50,634 - INFO - Created manual saved search index: timestamp
+2025-06-08 22:50:50,715 - INFO - Created manual saved search compound index: user_id_1_timestamp_-1
+2025-06-08 22:50:50,794 - INFO - Created manual saved search compound index: user_id_1_timestamp_1
+2025-06-08 22:50:50,794 - INFO - Manual saved search collection indexes creation completed
+2025-06-08 22:50:50,914 - INFO - 1 change detected
+2025-06-08 22:50:51,184 - INFO - Creating AI recent search collection indexes...
+2025-06-08 22:50:51,278 - INFO - Created AI recent search index: user_id
+2025-06-08 22:50:51,321 - INFO - 1 change detected
+2025-06-08 22:50:51,361 - INFO - Created AI recent search index: timestamp
+2025-06-08 22:50:51,444 - INFO - Created AI recent search compound index: user_id_1_timestamp_-1
+2025-06-08 22:50:51,528 - INFO - Created AI recent search compound index: user_id_1_timestamp_1
+2025-06-08 22:50:51,529 - INFO - AI recent search collection indexes creation completed
+2025-06-08 22:50:51,723 - INFO - 1 change detected
+2025-06-08 22:50:51,918 - INFO - Creating AI saved search collection indexes...
+2025-06-08 22:50:52,018 - INFO - Created AI saved search index: user_id
+2025-06-08 22:50:52,100 - INFO - Created AI saved search index: timestamp
+2025-06-08 22:50:52,125 - INFO - 1 change detected
+2025-06-08 22:50:52,181 - INFO - Created AI saved search compound index: user_id_1_timestamp_-1
+2025-06-08 22:50:52,260 - INFO - Created AI saved search compound index: user_id_1_timestamp_1
+2025-06-08 22:50:52,260 - INFO - AI saved search collection indexes creation completed
+2025-06-08 22:50:52,315 - INFO - Creating AI recent search collection indexes...
+2025-06-08 22:50:52,316 - INFO - AI recent search collection indexes creation completed
+2025-06-08 22:50:52,367 - INFO - Creating AI saved search collection indexes...
+2025-06-08 22:50:52,367 - INFO - AI saved search collection indexes creation completed
+2025-06-08 22:50:52,367 - INFO - Application startup completed successfully!
+2025-06-08 22:50:52,541 - INFO - 1 change detected
+2025-06-08 22:50:52,945 - INFO - 1 change detected
+2025-06-08 22:50:53,347 - INFO - 1 change detected
+2025-06-08 22:50:53,764 - INFO - 1 change detected
+2025-06-08 22:50:54,167 - INFO - 1 change detected
+2025-06-08 22:50:54,570 - INFO - 1 change detected
+2025-06-08 22:50:54,974 - INFO - 1 change detected
+2025-06-08 22:50:55,378 - INFO - 1 change detected
+2025-06-08 22:50:55,781 - INFO - 1 change detected
+2025-06-08 22:50:56,184 - INFO - 1 change detected
+2025-06-08 22:50:56,550 - INFO - 1 change detected
+2025-06-08 22:50:56,954 - INFO - 1 change detected
+2025-06-08 22:50:57,357 - INFO - 1 change detected
+2025-06-08 22:50:57,763 - INFO - 1 change detected
+2025-06-08 22:50:58,167 - INFO - 1 change detected
+2025-06-08 22:50:58,570 - INFO - 1 change detected
+2025-06-08 22:50:58,974 - INFO - 1 change detected
+2025-06-08 22:50:59,388 - INFO - 1 change detected
+2025-06-08 22:50:59,791 - INFO - 1 change detected
+2025-06-08 22:51:00,195 - INFO - 1 change detected
+2025-06-08 22:51:00,610 - INFO - 1 change detected
+2025-06-08 22:51:01,014 - INFO - 1 change detected
+2025-06-08 22:51:01,421 - INFO - 1 change detected
+2025-06-08 22:51:01,827 - INFO - 1 change detected
+2025-06-08 22:51:02,230 - INFO - 1 change detected
+2025-06-08 22:51:02,634 - INFO - 1 change detected
+2025-06-08 22:51:03,038 - INFO - 1 change detected
+2025-06-08 22:51:03,440 - INFO - 1 change detected
+2025-06-08 22:51:03,842 - INFO - 1 change detected
+2025-06-08 22:51:04,246 - INFO - 1 change detected
+2025-06-08 22:51:04,603 - INFO - 1 change detected
+2025-06-08 22:51:05,014 - INFO - 1 change detected
+2025-06-08 22:51:05,467 - INFO - 1 change detected
+2025-06-08 22:51:05,884 - INFO - 1 change detected
+2025-06-08 22:51:06,288 - INFO - 1 change detected
+2025-06-08 22:51:06,691 - INFO - 1 change detected
+2025-06-08 22:51:07,043 - INFO - 1 change detected
+2025-06-08 22:51:07,450 - INFO - 1 change detected
+2025-06-08 22:51:07,906 - INFO - 1 change detected
+2025-06-08 22:51:08,308 - INFO - 1 change detected
+2025-06-08 22:51:08,674 - INFO - 1 change detected
+2025-06-08 22:51:09,081 - INFO - 1 change detected
+2025-06-08 22:51:09,486 - INFO - 1 change detected
+2025-06-08 22:51:09,890 - INFO - 1 change detected
+2025-06-08 22:51:10,293 - INFO - 1 change detected
+2025-06-08 22:51:10,709 - INFO - 1 change detected
+2025-06-08 22:51:11,122 - INFO - 1 change detected
+2025-06-08 22:51:11,476 - INFO - 1 change detected
+2025-06-08 22:51:11,886 - INFO - 1 change detected
+2025-06-08 22:51:12,289 - INFO - 1 change detected
+2025-06-08 22:51:12,706 - INFO - 1 change detected
+2025-06-08 22:51:13,110 - INFO - 1 change detected
+2025-06-08 22:51:13,527 - INFO - 1 change detected
+2025-06-08 22:51:13,930 - INFO - 1 change detected
+2025-06-08 22:51:14,294 - INFO - 1 change detected
+2025-06-08 22:51:14,702 - INFO - 1 change detected
+2025-06-08 22:51:15,108 - INFO - 1 change detected
+2025-06-08 22:51:15,511 - INFO - 1 change detected
+2025-06-08 22:51:15,913 - INFO - 1 change detected
+2025-06-08 22:51:16,318 - INFO - 1 change detected
+2025-06-08 22:51:16,736 - INFO - 1 change detected
+2025-06-08 22:51:17,102 - INFO - 1 change detected
+2025-06-08 22:51:17,507 - INFO - 1 change detected
+2025-06-08 22:51:17,911 - INFO - 1 change detected
+2025-06-08 22:51:18,327 - INFO - 1 change detected
+2025-06-08 22:51:18,730 - INFO - 1 change detected
+2025-06-08 22:51:19,134 - INFO - 1 change detected
+2025-06-08 22:51:19,539 - INFO - 1 change detected
+2025-06-08 22:51:19,943 - INFO - 1 change detected
+2025-06-08 22:51:20,348 - INFO - 1 change detected
+2025-06-08 22:51:20,749 - INFO - 1 change detected
+2025-06-08 22:51:21,157 - INFO - 1 change detected
+2025-06-08 22:51:21,570 - INFO - 1 change detected
+2025-06-08 22:51:21,985 - INFO - 1 change detected
+2025-06-08 22:51:22,388 - INFO - 1 change detected
+2025-06-08 22:51:22,789 - INFO - 1 change detected
+2025-06-08 22:51:23,206 - INFO - 1 change detected
+2025-06-08 22:51:23,608 - INFO - 1 change detected
+2025-06-08 22:51:24,013 - INFO - 1 change detected
+2025-06-08 22:51:24,378 - INFO - 1 change detected
+2025-06-08 22:51:24,790 - INFO - 1 change detected
+2025-06-08 22:51:25,206 - INFO - 1 change detected
+2025-06-08 22:51:25,611 - INFO - 1 change detected
+2025-06-08 22:51:26,065 - INFO - 1 change detected
+2025-06-08 22:51:26,478 - INFO - 1 change detected
+2025-06-08 22:51:26,880 - INFO - 1 change detected
+2025-06-08 22:51:27,246 - INFO - 1 change detected
+2025-06-08 22:51:27,653 - INFO - 1 change detected
+2025-06-08 22:51:28,059 - INFO - 1 change detected
+2025-06-08 22:51:28,463 - INFO - 1 change detected
+2025-06-08 22:51:28,868 - INFO - 1 change detected
+2025-06-08 22:51:29,270 - INFO - 1 change detected
+2025-06-08 22:51:29,677 - INFO - 1 change detected
+2025-06-08 22:51:30,080 - INFO - 1 change detected
+2025-06-08 22:51:30,482 - INFO - 1 change detected
+2025-06-08 22:51:30,888 - INFO - 1 change detected
+2025-06-08 22:51:31,305 - INFO - 1 change detected
+2025-06-08 22:51:31,712 - INFO - 1 change detected
+2025-06-08 22:51:32,115 - INFO - 1 change detected
+2025-06-08 22:51:32,530 - INFO - 1 change detected
+2025-06-08 22:51:32,935 - INFO - 1 change detected
+2025-06-08 22:51:33,340 - INFO - 1 change detected
+2025-06-08 22:51:33,748 - INFO - 1 change detected
+2025-06-08 22:51:34,150 - INFO - 1 change detected
+2025-06-08 22:51:34,556 - INFO - 1 change detected
+2025-06-08 22:51:34,960 - INFO - 1 change detected
+2025-06-08 22:51:35,363 - INFO - 1 change detected
+2025-06-08 22:51:35,768 - INFO - 1 change detected
+2025-06-08 22:51:36,171 - INFO - 1 change detected
+2025-06-08 22:51:36,537 - INFO - 1 change detected
+2025-06-08 22:51:36,948 - INFO - 1 change detected
+2025-06-08 22:51:37,351 - INFO - 1 change detected
+2025-06-08 22:51:37,753 - INFO - 1 change detected
+2025-06-08 22:51:38,159 - INFO - 1 change detected
+2025-06-08 22:51:38,565 - INFO - 1 change detected
+2025-06-08 22:51:38,981 - INFO - 1 change detected
+2025-06-08 22:51:39,390 - INFO - 1 change detected
+2025-06-08 22:51:39,803 - INFO - 1 change detected
+2025-06-08 22:51:40,168 - INFO - 1 change detected
+2025-06-08 22:51:40,575 - INFO - 1 change detected
+2025-06-08 22:51:40,978 - INFO - 1 change detected
+2025-06-08 22:51:41,381 - INFO - 1 change detected
+2025-06-08 22:51:41,784 - INFO - 1 change detected
+2025-06-08 22:51:42,187 - INFO - 1 change detected
+2025-06-08 22:51:42,603 - INFO - 1 change detected
+2025-06-08 22:51:43,006 - INFO - 1 change detected
+2025-06-08 22:51:43,409 - INFO - 1 change detected
+2025-06-08 22:51:43,824 - INFO - 1 change detected
+2025-06-08 22:51:44,190 - INFO - 1 change detected
+2025-06-08 22:51:44,596 - INFO - 1 change detected
+2025-06-08 22:51:45,001 - INFO - 1 change detected
+2025-06-08 22:51:45,405 - INFO - 1 change detected
+2025-06-08 22:51:45,807 - INFO - 1 change detected
+2025-06-08 22:51:46,212 - INFO - 1 change detected
+2025-06-08 22:51:46,630 - INFO - 1 change detected
+2025-06-08 22:51:47,035 - INFO - 1 change detected
+2025-06-08 22:51:47,450 - INFO - 1 change detected
+2025-06-08 22:51:47,854 - INFO - 1 change detected
+2025-06-08 22:51:48,259 - INFO - 1 change detected
+2025-06-08 22:51:48,626 - INFO - 1 change detected
+2025-06-08 22:51:49,034 - INFO - 1 change detected
+2025-06-08 22:51:49,436 - INFO - 1 change detected
+2025-06-08 22:51:49,837 - INFO - 1 change detected
+2025-06-08 22:51:50,253 - INFO - 1 change detected
+2025-06-08 22:51:50,656 - INFO - 1 change detected
+2025-06-08 22:51:51,058 - INFO - 1 change detected
+2025-06-08 22:51:51,460 - INFO - 1 change detected
+2025-06-08 22:51:51,868 - INFO - 1 change detected
+2025-06-08 22:51:52,284 - INFO - 1 change detected
+2025-06-08 22:51:52,688 - INFO - 1 change detected
+2025-06-08 22:51:53,092 - INFO - 1 change detected
+2025-06-08 22:51:53,496 - INFO - 1 change detected
+2025-06-08 22:51:53,862 - INFO - 1 change detected
+2025-06-08 22:51:54,275 - INFO - 1 change detected
+2025-06-08 22:51:54,686 - INFO - 1 change detected
+2025-06-08 22:51:55,091 - INFO - 1 change detected
+2025-06-08 22:51:55,493 - INFO - 1 change detected
+2025-06-08 22:51:55,899 - INFO - 1 change detected
+2025-06-08 22:51:56,301 - INFO - 1 change detected
+2025-06-08 22:51:56,706 - INFO - 1 change detected
+2025-06-08 22:51:57,111 - INFO - 1 change detected
+2025-06-08 22:51:57,513 - INFO - 1 change detected
+2025-06-08 22:51:57,929 - INFO - 1 change detected
+2025-06-08 22:51:58,333 - INFO - 1 change detected
+2025-06-08 22:51:58,737 - INFO - 1 change detected
+2025-06-08 22:51:59,100 - INFO - 1 change detected
+2025-06-08 22:51:59,506 - INFO - 1 change detected
+2025-06-08 22:51:59,911 - INFO - 1 change detected
+2025-06-08 22:52:00,315 - INFO - 1 change detected
+2025-06-08 22:52:00,719 - INFO - 1 change detected
+2025-06-08 22:52:01,123 - INFO - 1 change detected
+2025-06-08 22:52:01,526 - INFO - 1 change detected
+2025-06-08 22:52:01,933 - INFO - 1 change detected
+2025-06-08 22:52:02,347 - INFO - 1 change detected
+2025-06-08 22:52:02,751 - INFO - 1 change detected
+2025-06-08 22:52:03,156 - INFO - 1 change detected
+2025-06-08 22:52:03,615 - INFO - 1 change detected
+2025-06-08 22:52:04,030 - INFO - 1 change detected
+2025-06-08 22:52:04,432 - INFO - 1 change detected
+2025-06-08 22:52:04,834 - INFO - 1 change detected
+2025-06-08 22:52:05,237 - INFO - 1 change detected
+2025-06-08 22:52:05,639 - INFO - 1 change detected
+2025-06-08 22:52:06,093 - INFO - 3 changes detected
+2025-06-08 22:52:06,503 - INFO - 1 change detected
+2025-06-08 22:52:06,907 - INFO - 1 change detected
+2025-06-08 22:52:07,310 - INFO - 1 change detected
+2025-06-08 22:52:07,676 - INFO - 1 change detected
+2025-06-08 22:52:08,083 - INFO - 1 change detected
+2025-06-08 22:52:08,488 - INFO - 1 change detected
+2025-06-08 22:52:08,904 - INFO - 1 change detected
+2025-06-08 22:52:09,305 - INFO - 1 change detected
+2025-06-08 22:52:09,708 - INFO - 1 change detected
+2025-06-08 22:52:10,113 - INFO - 1 change detected
+2025-06-08 22:52:10,516 - INFO - 1 change detected
+2025-06-08 22:52:10,868 - INFO - 1 change detected
+2025-06-08 22:52:11,272 - INFO - 1 change detected
+2025-06-08 22:52:11,689 - INFO - 1 change detected
+2025-06-08 22:52:12,093 - INFO - 1 change detected
+2025-06-08 22:52:12,509 - INFO - 1 change detected
+2025-06-08 22:52:12,912 - INFO - 1 change detected
+2025-06-08 22:52:13,317 - INFO - 1 change detected
+2025-06-08 22:52:13,683 - INFO - 1 change detected
+2025-06-08 22:52:14,090 - INFO - 1 change detected
+2025-06-08 22:52:14,495 - INFO - 1 change detected
+2025-06-08 22:52:14,897 - INFO - 1 change detected
+2025-06-08 22:52:15,300 - INFO - 1 change detected
+2025-06-08 22:52:15,706 - INFO - 1 change detected
+2025-06-08 22:52:16,111 - INFO - 1 change detected
+2025-06-08 22:52:16,527 - INFO - 1 change detected
+2025-06-08 22:52:16,933 - INFO - 1 change detected
+2025-06-08 22:52:17,337 - INFO - 1 change detected
+2025-06-08 22:52:17,750 - INFO - 1 change detected
+2025-06-08 22:52:18,154 - INFO - 1 change detected
+2025-06-08 22:52:18,558 - INFO - 1 change detected
+2025-06-08 22:52:18,923 - INFO - 1 change detected
+2025-06-08 22:52:19,333 - INFO - 1 change detected
+2025-06-08 22:52:19,749 - INFO - 1 change detected
+2025-06-08 22:52:20,151 - INFO - 1 change detected
+2025-06-08 22:52:20,557 - INFO - 1 change detected
+2025-06-08 22:52:20,961 - INFO - 1 change detected
+2025-06-08 22:52:21,365 - INFO - 1 change detected
+2025-06-08 22:52:21,768 - INFO - 1 change detected
+2025-06-08 22:52:22,173 - INFO - 1 change detected
+2025-06-08 22:52:22,585 - INFO - 1 change detected
+2025-06-08 22:52:22,951 - INFO - 1 change detected
+2025-06-08 22:52:23,357 - INFO - 1 change detected
+2025-06-08 22:52:23,762 - INFO - 1 change detected
+2025-06-08 22:52:24,165 - INFO - 1 change detected
+2025-06-08 22:52:24,569 - INFO - 1 change detected
+2025-06-08 22:52:24,983 - INFO - 1 change detected
+2025-06-08 22:52:25,387 - INFO - 1 change detected
+2025-06-08 22:52:25,793 - INFO - 1 change detected
+2025-06-08 22:52:26,200 - INFO - 1 change detected
+2025-06-08 22:52:26,613 - INFO - 1 change detected
+2025-06-08 22:52:27,016 - INFO - 1 change detected
+2025-06-08 22:52:27,421 - INFO - 1 change detected
+2025-06-08 22:52:27,785 - INFO - 1 change detected
+2025-06-08 22:52:28,190 - INFO - 1 change detected
+2025-06-08 22:52:28,605 - INFO - 1 change detected
+2025-06-08 22:52:29,009 - INFO - 1 change detected
+2025-06-08 22:52:29,416 - INFO - 1 change detected
+2025-06-08 22:52:29,832 - INFO - 1 change detected
+2025-06-08 22:52:30,236 - INFO - 1 change detected
+2025-06-08 22:52:30,639 - INFO - 1 change detected
+2025-06-08 22:52:31,042 - INFO - 1 change detected
+2025-06-08 22:52:31,409 - INFO - 1 change detected
+2025-06-08 22:52:31,818 - INFO - 1 change detected
+2025-06-08 22:52:32,233 - INFO - 1 change detected
+2025-06-08 22:52:32,648 - INFO - 1 change detected
+2025-06-08 22:52:33,050 - INFO - 1 change detected
+2025-06-08 22:52:33,454 - INFO - 1 change detected
+2025-06-08 22:52:33,857 - INFO - 1 change detected
+2025-06-08 22:52:34,260 - INFO - 1 change detected
+2025-06-08 22:52:34,626 - INFO - 1 change detected
+2025-06-08 22:52:35,033 - INFO - 1 change detected
+2025-06-08 22:52:35,440 - INFO - 1 change detected
+2025-06-08 22:52:35,857 - INFO - 1 change detected
+2025-06-08 22:52:36,273 - INFO - 1 change detected
+2025-06-08 22:52:36,676 - INFO - 1 change detected
+2025-06-08 22:52:37,042 - INFO - 1 change detected
+2025-06-08 22:52:37,450 - INFO - 1 change detected
+2025-06-08 22:52:37,866 - INFO - 1 change detected
+2025-06-08 22:52:38,269 - INFO - 1 change detected
+2025-06-08 22:52:38,674 - INFO - 1 change detected
+2025-06-08 22:52:39,078 - INFO - 1 change detected
+2025-06-08 22:52:39,480 - INFO - 1 change detected
+2025-06-08 22:52:39,881 - INFO - 1 change detected
+2025-06-08 22:52:40,284 - INFO - 1 change detected
+2025-06-08 22:52:40,688 - INFO - 1 change detected
+2025-06-08 22:52:41,053 - INFO - 1 change detected
+2025-06-08 22:52:41,457 - INFO - 1 change detected
+2025-06-08 22:52:41,862 - INFO - 1 change detected
+2025-06-08 22:52:42,263 - INFO - 1 change detected
+2025-06-08 22:52:42,665 - INFO - 1 change detected
+2025-06-08 22:52:43,068 - INFO - 1 change detected
+2025-06-08 22:52:43,475 - INFO - 1 change detected
+2025-06-08 22:52:43,881 - INFO - 1 change detected
+2025-06-08 22:52:44,286 - INFO - 1 change detected
+2025-06-08 22:52:44,689 - INFO - 1 change detected
+2025-06-08 22:52:45,095 - INFO - 1 change detected
+2025-06-08 22:52:45,498 - INFO - 1 change detected
+2025-06-08 22:52:45,904 - INFO - 1 change detected
+2025-06-08 22:52:46,318 - INFO - 1 change detected
+2025-06-08 22:52:46,734 - INFO - 1 change detected
+2025-06-08 22:52:47,139 - INFO - 1 change detected
+2025-06-08 22:52:47,542 - INFO - 1 change detected
+2025-06-08 22:52:47,907 - INFO - 1 change detected
+2025-06-08 22:52:48,314 - INFO - 1 change detected
+2025-06-08 22:52:48,720 - INFO - 1 change detected
+2025-06-08 22:52:49,125 - INFO - 1 change detected
+2025-06-08 22:52:49,541 - INFO - 1 change detected
+2025-06-08 22:52:49,944 - INFO - 1 change detected
+2025-06-08 22:52:50,348 - INFO - 1 change detected
+2025-06-08 22:52:50,754 - INFO - 1 change detected
+2025-06-08 22:52:51,158 - INFO - 1 change detected
+2025-06-08 22:52:51,524 - INFO - 1 change detected
+2025-06-08 22:52:51,933 - INFO - 1 change detected
+2025-06-08 22:52:52,335 - INFO - 1 change detected
+2025-06-08 22:52:52,750 - INFO - 1 change detected
+2025-06-08 22:52:53,167 - INFO - 1 change detected
+2025-06-08 22:52:53,574 - INFO - 1 change detected
+2025-06-08 22:52:53,978 - INFO - 1 change detected
+2025-06-08 22:52:54,343 - INFO - 1 change detected
+2025-06-08 22:52:54,751 - INFO - 1 change detected
+2025-06-08 22:52:55,155 - INFO - 1 change detected
+2025-06-08 22:52:55,572 - INFO - 1 change detected
+2025-06-08 22:52:55,976 - INFO - 1 change detected
+2025-06-08 22:52:56,381 - INFO - 1 change detected
+2025-06-08 22:52:56,795 - INFO - 1 change detected
+2025-06-08 22:52:57,198 - INFO - 1 change detected
+2025-06-08 22:52:57,603 - INFO - 1 change detected
+2025-06-08 22:52:58,020 - INFO - 1 change detected
+2025-06-08 22:52:58,422 - INFO - 1 change detected
+2025-06-08 22:52:58,826 - INFO - 1 change detected
+2025-06-08 22:52:59,228 - INFO - 1 change detected
+2025-06-08 22:52:59,645 - INFO - 1 change detected
+2025-06-08 22:53:00,011 - INFO - 1 change detected
+2025-06-08 22:53:00,415 - INFO - 1 change detected
+2025-06-08 22:53:00,822 - INFO - 1 change detected
+2025-06-08 22:53:01,225 - INFO - 1 change detected
+2025-06-08 22:53:01,627 - INFO - 1 change detected
+2025-06-08 22:53:02,029 - INFO - 1 change detected
+2025-06-08 22:53:02,431 - INFO - 1 change detected
+2025-06-08 22:53:02,846 - INFO - 1 change detected
+2025-06-08 22:53:03,222 - INFO - 1 change detected
+2025-06-08 22:54:22,885 - INFO - Shutting down FastAPI application...
+2025-06-08 22:54:26,495 - INFO - 7 changes detected
+2025-06-08 22:54:34,342 - INFO - 1 change detected
+2025-06-08 22:55:07,160 - INFO - 5 changes detected
+2025-06-08 22:55:26,350 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:55:26,350 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:55:30,856 - INFO - Use pytorch device_name: cpu
+2025-06-08 22:55:30,856 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-08 22:55:34,488 - INFO - 2 changes detected
+2025-06-08 22:55:34,542 - INFO - Starting up FastAPI application...
+2025-06-08 22:55:34,841 - INFO - 1 change detected
+2025-06-08 22:55:35,246 - INFO - 1 change detected
+2025-06-08 22:55:35,651 - INFO - 1 change detected
+2025-06-08 22:55:36,011 - INFO - 1 change detected
+2025-06-08 22:55:36,416 - INFO - 1 change detected
+2025-06-08 22:55:36,833 - INFO - 1 change detected
+2025-06-08 22:55:37,181 - INFO - Search index 'vector_search_index' already exists
+2025-06-08 22:55:37,182 - INFO - Search index already exists, skipping creation
+2025-06-08 22:55:37,237 - INFO - 1 change detected
+2025-06-08 22:55:37,403 - INFO - Search index manager initialized successfully
+2025-06-08 22:55:37,640 - INFO - 1 change detected
+2025-06-08 22:55:38,045 - INFO - 1 change detected
+2025-06-08 22:55:38,447 - INFO - 1 change detected
+2025-06-08 22:55:38,556 - INFO - Connected to MongoDB successfully!
+2025-06-08 22:55:38,850 - INFO - 1 change detected
+2025-06-08 22:55:38,970 - INFO - Connected to Skills & Titles collection successfully!
+2025-06-08 22:55:39,031 - INFO - Creating standard MongoDB indexes...
+2025-06-08 22:55:39,032 - INFO - Standard MongoDB indexes creation completed
+2025-06-08 22:55:39,087 - INFO - Creating skills collection indexes...
+2025-06-08 22:55:39,087 - INFO - Skills collection indexes creation completed
+2025-06-08 22:55:39,265 - INFO - 1 change detected
+2025-06-08 22:55:39,517 - INFO - Creating manual recent search collection indexes...
+2025-06-08 22:55:39,519 - INFO - Manual recent search collection indexes creation completed
+2025-06-08 22:55:39,628 - INFO - 1 change detected
+2025-06-08 22:55:40,039 - INFO - 1 change detected
+2025-06-08 22:55:40,214 - INFO - Creating manual recent search collection indexes...
+2025-06-08 22:55:40,214 - INFO - Manual saved search collection indexes creation completed
+2025-06-08 22:55:40,494 - INFO - 1 change detected
+2025-06-08 22:55:40,677 - INFO - Creating AI recent search collection indexes...
+2025-06-08 22:55:40,677 - INFO - AI recent search collection indexes creation completed
+2025-06-08 22:55:40,857 - INFO - 1 change detected
+2025-06-08 22:55:41,112 - INFO - Creating AI saved search collection indexes...
+2025-06-08 22:55:41,113 - INFO - AI saved search collection indexes creation completed
+2025-06-08 22:55:41,184 - INFO - Creating AI recent search collection indexes...
+2025-06-08 22:55:41,185 - INFO - AI recent search collection indexes creation completed
+2025-06-08 22:55:41,240 - INFO - Creating AI saved search collection indexes...
+2025-06-08 22:55:41,240 - INFO - AI saved search collection indexes creation completed
+2025-06-08 22:55:41,242 - INFO - Application startup completed successfully!
+2025-06-08 22:55:41,262 - INFO - 1 change detected
+2025-06-08 22:55:41,675 - INFO - 1 change detected
+2025-06-08 22:55:42,078 - INFO - 1 change detected
+2025-06-08 22:55:42,494 - INFO - 1 change detected
+2025-06-08 22:55:42,860 - INFO - 1 change detected
+2025-06-08 22:55:43,269 - INFO - 1 change detected
+2025-06-08 22:55:43,675 - INFO - 1 change detected
+2025-06-08 22:55:44,078 - INFO - 1 change detected
+2025-06-08 22:55:44,481 - INFO - 1 change detected
+2025-06-08 22:55:44,897 - INFO - 1 change detected
+2025-06-08 22:55:45,302 - INFO - 2 changes detected
+2025-06-08 22:55:54,161 - INFO - Shutting down FastAPI application...
+2025-06-08 22:55:55,709 - INFO - 3 changes detected

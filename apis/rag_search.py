@@ -10,7 +10,7 @@ import logging
 from datetime import datetime, timedelta
 from GroqcloudLLM.text_extraction import extract_and_clean_text
 from core.custom_logger import CustomLogger
-
+from recent_search_uts.recent_ai_search import save_ai_search_to_recent
 
 # Initialize logger
 logger = CustomLogger().get_logger("rag_search")
@@ -37,6 +37,7 @@ class SearchError(Exception):
 
 # Pydantic models for request bodies
 class VectorSimilaritySearchRequest(BaseModel):
+    user_id: Optional[str] = Field(None, description="User ID who performed the search")
     query: str = Field(..., description="Search query text")
     limit: int = Field(
         default=50, description="Maximum number of results to return", ge=1, le=100
@@ -44,6 +45,7 @@ class VectorSimilaritySearchRequest(BaseModel):
 
 
 class LLMContextSearchRequest(BaseModel):
+    user_id: Optional[str] = Field(None, description="User ID who performed the search")
     query: str = Field(..., description="Search query text")
     context_size: int = Field(
         default=5, description="Number of documents to analyze", ge=1, le=20
@@ -214,7 +216,9 @@ async def vector_similarity_search(request: VectorSimilaritySearchRequest):
 
         if "error" in result:
             raise HTTPException(status_code=500, detail=result["error"])
-
+        # Save the search to recent searches if user_id is provided
+        if request.user_id:
+            await save_ai_search_to_recent(request.user_id, request.query)
         return result
 
     except Exception as e:
@@ -286,6 +290,10 @@ async def llm_context_search(request: LLMContextSearchRequest):
 
         if "error" in result:
             raise HTTPException(status_code=500, detail=result["error"])
+
+        # save the search to recent searches
+        if request.user_id:
+            await save_ai_search_to_recent(request.user_id, request.query)
 
         return result
 

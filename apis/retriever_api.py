@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, File, UploadFile, status
 from typing import Dict, List, Optional, Any
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import os
 from Retrivers.retriver import MangoRetriever, LangChainRetriever
 import logging
@@ -9,6 +9,7 @@ from core.config import AppConfig
 
 from datetime import datetime, timedelta
 from pathlib import Path
+from recent_search_uts.recent_ai_search import save_ai_search_to_recent
 
 # Initialize router
 router = APIRouter(
@@ -49,6 +50,7 @@ def cleanup_temp_directory(age_limit_minutes: int = 60):
 
 
 class SearchRequest(BaseModel):
+    user_id: Optional[str] = Field(..., description="User ID who performed the search")
     query: str
     limit: Optional[int] = 5
 
@@ -74,6 +76,9 @@ async def search_mango(request: SearchRequest):
         results = mango_retriever.search_and_rank(request.query, request.limit)
         if "error" in results:
             raise HTTPException(status_code=500, detail=results["error"])
+        # Save the search to recent searches
+        if request.user_id:
+            await save_ai_search_to_recent(request.user_id, request.query)
         return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -88,6 +93,9 @@ async def search_langchain(request: SearchRequest):
         results = langchain_retriever.search_and_rank(request.query, request.limit)
         if "error" in results:
             raise HTTPException(status_code=500, detail=results["error"])
+        # Save the search to recent searches
+        if request.user_id:
+            await save_ai_search_to_recent(request.user_id, request.query)
         return results
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -169,9 +169,9 @@ async def create_skills_collection_indexes(skills_titles_collection):
                 skills_titles_collection.create_index([("value", "text")])
                 logger.info("Created skills text index")
             except Exception as e:
-                logger.warning(f"Failed to create skills text index: {str(e)}")
-
-        # Create unique compound index for skills_titles_collection (with custom name to avoid conflicts)
+                logger.warning(
+                    f"Failed to create skills text index: {str(e)}"
+                )  # Create unique compound index for skills_titles_collection (with custom name to avoid conflicts)
         unique_compound_name = "unique_type_value_idx"
         if unique_compound_name not in skills_existing_names:
             try:
@@ -194,6 +194,260 @@ async def create_skills_collection_indexes(skills_titles_collection):
         return False
 
 
+async def create_manual_recent_search_indexes(manual_recent_search_collection):
+    """Create indexes for manual_recent_search_collection"""
+    try:
+        # Get existing indexes to avoid conflicts
+        existing_indexes = list(manual_recent_search_collection.list_indexes())
+        existing_index_names = [idx["name"] for idx in existing_indexes]
+
+        logger.info("Creating manual recent search collection indexes...")
+
+        # Create essential single-field indexes for frequent queries
+        indexes_to_create = [
+            "user_id",  # Essential for user-based searches
+            "timestamp",  # Essential for time-based queries and sorting
+        ]
+
+        for index_field in indexes_to_create:
+            index_name = f"{index_field}_1"
+            if index_name not in existing_index_names:
+                try:
+                    manual_recent_search_collection.create_index(index_field)
+                    logger.info(f"Created manual recent search index: {index_field}")
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create manual recent search index {index_field}: {str(e)}"
+                    )
+
+        # Create compound indexes for common query combinations
+        compound_indexes = [
+            # Most important: user_id with timestamp for user's recent searches
+            (
+                [
+                    ("user_id", 1),
+                    ("timestamp", -1),
+                ],  # -1 for descending timestamp (newest first)
+                "user_id_1_timestamp_-1",
+            ),
+            # Additional compound for potential queries
+            (
+                [("user_id", 1), ("timestamp", 1)],  # ascending timestamp if needed
+                "user_id_1_timestamp_1",
+            ),
+        ]
+
+        for index_spec, expected_name in compound_indexes:
+            if expected_name not in existing_index_names:
+                try:
+                    manual_recent_search_collection.create_index(index_spec)
+                    logger.info(
+                        f"Created manual recent search compound index: {expected_name}"
+                    )
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create manual recent search compound index {expected_name}: {str(e)}"
+                    )
+
+        logger.info("Manual recent search collection indexes creation completed")
+        return True
+
+    except Exception as e:
+        logger.error(
+            f"Error creating manual recent search collection indexes: {str(e)}"
+        )
+        return False
+
+
+async def create_manual_saved_search_indexes(manual_saved_search_collection):
+    """Create indexes for manual_saved_search_collection"""
+    try:
+        # Get existing indexes to avoid conflicts
+        existing_indexes = list(manual_saved_search_collection.list_indexes())
+        existing_index_names = [idx["name"] for idx in existing_indexes]
+
+        logger.info("Creating manual recent search collection indexes...")
+
+        # Create essential single-field indexes for frequent queries
+        indexes_to_create = [
+            "user_id",  # Essential for user-based searches
+            "timestamp",  # Essential for time-based queries and sorting
+        ]
+
+        for index_field in indexes_to_create:
+            index_name = f"{index_field}_1"
+            if index_name not in existing_index_names:
+                try:
+                    manual_saved_search_collection.create_index(index_field)
+                    logger.info(f"Created manual saved search index: {index_field}")
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create manual saved search index {index_field}: {str(e)}"
+                    )
+
+        # Create compound indexes for common query combinations
+        compound_indexes = [
+            # Most important: user_id with timestamp for user's recent searches
+            (
+                [
+                    ("user_id", 1),
+                    ("timestamp", -1),
+                ],  # -1 for descending timestamp (newest first)
+                "user_id_1_timestamp_-1",
+            ),
+            # Additional compound for potential queries
+            (
+                [("user_id", 1), ("timestamp", 1)],  # ascending timestamp if needed
+                "user_id_1_timestamp_1",
+            ),
+        ]
+
+        for index_spec, expected_name in compound_indexes:
+            if expected_name not in existing_index_names:
+                try:
+                    manual_saved_search_collection.create_index(index_spec)
+                    logger.info(
+                        f"Created manual saved search compound index: {expected_name}"
+                    )
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create manual saved search compound index {expected_name}: {str(e)}"
+                    )
+
+        logger.info("Manual saved search collection indexes creation completed")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error creating manual saved search collection indexes: {str(e)}")
+        return False
+
+
+async def create_ai_recent_search_indexes(ai_recent_search_collection):
+    """Create indexes for ai_recent_search_collection"""
+    try:
+        # Get existing indexes to avoid conflicts
+        existing_indexes = list(ai_recent_search_collection.list_indexes())
+        existing_index_names = [idx["name"] for idx in existing_indexes]
+
+        logger.info("Creating AI recent search collection indexes...")
+
+        # Create essential single-field indexes for frequent queries
+        indexes_to_create = [
+            "user_id",  # Essential for user-based searches
+            "timestamp",  # Essential for time-based queries and sorting
+        ]
+
+        for index_field in indexes_to_create:
+            index_name = f"{index_field}_1"
+            if index_name not in existing_index_names:
+                try:
+                    ai_recent_search_collection.create_index(index_field)
+                    logger.info(f"Created AI recent search index: {index_field}")
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create AI recent search index {index_field}: {str(e)}"
+                    )
+
+        # Create compound indexes for common query combinations
+        compound_indexes = [
+            # Most important: user_id with timestamp for user's recent searches
+            (
+                [
+                    ("user_id", 1),
+                    ("timestamp", -1),
+                ],  # -1 for descending timestamp (newest first)
+                "user_id_1_timestamp_-1",
+            ),
+            # Additional compound for potential queries
+            (
+                [("user_id", 1), ("timestamp", 1)],  # ascending timestamp if needed
+                "user_id_1_timestamp_1",
+            ),
+        ]
+
+        for index_spec, expected_name in compound_indexes:
+            if expected_name not in existing_index_names:
+                try:
+                    ai_recent_search_collection.create_index(index_spec)
+                    logger.info(
+                        f"Created AI recent search compound index: {expected_name}"
+                    )
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create AI recent search compound index {expected_name}: {str(e)}"
+                    )
+
+        logger.info("AI recent search collection indexes creation completed")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error creating AI recent search collection indexes: {str(e)}")
+        return False
+
+
+async def create_ai_saved_search_indexes(ai_saved_search_collection):
+    """Create indexes for ai_saved_search_collection"""
+    try:
+        # Get existing indexes to avoid conflicts
+        existing_indexes = list(ai_saved_search_collection.list_indexes())
+        existing_index_names = [idx["name"] for idx in existing_indexes]
+
+        logger.info("Creating AI saved search collection indexes...")
+
+        # Create essential single-field indexes for frequent queries
+        indexes_to_create = [
+            "user_id",  # Essential for user-based searches
+            "timestamp",  # Essential for time-based queries and sorting
+        ]
+
+        for index_field in indexes_to_create:
+            index_name = f"{index_field}_1"
+            if index_name not in existing_index_names:
+                try:
+                    ai_saved_search_collection.create_index(index_field)
+                    logger.info(f"Created AI saved search index: {index_field}")
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create AI saved search index {index_field}: {str(e)}"
+                    )
+
+        # Create compound indexes for common query combinations
+        compound_indexes = [
+            # Most important: user_id with timestamp for user's saved searches
+            (
+                [
+                    ("user_id", 1),
+                    ("timestamp", -1),
+                ],  # -1 for descending timestamp (newest first)
+                "user_id_1_timestamp_-1",
+            ),
+            # Additional compound for potential queries
+            (
+                [("user_id", 1), ("timestamp", 1)],  # ascending timestamp if needed
+                "user_id_1_timestamp_1",
+            ),
+        ]
+
+        for index_spec, expected_name in compound_indexes:
+            if expected_name not in existing_index_names:
+                try:
+                    ai_saved_search_collection.create_index(index_spec)
+                    logger.info(
+                        f"Created AI saved search compound index: {expected_name}"
+                    )
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create AI saved search compound index {expected_name}: {str(e)}"
+                    )
+
+        logger.info("AI saved search collection indexes creation completed")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error creating AI saved search collection indexes: {str(e)}")
+        return False
+
+
 async def initialize_application_startup():
     """
     Initialize the application during startup.
@@ -204,6 +458,14 @@ async def initialize_application_startup():
     """
     from mangodatabase.search_indexes import SearchIndexManager, initialize_database
     from mangodatabase.client import get_collection, get_skills_titles_collection
+    from mangodatabase.client import (
+        get_ai_recent_search_collection,
+        get_ai_saved_searches_collection,
+    )
+    from mangodatabase.client import (
+        get_manual_recent_search_collection,
+        get_manual_saved_searches_collection,
+    )
 
     logger.info("Starting up FastAPI application...")
 
@@ -222,6 +484,10 @@ async def initialize_application_startup():
         # Initialize database collections
         collection = get_collection()
         skills_titles_collection = get_skills_titles_collection()
+        ai_recent_search_collection = get_ai_recent_search_collection()
+        ai_saved_searches_collection = get_ai_saved_searches_collection()
+        manual_recent_search_collection = get_manual_recent_search_collection()
+        manual_saved_searches_collection = get_manual_saved_searches_collection()
 
         # Test database connection first
         collection.database.client.admin.command("ping")
@@ -234,7 +500,25 @@ async def initialize_application_startup():
         await create_standard_indexes(collection, skills_titles_collection)
 
         # Create skills collection indexes
-        await create_skills_collection_indexes(skills_titles_collection)
+        await create_skills_collection_indexes(
+            skills_titles_collection
+        )  # Create manual recent search collection indexes
+        await create_manual_recent_search_indexes(manual_recent_search_collection)
+
+        # Create manual saved search collection indexes
+        await create_manual_saved_search_indexes(manual_saved_searches_collection)
+
+        # Create AI recent search collection indexes
+        await create_ai_recent_search_indexes(ai_recent_search_collection)
+
+        # Create AI saved search collection indexes
+        await create_ai_saved_search_indexes(ai_saved_searches_collection)
+
+        # Create AI recent search collection indexes
+        await create_ai_recent_search_indexes(ai_recent_search_collection)
+
+        # Create AI saved search collection indexes
+        await create_ai_saved_search_indexes(ai_saved_searches_collection)
 
         logger.info("Application startup completed successfully!")
 

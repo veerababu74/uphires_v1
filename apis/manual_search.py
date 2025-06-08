@@ -2,14 +2,21 @@ import re
 from fastapi import APIRouter, Body, HTTPException
 from typing import List, Dict, Any, Optional
 from pydantic import BaseModel, Field
-from mangodatabase.client import get_collection
+from mangodatabase.client import get_collection, get_manual_recent_search_collection
 from core.helpers import format_resume
+from datetime import datetime, timezone
+import uuid
 
 resumes_collection = get_collection()
 
 
 # Define request and response models for better documentation
 class ManualSearchRequest(BaseModel):
+    userid: Optional[str] = Field(
+        default=None,
+        description="User ID who performed the search (for saving to recent searches)",
+        example="user123",
+    )
     experience_titles: Optional[List[str]] = Field(
         default=None,
         description="List of job titles to search for",
@@ -99,9 +106,9 @@ router = APIRouter(
     2. 12th/HSC/Intermediate
     3. Diploma/ITI
     4. Bachelor's (BTech/BE/BSc/BA/BCom)
-    5. Master's (MTech/ME/MSc/MA/MCom/MBA)
-    6. PhD/Doctorate
-      **Enhanced Scoring System:**
+    5. Master's (MTech/ME/MSc/MA/MCom/MBA)    6. PhD/Doctorate
+    
+    **Enhanced Scoring System:**
     - Experience Title Match: 20 points per matching title (searches ALL provided titles)
     - Skills Match: 15 points per matching skill (includes may_also_known_skills, searches ALL provided skills)
     - Education Level Match: 3-18 points based on education level (1-6 × 3, searches ALL provided education levels)
@@ -208,7 +215,8 @@ router = APIRouter(
     },
 )
 async def manual_resume_search(search_params: ManualSearchRequest):
-    try:  # Check if at least one search criteria is provided
+    try:
+        # Check if at least one search criteria is provided
         has_criteria = any(
             [
                 search_params.experience_titles,
@@ -221,6 +229,52 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                 search_params.max_salary is not None,
             ]
         )
+
+        # Save search query to recent searches if userid is provided and has criteria
+        if search_params.userid and has_criteria:
+            try:
+                recent_collection = get_manual_recent_search_collection()
+
+                # Generate unique search ID
+                search_id = str(uuid.uuid4())
+
+                # Create search document
+                search_document = {
+                    "search_id": search_id,
+                    "user_id": search_params.userid,
+                    "search_criteria": {
+                        "experience_titles": search_params.experience_titles,
+                        "skills": search_params.skills,
+                        "min_education": search_params.min_education,
+                        "min_experience": search_params.min_experience,
+                        "max_experience": search_params.max_experience,
+                        "locations": search_params.locations,
+                        "min_salary": search_params.min_salary,
+                        "max_salary": search_params.max_salary,
+                    },
+                    "timestamp": datetime.now(timezone.utc),
+                    "search_type": "manual",
+                    "is_recent": True,
+                }
+
+                # Check if user has too many recent searches (limit to 100)
+                user_recent_count = recent_collection.count_documents(
+                    {"user_id": search_params.userid}
+                )
+                if user_recent_count >= 100:
+                    # Remove oldest search for this user
+                    oldest_search = recent_collection.find_one(
+                        {"user_id": search_params.userid}, sort=[("timestamp", 1)]
+                    )
+                    if oldest_search:
+                        recent_collection.delete_one({"_id": oldest_search["_id"]})
+
+                # Insert new recent search
+                recent_collection.insert_one(search_document)
+
+            except Exception as save_error:
+                # Log the error but don't fail the search
+                print(f"Warning: Failed to save recent search: {str(save_error)}")
 
         if not has_criteria:
             # If no criteria provided, return all resumes sorted by most recent
@@ -287,9 +341,9 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                 # If only experience/salary filters, get all resumes for post-processing
                 final_query = {}
 
-            results = list(resumes_collection.find(final_query))
-
-        # Parse min and max experience strings to months
+            results = list(
+                resumes_collection.find(final_query)
+            )  # Parse min and max experience strings to months
         min_experience_months = 0
         max_experience_months = float("inf")
 
@@ -301,7 +355,9 @@ async def manual_resume_search(search_params: ManualSearchRequest):
         if search_params.max_experience:
             max_experience_months = parse_experience_to_months(
                 search_params.max_experience
-            )  # Calculate scores and apply additional filters
+            )
+
+        # Calculate scores and apply additional filters
         scored_results = []
 
         for resume in results:
@@ -399,9 +455,9 @@ async def manual_resume_search(search_params: ManualSearchRequest):
                                     field_has_match = True
                                     break
                 if field_has_match:
-                    match_details[
-                        "fields_matched"
-                    ] += 1  # Experience duration filtering and scoring
+                    match_details["fields_matched"] += 1
+
+            # Experience duration filtering and scoring
             if min_experience_months > 0 or max_experience_months < float("inf"):
                 total_exp = resume.get("total_experience", "")
                 resume_exp_months = 0

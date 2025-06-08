@@ -11,7 +11,10 @@ from schemas.vector_search_scehma import VectorSearchQuery
 from GroqcloudLLM.text_extraction import extract_and_clean_text
 from pathlib import Path
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+from mangodatabase.client import get_collection
+import uuid
+from recent_search_uts.recent_ai_search import save_ai_search_to_recent
 
 BASE_FOLDER = "dummy_data_save"
 TEMP_FOLDER = os.path.join(BASE_FOLDER, "temp_text_extract")
@@ -172,9 +175,9 @@ async def multi_field_search(query_embedding, num_results, min_score):
                 doc_id not in unique_results
                 or result["boosted_score"] > unique_results[doc_id]["boosted_score"]
             ):
-                unique_results[doc_id] = result
-
-        # Sort by boosted score and limit results
+                unique_results[doc_id] = (
+                    result  # Sort by boosted score and limit results
+                )
         sorted_results = sorted(
             unique_results.values(), key=lambda x: x["boosted_score"], reverse=True
         )
@@ -389,6 +392,13 @@ async def vector_search(search_query: VectorSearchQuery):
             else:
                 # Single field search result with pre-calculated relevance
                 result["relevance_score"] = round(result.get("relevance_score", 0), 2)
+        # Log the search query for auditingi
+        # Save AI search to recent searches collection
+        if search_query.user_id:
+            logging.info(
+                f"Saving AI search to recent for user {search_query.user_id}: {search_query.query}"
+            )
+            await save_ai_search_to_recent(search_query.user_id, search_query.query)
 
         return formatted_results
 
