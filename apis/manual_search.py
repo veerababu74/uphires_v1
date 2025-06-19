@@ -68,7 +68,7 @@ class ManualSearchRequest(BaseModel):
 
 router = APIRouter(
     prefix="/manualsearch",
-    tags=["Manual Resume Search"],
+    tags=["Manual Resume Search", "final_apis"],
 )
 
 

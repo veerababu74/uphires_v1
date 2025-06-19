@@ -14,7 +14,7 @@ from recent_search_uts.recent_ai_search import save_ai_search_to_recent
 # Initialize router
 router = APIRouter(
     prefix="/search",
-    tags=["enhanced ai vector search - retriever"],
+    tags=["enhanced ai vector search - retriever", "final_apis"],
     responses={404: {"description": "Not found"}},
 )
 

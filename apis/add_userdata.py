@@ -24,7 +24,7 @@ add_user_vectorizer = AddUserDataVectorizer()
 resume_ops = ResumeOperations(collection, add_user_vectorizer)
 
 # Create a router instance
-router = APIRouter(prefix="/add_user", tags=["add_user"])
+router = APIRouter(prefix="/add_user", tags=["add_user", "final_apis"])
 
 BASE_FOLDER = "dummy_data_save"
 TEMP_FOLDER = os.path.join(BASE_FOLDER, "temp_text_extract")

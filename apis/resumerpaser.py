@@ -170,7 +170,7 @@ def cleanup_temp_directory(age_limit_minutes: int = 60):
                     logging.error(f"Failed to delete file {file_path}: {e}")
 
 
-@router.post("/resume-parser", tags=["Resume Parser"])
+@router.post("/resume-parser", tags=["Resume Parser", "final_apis"])
 async def upload_resume(file: UploadFile = File(...)):
     """
     Endpoint to extract and clean text from uploaded file for llm model.
@@ -328,7 +328,7 @@ def process_single_resume(
                 )
 
 
-@router.post("/resume-parser-multiple", tags=["Resume Parser"])
+@router.post("/resume-parser-multiple", tags=["Resume Parser", "final_apis"])
 async def upload_multiple_resumes(files: List[UploadFile] = File(...)):
     """
     Endpoint to extract and clean text from multiple uploaded files using threading for better performance.
@@ -530,7 +530,7 @@ def process_resume_for_multiprocessing(file_data: Dict[str, Any]) -> Dict[str, A
         }
 
 
-@router.post("/resume-parser-multiple-mp", tags=["Resume Parser"])
+@router.post("/resume-parser-multiple-mp", tags=["Resume Parser", "final_apis"])
 async def upload_multiple_resumes_multiprocessing(files: List[UploadFile] = File(...)):
     """
     Endpoint to extract and clean text from multiple uploaded files using multiprocessing for maximum performance.

@@ -155,7 +155,7 @@ def cleanup_temp_directory(age_limit_minutes: int = 60):
 # Create router instance
 router = APIRouter(
     prefix="/rag",
-    tags=["ai rag search"],
+    tags=["ai rag search", "final_apis"],
     responses={404: {"description": "Not found"}},
 )
 
