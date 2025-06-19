@@ -11,11 +11,14 @@ from mangodatabase.client import get_collection, get_skills_titles_collection
 from embeddings.vectorizer import AddUserDataVectorizer
 from schemas.add_user_schemas import ResumeData
 from core.custom_logger import CustomLogger
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed, ProcessPoolExecutor
+import multiprocessing
+from typing import List, Dict, Any, Optional
 
 
 import json
 import re
-from typing import List, Dict, Any
 
 
 def clean_and_extract_skills(skills_input: List[str]) -> List[str]:
@@ -239,3 +242,463 @@ async def upload_resume(file: UploadFile = File(...)):
     finally:
         if os.path.exists(file_location):
             os.remove(file_location)
+
+
+def process_single_resume(
+    file_content: bytes, filename: str, file_id: str
+) -> Dict[str, Any]:
+    """
+    Process a single resume file and return the result.
+    This function is designed to be thread-safe.
+    """
+    file_location = None
+    try:
+        # Create unique file path for this thread
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        safe_filename = f"{file_id}_{timestamp}_{filename}"
+        file_location = os.path.join(TEMP_FOLDER, safe_filename)
+
+        # Save the file
+        with open(file_location, "wb") as temp_file:
+            temp_file.write(file_content)
+
+        # Check file extension
+        _, file_extension = os.path.splitext(filename)
+        if file_extension.lower() not in [".txt", ".pdf", ".docx"]:
+            return {
+                "filename": filename,
+                "success": False,
+                "error": f"Unsupported file type: {file_extension}. Only .txt, .pdf, and .docx are supported.",
+                "error_type": "UNSUPPORTED_FILE_TYPE",
+            }
+
+        # Extract text
+        total_resume_text = extract_and_clean_text(file_location)
+
+        # Process the resume with parser
+        resume_parser = parser.process_resume(total_resume_text)
+
+        if not resume_parser:
+            return {
+                "filename": filename,
+                "success": False,
+                "error": "No resume data found in the file.",
+                "error_type": "NO_DATA_FOUND",
+            }
+
+        # Initialize total_experience if not present
+        if "total_experience" not in resume_parser:
+            resume_parser["total_experience"] = 0
+
+        # Process and clean the JSON data
+        resume_parser = process_user_json(resume_parser)
+
+        return {
+            "filename": filename,
+            "success": True,
+            "total_resume_text": total_resume_text,
+            "resume_parser": resume_parser,
+        }
+
+    except Exception as e:
+        import traceback
+
+        error_details = {
+            "error_type": type(e).__name__,
+            "error_message": str(e) if str(e) else "Unknown error occurred",
+            "traceback": traceback.format_exc(),
+        }
+        logging.error(f"Error processing {filename}: {error_details}")
+
+        return {
+            "filename": filename,
+            "success": False,
+            "error": f"{error_details['error_type']}: {error_details['error_message']}",
+            "error_type": error_details["error_type"],
+        }
+
+    finally:
+        # Clean up the temporary file
+        if file_location and os.path.exists(file_location):
+            try:
+                os.remove(file_location)
+            except Exception as cleanup_error:
+                logging.warning(
+                    f"Failed to cleanup file {file_location}: {cleanup_error}"
+                )
+
+
+@router.post("/resume-parser-multiple", tags=["Resume Parser"])
+async def upload_multiple_resumes(files: List[UploadFile] = File(...)):
+    """
+    Endpoint to extract and clean text from multiple uploaded files using threading for better performance.
+
+    Args:
+        files: List of uploaded files (supports .txt, .pdf, .docx)
+
+    Returns:
+        Dict containing:
+        - total_files: Total number of files processed
+        - successful_files: Number of successfully processed files
+        - failed_files: Number of files that failed to process
+        - results: List of processing results for each file
+        - processing_time: Total time taken for processing
+    """
+    start_time = datetime.now()
+
+    try:
+        if not files:
+            raise HTTPException(status_code=400, detail="No files provided")
+
+        if len(files) > 50:  # Limit to prevent resource exhaustion
+            raise HTTPException(
+                status_code=400, detail="Maximum 50 files allowed per request"
+            )
+
+        # Read all files into memory first
+        file_data = []
+        for i, file in enumerate(files):
+            if not file.filename:
+                continue
+            content = await file.read()
+            file_data.append(
+                {"content": content, "filename": file.filename, "file_id": f"file_{i}"}
+            )
+
+        if not file_data:
+            raise HTTPException(status_code=400, detail="No valid files found")
+
+        results = []
+        successful_count = 0
+        failed_count = 0
+
+        # Use ThreadPoolExecutor for concurrent processing
+        max_workers = min(len(file_data), 10)  # Limit concurrent threads
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # Submit all tasks
+            future_to_file = {
+                executor.submit(
+                    process_single_resume,
+                    file_info["content"],
+                    file_info["filename"],
+                    file_info["file_id"],
+                ): file_info
+                for file_info in file_data
+            }
+
+            # Collect results as they complete
+            for future in as_completed(future_to_file):
+                try:
+                    result = future.result()
+                    results.append(result)
+
+                    if result["success"]:
+                        successful_count += 1
+                    else:
+                        failed_count += 1
+
+                except Exception as e:
+                    file_info = future_to_file[future]
+                    error_result = {
+                        "filename": file_info["filename"],
+                        "success": False,
+                        "error": f"Threading error: {str(e)}",
+                        "error_type": "THREADING_ERROR",
+                    }
+                    results.append(error_result)
+                    failed_count += 1
+                    logging.error(f"Threading error for {file_info['filename']}: {e}")
+
+        # Sort results by filename for consistent output
+        results.sort(key=lambda x: x["filename"])
+
+        end_time = datetime.now()
+        processing_time = (end_time - start_time).total_seconds()
+
+        return {
+            "total_files": len(file_data),
+            "successful_files": successful_count,
+            "failed_files": failed_count,
+            "processing_time_seconds": round(processing_time, 2),
+            "results": results,
+            "summary": {
+                "success_rate": (
+                    round((successful_count / len(file_data)) * 100, 2)
+                    if file_data
+                    else 0
+                ),
+                "avg_time_per_file": (
+                    round(processing_time / len(file_data), 2) if file_data else 0
+                ),
+            },
+        }
+
+    except HTTPException as http_ex:
+        logging.info(f"HTTPException in upload_multiple_resumes: {http_ex.detail}")
+        raise http_ex
+
+    except Exception as e:
+        import traceback
+
+        error_details = {
+            "error_type": type(e).__name__,
+            "error_message": str(e) if str(e) else "Unknown error occurred",
+            "traceback": traceback.format_exc(),
+        }
+        logging.error(f"Error in upload_multiple_resumes: {error_details}")
+
+        detail_message = f"Error processing multiple files: {error_details['error_type']}: {error_details['error_message']}"
+        raise HTTPException(status_code=500, detail=detail_message)
+
+
+def process_resume_for_multiprocessing(file_data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Process a single resume file for multiprocessing.
+    This function is designed to be pickle-able for multiprocessing.
+    """
+    try:
+        # Initialize parser for this process
+        local_parser = ResumeParser()
+
+        filename = file_data["filename"]
+        content = file_data["content"]
+        file_id = file_data["file_id"]
+
+        # Create unique file path
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        safe_filename = f"{file_id}_{timestamp}_{filename}"
+        file_location = os.path.join(TEMP_FOLDER, safe_filename)
+
+        # Save the file
+        with open(file_location, "wb") as temp_file:
+            temp_file.write(content)
+
+        try:
+            # Check file extension
+            _, file_extension = os.path.splitext(filename)
+            if file_extension.lower() not in [".txt", ".pdf", ".docx"]:
+                return {
+                    "filename": filename,
+                    "success": False,
+                    "error": f"Unsupported file type: {file_extension}. Only .txt, .pdf, and .docx are supported.",
+                    "error_type": "UNSUPPORTED_FILE_TYPE",
+                }
+
+            # Extract text
+            total_resume_text = extract_and_clean_text(file_location)
+
+            # Process the resume with parser
+            resume_parser = local_parser.process_resume(total_resume_text)
+
+            if not resume_parser:
+                return {
+                    "filename": filename,
+                    "success": False,
+                    "error": "No resume data found in the file.",
+                    "error_type": "NO_DATA_FOUND",
+                }
+
+            # Initialize total_experience if not present
+            if "total_experience" not in resume_parser:
+                resume_parser["total_experience"] = 0
+
+            # Process and clean the JSON data
+            resume_parser = process_user_json(resume_parser)
+
+            return {
+                "filename": filename,
+                "success": True,
+                "total_resume_text": total_resume_text,
+                "resume_parser": resume_parser,
+            }
+
+        finally:
+            # Clean up the temporary file
+            if os.path.exists(file_location):
+                try:
+                    os.remove(file_location)
+                except Exception as cleanup_error:
+                    pass  # Ignore cleanup errors in multiprocessing
+
+    except Exception as e:
+        return {
+            "filename": file_data.get("filename", "unknown"),
+            "success": False,
+            "error": f"{type(e).__name__}: {str(e)}",
+            "error_type": type(e).__name__,
+        }
+
+
+@router.post("/resume-parser-multiple-mp", tags=["Resume Parser"])
+async def upload_multiple_resumes_multiprocessing(files: List[UploadFile] = File(...)):
+    """
+    Endpoint to extract and clean text from multiple uploaded files using multiprocessing for maximum performance.
+    Best for CPU-intensive processing with many files.
+
+    Args:
+        files: List of uploaded files (supports .txt, .pdf, .docx)
+
+    Returns:
+        Dict containing:
+        - total_files: Total number of files processed
+        - successful_files: Number of successfully processed files
+        - failed_files: Number of files that failed to process
+        - results: List of processing results for each file
+        - processing_time: Total time taken for processing
+    """
+    start_time = datetime.now()
+
+    try:
+        if not files:
+            raise HTTPException(status_code=400, detail="No files provided")
+
+        if len(files) > 100:  # Higher limit for multiprocessing
+            raise HTTPException(
+                status_code=400, detail="Maximum 100 files allowed per request"
+            )
+
+        # Read all files into memory first
+        file_data = []
+        for i, file in enumerate(files):
+            if not file.filename:
+                continue
+            content = await file.read()
+            file_data.append(
+                {"content": content, "filename": file.filename, "file_id": f"file_{i}"}
+            )
+
+        if not file_data:
+            raise HTTPException(status_code=400, detail="No valid files found")
+
+        results = []
+        successful_count = 0
+        failed_count = 0
+
+        # Use ProcessPoolExecutor for CPU-bound tasks
+        max_workers = min(len(file_data), multiprocessing.cpu_count())
+
+        with ProcessPoolExecutor(max_workers=max_workers) as executor:
+            # Submit all tasks
+            future_to_file = {
+                executor.submit(
+                    process_resume_for_multiprocessing, file_info
+                ): file_info
+                for file_info in file_data
+            }
+
+            # Collect results as they complete
+            for future in as_completed(future_to_file):
+                try:
+                    result = future.result(timeout=300)  # 5 minute timeout per file
+                    results.append(result)
+
+                    if result["success"]:
+                        successful_count += 1
+                    else:
+                        failed_count += 1
+
+                except Exception as e:
+                    file_info = future_to_file[future]
+                    error_result = {
+                        "filename": file_info["filename"],
+                        "success": False,
+                        "error": f"Multiprocessing error: {str(e)}",
+                        "error_type": "MULTIPROCESSING_ERROR",
+                    }
+                    results.append(error_result)
+                    failed_count += 1
+
+        # Sort results by filename for consistent output
+        results.sort(key=lambda x: x["filename"])
+
+        end_time = datetime.now()
+        processing_time = (end_time - start_time).total_seconds()
+
+        return {
+            "total_files": len(file_data),
+            "successful_files": successful_count,
+            "failed_files": failed_count,
+            "processing_time_seconds": round(processing_time, 2),
+            "processing_method": "multiprocessing",
+            "workers_used": max_workers,
+            "results": results,
+            "summary": {
+                "success_rate": (
+                    round((successful_count / len(file_data)) * 100, 2)
+                    if file_data
+                    else 0
+                ),
+                "avg_time_per_file": (
+                    round(processing_time / len(file_data), 2) if file_data else 0
+                ),
+                "performance_boost": f"Used {max_workers} CPU cores for parallel processing",
+            },
+        }
+
+    except HTTPException as http_ex:
+        logging.info(
+            f"HTTPException in upload_multiple_resumes_multiprocessing: {http_ex.detail}"
+        )
+        raise http_ex
+
+    except Exception as e:
+        import traceback
+
+        error_details = {
+            "error_type": type(e).__name__,
+            "error_message": str(e) if str(e) else "Unknown error occurred",
+            "traceback": traceback.format_exc(),
+        }
+        logging.error(
+            f"Error in upload_multiple_resumes_multiprocessing: {error_details}"
+        )
+
+        detail_message = f"Error processing multiple files with multiprocessing: {error_details['error_type']}: {error_details['error_message']}"
+        raise HTTPException(status_code=500, detail=detail_message)
+
+
+@router.get("/resume-parser-info", tags=["Resume Parser"])
+async def get_resume_parser_info():
+    """
+    Get information about available resume parsing endpoints and their recommended use cases.
+    """
+    return {
+        "available_endpoints": {
+            "single_file": {
+                "endpoint": "/resume-parser",
+                "method": "POST",
+                "description": "Process a single resume file",
+                "use_case": "Single file processing, testing, or small scale operations",
+                "max_files": 1,
+            },
+            "multiple_files_threading": {
+                "endpoint": "/resume-parser-multiple",
+                "method": "POST",
+                "description": "Process multiple resume files using threading",
+                "use_case": "I/O bound operations, moderate file counts (1-50 files)",
+                "max_files": 50,
+                "performance": "Good for I/O bound tasks like file reading and API calls",
+            },
+            "multiple_files_multiprocessing": {
+                "endpoint": "/resume-parser-multiple-mp",
+                "method": "POST",
+                "description": "Process multiple resume files using multiprocessing",
+                "use_case": "CPU-intensive operations, large file counts (1-100 files)",
+                "max_files": 100,
+                "performance": "Best for CPU-bound tasks like text processing and parsing",
+            },
+        },
+        "recommendations": {
+            "1-5_files": "Use /resume-parser or /resume-parser-multiple",
+            "5-20_files": "Use /resume-parser-multiple (threading)",
+            "20+_files": "Use /resume-parser-multiple-mp (multiprocessing)",
+            "cpu_intensive": "Use /resume-parser-multiple-mp",
+            "io_intensive": "Use /resume-parser-multiple",
+        },
+        "supported_formats": [".txt", ".pdf", ".docx"],
+        "system_info": {
+            "cpu_cores": multiprocessing.cpu_count(),
+            "temp_directory": TEMP_FOLDER,
+        },
+    }
