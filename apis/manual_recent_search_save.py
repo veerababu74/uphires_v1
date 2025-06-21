@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 import uuid
 
 router = APIRouter(
-    prefix="/manual_search_operations",
+    prefix="/manual_saved_recnet_search",
     tags=["Manual Search Save & Recent"],
 )
 
