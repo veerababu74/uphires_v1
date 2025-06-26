@@ -1,9 +1,0 @@
-2025-06-02 16:13:19 - test_rag_simple - INFO - Testing logger integration with RAG
-2025-06-02 16:13:19 - test_rag_simple - WARNING - This is a test warning
-2025-06-02 16:13:19 - test_rag_simple - ERROR - This is a test error (not a real error)
-2025-06-02 16:35:57 - test_rag_simple - INFO - Testing logger integration with RAG
-2025-06-02 16:35:57 - test_rag_simple - WARNING - This is a test warning
-2025-06-02 16:35:57 - test_rag_simple - ERROR - This is a test error (not a real error)
-2025-06-02 16:36:58 - test_rag_simple - INFO - Testing logger integration with RAG
-2025-06-02 16:36:58 - test_rag_simple - WARNING - This is a test warning
-2025-06-02 16:36:58 - test_rag_simple - ERROR - This is a test error (not a real error)

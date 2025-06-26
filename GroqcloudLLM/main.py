@@ -5,6 +5,7 @@ from typing import List, Dict
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama, OllamaLLM
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 
@@ -14,6 +15,8 @@ load_dotenv()
 # Constants
 DEFAULT_MODEL = "gemma2-9b-it"
 TEMPERATURE = 1
+
+OLLAMA_DEFAULT_MODEL = "qwiqwen:4b"
 
 
 def get_api_keys() -> List[str]:
@@ -104,8 +107,12 @@ class ResumeParser:
         if not api_key:
             raise ValueError("API key cannot be empty.")
 
-        model = ChatGroq(
-            temperature=TEMPERATURE, model_name=DEFAULT_MODEL, api_key=api_key
+        # model = ChatGroq(
+        #     temperature=TEMPERATURE, model_name=DEFAULT_MODEL, api_key=api_key
+        # )
+        model = OllamaLLM(
+            temperature=TEMPERATURE,
+            model=OLLAMA_DEFAULT_MODEL,
         )
         parser = JsonOutputParser(pydantic_object=Resume)
 

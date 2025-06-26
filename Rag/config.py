@@ -30,6 +30,11 @@ class RAGConfig:
     LLM_MODEL = "gemma2-9b-it"
     LLM_TEMPERATURE = 0.0
 
+    # ollama Configuration
+    OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434")
+    OLLAMA_MODEL = "gemma2-9b-it"
+    OLLAMA_TEMPERATURE = 0.0
+
     # Performance Limits
     MAX_CONTEXT_LENGTH = 8000
     DEFAULT_MONGODB_LIMIT = 50

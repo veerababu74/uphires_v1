@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 # Modern LangChain imports
 from langchain_community.vectorstores import MongoDBAtlasVectorSearch
 from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama, OllamaLLM
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -228,12 +229,17 @@ class RAGApplication:
             return
 
         try:
-            self.llm = ChatGroq(
-                api_key=GROQ_API_KEY,
-                model="gemma2-9b-it",  # Using same model as internal GroqcloudLLM
-                temperature=0.0,  # Low temp for precise extraction
+            # self.llm = ChatGroq(
+            #     api_key=GROQ_API_KEY,
+            #     model="gemma2-9b-it",  # Using same model as internal GroqcloudLLM
+            #     temperature=0.0,  # Low temp for precise extraction
+            # )/
+            # Initialize Ollama LLMks
+            self.llm = OllamaLLM(
+                model="qwen:4b",  # Using same model as internal GroqcloudLLM
+                temperature=0.7,  # Low temp for precise extraction
             )
-            logger.info("Groq Cloud LLM (gemma2-9b-it) initialized")
+            logger.info("Ollama LLM (qwen:4b) initialized")
         except Exception as e:
             logger.error(f"Error initializing Groq LLM: {e}")
             raise

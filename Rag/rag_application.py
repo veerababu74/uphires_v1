@@ -2,7 +2,7 @@ import json
 from typing import List, Dict, Optional, Tuple
 from bson import ObjectId
 from langchain_groq import ChatGroq
-
+from langchain_ollama import ChatOllama, OllamaLLM
 from core.custom_logger import CustomLogger
 from core.helpers import JSONEncoder
 from embeddings.vectorizer import Vectorizer
@@ -60,19 +60,34 @@ class RAGApplication:
         """Initialize database manager"""
         self.database_manager = DatabaseManager(self.embeddings)
 
+    # def _initialize_llm(self):
+    #     """Initialize Groq Cloud LLM model"""
+    #     if not RAGConfig.GROQ_API_KEY:
+    #         logger.warning("Skipping LLM initialization due to missing Groq API key")
+    #         return
+
+    #     try:
+    #         self.llm = ChatGroq(
+    #             api_key=RAGConfig.GROQ_API_KEY,
+    #             model=RAGConfig.LLM_MODEL,
+    #             temperature=RAGConfig.LLM_TEMPERATURE,
+    #         )
+    #         logger.info(f"Groq Cloud LLM ({RAGConfig.LLM_MODEL}) initialized")
+    #     except Exception as e:
+    #         logger.error(f"Error initializing Groq LLM: {e}")
+    #         raise
     def _initialize_llm(self):
-        """Initialize Groq Cloud LLM model"""
-        if not RAGConfig.GROQ_API_KEY:
-            logger.warning("Skipping LLM initialization due to missing Groq API key")
-            return
+        # """Initialize Groq Cloud LLM model"""
+        # if not RAGConfig.GROQ_API_KEY:
+        #     logger.warning("Skipping LLM initialization due to missing Groq API key")
+        #     return
 
         try:
-            self.llm = ChatGroq(
-                api_key=RAGConfig.GROQ_API_KEY,
-                model=RAGConfig.LLM_MODEL,
-                temperature=RAGConfig.LLM_TEMPERATURE,
+            self.llm = OllamaLLM(
+                model=RAGConfig.OLLAMA_MODEL,
+                temperature=RAGConfig.OLLAMA_TEMPERATURE,
             )
-            logger.info(f"Groq Cloud LLM ({RAGConfig.LLM_MODEL}) initialized")
+            logger.info(f"Groq Cloud LLM ({RAGConfig.OLLAMA_MODEL}) initialized")
         except Exception as e:
             logger.error(f"Error initializing Groq LLM: {e}")
             raise

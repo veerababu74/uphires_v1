@@ -1,704 +1,350 @@
-from fastapi import APIRouter, HTTPException
 import os
-from fastapi import File, UploadFile, HTTPException
-from pathlib import Path
-from datetime import datetime, timedelta, date
-from GroqcloudLLM.text_extraction import extract_and_clean_text
-from GroqcloudLLM.main import ResumeParser
-from Expericecal.total_exp import format_experience, calculator
-from mangodatabase.operations import ResumeOperations, SkillsTitlesOperations
-from mangodatabase.client import get_collection, get_skills_titles_collection
-from embeddings.vectorizer import AddUserDataVectorizer
-from schemas.add_user_schemas import ResumeData
-from core.custom_logger import CustomLogger
-import threading
-from concurrent.futures import ThreadPoolExecutor, as_completed, ProcessPoolExecutor
-import multiprocessing
-from typing import List, Dict, Any, Optional
-
-
 import json
 import re
+from typing import List, Dict, Optional
+from dotenv import load_dotenv
+from pydantic import BaseModel, Field, EmailStr
+from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama, OllamaLLM
+from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.prompts import PromptTemplate
+
+# Load environment variables
+load_dotenv()
+
+# Constants
+DEFAULT_MODEL = "gemma2-9b-it"
+TEMPERATURE = 1
+
+OLLAMA_DEFAULT_MODEL = "qwen:4b"
 
 
-def clean_and_extract_skills(skills_input: List[str]) -> List[str]:
-    """
-    Extract and clean individual skills from various input formats
-
-    Handles scenarios like:
-    - "python,machine learning,"
-    - "technical skills:python,sql,opencv,azure cloud"
-    - "Python | React | AWS"
-    - "Skills: Java, Spring Boot, Microservices"
-    - Mixed formats in single list
-    """
-
-    if not skills_input:
-        return []
-
-    all_skills = []
-
-    for skill_item in skills_input:
-        if not skill_item or not isinstance(skill_item, str):
-            continue
-
-        # Convert to lowercase for processing
-        skill_text = skill_item.strip()
-
-        # Remove common prefixes
-        prefixes_to_remove = [
-            r"^technical\s*skills?\s*:?\s*",
-            r"^skills?\s*:?\s*",
-            r"^technologies?\s*:?\s*",
-            r"^expertise\s*:?\s*",
-            r"^programming\s*:?\s*",
-            r"^tools?\s*:?\s*",
-        ]
-
-        for prefix in prefixes_to_remove:
-            skill_text = re.sub(prefix, "", skill_text, flags=re.IGNORECASE)
-
-        # Split by various delimiters
-        delimiters = [",", "|", ";", "/", "\\n", "\\r", "\n", "\r"]
-
-        # Create regex pattern for splitting
-        delimiter_pattern = "|".join(map(re.escape, delimiters))
-        skills_parts = re.split(delimiter_pattern, skill_text)
-
-        # Process each skill part
-        for skill in skills_parts:
-            cleaned_skill = clean_individual_skill(skill)
-            if cleaned_skill:
-                all_skills.append(cleaned_skill)
-
-    # Remove duplicates while preserving order
-    unique_skills = []
-    seen = set()
-    for skill in all_skills:
-        skill_lower = skill.lower()
-        if skill_lower not in seen:
-            seen.add(skill_lower)
-            unique_skills.append(skill)
-
-    return unique_skills
+def get_api_keys() -> List[str]:
+    """Get API keys from environment variables."""
+    api_keys = os.getenv("GROQ_API_KEYS", "").split(",")
+    return [key.strip() for key in api_keys if key.strip()]
 
 
-def clean_individual_skill(skill: str) -> str:
-    """Clean and normalize individual skill"""
-    if not skill:
-        return ""
-
-    # Remove extra whitespace and common unwanted characters
-    skill = skill.strip(" \t\n\r,;|/")
-
-    # Remove numbers at the beginning (like "1. Python")
-    skill = re.sub(r"^\d+\.?\s*", "", skill)
-
-    # Remove brackets and parentheses content
-    skill = re.sub(r"\([^)]*\)", "", skill)
-    skill = re.sub(r"\[[^\]]*\]", "", skill)
-
-    # Remove extra spaces
-    skill = re.sub(r"\s+", " ", skill).strip()
-
-    # Skip if too short or contains only special characters
-    if len(skill) < 2 or re.match(r"^[^a-zA-Z0-9]*$", skill):
-        return ""
-
-    return skill
+# ===== Updated Pydantic Models =====
+class Experience(BaseModel):
+    company: str = Field(description="Company name")
+    title: str = Field(description="Job title")
+    from_date: str = Field(description="Start date in YYYY-MM format")
+    to: Optional[str] = Field(
+        default=None, description="End date in YYYY-MM format, None if current"
+    )
 
 
-def process_user_json(json_data: Dict[str, Any]) -> Dict[str, Any]:
-    """Process the entire user JSON and clean skills"""
+class Education(BaseModel):
+    education: str = Field(description="Degree or qualification")
+    college: str = Field(description="Educational institution name")
+    pass_year: int = Field(description="Year of graduation")
 
-    # Create a copy to avoid modifying original
-    processed_data = json_data.copy()
 
-    # Process main skills
-    if "skills" in processed_data:
-        processed_data["skills"] = clean_and_extract_skills(processed_data["skills"])
+class ContactDetails(BaseModel):
+    name: str = Field(description="Full name")
+    email: EmailStr = Field(description="Email address")
+    phone: str = Field(description="Primary phone number")
+    alternative_phone: Optional[str] = Field(
+        default=None, description="Alternative phone number"
+    )
+    current_city: str = Field(description="Current city of residence")
+    looking_for_jobs_in: List[str] = Field(
+        default_factory=list, description="Cities looking for jobs in"
+    )
+    gender: Optional[str] = Field(default=None, description="Gender")
+    age: Optional[int] = Field(default=None, description="Age")
+    naukri_profile: Optional[str] = Field(
+        default=None, description="Naukri profile URL"
+    )
+    linkedin_profile: Optional[str] = Field(
+        default=None, description="LinkedIn profile URL"
+    )
+    portfolio_link: Optional[str] = Field(
+        default=None, description="Portfolio website link"
+    )
+    pan_card: str = Field(description="PAN card number")
+    aadhar_card: Optional[str] = Field(default=None, description="Aadhar card number")
 
-    # Process may_also_known_skills
-    if "may_also_known_skills" in processed_data:
-        processed_data["may_also_known_skills"] = clean_and_extract_skills(
-            processed_data["may_also_known_skills"]
+
+class ResumeData(BaseModel):
+
+    contact_details: ContactDetails = Field(description="Contact information")
+    total_experience: Optional[str] = Field(
+        default=None, description="Total work experience"
+    )
+    notice_period: Optional[str] = Field(
+        default=None, description="Notice period (e.g., Immediate, 30 days)"
+    )
+    currency: Optional[str] = Field(
+        default=None, description="Currency (e.g., INR, USD)"
+    )
+    pay_duration: Optional[str] = Field(
+        default=None, description="Pay duration (e.g., monthly, yearly)"
+    )
+    current_salary: Optional[float] = Field(default=None, description="Current salary")
+    hike: Optional[float] = Field(default=None, description="Expected hike percentage")
+    expected_salary: Optional[float] = Field(
+        default=None, description="Expected salary"
+    )
+    skills: List[str] = Field(default_factory=list, description="Primary skills")
+    may_also_known_skills: List[str] = Field(
+        default_factory=list, description="Additional skills"
+    )
+    labels: Optional[List[str]] = Field(default=None, description="Labels or tags")
+    experience: Optional[List[Experience]] = Field(
+        default=None, description="Work experience details"
+    )
+    academic_details: Optional[List[Education]] = Field(
+        default=None, description="Educational background"
+    )
+    source: Optional[str] = Field(default=None, description="Source of resume")
+    last_working_day: Optional[str] = Field(
+        default=None, description="Last working day (ISO format)"
+    )
+    is_tier1_mba: Optional[bool] = Field(
+        default=None, description="Whether from tier 1 MBA institute"
+    )
+    is_tier1_engineering: Optional[bool] = Field(
+        default=None, description="Whether from tier 1 engineering institute"
+    )
+    comment: Optional[str] = Field(default=None, description="Additional comments")
+    exit_reason: Optional[str] = Field(
+        default=None, description="Reason for leaving current job"
+    )
+
+
+# ===== Resume Parser Class =====
+class ResumeParser:
+    def __init__(self, api_keys: List[str] = None):
+        """Initialize ResumeParser with API keys.
+
+        Args:
+            api_keys (List[str], optional): List of API keys. If None, loads from environment.
+        """
+        if api_keys is None:
+            self.api_keys = get_api_keys()
+        else:
+            self.api_keys = [key.strip() for key in api_keys if key.strip()]
+
+        if not self.api_keys:
+            raise ValueError("No API keys provided or found in environment variables.")
+
+        self.api_usage = {key: 0 for key in self.api_keys}
+        self.current_key_index = 0
+        self.processing_chain = self._setup_processing_chain(
+            self.api_keys[self.current_key_index]
         )
 
-    return processed_data
+    def _setup_processing_chain(self, api_key: str):
+        """Set up the LangChain processing chain."""
+        if not api_key:
+            raise ValueError("API key cannot be empty.")
 
+        # model = ChatGroq(
+        #     temperature=TEMPERATURE, model_name=DEFAULT_MODEL, api_key=api_key
+        # )
+        model = OllamaLLM(
+            temperature=TEMPERATURE,
+            model=OLLAMA_DEFAULT_MODEL,
+        )
+        parser = JsonOutputParser(pydantic_object=ResumeData)
 
-# Initialize your parser with API keys (replace with your actual keys)
-parser = ResumeParser()
-collection = get_collection()
-skills_titles_collection = get_skills_titles_collection()
-# Initialize database operations
-skills_ops = SkillsTitlesOperations(skills_titles_collection)
-add_user_vectorizer = AddUserDataVectorizer()
-resume_ops = ResumeOperations(collection, add_user_vectorizer)
+        prompt_template = """You are an expert resume parser. Extract information from the resume text and convert it to JSON format.
 
-# Create a router instance
-router = APIRouter()
+                FOLLOW THESE RULES STRICTLY:
+                1. Return ONLY valid JSON - no explanations, no markdown, no extra text
+                2. Use the exact field names provided in the schema
+                3. If a field is missing, use the default values specified below
 
-BASE_FOLDER = "dummy_data_save"
-TEMP_FOLDER = os.path.join(BASE_FOLDER, "temp_text_extract")
-TEMP_DIR = Path(os.path.join(BASE_FOLDER, "temp_files"))
+                REQUIRED FIELDS (must be present):
+    
+                - contact_details.name: Full name from resume
+                - contact_details.email: Email address (use "placeholder@example.com" if missing)
+                - contact_details.phone: Phone number (use "+91-0000000000" if missing)
+                - contact_details.current_city: Extract city from address (use "Unknown" if missing)
+                - contact_details.looking_for_jobs_in: Array of cities (use current_city if missing)
+                - contact_details.pan_card: PAN number (use "ABCDE1234F" if missing)
 
-# Ensure the directories exist
-if not os.path.exists(TEMP_FOLDER):
-    os.makedirs(TEMP_FOLDER)
-if not TEMP_DIR.exists():
-    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+                EXPERIENCE EXTRACTION:
+                - company: Company name exactly as written
+                - title: Job title/position
+                - from_date: Convert to "YYYY-MM" format (e.g., "2020-01" for January 2020)
+                - to: Convert to "YYYY-MM" format, use null for current jobs
 
+                EDUCATION EXTRACTION:
+                - education: Degree name (e.g., "B.Tech", "MBA", "10th Grade")
+                - college: Institution name
+                - pass_year: Year as integer (e.g., 2020)
 
-logger_manager = CustomLogger()
-logging = logger_manager.get_logger("add_userdata")
+                SKILLS EXTRACTION:
+                - Extract technical skills, soft skills, programming languages
+                - Separate into "skills" (primary) and "may_also_known_skills" (secondary)
 
+                OPTIONAL FIELDS - Set to null if not found:
+                - total_experience: Calculate from work history (e.g., "5 years 3 months")
+                - current_salary, expected_salary: Extract salary numbers
+                - currency: Use "INR" for Indian resumes, "USD" for others
+                - notice_period: Extract notice period info
+                - age: Calculate from date of birth if available
+                - gender: Extract if mentioned
 
-def cleanup_temp_directory(age_limit_minutes: int = 60):
-    """
-    Cleanup temporary directory by deleting files older than the specified age limit.
-    """
-    now = datetime.now()
-    for file_path in TEMP_DIR.iterdir():
-        if file_path.is_file():
-            file_age = now - datetime.fromtimestamp(file_path.stat().st_mtime)
-            if file_age > timedelta(minutes=age_limit_minutes):
-                try:
-                    file_path.unlink()
-                    logging.info(f"Deleted old file: {file_path}")
-                except Exception as e:
-                    logging.error(f"Failed to delete file {file_path}: {e}")
+                SCHEMA:
+                {format_instructions}
 
+                RESUME TEXT:
+                {resume_text}
 
-@router.post("/resume-parser", tags=["Resume Parser", "final_apis"])
-async def upload_resume(file: UploadFile = File(...)):
-    """
-    Endpoint to extract and clean text from uploaded file for llm model.
-    """
-    try:
-        # Define the path to save the uploaded file
-        file_location = os.path.join(TEMP_FOLDER, file.filename)
+                JSON OUTPUT:"""
 
-        # Save the uploaded file
-        with open(file_location, "wb") as temp_file:
-            temp_file.write(await file.read())
+        prompt = PromptTemplate(
+            template=prompt_template,
+            input_variables=["resume_text"],
+            partial_variables={"format_instructions": parser.get_format_instructions()},
+        )
+        return prompt | model | parser
 
-        # Extract text
-        _, file_extension = os.path.splitext(file.filename)
-        if file_extension.lower() not in [".txt", ".pdf", ".docx"]:
-            raise HTTPException(
-                status_code=400,
-                detail="Unsupported file type. Only .txt, .pdf, and .docx are supported.",
-            )
+    def _clean_json_response(self, response) -> str:
+        """Clean and extract JSON from response."""
+        try:
+            if isinstance(response, dict):
+                return json.dumps(response)
+            elif isinstance(response, str):
+                # Remove code block markers and clean whitespace
+                cleaned = re.sub(r"```[^`]*```", "", response, flags=re.DOTALL)
+                cleaned = cleaned.strip()
+                # Extract JSON object if wrapped in text
+                match = re.search(r"({[\s\S]*})", cleaned)
+                return match.group(1) if match else cleaned
+            else:
+                return str(response)
+        except Exception as e:
+            print(f"Error cleaning JSON response: {str(e)}")
+            return str(response)
 
-        # Extract and save the total resume text
-        total_resume_text = extract_and_clean_text(file_location)
-        print("\nTotal Resume Text:")
-        print("=" * 50)
-        print(total_resume_text)
-        print("=" * 50)
+    def _repair_json(self, malformed_json: str) -> str:
+        """Repair common JSON formatting issues."""
+        try:
+            # Remove trailing commas
+            repaired = re.sub(r",(\s*[}\]])", r"\1", malformed_json)
+            # Remove control characters
+            repaired = re.sub(r"[\x00-\x1f\x7f-\x9f]", "", repaired)
+            # Balance braces
+            open_braces = repaired.count("{")
+            close_braces = repaired.count("}")
+            if open_braces > close_braces:
+                repaired += "}" * (open_braces - close_braces)
+            elif close_braces > open_braces:
+                repaired = "{" * (close_braces - open_braces) + repaired
+            return repaired
+        except Exception as e:
+            print(f"Error repairing JSON: {str(e)}")
+            return malformed_json
 
-        # Process the resume
-        resume_parser = parser.process_resume(total_resume_text)
+    def _extract_json_object(self, text) -> str:
+        matches = re.findall(r"({.*?})", text, re.DOTALL)
+        if matches:
+            return max(matches, key=len)
+        return None
 
-        if not resume_parser:
-            raise HTTPException(
-                status_code=400, detail="No resume data found."
-            )  # Initialize total_experience if not present
-        if "total_experience" not in resume_parser:
-            resume_parser["total_experience"] = 0
-
-        # Calculate experience
-        # res = calculator.calculate_experience(resume_parser)
-        # resume_parser["total_experience"] = format_experience(res[0], res[1])
-
-        resume_parser = process_user_json(resume_parser)
-
-        return {
-            "filename": file.filename,
-            "total_resume_text": total_resume_text,
-            "resume_parser": resume_parser,
-        }
-    except HTTPException as http_ex:
-        # Re-raise HTTPException as-is (don't modify it)
-        logging.info(f"HTTPException raised in upload: {http_ex.detail}")
-        raise http_ex
-
-    except Exception as e:
-        import traceback
-
-        error_details = {
-            "error_type": type(e).__name__,
-            "error_message": str(e) if str(e) else "Unknown error occurred",
-            "traceback": traceback.format_exc(),
-        }
-        logging.error(f"Error in upload_resume: {error_details}")
-
-        detail_message = f"Error processing file: {error_details['error_type']}: {error_details['error_message']}"
-        if not error_details["error_message"]:
-            detail_message = f"Error processing file: {error_details['error_type']} - Check logs for details"
-
-        raise HTTPException(status_code=500, detail=detail_message)
-    finally:
-        if os.path.exists(file_location):
-            os.remove(file_location)
-
-
-def process_single_resume(
-    file_content: bytes, filename: str, file_id: str
-) -> Dict[str, Any]:
-    """
-    Process a single resume file and return the result.
-    This function is designed to be thread-safe.
-    """
-    file_location = None
-    try:
-        # Create unique file path for this thread
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        safe_filename = f"{file_id}_{timestamp}_{filename}"
-        file_location = os.path.join(TEMP_FOLDER, safe_filename)
-
-        # Save the file
-        with open(file_location, "wb") as temp_file:
-            temp_file.write(file_content)
-
-        # Check file extension
-        _, file_extension = os.path.splitext(filename)
-        if file_extension.lower() not in [".txt", ".pdf", ".docx"]:
-            return {
-                "filename": filename,
-                "success": False,
-                "error": f"Unsupported file type: {file_extension}. Only .txt, .pdf, and .docx are supported.",
-                "error_type": "UNSUPPORTED_FILE_TYPE",
-            }
-
-        # Extract text
-        total_resume_text = extract_and_clean_text(file_location)
-
-        # Process the resume with parser
-        resume_parser = parser.process_resume(total_resume_text)
-
-        if not resume_parser:
-            return {
-                "filename": filename,
-                "success": False,
-                "error": "No resume data found in the file.",
-                "error_type": "NO_DATA_FOUND",
-            }
-
-        # Initialize total_experience if not present
-        if "total_experience" not in resume_parser:
-            resume_parser["total_experience"] = 0
-
-        # Process and clean the JSON data
-        resume_parser = process_user_json(resume_parser)
-
-        return {
-            "filename": filename,
-            "success": True,
-            "total_resume_text": total_resume_text,
-            "resume_parser": resume_parser,
-        }
-
-    except Exception as e:
-        import traceback
-
-        error_details = {
-            "error_type": type(e).__name__,
-            "error_message": str(e) if str(e) else "Unknown error occurred",
-            "traceback": traceback.format_exc(),
-        }
-        logging.error(f"Error processing {filename}: {error_details}")
-
-        return {
-            "filename": filename,
-            "success": False,
-            "error": f"{error_details['error_type']}: {error_details['error_message']}",
-            "error_type": error_details["error_type"],
-        }
-
-    finally:
-        # Clean up the temporary file
-        if file_location and os.path.exists(file_location):
+    def _repair_and_load_json(self, raw_json) -> dict:
+        cleaned_json = self._clean_json_response(raw_json)
+        try:
+            return json.loads(cleaned_json)
+        except json.JSONDecodeError:
+            repaired_json = self._repair_json(cleaned_json)
             try:
-                os.remove(file_location)
-            except Exception as cleanup_error:
-                logging.warning(
-                    f"Failed to cleanup file {file_location}: {cleanup_error}"
+                return json.loads(repaired_json)
+            except Exception:
+                extracted_json = self._extract_json_object(cleaned_json)
+                if extracted_json:
+                    try:
+                        return json.loads(extracted_json)
+                    except Exception:
+                        pass
+                return {"error": "Failed to parse JSON", "raw_output": raw_json}
+
+    def _parse_resume(self, resume_text: str) -> dict:
+        """Parse resume text and return structured data."""
+        try:
+            raw_output = self.processing_chain.invoke({"resume_text": resume_text})
+            if isinstance(raw_output, dict):
+                return raw_output
+
+            cleaned_json = self._clean_json_response(raw_output)
+            try:
+                return json.loads(cleaned_json)
+            except json.JSONDecodeError:
+                repaired_json = self._repair_json(cleaned_json)
+                try:
+                    return json.loads(repaired_json)
+                except json.JSONDecodeError as e:
+                    print(f"Failed to parse JSON: {str(e)}")
+                    return {
+                        "error": "Failed to parse response",
+                        "raw_output": str(raw_output),
+                    }
+        except Exception as e:
+            print(f"Error parsing resume: {str(e)}")
+            return {"error": str(e)}
+
+    def process_resume(self, resume_text: str) -> Dict:
+        """Process a resume and handle API key rotation if needed."""
+        while True:
+            try:
+                parsed_data = self._parse_resume(resume_text)
+                self.api_usage[self.api_keys[self.current_key_index]] += 1
+                return parsed_data
+            except Exception as e:
+                error_msg = str(e).lower()
+                print(
+                    f"Error with API key {self.api_keys[self.current_key_index]}: {error_msg}"
                 )
 
+                if self._should_rotate_key(error_msg):
+                    if not self._rotate_to_next_key():
+                        return {
+                            "error": "All API keys exhausted",
+                            "api_usage": self.api_usage,
+                        }
+                else:
+                    return {"error": "Unexpected error", "details": error_msg}
 
-@router.post("/resume-parser-multiple", tags=["Resume Parser", "final_apis"])
-async def upload_multiple_resumes(files: List[UploadFile] = File(...)):
+    def _should_rotate_key(self, error_msg: str) -> bool:
+        """Check if we should rotate to the next API key based on error message."""
+        rotation_triggers = [
+            "rate limit",
+            "quota exceeded",
+            "too many requests",
+            "organization_restricted",
+        ]
+        return any(trigger in error_msg for trigger in rotation_triggers)
+
+    def _rotate_to_next_key(self) -> bool:
+        """Rotate to the next available API key."""
+        self.current_key_index += 1
+        if self.current_key_index < len(self.api_keys):
+            self.processing_chain = self._setup_processing_chain(
+                self.api_keys[self.current_key_index]
+            )
+            print(f"Switched to new API key: {self.api_keys[self.current_key_index]}")
+            return True
+        return False
+
+
+def main():
+    """Main function to demonstrate resume parsing."""
+    sample_resume = """
+  RESUME YADAV PANAKJ INDRESHKUMAR Email: yadavanush1234@gmail.com Phone: 9023891599 C -499, umiyanagar behind taxshila school Vastral road – ahmedabad -382418 CareerObjective Todevelop career with an organization which provides me excellent opportunity and enable me tolearn skill to achive organization's goal Personal Details  Full Name : YADAV PANKAJ INDRESHKUMAR  Date of Birth : 14/05/1993  Gender : male  Marital Status : Married  Nationality : Indian  Languages Known : Hindi, English, Gujarati  Hobbies : Reading Work Experience  I Have Two Years Experience (BHARAT PETROLEUM ) As Oil Department Supervisor  I Have ONE Years Experience ( H D B FINACE SERVICES ) As Sales Executive  I Have One Years Experience (MAY GATE SOFTWARE ) As Sales Executive  I Have One Years Experience ( BY U Me – SHOREA SOFECH PRIVATE LTD ) As Sales Executive Education Details Pass Out 2008 - CGPA/Percentage : 51.00% G.S.E.B Pass Out 2010 - CGPA/Percentage : 55.00% G.H.S.E.B Pass Out 2022 – Running Gujarat.uni Interests/Hobbies Listening, music, traveling Declaration I hereby declare that all the details furnished above are true to the best of my knowledge andbelief. Date://2019Place: odhav
     """
-    Endpoint to extract and clean text from multiple uploaded files using threading for better performance.
-
-    Args:
-        files: List of uploaded files (supports .txt, .pdf, .docx)
-
-    Returns:
-        Dict containing:
-        - total_files: Total number of files processed
-        - successful_files: Number of successfully processed files
-        - failed_files: Number of files that failed to process
-        - results: List of processing results for each file
-        - processing_time: Total time taken for processing
-    """
-    start_time = datetime.now()
 
     try:
-        if not files:
-            raise HTTPException(status_code=400, detail="No files provided")
-
-        if len(files) > 50:  # Limit to prevent resource exhaustion
-            raise HTTPException(
-                status_code=400, detail="Maximum 50 files allowed per request"
-            )
-
-        # Read all files into memory first
-        file_data = []
-        for i, file in enumerate(files):
-            if not file.filename:
-                continue
-            content = await file.read()
-            file_data.append(
-                {"content": content, "filename": file.filename, "file_id": f"file_{i}"}
-            )
-
-        if not file_data:
-            raise HTTPException(status_code=400, detail="No valid files found")
-
-        results = []
-        successful_count = 0
-        failed_count = 0
-
-        # Use ThreadPoolExecutor for concurrent processing
-        max_workers = min(len(file_data), 10)  # Limit concurrent threads
-
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            # Submit all tasks
-            future_to_file = {
-                executor.submit(
-                    process_single_resume,
-                    file_info["content"],
-                    file_info["filename"],
-                    file_info["file_id"],
-                ): file_info
-                for file_info in file_data
-            }
-
-            # Collect results as they complete
-            for future in as_completed(future_to_file):
-                try:
-                    result = future.result()
-                    results.append(result)
-
-                    if result["success"]:
-                        successful_count += 1
-                    else:
-                        failed_count += 1
-
-                except Exception as e:
-                    file_info = future_to_file[future]
-                    error_result = {
-                        "filename": file_info["filename"],
-                        "success": False,
-                        "error": f"Threading error: {str(e)}",
-                        "error_type": "THREADING_ERROR",
-                    }
-                    results.append(error_result)
-                    failed_count += 1
-                    logging.error(f"Threading error for {file_info['filename']}: {e}")
-
-        # Sort results by filename for consistent output
-        results.sort(key=lambda x: x["filename"])
-
-        end_time = datetime.now()
-        processing_time = (end_time - start_time).total_seconds()
-
-        return {
-            "total_files": len(file_data),
-            "successful_files": successful_count,
-            "failed_files": failed_count,
-            "processing_time_seconds": round(processing_time, 2),
-            "results": results,
-            "summary": {
-                "success_rate": (
-                    round((successful_count / len(file_data)) * 100, 2)
-                    if file_data
-                    else 0
-                ),
-                "avg_time_per_file": (
-                    round(processing_time / len(file_data), 2) if file_data else 0
-                ),
-            },
-        }
-
-    except HTTPException as http_ex:
-        logging.info(f"HTTPException in upload_multiple_resumes: {http_ex.detail}")
-        raise http_ex
-
+        parser = ResumeParser()
+        result = parser.process_resume(sample_resume)
+        print(json.dumps(result, indent=2))
     except Exception as e:
-        import traceback
-
-        error_details = {
-            "error_type": type(e).__name__,
-            "error_message": str(e) if str(e) else "Unknown error occurred",
-            "traceback": traceback.format_exc(),
-        }
-        logging.error(f"Error in upload_multiple_resumes: {error_details}")
-
-        detail_message = f"Error processing multiple files: {error_details['error_type']}: {error_details['error_message']}"
-        raise HTTPException(status_code=500, detail=detail_message)
+        print(f"Error: {str(e)}")
 
 
-def process_resume_for_multiprocessing(file_data: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Process a single resume file for multiprocessing.
-    This function is designed to be pickle-able for multiprocessing.
-    """
-    try:
-        # Initialize parser for this process
-        local_parser = ResumeParser()
-
-        filename = file_data["filename"]
-        content = file_data["content"]
-        file_id = file_data["file_id"]
-
-        # Create unique file path
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        safe_filename = f"{file_id}_{timestamp}_{filename}"
-        file_location = os.path.join(TEMP_FOLDER, safe_filename)
-
-        # Save the file
-        with open(file_location, "wb") as temp_file:
-            temp_file.write(content)
-
-        try:
-            # Check file extension
-            _, file_extension = os.path.splitext(filename)
-            if file_extension.lower() not in [".txt", ".pdf", ".docx"]:
-                return {
-                    "filename": filename,
-                    "success": False,
-                    "error": f"Unsupported file type: {file_extension}. Only .txt, .pdf, and .docx are supported.",
-                    "error_type": "UNSUPPORTED_FILE_TYPE",
-                }
-
-            # Extract text
-            total_resume_text = extract_and_clean_text(file_location)
-
-            # Process the resume with parser
-            resume_parser = local_parser.process_resume(total_resume_text)
-
-            if not resume_parser:
-                return {
-                    "filename": filename,
-                    "success": False,
-                    "error": "No resume data found in the file.",
-                    "error_type": "NO_DATA_FOUND",
-                }
-
-            # Initialize total_experience if not present
-            if "total_experience" not in resume_parser:
-                resume_parser["total_experience"] = 0
-
-            # Process and clean the JSON data
-            resume_parser = process_user_json(resume_parser)
-
-            return {
-                "filename": filename,
-                "success": True,
-                "total_resume_text": total_resume_text,
-                "resume_parser": resume_parser,
-            }
-
-        finally:
-            # Clean up the temporary file
-            if os.path.exists(file_location):
-                try:
-                    os.remove(file_location)
-                except Exception as cleanup_error:
-                    pass  # Ignore cleanup errors in multiprocessing
-
-    except Exception as e:
-        return {
-            "filename": file_data.get("filename", "unknown"),
-            "success": False,
-            "error": f"{type(e).__name__}: {str(e)}",
-            "error_type": type(e).__name__,
-        }
-
-
-@router.post("/resume-parser-multiple-mp", tags=["Resume Parser", "final_apis"])
-async def upload_multiple_resumes_multiprocessing(files: List[UploadFile] = File(...)):
-    """
-    Endpoint to extract and clean text from multiple uploaded files using multiprocessing for maximum performance.
-    Best for CPU-intensive processing with many files.
-
-    Args:
-        files: List of uploaded files (supports .txt, .pdf, .docx)
-
-    Returns:
-        Dict containing:
-        - total_files: Total number of files processed
-        - successful_files: Number of successfully processed files
-        - failed_files: Number of files that failed to process
-        - results: List of processing results for each file
-        - processing_time: Total time taken for processing
-    """
-    start_time = datetime.now()
-
-    try:
-        if not files:
-            raise HTTPException(status_code=400, detail="No files provided")
-
-        if len(files) > 100:  # Higher limit for multiprocessing
-            raise HTTPException(
-                status_code=400, detail="Maximum 100 files allowed per request"
-            )
-
-        # Read all files into memory first
-        file_data = []
-        for i, file in enumerate(files):
-            if not file.filename:
-                continue
-            content = await file.read()
-            file_data.append(
-                {"content": content, "filename": file.filename, "file_id": f"file_{i}"}
-            )
-
-        if not file_data:
-            raise HTTPException(status_code=400, detail="No valid files found")
-
-        results = []
-        successful_count = 0
-        failed_count = 0
-
-        # Use ProcessPoolExecutor for CPU-bound tasks
-        max_workers = min(len(file_data), multiprocessing.cpu_count())
-
-        with ProcessPoolExecutor(max_workers=max_workers) as executor:
-            # Submit all tasks
-            future_to_file = {
-                executor.submit(
-                    process_resume_for_multiprocessing, file_info
-                ): file_info
-                for file_info in file_data
-            }
-
-            # Collect results as they complete
-            for future in as_completed(future_to_file):
-                try:
-                    result = future.result(timeout=300)  # 5 minute timeout per file
-                    results.append(result)
-
-                    if result["success"]:
-                        successful_count += 1
-                    else:
-                        failed_count += 1
-
-                except Exception as e:
-                    file_info = future_to_file[future]
-                    error_result = {
-                        "filename": file_info["filename"],
-                        "success": False,
-                        "error": f"Multiprocessing error: {str(e)}",
-                        "error_type": "MULTIPROCESSING_ERROR",
-                    }
-                    results.append(error_result)
-                    failed_count += 1
-
-        # Sort results by filename for consistent output
-        results.sort(key=lambda x: x["filename"])
-
-        end_time = datetime.now()
-        processing_time = (end_time - start_time).total_seconds()
-
-        return {
-            "total_files": len(file_data),
-            "successful_files": successful_count,
-            "failed_files": failed_count,
-            "processing_time_seconds": round(processing_time, 2),
-            "processing_method": "multiprocessing",
-            "workers_used": max_workers,
-            "results": results,
-            "summary": {
-                "success_rate": (
-                    round((successful_count / len(file_data)) * 100, 2)
-                    if file_data
-                    else 0
-                ),
-                "avg_time_per_file": (
-                    round(processing_time / len(file_data), 2) if file_data else 0
-                ),
-                "performance_boost": f"Used {max_workers} CPU cores for parallel processing",
-            },
-        }
-
-    except HTTPException as http_ex:
-        logging.info(
-            f"HTTPException in upload_multiple_resumes_multiprocessing: {http_ex.detail}"
-        )
-        raise http_ex
-
-    except Exception as e:
-        import traceback
-
-        error_details = {
-            "error_type": type(e).__name__,
-            "error_message": str(e) if str(e) else "Unknown error occurred",
-            "traceback": traceback.format_exc(),
-        }
-        logging.error(
-            f"Error in upload_multiple_resumes_multiprocessing: {error_details}"
-        )
-
-        detail_message = f"Error processing multiple files with multiprocessing: {error_details['error_type']}: {error_details['error_message']}"
-        raise HTTPException(status_code=500, detail=detail_message)
-
-
-@router.get("/resume-parser-info", tags=["Resume Parser"])
-async def get_resume_parser_info():
-    """
-    Get information about available resume parsing endpoints and their recommended use cases.
-    """
-    return {
-        "available_endpoints": {
-            "single_file": {
-                "endpoint": "/resume-parser",
-                "method": "POST",
-                "description": "Process a single resume file",
-                "use_case": "Single file processing, testing, or small scale operations",
-                "max_files": 1,
-            },
-            "multiple_files_threading": {
-                "endpoint": "/resume-parser-multiple",
-                "method": "POST",
-                "description": "Process multiple resume files using threading",
-                "use_case": "I/O bound operations, moderate file counts (1-50 files)",
-                "max_files": 50,
-                "performance": "Good for I/O bound tasks like file reading and API calls",
-            },
-            "multiple_files_multiprocessing": {
-                "endpoint": "/resume-parser-multiple-mp",
-                "method": "POST",
-                "description": "Process multiple resume files using multiprocessing",
-                "use_case": "CPU-intensive operations, large file counts (1-100 files)",
-                "max_files": 100,
-                "performance": "Best for CPU-bound tasks like text processing and parsing",
-            },
-        },
-        "recommendations": {
-            "1-5_files": "Use /resume-parser or /resume-parser-multiple",
-            "5-20_files": "Use /resume-parser-multiple (threading)",
-            "20+_files": "Use /resume-parser-multiple-mp (multiprocessing)",
-            "cpu_intensive": "Use /resume-parser-multiple-mp",
-            "io_intensive": "Use /resume-parser-multiple",
-        },
-        "supported_formats": [".txt", ".pdf", ".docx"],
-        "system_info": {
-            "cpu_cores": multiprocessing.cpu_count(),
-            "temp_directory": TEMP_FOLDER,
-        },
-    }
+if __name__ == "__main__":
+    main()

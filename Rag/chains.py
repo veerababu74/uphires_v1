@@ -1,6 +1,7 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser, BaseOutputParser
 from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama, OllamaLLM
 from .models import BestMatchResult, AllMatchesResult
 from .config import RAGConfig
 import json
@@ -200,7 +201,7 @@ IMPORTANT:
 class ChainManager:
     """Manages LangChain chains for RAG operations"""
 
-    def __init__(self, llm: ChatGroq):
+    def __init__(self, llm: ChatGroq | OllamaLLM):
         self.llm = llm
         self.retrieval_chain = None
         self.ranking_chain = None
