@@ -1,10 +1,10 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 import os
 from fastapi import File, UploadFile, HTTPException, Request
 from pathlib import Path
 import json
 from datetime import datetime, timedelta
-from typing import List
+from typing import List, Optional
 from .text_extraction import extract_and_clean_text, clean_text
 from .main import ResumeParser
 from Expericecal.total_exp import format_experience, calculator
@@ -13,9 +13,7 @@ from mangodatabase.client import get_collection, get_skills_titles_collection
 from embeddings.vectorizer import Vectorizer
 from core.custom_logger import CustomLogger
 
-# Initialize your parser with API keys (replace with your actual keys)
-
-
+# Initialize your parser with default provider from config
 parser = ResumeParser()
 collection = get_collection()
 skills_titles_collection = get_skills_titles_collection()
@@ -89,10 +87,94 @@ def normalize_text_list(text_list: List[str]) -> List[str]:
     return [normalize_text_data(text) for text in text_list if text]
 
 
-@router.post("/grouqcloud/")
-async def extract_clean_text_llam3_3b(file: UploadFile = File(...)):
+@router.post("/switch-provider/")
+async def switch_llm_provider(
+    provider: str = Query(..., description="LLM provider to use ('groq' or 'ollama')"),
+    api_keys: Optional[List[str]] = Query(
+        None, description="Groq API keys (only for Groq provider)"
+    ),
+):
     """
-    Endpoint to extract and clean text from uploaded file for llm model.
+    Switch between LLM providers (Groq Cloud or Ollama).
+    """
+    global parser
+
+    try:
+        if provider.lower() not in ["groq", "ollama"]:
+            raise HTTPException(
+                status_code=400, detail="Invalid provider. Must be 'groq' or 'ollama'"
+            )
+
+        # Switch the parser to new provider
+        parser.switch_provider(provider.lower(), api_keys)
+
+        current_provider = "Ollama" if parser.use_ollama else "Groq Cloud"
+
+        logging.info(f"Switched to {current_provider} provider")
+
+        return {
+            "message": f"Successfully switched to {current_provider}",
+            "provider": current_provider,
+            "status": "success",
+        }
+
+    except Exception as e:
+        logging.error(f"Failed to switch provider: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Failed to switch provider: {str(e)}"
+        )
+
+
+@router.get("/provider-info/")
+async def get_provider_info():
+    """
+    Get current LLM provider information.
+    """
+    try:
+        current_provider = "Ollama" if parser.use_ollama else "Groq Cloud"
+
+        info = {
+            "current_provider": current_provider,
+            "provider_type": "local" if parser.use_ollama else "api",
+        }
+
+        if parser.use_ollama:
+            info.update(
+                {
+                    "model": parser.ollama_config.primary_model,
+                    "api_url": parser.ollama_config.api_url,
+                    "available_models": parser._get_available_ollama_models(),
+                }
+            )
+        else:
+            info.update(
+                {
+                    "model": parser.groq_config.primary_model,
+                    "api_keys_count": len(parser.api_keys),
+                    "current_key_index": parser.current_key_index,
+                    "api_usage": parser.api_usage,
+                }
+            )
+
+        return info
+
+    except Exception as e:
+        logging.error(f"Failed to get provider info: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Failed to get provider info: {str(e)}"
+        )
+
+
+@router.post("/grouqcloud/")
+async def extract_clean_text_llam3_3b(
+    file: UploadFile = File(...),
+    provider: Optional[str] = Query(
+        None, description="LLM provider to use ('groq' or 'ollama')"
+    ),
+):
+    """
+    Endpoint to extract and clean text from uploaded file for multiple resume parser.
+    Optionally specify which LLM provider to use for this request.
     """
     try:
         # Define the path to save the uploaded file

@@ -1,0 +1,15 @@
+2025-07-02 23:33:17 - rag_fallback_simulation - INFO - ============================================================
+2025-07-02 23:33:17 - rag_fallback_simulation - INFO - Testing RAG Model Fallback Logic - Direct Test
+2025-07-02 23:33:17 - rag_fallback_simulation - INFO - ============================================================
+2025-07-02 23:33:19 - rag_fallback_simulation - INFO - Available Ollama models: ['llama3.2:3b', 'qwen:4b']
+2025-07-02 23:33:19 - rag_fallback_simulation - INFO - 
+--- Testing RAG Application Initialization ---
+2025-07-02 23:33:25 - rag_fallback_simulation - INFO - Initializing RAG application...
+2025-07-02 23:33:31 - rag_fallback_simulation - INFO - LLM model type: OllamaLLM
+2025-07-02 23:33:31 - rag_fallback_simulation - INFO - Using model: llama3.2:3b
+2025-07-02 23:33:31 - rag_fallback_simulation - INFO - 
+============================================================
+2025-07-02 23:33:31 - rag_fallback_simulation - INFO - Simulating Primary Model Unavailable Scenario
+2025-07-02 23:33:31 - rag_fallback_simulation - INFO - ============================================================
+2025-07-02 23:33:33 - rag_fallback_simulation - INFO - Scenario: llama3.2:3b is not available
+2025-07-02 23:33:33 - rag_fallback_simulation - INFO - Available models: ['llama3.2:3b', 'qwen:4b']

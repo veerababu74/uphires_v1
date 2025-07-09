@@ -1,0 +1,15 @@
+2025-07-02 21:29:50 - llm_config - WARNING - Primary model 'llama3.2:3b' not found
+2025-07-02 21:29:50 - llm_config - ERROR - Neither primary nor backup model available
+2025-07-02 23:04:42 - llm_config - WARNING - Primary model 'llama3.2:3b' not found
+2025-07-02 23:04:42 - llm_config - ERROR - Neither primary nor backup model available
+2025-07-02 23:14:18 - llm_config - WARNING - Primary model 'llama3.2:3b' not found
+2025-07-02 23:14:18 - llm_config - ERROR - Neither primary nor backup model available
+2025-07-02 23:23:59 - llm_config - WARNING - Primary model 'llama3.2:3b' not found
+2025-07-02 23:23:59 - llm_config - ERROR - Neither primary nor backup model available
+2025-07-02 23:24:27 - llm_config - WARNING - Primary model 'llama3.2:3b' not found
+2025-07-02 23:24:27 - llm_config - ERROR - Neither primary nor backup model available
+2025-07-02 23:24:50 - llm_config - WARNING - Primary model 'llama3.2:3b' not found
+2025-07-02 23:24:50 - llm_config - ERROR - Neither primary nor backup model available
+2025-07-02 23:32:35 - llm_config - INFO - Ollama configuration validated successfully
+2025-07-02 23:33:31 - llm_config - INFO - Ollama configuration validated successfully
+2025-07-02 23:39:55 - llm_config - INFO - Ollama configuration validated successfully

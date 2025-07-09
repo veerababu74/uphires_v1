@@ -234,10 +234,10 @@ class RAGApplication:
             #     model="gemma2-9b-it",  # Using same model as internal GroqcloudLLM
             #     temperature=0.0,  # Low temp for precise extraction
             # )/
-            # Initialize Ollama LLMks
+            # Initialize Ollama LLM
             self.llm = OllamaLLM(
-                model="qwen:4b",  # Using same model as internal GroqcloudLLM
-                temperature=0.7,  # Low temp for precise extraction
+                model="qwen:4b",  # Using Qwen 4B model
+                temperature=0.0,  # Low temp for precise extraction
             )
             logger.info("Ollama LLM (qwen:4b) initialized")
         except Exception as e:

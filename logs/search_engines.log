@@ -1,0 +1,271 @@
+2025-07-01 21:15:18 - search_engines - INFO - Performing LLM search for: i want a python developer
+2025-07-01 21:15:18 - search_engines - INFO - Context size: 5
+2025-07-01 21:15:18 - search_engines - INFO - Performing vector similarity search for: i want a python developer
+2025-07-01 21:15:18 - search_engines - INFO - Retrieval limit: 5
+2025-07-01 21:15:18 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 21:15:18 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6539
+2025-07-01 21:15:18 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.6458
+2025-07-01 21:15:18 - search_engines - INFO - Rank 3: ID: 683b0a6d1aa118b254288b78, Score: 0.6380
+2025-07-01 21:15:18 - search_engines - INFO - Rank 4: ID: 683b0aad1aa118b254288b8a, Score: 0.6344
+2025-07-01 21:15:18 - search_engines - INFO - Rank 5: ID: 683b080c629dfdbe4a90ff90, Score: 0.6336
+2025-07-01 21:15:18 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 21:15:18 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 21:15:19 - search_engines - ERROR - Error during LLM search: model 'gemma2-9b-it' not found (status code: 404)
+2025-07-01 21:26:18 - search_engines - INFO - Performing LLM search for: i want a python developer
+2025-07-01 21:26:18 - search_engines - INFO - Context size: 5
+2025-07-01 21:26:18 - search_engines - INFO - Performing vector similarity search for: i want a python developer
+2025-07-01 21:26:18 - search_engines - INFO - Retrieval limit: 5
+2025-07-01 21:26:18 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 21:26:18 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6539
+2025-07-01 21:26:18 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.6458
+2025-07-01 21:26:18 - search_engines - INFO - Rank 3: ID: 683b0a6d1aa118b254288b78, Score: 0.6380
+2025-07-01 21:26:18 - search_engines - INFO - Rank 4: ID: 683b0aad1aa118b254288b8a, Score: 0.6344
+2025-07-01 21:26:18 - search_engines - INFO - Rank 5: ID: 683b080c629dfdbe4a90ff90, Score: 0.6336
+2025-07-01 21:26:18 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 21:26:18 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 22:08:58 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-01 22:08:58 - search_engines - INFO - Retrieval limit: 5
+2025-07-01 22:08:59 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 22:08:59 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-01 22:08:59 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-01 22:08:59 - search_engines - INFO - Rank 3: ID: 683b0a6d1aa118b254288b78, Score: 0.5825
+2025-07-01 22:08:59 - search_engines - INFO - Rank 4: ID: 683d76f73aaa46236f0eaee9, Score: 0.5759
+2025-07-01 22:08:59 - search_engines - INFO - Rank 5: ID: 683b080c629dfdbe4a90ff90, Score: 0.5755
+2025-07-01 22:08:59 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 22:08:59 - search_engines - INFO - Performing LLM search for: python developer with machine learning
+2025-07-01 22:08:59 - search_engines - INFO - Context size: 3
+2025-07-01 22:08:59 - search_engines - INFO - Performing vector similarity search for: python developer with machine learning
+2025-07-01 22:08:59 - search_engines - INFO - Retrieval limit: 3
+2025-07-01 22:08:59 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 22:08:59 - search_engines - INFO - Rank 1: ID: 683b0a6d1aa118b254288b78, Score: 0.6149
+2025-07-01 22:08:59 - search_engines - INFO - Rank 2: ID: 683b0a9f1aa118b254288b80, Score: 0.6140
+2025-07-01 22:08:59 - search_engines - INFO - Rank 3: ID: 683b0a471aa118b254288b62, Score: 0.6102
+2025-07-01 22:08:59 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 22:08:59 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 22:35:56 - search_engines - INFO - Performing LLM search for: python developer
+2025-07-01 22:35:56 - search_engines - INFO - Context size: 2
+2025-07-01 22:35:56 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-01 22:35:56 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 22:35:57 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 22:35:57 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-01 22:35:57 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-01 22:35:57 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 22:35:57 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 22:39:42 - search_engines - INFO - Performing LLM search for: python developer
+2025-07-01 22:39:42 - search_engines - INFO - Context size: 2
+2025-07-01 22:39:42 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-01 22:39:42 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 22:39:42 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 22:39:42 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-01 22:39:42 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-01 22:39:42 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 22:39:42 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 22:39:58 - search_engines - INFO - Performing LLM search for: python 
+2025-07-01 22:39:58 - search_engines - INFO - Context size: 2
+2025-07-01 22:39:58 - search_engines - INFO - Performing vector similarity search for: python 
+2025-07-01 22:39:58 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 22:39:58 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 22:39:58 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-01 22:39:58 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-01 22:39:58 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 22:39:58 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 23:06:04 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-01 23:06:04 - search_engines - INFO - Retrieval limit: 5
+2025-07-01 23:06:04 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 23:06:04 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-01 23:06:04 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-01 23:06:04 - search_engines - INFO - Rank 3: ID: 683b0a6d1aa118b254288b78, Score: 0.5825
+2025-07-01 23:06:04 - search_engines - INFO - Rank 4: ID: 683d76f73aaa46236f0eaee9, Score: 0.5759
+2025-07-01 23:06:04 - search_engines - INFO - Rank 5: ID: 683b080c629dfdbe4a90ff90, Score: 0.5755
+2025-07-01 23:06:04 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 23:06:04 - search_engines - INFO - Performing LLM search for: python developer with machine learning
+2025-07-01 23:06:04 - search_engines - INFO - Context size: 3
+2025-07-01 23:06:04 - search_engines - INFO - Performing vector similarity search for: python developer with machine learning
+2025-07-01 23:06:04 - search_engines - INFO - Retrieval limit: 3
+2025-07-01 23:06:04 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 23:06:04 - search_engines - INFO - Rank 1: ID: 683b0a6d1aa118b254288b78, Score: 0.6149
+2025-07-01 23:06:04 - search_engines - INFO - Rank 2: ID: 683b0a9f1aa118b254288b80, Score: 0.6140
+2025-07-01 23:06:04 - search_engines - INFO - Rank 3: ID: 683b0a471aa118b254288b62, Score: 0.6102
+2025-07-01 23:06:04 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 23:06:04 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 23:13:17 - search_engines - INFO - Performing LLM search for: python
+2025-07-01 23:13:17 - search_engines - INFO - Context size: 2
+2025-07-01 23:13:17 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-01 23:13:17 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 23:13:17 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 23:13:17 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-01 23:13:17 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-01 23:13:17 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 23:13:17 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 23:16:43 - search_engines - INFO - Performing LLM search for: python
+2025-07-01 23:16:43 - search_engines - INFO - Context size: 2
+2025-07-01 23:16:43 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-01 23:16:43 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 23:16:43 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 23:16:43 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-01 23:16:43 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-01 23:16:43 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 23:16:43 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 23:25:31 - search_engines - INFO - Performing LLM search for: python
+2025-07-01 23:25:31 - search_engines - INFO - Context size: 2
+2025-07-01 23:25:31 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-01 23:25:31 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 23:25:31 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 23:25:31 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-01 23:25:31 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-01 23:25:31 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 23:25:31 - search_engines - INFO - Context prepared with 2 candidates, total length: 1047 chars
+2025-07-01 23:25:31 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 23:25:31 - search_engines - ERROR - Error during LLM search: 'Input to PromptTemplate is missing variables {\'\\n  "total_candidates"\'}.  Expected: [\'\\n  "total_candidates"\', \'context\', \'question\'] Received: [\'context\', \'question\']\nNote: if you intended {\n  "total_candidates"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "total_candidates"}}\'.'
+2025-07-01 23:40:30 - search_engines - INFO - Performing LLM search for: python
+2025-07-01 23:40:30 - search_engines - INFO - Context size: 2
+2025-07-01 23:40:30 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-01 23:40:30 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 23:40:31 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 23:40:31 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-01 23:40:31 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-01 23:40:31 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 23:40:31 - search_engines - INFO - Context prepared with 2 candidates, total length: 1047 chars
+2025-07-01 23:40:31 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-01 23:49:43 - search_engines - INFO - Performing LLM search for: python
+2025-07-01 23:49:43 - search_engines - INFO - Context size: 2
+2025-07-01 23:49:43 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-01 23:49:43 - search_engines - INFO - Retrieval limit: 2
+2025-07-01 23:49:43 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-01 23:49:43 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-01 23:49:43 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-01 23:49:43 - search_engines - INFO - === END OF RESULTS ===
+2025-07-01 23:49:43 - search_engines - INFO - Context prepared with 2 candidates, total length: 1047 chars
+2025-07-01 23:49:43 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 00:02:54 - search_engines - INFO - Performing LLM search for: python developer
+2025-07-02 00:02:54 - search_engines - INFO - Context size: 2
+2025-07-02 00:02:54 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-02 00:02:54 - search_engines - INFO - Retrieval limit: 2
+2025-07-02 00:02:55 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 00:02:55 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-02 00:02:55 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-02 00:02:55 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 00:02:55 - search_engines - INFO - Context prepared with 2 candidates, total length: 965 chars
+2025-07-02 00:02:55 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 00:07:37 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-02 00:07:37 - search_engines - INFO - Retrieval limit: 5
+2025-07-02 00:07:37 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 00:07:37 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-02 00:07:37 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-02 00:07:37 - search_engines - INFO - Rank 3: ID: 683b0a6d1aa118b254288b78, Score: 0.5825
+2025-07-02 00:07:37 - search_engines - INFO - Rank 4: ID: 683d76f73aaa46236f0eaee9, Score: 0.5759
+2025-07-02 00:07:37 - search_engines - INFO - Rank 5: ID: 683b080c629dfdbe4a90ff90, Score: 0.5755
+2025-07-02 00:07:37 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 00:09:04 - search_engines - INFO - Performing LLM search for: python developer
+2025-07-02 00:09:04 - search_engines - INFO - Context size: 2
+2025-07-02 00:09:04 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-02 00:09:04 - search_engines - INFO - Retrieval limit: 2
+2025-07-02 00:09:04 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 00:09:04 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-02 00:09:04 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-02 00:09:04 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 00:09:04 - search_engines - INFO - Context prepared with 2 candidates, total length: 965 chars
+2025-07-02 00:09:04 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 00:12:57 - search_engines - INFO - Performing LLM search for: python
+2025-07-02 00:12:57 - search_engines - INFO - Context size: 2
+2025-07-02 00:12:57 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-02 00:12:57 - search_engines - INFO - Retrieval limit: 2
+2025-07-02 00:12:57 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 00:12:57 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-02 00:12:57 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-02 00:12:57 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 00:12:57 - search_engines - INFO - Context prepared with 2 candidates, total length: 1047 chars
+2025-07-02 00:12:57 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 00:16:51 - search_engines - INFO - Performing LLM search for: python
+2025-07-02 00:16:51 - search_engines - INFO - Context size: 2
+2025-07-02 00:16:51 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-02 00:16:51 - search_engines - INFO - Retrieval limit: 2
+2025-07-02 00:16:51 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 00:16:51 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-02 00:16:51 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-02 00:16:51 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 00:16:51 - search_engines - INFO - Context prepared with 2 candidates, total length: 1047 chars
+2025-07-02 00:16:51 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 00:20:06 - search_engines - INFO - Performing LLM search for: python
+2025-07-02 00:20:06 - search_engines - INFO - Context size: 1
+2025-07-02 00:20:06 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-02 00:20:06 - search_engines - INFO - Retrieval limit: 1
+2025-07-02 00:20:07 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 00:20:07 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-02 00:20:07 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 00:20:07 - search_engines - INFO - Context prepared with 1 candidates, total length: 557 chars
+2025-07-02 00:20:07 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 00:24:48 - search_engines - INFO - Performing LLM search for: python
+2025-07-02 00:24:48 - search_engines - INFO - Context size: 2
+2025-07-02 00:24:48 - search_engines - INFO - Performing vector similarity search for: python
+2025-07-02 00:24:48 - search_engines - INFO - Retrieval limit: 2
+2025-07-02 00:24:49 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 00:24:49 - search_engines - INFO - Rank 1: ID: 683b0aba1aa118b254288b95, Score: 0.5465
+2025-07-02 00:24:49 - search_engines - INFO - Rank 2: ID: 683b0a6d1aa118b254288b78, Score: 0.5419
+2025-07-02 00:24:49 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 00:24:49 - search_engines - INFO - Context prepared with 2 candidates, total length: 1047 chars
+2025-07-02 00:24:49 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 23:04:43 - search_engines - INFO - Performing LLM search for: python developer
+2025-07-02 23:04:43 - search_engines - INFO - Context size: 5
+2025-07-02 23:04:43 - search_engines - INFO - Performing vector similarity search for: python developer
+2025-07-02 23:04:43 - search_engines - INFO - Retrieval limit: 5
+2025-07-02 23:04:43 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 23:04:43 - search_engines - INFO - Rank 1: ID: 683b0a9f1aa118b254288b80, Score: 0.6009
+2025-07-02 23:04:43 - search_engines - INFO - Rank 2: ID: 683b0a471aa118b254288b62, Score: 0.5938
+2025-07-02 23:04:43 - search_engines - INFO - Rank 3: ID: 683b0a6d1aa118b254288b78, Score: 0.5825
+2025-07-02 23:04:43 - search_engines - INFO - Rank 4: ID: 683d76f73aaa46236f0eaee9, Score: 0.5759
+2025-07-02 23:04:43 - search_engines - INFO - Rank 5: ID: 683b080c629dfdbe4a90ff90, Score: 0.5755
+2025-07-02 23:04:43 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 23:04:43 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 23:04:43 - search_engines - ERROR - Error during LLM search: 'Input to PromptTemplate is missing variables {\'\\n  "total_candidates"\'}.  Expected: [\'\\n  "total_candidates"\', \'context\', \'question\'] Received: [\'context\', \'question\']\nNote: if you intended {\n  "total_candidates"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "total_candidates"}}\'.'
+2025-07-02 23:24:00 - search_engines - INFO - Performing LLM search for: string
+2025-07-02 23:24:00 - search_engines - INFO - Context size: 5
+2025-07-02 23:24:00 - search_engines - INFO - Performing vector similarity search for: string
+2025-07-02 23:24:00 - search_engines - INFO - Retrieval limit: 5
+2025-07-02 23:24:06 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 23:24:06 - search_engines - INFO - Rank 1: ID: 683f1b84021110f8916bfdfd, Score: 0.6051
+2025-07-02 23:24:06 - search_engines - INFO - Rank 2: ID: 68402cfd43b377f5f7320ba5, Score: 0.6000
+2025-07-02 23:24:06 - search_engines - INFO - Rank 3: ID: 683b0b0d1aa118b254288ba2, Score: 0.5192
+2025-07-02 23:24:06 - search_engines - INFO - Rank 4: ID: 683b0a471aa118b254288b62, Score: 0.5161
+2025-07-02 23:24:06 - search_engines - INFO - Rank 5: ID: 683b0a6d1aa118b254288b78, Score: 0.5097
+2025-07-02 23:24:06 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 23:24:06 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 23:24:08 - search_engines - ERROR - Error during LLM search: model 'llama3.2:3b' not found (status code: 404)
+2025-07-02 23:24:28 - search_engines - INFO - Performing LLM search for: string
+2025-07-02 23:24:28 - search_engines - INFO - Context size: 5
+2025-07-02 23:24:28 - search_engines - INFO - Performing vector similarity search for: string
+2025-07-02 23:24:28 - search_engines - INFO - Retrieval limit: 5
+2025-07-02 23:24:30 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 23:24:30 - search_engines - INFO - Rank 1: ID: 683f1b84021110f8916bfdfd, Score: 0.6051
+2025-07-02 23:24:30 - search_engines - INFO - Rank 2: ID: 68402cfd43b377f5f7320ba5, Score: 0.6000
+2025-07-02 23:24:30 - search_engines - INFO - Rank 3: ID: 683b0b0d1aa118b254288ba2, Score: 0.5192
+2025-07-02 23:24:30 - search_engines - INFO - Rank 4: ID: 683b0a471aa118b254288b62, Score: 0.5161
+2025-07-02 23:24:30 - search_engines - INFO - Rank 5: ID: 683b0a6d1aa118b254288b78, Score: 0.5097
+2025-07-02 23:24:30 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 23:24:30 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 23:24:32 - search_engines - ERROR - Error during LLM search: model 'llama3.2:3b' not found (status code: 404)
+2025-07-02 23:24:51 - search_engines - INFO - Performing LLM search for: string
+2025-07-02 23:24:51 - search_engines - INFO - Context size: 5
+2025-07-02 23:24:51 - search_engines - INFO - Performing vector similarity search for: string
+2025-07-02 23:24:51 - search_engines - INFO - Retrieval limit: 5
+2025-07-02 23:24:57 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 23:24:57 - search_engines - INFO - Rank 1: ID: 683f1b84021110f8916bfdfd, Score: 0.6051
+2025-07-02 23:24:57 - search_engines - INFO - Rank 2: ID: 68402cfd43b377f5f7320ba5, Score: 0.6000
+2025-07-02 23:24:57 - search_engines - INFO - Rank 3: ID: 683b0b0d1aa118b254288ba2, Score: 0.5192
+2025-07-02 23:24:57 - search_engines - INFO - Rank 4: ID: 683b0a471aa118b254288b62, Score: 0.5161
+2025-07-02 23:24:57 - search_engines - INFO - Rank 5: ID: 683b0a6d1aa118b254288b78, Score: 0.5097
+2025-07-02 23:24:57 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 23:24:57 - search_engines - INFO - Invoking LLM for document analysis...
+2025-07-02 23:24:59 - search_engines - ERROR - Error during LLM search: model 'llama3.2:3b' not found (status code: 404)
+2025-07-02 23:39:56 - search_engines - INFO - Performing LLM search for: string
+2025-07-02 23:39:56 - search_engines - INFO - Context size: 5
+2025-07-02 23:39:56 - search_engines - INFO - Performing vector similarity search for: string
+2025-07-02 23:39:56 - search_engines - INFO - Retrieval limit: 5
+2025-07-02 23:39:56 - search_engines - INFO - === VECTOR SEARCH RESULTS ===
+2025-07-02 23:39:56 - search_engines - INFO - Rank 1: ID: 683f1b84021110f8916bfdfd, Score: 0.6051
+2025-07-02 23:39:56 - search_engines - INFO - Rank 2: ID: 68402cfd43b377f5f7320ba5, Score: 0.6000
+2025-07-02 23:39:56 - search_engines - INFO - Rank 3: ID: 683b0b0d1aa118b254288ba2, Score: 0.5192
+2025-07-02 23:39:56 - search_engines - INFO - Rank 4: ID: 683b0a471aa118b254288b62, Score: 0.5161
+2025-07-02 23:39:56 - search_engines - INFO - Rank 5: ID: 683b0a6d1aa118b254288b78, Score: 0.5097
+2025-07-02 23:39:56 - search_engines - INFO - === END OF RESULTS ===
+2025-07-02 23:39:56 - search_engines - INFO - Invoking LLM for document analysis...

@@ -1,0 +1,273 @@
+2025-07-01 21:33:36 - chain_manager - WARNING - No valid JSON structure found in cleaned text: }, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2...
+2025-07-01 21:33:36 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 22:11:28 - chain_manager - WARNING - No valid JSON structure found in cleaned text: 456766...
+2025-07-01 22:11:28 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 22:37:52 - chain_manager - WARNING - No valid JSON structure found in cleaned text: { "total_experience": 7.0,...
+2025-07-01 22:37:52 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 22:39:49 - chain_manager - WARNING - No valid JSON structure found in cleaned text: { "total_experience": 7.0,...
+2025-07-01 22:39:49 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 22:41:53 - chain_manager - WARNING - Text appears to be invalid: -...
+2025-07-01 22:41:53 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 23:08:37 - chain_manager - WARNING - Text appears to be invalid: 1...
+2025-07-01 23:08:37 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 23:13:17 - chain_manager - WARNING - Invalid AllMatchesResult structure, using fallback
+2025-07-01 23:14:47 - chain_manager - WARNING - Text appears to be invalid: -...
+2025-07-01 23:14:47 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 23:16:43 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-01 23:16:43 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+   "total_candidates": 1, 
+   "matches": [ 
+     { 
+       "_id": "683b0a9f1aa118b254288b80", 
+       "contact_details": { 
+           "name": "John Doe", 
+           "email": "john@example.,com" 
+        }, 
+        "skills": ["Python", "Machine Learning", "Django"], 
+        "total_experience": "5 years" 
+     } 
+   ] 
+}
+```
+
+Note: The JSON response is generated based on the provided candidates and job requirements.
+2025-07-01 23:16:43 - chain_manager - WARNING - Invalid AllMatchesResult structure, using fallback
+2025-07-01 23:18:19 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-01 23:18:19 - chain_manager - INFO - Raw LLM response (first 500 chars): -
+2025-07-01 23:18:19 - chain_manager - WARNING - Text appears to be invalid: -...
+2025-07-01 23:18:19 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 23:40:30 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-01 23:40:30 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+   "total_candidates": 1,
+   "matches": [
+      {
+         "_id": "683b0a9f1aa118b254288b80",
+         "contact_details": {
+            "name": "John Doe",
+            "email": "john@example. com"
+         },
+         "skills": ["Python", "Machine Learning", "Django"],
+         "total_experience": "5 years"
+      }
+   ]
+}
+```
+2025-07-01 23:40:30 - chain_manager - ERROR - JSON parsing failed: 2 validation errors for AllMatchesResult
+matches.0.relevance_score
+  Field required [type=missing, input_value={'_id': '683b0a9f1aa118b2..._experience': '5 years'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+matches.0.match_reason
+  Field required [type=missing, input_value={'_id': '683b0a9f1aa118b2..._experience': '5 years'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-07-01 23:40:30 - chain_manager - ERROR - Raw output: ```json
+{
+   "total_candidates": 1,
+   "matches": [
+      {
+         "_id": "683b0a9f1aa118b254288b80",
+         "contact_details": {
+            "name": "John Doe",
+            "email": "john@example. com"
+         },
+         "skills": ["Python", "Machine Learning", "Django"],
+         "total_experience": "5 years"
+      }
+   ]
+}
+```...
+2025-07-01 23:40:30 - chain_manager - INFO - Using fallback AllMatchesResult due to parsing error
+2025-07-01 23:43:05 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-01 23:43:05 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+   "total_candidates": 2, 
+   "matches": [ 
+      {
+         "_id": "683b0aba1aa118b254288b95", 
+         "name": "Rohit Agarwal", 
+         "total_experience": 10.0, 
+         "skills": [ 
+            "Sales Management", 
+            "CRM", 
+            "Lead Generation", 
+            "Negotiation", 
+            "Team Leadership", 
+            "Digital Marketing", 
+            "Customer Relationship", 
+            "Market Analysis" 
+         ], 
+         "may_also_known_skills": [ 
+  
+2025-07-01 23:43:05 - chain_manager - WARNING - JSON decode error after cleaning: Extra data: line 1 column 807 (char 806)
+2025-07-01 23:43:05 - chain_manager - WARNING - Problematic text: {   "total_candidates": 2,    "matches": [       {         "_id": "683b0aba1aa118b254288b95",          "name": "Rohit Agarwal",          "total_experience": 10.0,          "skills": [             "Sal...
+2025-07-01 23:43:05 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 23:49:43 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-01 23:49:43 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+   "total_candidates": 2, 
+   "matches": [
+      {
+         "_id": "683b0a9f1aa118b254288b80", 
+         "contact_details": { 
+            "name": "John Doe", 
+            "email": "john@example. com" 
+         }}, 
+         {
+          "_id": "683b0a471aa118b254288b62", 
+          "contact_details": { 
+            "name": "John Doe", 
+            "email": "john@example. com" 
+         }}, 
+         {
+          "_id": "683b0a9f1aa118b254288b80", 
+          "contact_details": { 
+       
+2025-07-01 23:49:43 - chain_manager - WARNING - JSON decode error after cleaning: Expecting ',' delimiter: line 1 column 2616 (char 2615)
+2025-07-01 23:49:43 - chain_manager - WARNING - Problematic text: {   "total_candidates": 2,    "matches": [      {         "_id": "683b0a9f1aa118b254288b80",          "contact_details": {             "name": "John Doe",             "email": "john@example. com"     ...
+2025-07-01 23:49:43 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-01 23:51:33 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-01 23:51:33 - chain_manager - INFO - Raw LLM response (first 500 chars): {
+   "total_candidates": 3, 
+   "matches": [
+      {
+         "_id": "683b0aba1aa118b254288b95", 
+         "name": "Rohit Agarwal", 
+         "total_experience": 10.0, 
+         "skills": [
+            "Sales Management", 
+            "CRM", 
+            "Lead Generation", 
+            "Negotiation", 
+            "Team Leadership", 
+            "Digital Marketing", 
+            "Customer Relationship", 
+            "Market Analysis" 
+         ], 
+         "may_also_known_skills": [
+            "
+2025-07-01 23:51:33 - chain_manager - WARNING - JSON decode error after cleaning: Extra data: line 1 column 803 (char 802)
+2025-07-01 23:51:33 - chain_manager - WARNING - Problematic text: {   "total_candidates": 3,    "matches": [      {         "_id": "683b0aba1aa118b254288b95",          "name": "Rohit Agarwal",          "total_experience": 10.0,          "skills": [            "Sales...
+2025-07-01 23:51:33 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-02 00:05:07 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:05:07 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+   "total_candidates": 2, 
+   "matches": [
+      {
+         "_id": "683b0a471aa118b254288b62", 
+         "name": "Anita Verma", 
+         "total_experience": 4.0, 
+         "skills": [
+            "Manual Testing", 
+            "Selenium", 
+            "TestNG", 
+            "JIRA", 
+            "API Testing", 
+            "Cypress", 
+            "Postman", 
+            "Jenkins" 
+         ], 
+         "may_also_known_skills": [
+            "Cypress", 
+            "Postman", 
+         
+2025-07-02 00:05:07 - chain_manager - WARNING - JSON decode error after cleaning: Extra data: line 1 column 709 (char 708)
+2025-07-02 00:05:07 - chain_manager - WARNING - Problematic text: {   "total_candidates": 2,    "matches": [      {         "_id": "683b0a471aa118b254288b62",          "name": "Anita Verma",          "total_experience": 4.0,          "skills": [            "Manual T...
+2025-07-02 00:05:07 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-02 00:09:46 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:09:46 - chain_manager - INFO - Raw LLM response (first 500 chars): {
+   "total_candidates": <count>, 
+   "matches": [ { "_id": "<exact_id_from_candidate>", "relevance_score": <0.0_...>, "match_reason": "<brief_reason>" } ] }
+}
+2025-07-02 00:09:46 - chain_manager - WARNING - JSON decode error after cleaning: Expecting value: line 1 column 25 (char 24)
+2025-07-02 00:09:46 - chain_manager - WARNING - Problematic text: {   "total_candidates": <count>,    "matches": [ { "_id": "<exact_id_from_candidate>", "relevance_score": <0.0_...>, "match_reason": "<brief_reason>" } ] }...
+2025-07-02 00:09:46 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-02 00:12:57 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:12:57 - chain_manager - INFO - Raw LLM response (first 500 chars): { "total_candidates": 3, "matches": [ { "_id": "683b0a9f1aa118b254288b80", "contact_details": { "name": "John Doe", "email": "john@example. com" } }, { "_id": "683b0c7ebe5d985554288b80", "contact_details": { "name": "Jane Doe", "email": "jane@example.com" } } }, { "_id": "683b0c7ebe5d985554288b80", "contact_details": { "name": "John Doe", "email": "john@example. com" } } ] }
+2025-07-02 00:12:57 - chain_manager - WARNING - JSON decode error after cleaning: Expecting ',' delimiter: line 1 column 261 (char 260)
+2025-07-02 00:12:57 - chain_manager - WARNING - Problematic text: { "total_candidates": 3, "matches": [ { "_id": "683b0a9f1aa118b254288b80", "contact_details": { "name": "John Doe", "email": "john@example. com" } }, { "_id": "683b0c7ebe5d985554288b80", "contact_deta...
+2025-07-02 00:12:57 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-02 00:14:08 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:14:08 - chain_manager - INFO - Raw LLM response (first 500 chars): {
+   "total_candidates": <count>, 
+   "matches": [ 
+     { 
+       "_id": "<exact_id_from_candidate>", 
+       "relevance_score": <0.0_...>, 
+       "match_reason": "<brief_...>" 
+     } 
+   ] 
+}
+2025-07-02 00:14:08 - chain_manager - WARNING - JSON decode error after cleaning: Expecting value: line 1 column 25 (char 24)
+2025-07-02 00:14:08 - chain_manager - WARNING - Problematic text: {   "total_candidates": <count>,    "matches": [      {        "_id": "<exact_id_from_candidate>",        "relevance_score": <0.0_...>,        "match_reason": "<brief_...>"      }    ] }...
+2025-07-02 00:14:08 - chain_manager - WARNING - LLM returned empty response, using fallback for AllMatchesResult
+2025-07-02 00:16:51 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:16:51 - chain_manager - INFO - Raw LLM response (first 500 chars): {"total_candidates": 2, "matches": [{"_id": "actual_candidate_1_id", "relevance_score": 0.9, "match_reason": "Python expert"}, {"_id": "actual_candidate_2_id", "relevance_score": 0.3, "match_reason": "No Python skills"}]}
+2025-07-02 00:17:36 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:17:36 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+   "_id":  "actual_candidate_id", 
+   "relevance_score": 0.8, 
+   "match_reason":  "specific reason"}
+]
+```
+
+This is the actual JSON format with real values.
+2025-07-02 00:17:36 - chain_manager - WARNING - Invalid AllMatchesResult structure, using fallback
+2025-07-02 00:21:54 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:21:54 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+   "_id":  "683b0aba1aa118b254288b95", 
+   "name":  "Rohit Agarwal", 
+   "total_experience": 10.0, 
+   "skills":  [ 
+     "Sales Management", 
+     "CRM", 
+     "Lead Generation", 
+     "Negotiation", 
+     "Team Leadership", 
+     "Digital Marketing", 
+     "Customer Relationship", 
+     "Market Analysis" 
+   ], 
+   "may_also_known_skills":  [ 
+     "Digital Marketing", 
+     "Customer Relationship", 
+     "Market Analysis" 
+   ], 
+   "labels":  [ 
+     "Sales Management", 
+     "Busi
+2025-07-02 00:21:54 - chain_manager - WARNING - Invalid AllMatchesResult structure, using fallback
+2025-07-02 00:24:48 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 00:24:48 - chain_manager - INFO - Raw LLM response (first 500 chars): ```json
+{
+  "total_candidates": 2,
+  "matches": [
+    {
+      "_id": "683b0a9f1aa118b254288b80",
+      "relevance_score": 0.9,
+      "match_reason": "Strong Python skills"
+    }
+  ]
+}
+```
+2025-07-02 23:43:06 - chain_manager - INFO - Raw LLM response type: <class 'str'>
+2025-07-02 23:43:06 - chain_manager - INFO - Raw LLM response (first 500 chars): {
+  "total_candidates": 4,
+  "matches": [
+    {
+      "_id": "683b0a471aa118b254288b62",
+      "relevance_score": 0.8,
+      "match_reason": "Relevant skills in Manual Testing, Selenium, and TestNG"
+    },
+    {
+      "_id": "683b0a6d1aa118b254288b78",
+      "relevance_score": 0.9,
+      "match_reason": "Excellent match with Data Scientist role and relevant experience"
+    },
+    {
+      "_id": "683b0b0d1aa118b254288ba2",
+      "relevance_score": 0.6,
+      "match_reason": "Some relevant skills 

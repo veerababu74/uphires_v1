@@ -6,7 +6,8 @@ from .models import BestMatchResult, AllMatchesResult
 from .config import RAGConfig
 import json
 import re
-from typing import Any
+from typing import Any, Type
+from pydantic import Field
 from core.custom_logger import CustomLogger
 
 logger = CustomLogger().get_logger("chain_manager")
@@ -15,9 +16,10 @@ logger = CustomLogger().get_logger("chain_manager")
 class RobustJsonOutputParser(BaseOutputParser):
     """Custom JSON parser that can handle malformed LLM output"""
 
-    def __init__(self, pydantic_object):
-        super().__init__()
-        self._pydantic_object = pydantic_object
+    def __init__(self, pydantic_object=None, **kwargs):
+        super().__init__(**kwargs)
+        # Store the pydantic object using object.__setattr__ to bypass Pydantic validation
+        object.__setattr__(self, "_pydantic_object", pydantic_object)
 
     @property
     def pydantic_object(self):
@@ -27,12 +29,19 @@ class RobustJsonOutputParser(BaseOutputParser):
     def parse(self, text: str) -> Any:
         """Parse LLM output with robust JSON cleaning"""
         try:
+            # Log the raw input for debugging
+            logger.info(f"Raw LLM response type: {type(text)}")
+            logger.info(f"Raw LLM response (first 500 chars): {str(text)[:500]}")
+
             # First try normal JSON parsing if it's already a dict
             if isinstance(text, dict):
                 return self.pydantic_object(**text)
 
             # Handle AIMessage objects from LangChain
             if hasattr(text, "content"):
+                logger.info(
+                    f"Extracting content from AIMessage: {text.content[:200]}..."
+                )
                 text = text.content
 
             # Clean the text from common LLM output issues
@@ -88,6 +97,11 @@ class RobustJsonOutputParser(BaseOutputParser):
                 logger.warning("Empty LLM output received")
                 return "{}"
 
+            # Handle single character responses (like "-")
+            if len(text.strip()) <= 2:
+                logger.warning(f"Text appears to be invalid: {text}...")
+                return "{}"
+
             # Log the raw output for debugging (first 200 chars)
             logger.debug(f"Raw LLM output: {str(text)[:200]}...")
 
@@ -96,6 +110,59 @@ class RobustJsonOutputParser(BaseOutputParser):
 
             # Remove all occurrences of ```json and ``` markers aggressively
             # This handles cases where LLM outputs hundreds of repeated markers
+            text = re.sub(r"```json\s*", "", text, flags=re.IGNORECASE | re.MULTILINE)
+            text = re.sub(r"```\s*", "", text, flags=re.IGNORECASE | re.MULTILINE)
+
+            # Remove any leading/trailing non-JSON text
+            # Find the first { and last }
+            start_idx = text.find("{")
+            end_idx = text.rfind("}")
+
+            if start_idx == -1 or end_idx == -1:
+                logger.warning("No JSON braces found in response")
+                return "{}"
+
+            text = text[start_idx : end_idx + 1]
+
+            # Remove any trailing explanation text after JSON
+            # Split by newlines and take only lines that look like JSON
+            lines = text.split("\n")
+            json_lines = []
+            json_started = False
+            brace_count = 0
+
+            for line in lines:
+                if "{" in line or json_started:
+                    json_started = True
+                    json_lines.append(line)
+                    brace_count += line.count("{") - line.count("}")
+                    if json_started and brace_count <= 0:
+                        break
+
+            if json_lines:
+                text = "\n".join(json_lines)
+
+            # Clean up common JSON formatting issues
+            text = re.sub(r",(\s*[}\]])", r"\1", text)  # Remove trailing commas
+            text = re.sub(
+                r"[\x00-\x1f\x7f-\x9f]", "", text
+            )  # Remove control characters
+            text = re.sub(r"\\n", "", text)  # Remove escaped newlines
+
+            # Final validation - try to parse to ensure it's valid JSON
+            try:
+                parsed = json.loads(text)
+                logger.debug("Successfully parsed cleaned JSON")
+                return text
+            except json.JSONDecodeError as jde:
+                logger.warning(f"JSON decode error after cleaning: {jde}")
+                logger.warning(f"Problematic text: {text[:200]}...")
+                return "{}"
+
+        except Exception as e:
+            logger.error(f"Error cleaning LLM output: {e}")
+            logger.error(f"Original text sample: {str(text)[:200]}...")
+            return "{}"
             text = re.sub(
                 r"```json", "", original_text, flags=re.IGNORECASE | re.MULTILINE
             )
@@ -103,7 +170,7 @@ class RobustJsonOutputParser(BaseOutputParser):
 
             # Remove common LLM output prefixes/suffixes
             text = re.sub(
-                r"^(Here's|Here is|The result is|Result:|Response:).*?[:\n]",
+                r"^(Here's|Here is|The result is|Result:|Response:|JSON Response:).*?[:\n]",
                 "",
                 text,
                 flags=re.IGNORECASE | re.MULTILINE,
@@ -120,21 +187,23 @@ class RobustJsonOutputParser(BaseOutputParser):
                 logger.warning("Text empty after cleaning markdown markers")
                 return "{}"
 
-            # Check if the entire text is just repeated markers (no actual content)
-            if (
-                len(text) < 5 or text.count("j") > len(text) * 0.3
-            ):  # Too many 'j' chars suggests repeated "```json"
-                logger.warning("Text appears to be mostly repeated markers")
+            # Check if the entire text is just repeated markers or numbers
+            if len(text) < 5 or re.match(r"^[\d\s,]+$", text):
+                logger.warning(f"Text appears to be invalid: {text[:50]}...")
                 return "{}"
 
             # Try to find JSON object boundaries with greedy matching
-            json_match = re.search(r"(\{.*\})", text, re.DOTALL)
+            json_match = re.search(
+                r"(\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\})", text, re.DOTALL
+            )
             if json_match:
                 text = json_match.group(1)
                 logger.debug(f"Found JSON object: {text[:100]}...")
             else:
                 # If no JSON object found, check for array
-                json_array_match = re.search(r"(\[.*\])", text, re.DOTALL)
+                json_array_match = re.search(
+                    r"(\[[^\[\]]*(?:\[[^\[\]]*\][^\[\]]*)*\])", text, re.DOTALL
+                )
                 if json_array_match:
                     text = json_array_match.group(1)
                     logger.debug(f"Found JSON array: {text[:100]}...")
@@ -169,18 +238,18 @@ class RobustJsonOutputParser(BaseOutputParser):
 
     def get_format_instructions(self) -> str:
         """Get format instructions for the LLM"""
-        if self._pydantic_object == AllMatchesResult:
+        if self.pydantic_object == AllMatchesResult:
             return """Return a valid JSON object with this exact structure:
-{
+{{
   "total_candidates": <number>,
   "matches": [
-    {
+    {{
       "_id": "<mongodb_id>",
       "relevance_score": <float_between_0_and_1>,
       "match_reason": "<explanation>"
-    }
+    }}
   ]
-}
+}}
 
 IMPORTANT: 
 - Return ONLY the JSON object, no additional text or markdown formatting
@@ -201,7 +270,7 @@ IMPORTANT:
 class ChainManager:
     """Manages LangChain chains for RAG operations"""
 
-    def __init__(self, llm: ChatGroq | OllamaLLM):
+    def __init__(self, llm: OllamaLLM | ChatGroq):
         self.llm = llm
         self.retrieval_chain = None
         self.ranking_chain = None
@@ -214,35 +283,34 @@ class ChainManager:
 
     def _setup_retrieval_chain(self):
         """Setup the retrieval chain for best match"""
-        prompt_template_text = """You are an assistant analyzing candidate resume data to find the best match for a query.
-First, analyze if the query is relevant to candidate matching or job description analysis:
+        prompt_template_text = """You are an AI assistant specialized in analyzing candidate resumes to find the best match for job requirements.
 
-1. If the query is about finding candidates based on job description:
-   - Validate if the job description is relevant and contains specific requirements
-   - If job description is too vague or irrelevant, return "no_match_found"
-   - Focus on matching technical skills, experience, and qualifications
+TASK: Analyze the provided candidate data and identify the single best matching candidate for the given query.
 
-2. If the query is about specific candidate information:
-   - Validate if the query is relevant to candidate data
-   - If query is irrelevant or not related to candidate information, return "no_match_found"
-   - Focus on matching specific candidate attributes
+INSTRUCTIONS:
+1. Carefully read the user's query/job requirements
+2. Compare each candidate against the requirements
+3. Consider: technical skills, experience level, domain expertise, education
+4. Return ONLY the MongoDB '_id' of the best matching candidate
 
-3. If the query is irrelevant or not related to either:
-   - Return "no_match_found" with explanation
+VALIDATION RULES:
+- If the query is too vague or irrelevant, return: {{"_id": "no_match_found"}}
+- If no candidates match the requirements, return: {{"_id": "no_match_found"}}
+- Always return valid JSON format
 
-Based on the user's question and the following candidate data snippets, identify the single best matching candidate.
-Return ONLY the MongoDB '_id' of the best matching candidate in JSON format.
+IMPORTANT OUTPUT RULES:
+- Response must be ONLY valid JSON
+- No explanations, no markdown, no code blocks
+- Must be exactly this format: {{"_id": "some_id_here"}}
 
 {format_instructions}
 
-Candidate Data Snippets:
----
+CANDIDATE DATA:
 {context}
----
 
-User Question: {question}
+QUERY: {question}
 
-Best Matching Candidate:"""
+JSON RESPONSE:"""
 
         output_parser = RobustJsonOutputParser(pydantic_object=BestMatchResult)
         prompt = PromptTemplate(
@@ -256,56 +324,52 @@ Best Matching Candidate:"""
 
     def _setup_ranking_chain(self):
         """Setup the ranking chain for all matches"""
-        ranking_prompt_template = """You are an expert AI recruiter analyzing candidate resumes to rank ALL candidates based on their relevance to a specific search query.
+        ranking_prompt_template = """You are an AI recruiter ranking candidates for a job position.
 
-First, validate the query type and relevance:
+TASK: Analyze ALL candidates and rank them by relevance to the job requirements.
 
-1. For Job Description Based Queries:
-   - Check if the job description is specific and relevant
-   - If job description is vague or irrelevant, return empty matches
-   - Focus on matching technical requirements, experience, and qualifications
+CRITICAL: Return ONLY a JSON object with this EXACT structure - no explanations, no extra text:
 
-2. For Candidate Information Queries:
-   - Verify if the query is related to candidate data
-   - If query is irrelevant to candidate information, return empty matches
-   - Focus on matching specific candidate attributes
+{{
+  "total_candidates": <number_of_candidates>,
+  "matches": [
+    {{
+      "_id": "<candidate_mongodb_id>",
+      "relevance_score": <decimal_between_0_and_1>,
+      "match_reason": "<brief_explanation>"
+    }}
+  ]
+}}
 
-3. For Irrelevant Queries:
-   - Return empty matches with explanation
+SCORING CRITERIA (0.0 to 1.0):
+- 1.0: Perfect match (all requirements met)
+- 0.8-0.9: Excellent match (most requirements met)  
+- 0.6-0.7: Good match (some requirements met)
+- 0.4-0.5: Partial match (related experience)
+- 0.1-0.3: Weak match (minimal relevance)
+- 0.0: No match (no relevant experience)
 
-CRITICAL INSTRUCTIONS:
-1. You MUST analyze EVERY single candidate document provided in the context (separated by ---DOCUMENT_SEPARATOR---)
-2. Score each candidate from 0.0 to 1.0 based on how well they match the query:
-   - 1.0 = Perfect match (has all required skills/experience exactly)
-   - 0.8-0.9 = Excellent match (has most required skills/experience with good alignment)
-   - 0.6-0.7 = Good match (has some required skills/experience with decent alignment)
-   - 0.4-0.5 = Partial match (has related skills/experience with some relevance)
-   - 0.1-0.3 = Weak match (minimal relevance, few matching criteria)
-   - 0.0 = No match (no relevant skills or experience)
-3. Provide a clear, specific reason for each score explaining WHY this candidate matches or doesn't match
-4. Return ALL candidates ranked by relevance score (highest first)
-5. Do not skip any candidates - analyze every single one provided
+INSTRUCTIONS:
+1. Analyze EVERY candidate provided in the context
+2. Extract only the "_id" field from each candidate
+3. Score each candidate (0.0-1.0) based on job relevance
+4. Keep match_reason under 15 words
+5. Return ALL candidates in the matches array
 
-Consider these factors when scoring (in order of importance):
-- Technical skills match (programming languages, frameworks, tools, technologies)
-- Experience level and years of experience matching requirements
-- Industry/domain experience relevance
-- Educational background relevance (degrees, certifications)
-- Specific project/work experience alignment
-- Notice period and availability
-- Salary expectations alignment
-- Geographic location/work preferences
+CRITICAL OUTPUT RULES:
+- Response must be ONLY valid JSON (no markdown, no code blocks)
+- Use "_id" field exactly as provided in candidate data
+- Scores must be decimal numbers (e.g., 0.8, not "0.8")
+- Include ALL candidates in matches array
 
 {format_instructions}
 
-Search Query: {question}
+JOB REQUIREMENTS: {question}
 
-ALL Candidate Documents to Analyze:
----
+CANDIDATES:
 {context}
----
 
-Now analyze and rank EVERY SINGLE candidate above:"""
+JSON RESPONSE:"""
 
         ranking_output_parser = RobustJsonOutputParser(pydantic_object=AllMatchesResult)
         ranking_prompt = PromptTemplate(

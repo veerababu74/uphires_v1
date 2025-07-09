@@ -1,0 +1,9 @@
+2025-07-01 21:00:31 - rag_search - ERROR - LLM context search failed: "RobustJsonOutputParser" object has no field "_pydantic_object"
+2025-07-01 21:15:19 - rag_search - ERROR - LLM context search failed: 
+2025-07-02 23:04:43 - rag_search - ERROR - LLM context search failed: 
+2025-07-02 23:14:19 - rag_search - ERROR - LLM context search failed: 1 validation error for PromptTemplate
+__root__
+  Single '}' encountered in format string (type=value_error)
+2025-07-02 23:24:08 - rag_search - ERROR - LLM context search failed: 
+2025-07-02 23:24:32 - rag_search - ERROR - LLM context search failed: 
+2025-07-02 23:24:59 - rag_search - ERROR - LLM context search failed: 

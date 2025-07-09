@@ -1,0 +1,6 @@
+2025-07-02 23:32:29 - rag_fallback_test - INFO - ============================================================
+2025-07-02 23:32:29 - rag_fallback_test - INFO - Testing RAG Model Fallback Logic
+2025-07-02 23:32:29 - rag_fallback_test - INFO - ============================================================
+2025-07-02 23:32:29 - rag_fallback_test - INFO - Initializing RAG application...
+2025-07-02 23:32:36 - rag_fallback_test - INFO - LLM model type: OllamaLLM
+2025-07-02 23:32:36 - rag_fallback_test - INFO - Using model: llama3.2:3b

@@ -25,15 +25,20 @@ class RAGConfig:
     VECTOR_FIELD = "combined_resume_vector"
     INDEX_NAME = "vector_search_index"
 
-    # LLM Configuration
-    GROQ_API_KEY = AppConfig.GROQ_API_KEY
-    LLM_MODEL = "gemma2-9b-it"
-    LLM_TEMPERATURE = 0.0
-
-    # ollama Configuration
+    # LLM Configuration - Now uses centralized LLM config
+    # These are kept for backward compatibility and fallback scenarios
     OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434")
-    OLLAMA_MODEL = "gemma2-9b-it"
-    OLLAMA_TEMPERATURE = 0.0
+    OLLAMA_MODEL = os.getenv("OLLAMA_PRIMARY_MODEL", "llama3.2:3b")
+    OLLAMA_BACKUP_MODEL = os.getenv("OLLAMA_BACKUP_MODEL", "qwen2.5:3b")
+    OLLAMA_FALLBACK_MODEL = os.getenv("OLLAMA_FALLBACK_MODEL", "qwen:4b")
+    OLLAMA_TEMPERATURE = float(os.getenv("OLLAMA_TEMPERATURE", "0.0"))
+    OLLAMA_TIMEOUT = int(os.getenv("OLLAMA_REQUEST_TIMEOUT", "60"))
+    OLLAMA_REQUEST_TIMEOUT = int(os.getenv("OLLAMA_REQUEST_TIMEOUT", "60"))
+
+    # Groq Configuration (Legacy - use centralized config instead)
+    GROQ_API_KEY = AppConfig.GROQ_API_KEY
+    LLM_MODEL = os.getenv("GROQ_PRIMARY_MODEL", "gemma2-9b-it")
+    LLM_TEMPERATURE = float(os.getenv("GROQ_TEMPERATURE", "0.0"))
 
     # Performance Limits
     MAX_CONTEXT_LENGTH = 8000

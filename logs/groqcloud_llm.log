@@ -1,0 +1,134 @@
+2025-07-02 23:01:32 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:01:36 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:01:38 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:01:38 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:01:38 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:01:55 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:01:59 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:02:01 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:02:01 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:02:02 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:02:22 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:02:26 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:02:28 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:02:28 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:02:29 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:02:46 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:02:50 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:02:52 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:02:52 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:02:53 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:07:28 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:07:32 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:07:34 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:07:34 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:07:35 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:07:51 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:07:55 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:07:57 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:07:57 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:07:58 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:09:17 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:09:21 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:09:23 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:09:23 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:09:24 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:09:42 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:09:46 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:09:48 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:09:48 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:09:49 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:10:01 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:10:06 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:10:08 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:10:08 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:10:08 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:12:44 - groqcloud_llm - INFO - Successfully processed resume using Ollama qwen:4b
+2025-07-02 23:19:20 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:19:24 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:19:26 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:19:26 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:19:27 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:19:39 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:19:43 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:19:46 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:19:46 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:19:46 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:20:06 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:20:10 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:20:12 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:20:12 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:20:14 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:20:16 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:20:20 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:20:23 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:20:23 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:20:24 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:20:25 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:20:29 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:20:31 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:20:31 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:20:32 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:20:33 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:20:37 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:20:39 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:20:39 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:20:40 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:20:49 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:20:53 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:20:55 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:20:55 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:20:56 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:20:56 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:21:00 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:21:02 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:21:02 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:21:03 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:21:11 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:21:11 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:21:15 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:21:15 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:21:17 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:21:17 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:21:17 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:21:17 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:21:18 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:21:18 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:21:37 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:21:41 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:21:42 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:21:43 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:21:43 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:21:44 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:21:46 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:21:48 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:21:48 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:21:48 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:22:03 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:22:06 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:22:07 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:22:09 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:22:09 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:22:09 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:22:10 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:22:12 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:22:12 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:22:12 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:22:26 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:22:30 - groqcloud_llm - WARNING - llama3.2:3b not found.
+2025-07-02 23:22:32 - groqcloud_llm - INFO - Available models: ['qwen:4b']
+2025-07-02 23:22:32 - groqcloud_llm - INFO - Using fallback model: qwen:4b
+2025-07-02 23:22:32 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:37:55 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:38:00 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:38:16 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:38:21 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:38:30 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:38:35 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:38:46 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:38:51 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:39:09 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:39:13 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:39:23 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
+2025-07-02 23:39:28 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
+2025-07-02 23:46:05 - groqcloud_llm - INFO - Successfully processed resume using Ollama llama3.2:3b

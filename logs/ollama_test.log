@@ -1,0 +1,27 @@
+2025-07-01 21:35:39 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7
+2025-07-01 21:36:25 - ollama_test - INFO - Received question: What is Python programming language?
+2025-07-01 21:36:25 - ollama_test - INFO - Using model: qwen:4b, temperature: 0.7
+2025-07-01 21:36:26 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7
+2025-07-01 21:36:26 - ollama_test - INFO - Generating response from Ollama...
+2025-07-01 21:36:32 - ollama_test - INFO - Response generated in 7.28 seconds
+2025-07-01 21:39:15 - ollama_test - INFO - Chat request: Tell me a joke about programming
+2025-07-01 21:39:16 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7
+2025-07-01 21:48:48 - ollama_test - INFO - Received question: hello
+2025-07-01 21:48:48 - ollama_test - INFO - Using model: qwen:4b, temperature: 0.7
+2025-07-01 21:48:48 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7
+2025-07-01 21:48:48 - ollama_test - INFO - Generating response from Ollama...
+2025-07-01 21:48:57 - ollama_test - INFO - Response generated in 9.26 seconds
+2025-07-01 21:54:13 - ollama_test - INFO - Chat request: hello tell me a joke
+2025-07-01 21:54:14 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7
+2025-07-01 22:21:07 - ollama_test - INFO - Received question: What is Python? Please respond in one sentence.
+2025-07-01 22:21:07 - ollama_test - INFO - Using model: qwen:4b, temperature: 0.7
+2025-07-01 22:21:07 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7
+2025-07-01 22:21:07 - ollama_test - INFO - Generating response from Ollama...
+2025-07-01 22:21:18 - ollama_test - INFO - Response generated in 11.17 seconds
+2025-07-01 22:26:13 - ollama_test - INFO - Received question: What is Python? Please respond in one sentence.
+2025-07-01 22:26:13 - ollama_test - INFO - Using model: qwen:4b, temperature: 0.7
+2025-07-01 22:26:14 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7
+2025-07-01 22:26:14 - ollama_test - INFO - Generating response from Ollama...
+2025-07-01 22:26:17 - ollama_test - INFO - Response generated in 3.97 seconds
+2025-07-01 22:35:10 - ollama_test - INFO - Chat request: hi
+2025-07-01 22:35:10 - ollama_test - INFO - Ollama LLM initialized with model: qwen:4b, temperature: 0.7

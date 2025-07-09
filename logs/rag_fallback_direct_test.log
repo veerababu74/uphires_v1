@@ -1,0 +1,41 @@
+2025-07-02 23:34:14 - rag_fallback_direct_test - INFO - ============================================================
+2025-07-02 23:34:14 - rag_fallback_direct_test - INFO - Testing RAG _initialize_ollama_with_fallback Method
+2025-07-02 23:34:14 - rag_fallback_direct_test - INFO - ============================================================
+2025-07-02 23:34:21 - rag_fallback_direct_test - INFO - Primary model configured: llama3.2:3b
+2025-07-02 23:34:21 - rag_fallback_direct_test - INFO - Backup model configured: qwen2.5:3b
+2025-07-02 23:34:21 - rag_fallback_direct_test - INFO - Fallback model configured: qwen:4b
+2025-07-02 23:34:24 - rag_fallback_direct_test - INFO - Available models: ['llama3.2:3b', 'qwen:4b']
+2025-07-02 23:34:24 - rag_fallback_direct_test - INFO - 
+--- Testing fallback method ---
+2025-07-02 23:34:26 - rag_fallback_direct_test - INFO - Fallback method succeeded!
+2025-07-02 23:34:26 - rag_fallback_direct_test - INFO - Selected model: llama3.2:3b
+2025-07-02 23:34:26 - rag_fallback_direct_test - INFO - LLM type: OllamaLLM
+2025-07-02 23:34:26 - rag_fallback_direct_test - INFO - Result: Used primary model
+2025-07-02 23:34:26 - rag_fallback_direct_test - INFO - 
+============================================================
+2025-07-02 23:34:26 - rag_fallback_direct_test - INFO - Testing Model Selection Logic
+2025-07-02 23:34:26 - rag_fallback_direct_test - INFO - ============================================================
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - 
+Scenario: Primary model available
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Available models: ['llama3.2:3b', 'llama3.2:3b', 'qwen:4b']
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Would select: Primary model
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Expected: llama3.2:3b, Got: llama3.2:3b
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - PASS
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - 
+Scenario: Only backup model available
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Available models: ['qwen2.5:3b', 'other:model']
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Would select: Backup model
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Expected: qwen2.5:3b, Got: qwen2.5:3b
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - PASS
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - 
+Scenario: Only fallback model available
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Available models: ['qwen:4b', 'other:model']
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Would select: Fallback model
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Expected: qwen:4b, Got: qwen:4b
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - PASS
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - 
+Scenario: Only qwen models available
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Available models: ['qwen:1.8b', 'qwen:7b', 'other:model']
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Would select: First available qwen model (qwen:1.8b)
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - Expected: qwen:1.8b, Got: qwen:1.8b
+2025-07-02 23:34:28 - rag_fallback_direct_test - INFO - PASS

@@ -16,11 +16,11 @@ numpy==1.24.3
 torch==2.1.0
 transformers==4.35.0
 
-# LangChain dependencies (updated versions that work together)
-langchain-groq==0.2.0
-langchain-core>=0.3,<0.4
+# LangChain dependencies (compatible versions)
+langchain-groq==0.1.9
+langchain-core==0.2.40
 langchain==0.2.16
-langsmith>=0.3,<0.4
+langsmith==0.1.98
 
 # Utility dependencies
 python-multipart==0.0.6
@@ -30,7 +30,7 @@ typing-extensions>=4.12.2
 # Web server for production
 gunicorn==21.2.0
 
-# Data validation (compatible with Python 3.12)
-pydantic>=2.0,<3.0
+# Data validation (compatible with langchain packages)
+pydantic>=1.10,<3.0
 
-langchain-ollama
+langchain-ollama==0.1.3

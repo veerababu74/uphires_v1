@@ -29,8 +29,11 @@ class AppConfig:
     # Logging Configuration
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
-    # Groq API Configuration
+    # Legacy Groq API Configuration (for backward compatibility)
     GROQ_API_KEY = os.getenv("GROQ_API_KEYS", "").split(",")[0].strip()
+
+    # LLM Provider Configuration
+    LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama").lower()
 
     @classmethod
     def is_atlas_search_enabled(cls) -> bool:
@@ -62,6 +65,15 @@ class AppConfig:
                 cls.MONGODB_URI and "mongodb.net" in cls.MONGODB_URI
             ),
             "log_level": cls.LOG_LEVEL,
+            "llm_provider": cls.LLM_PROVIDER,
+        }
+
+    @classmethod
+    def get_llm_info(cls) -> dict:
+        """Get LLM configuration information"""
+        return {
+            "provider": cls.LLM_PROVIDER,
+            "groq_api_key_configured": bool(cls.GROQ_API_KEY),
         }
 
 

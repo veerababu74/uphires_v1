@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama Testing Interface</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            background-color: #f8f9fa;
+        }
+        .error {
+            border-left-color: #dc3545;
+            background-color: #f8d7da;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+        }
+        .meta-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .quick-buttons {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .quick-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            width: auto;
+        }
+        .quick-btn:hover {
+            background-color: #1e7e34;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .status-healthy { background-color: #28a745; }
+        .status-unhealthy { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Ollama Testing Interface</h1>
+        
+        <div id="status" style="text-align: center; margin-bottom: 20px;">
+            <span id="status-indicator" class="status-indicator"></span>
+            <span id="status-text">Checking Ollama status...</span>
+        </div>
+
+        <div class="quick-buttons">
+            <button class="quick-btn" onclick="setQuestion('What is artificial intelligence?')">AI Question</button>
+            <button class="quick-btn" onclick="setQuestion('Explain Python programming')">Python Question</button>
+            <button class="quick-btn" onclick="setQuestion('Tell me a joke')">Joke</button>
+            <button class="quick-btn" onclick="setQuestion('What is machine learning?')">ML Question</button>
+            <button class="quick-btn" onclick="setQuestion('Write a haiku about coding')">Creative</button>
+        </div>
+
+        <form id="questionForm">
+            <div class="form-group">
+                <label for="question">Your Question:</label>
+                <textarea id="question" placeholder="Ask anything you want to know..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="model">Model:</label>
+                <select id="model">
+                    <option value="qwen:4b">Qwen 4B</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="temperature">Temperature (0.0 - 1.0):</label>
+                <input type="number" id="temperature" min="0" max="1" step="0.1" value="0.7">
+            </div>
+            
+            <button type="submit" id="submitBtn">Ask Ollama</button>
+        </form>
+
+        <div id="response" style="display: none;"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:8000/api';
+        
+        // Check Ollama status on page load
+        checkOllamaStatus();
+        loadAvailableModels();
+
+        // Form submission
+        document.getElementById('questionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await askOllama();
+        });
+
+        function setQuestion(text) {
+            document.getElementById('question').value = text;
+        }
+
+        async function checkOllamaStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/ollama/health`);
+                const data = await response.json();
+                
+                const indicator = document.getElementById('status-indicator');
+                const statusText = document.getElementById('status-text');
+                
+                if (data.success && data.status === 'healthy') {
+                    indicator.className = 'status-indicator status-healthy';
+                    statusText.textContent = 'Ollama is running and healthy';
+                } else {
+                    indicator.className = 'status-indicator status-unhealthy';
+                    statusText.textContent = 'Ollama is not responding';
+                }
+            } catch (error) {
+                const indicator = document.getElementById('status-indicator');
+                const statusText = document.getElementById('status-text');
+                indicator.className = 'status-indicator status-unhealthy';
+                statusText.textContent = 'Cannot connect to API';
+            }
+        }
+
+        async function loadAvailableModels() {
+            try {
+                const response = await fetch(`${API_BASE}/ollama/models`);
+                const data = await response.json();
+                
+                if (data.success && data.models.length > 0) {
+                    const modelSelect = document.getElementById('model');
+                    modelSelect.innerHTML = '';
+                    
+                    data.models.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model;
+                        option.textContent = model;
+                        modelSelect.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to load models:', error);
+            }
+        }
+
+        async function askOllama() {
+            const question = document.getElementById('question').value;
+            const model = document.getElementById('model').value;
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const submitBtn = document.getElementById('submitBtn');
+            const responseDiv = document.getElementById('response');
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Thinking...';
+            responseDiv.style.display = 'block';
+            responseDiv.className = 'response';
+            responseDiv.innerHTML = '<div class="loading">🤔 Ollama is thinking...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/ollama/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        question: question,
+                        model: model,
+                        temperature: temperature
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    responseDiv.innerHTML = `
+                        <strong>Response:</strong><br>
+                        ${data.response.replace(/\n/g, '<br>')}
+                        <div class="meta-info">
+                            <strong>Model:</strong> ${data.model} | 
+                            <strong>Response Time:</strong> ${data.response_time_seconds}s | 
+                            <strong>Timestamp:</strong> ${data.timestamp}
+                        </div>
+                    `;
+                } else {
+                    responseDiv.className = 'response error';
+                    responseDiv.innerHTML = `
+                        <strong>Error:</strong><br>
+                        ${data.error || 'Unknown error occurred'}
+                    `;
+                }
+            } catch (error) {
+                responseDiv.className = 'response error';
+                responseDiv.innerHTML = `
+                    <strong>Network Error:</strong><br>
+                    ${error.message}
+                `;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Ask Ollama';
+            }
+        }
+    </script>
+</body>
+</html>

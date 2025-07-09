@@ -514,12 +514,6 @@ async def initialize_application_startup():
         # Create AI saved search collection indexes
         await create_ai_saved_search_indexes(ai_saved_searches_collection)
 
-        # Create AI recent search collection indexes
-        await create_ai_recent_search_indexes(ai_recent_search_collection)
-
-        # Create AI saved search collection indexes
-        await create_ai_saved_search_indexes(ai_saved_searches_collection)
-
         logger.info("Application startup completed successfully!")
 
         return search_index_manager, True

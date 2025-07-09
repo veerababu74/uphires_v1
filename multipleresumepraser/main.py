@@ -1,246 +1,454 @@
 import os
 import json
 import re
-from typing import List, Dict
+import time
+from typing import List, Dict, Optional
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from langchain_groq import ChatGroq
 from langchain_ollama import ChatOllama, OllamaLLM
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
+from pydantic import BaseModel, EmailStr, HttpUrl
+
+# Import core configuration and logging
+from core.config import config
+from core.custom_logger import CustomLogger
+from core.exceptions import LLMProviderError
+
+# Disable LangSmith tracing to prevent 403 errors
+os.environ["LANGCHAIN_TRACING_V2"] = "false"
+os.environ["LANGCHAIN_ENDPOINT"] = ""
+os.environ["LANGCHAIN_API_KEY"] = ""
+os.environ["LANGCHAIN_PROJECT"] = ""
 
 # Load environment variables
 load_dotenv()
 
-# Constants
-DEFAULT_MODEL = "gemma2-9b-it"
-TEMPERATURE = 1
+# Initialize logger
+logger_manager = CustomLogger()
+logger = logger_manager.get_logger("multiple_resume_parser")
 
-OLLAMA_DEFAULT_MODEL = "qwen:4b"
+
+# Configuration from environment variables
+def get_groq_config():
+    """Get Groq configuration from environment"""
+    return {
+        "primary_model": os.getenv("GROQ_PRIMARY_MODEL", "gemma2-9b-it"),
+        "backup_model": os.getenv("GROQ_BACKUP_MODEL", "llama-3.1-70b-versatile"),
+        "fallback_model": os.getenv("GROQ_FALLBACK_MODEL", "mixtral-8x7b-32768"),
+        "temperature": float(os.getenv("GROQ_TEMPERATURE", "0.1")),
+        "max_tokens": int(os.getenv("GROQ_MAX_TOKENS", "1024")),
+        "request_timeout": int(os.getenv("GROQ_REQUEST_TIMEOUT", "60")),
+    }
+
+
+def get_ollama_config():
+    """Get Ollama configuration from environment"""
+    return {
+        "primary_model": os.getenv("OLLAMA_PRIMARY_MODEL", "llama3.2:3b"),
+        "backup_model": os.getenv("OLLAMA_BACKUP_MODEL", "qwen2.5:3b"),
+        "fallback_model": os.getenv("OLLAMA_FALLBACK_MODEL", "qwen:4b"),
+        "temperature": float(os.getenv("OLLAMA_TEMPERATURE", "0.1")),
+        "num_predict": int(os.getenv("OLLAMA_NUM_PREDICT", "1024")),
+        "api_url": os.getenv("OLLAMA_API_URL", "http://localhost:11434"),
+        "timeout": int(os.getenv("OLLAMA_RESPONSE_TIMEOUT", "30")),
+    }
 
 
 def get_api_keys() -> List[str]:
-    """Get API keys from environment variables."""
-    api_keys = os.getenv("GROQ_API_KEYS", "").split(",")
-    return [key.strip() for key in api_keys if key.strip()]
+    """Get Groq API keys from environment variables."""
+    api_keys_str = os.getenv("GROQ_API_KEYS", "")
+    if not api_keys_str:
+        # Try legacy environment variable
+        api_keys_str = config.GROQ_API_KEY
+
+    if not api_keys_str:
+        logger.warning("No Groq API keys found in environment variables")
+        return []
+
+    api_keys = api_keys_str.split(",")
+    clean_keys = [key.strip() for key in api_keys if key.strip()]
+    logger.info(f"Found {len(clean_keys)} Groq API keys")
+    return clean_keys
 
 
 # ===== Pydantic Models =====
-class Project(BaseModel):
-    name: str = Field(default="", description="Project name")
-    description: str = Field(default="", description="Project description")
-    technologies: List[str] = Field(
-        default_factory=list, description="Technologies used"
-    )
-    role: str = Field(default="", description="Role in the project")
-    start_date: str = Field(default="", description="Start date")
-    end_date: str = Field(default="", description="End date")
-    duration: str = Field(default="", description="Total duration")
-
-
-class ContactDetails(BaseModel):
-    email: str = Field(
-        default="placeholder@example.com", description="Candidate's email address"
-    )
-    phone: str = Field(default="+1 123-456-7890", description="Contact phone number")
-    address: str = Field(
-        default="123 Placeholder St, Placeholder City", description="Physical address"
-    )
-    linkedin: str = Field(
-        default="https://www.linkedin.com/in/placeholder",
-        description="LinkedIn profile URL",
-    )
+class Experience(BaseModel):
+    company: str  # Required
+    title: str  # Required
+    from_date: str  # Required, format: 'YYYY-MM'
+    to: Optional[str] = None  # Optional, format: 'YYYY-MM'
 
 
 class Education(BaseModel):
-    degree: str = Field(default="", description="Degree or qualification")
-    institution: str = Field(default="", description="Educational institution name")
-    dates: str = Field(default="", description="Start and end dates")
+    education: str  # Required
+    college: str  # Required
+    pass_year: int  # Required
 
 
-class Experience(BaseModel):
-    title: str = Field(default="", description="Job position title")
-    company: str = Field(default="", description="Company/organization name")
-    start_date: str = Field(default="", description="Employment start date")
-    end_date: str = Field(default="", description="End date or 'Present'")
-    duration: str = Field(default="", description="Total duration in role")
+class ContactDetails(BaseModel):
+    name: str  # Required
+    email: EmailStr  # Required
+    phone: str  # Required
+    alternative_phone: Optional[str] = None
+    current_city: str  # Required
+    looking_for_jobs_in: List[str]  # Required
+    gender: Optional[str] = None
+    age: Optional[int] = None
+    naukri_profile: Optional[str] = None
+    linkedin_profile: Optional[str] = None
+    portfolio_link: Optional[str] = None
+    pan_card: str  # Required
+    aadhar_card: Optional[str] = None  # Optional
 
 
 class Resume(BaseModel):
-    name: str = Field(default="John Doe", description="Full name of candidate")
+    user_id: str
+    username: str
     contact_details: ContactDetails
-    education: List[Education] = Field(default_factory=list)
-    experience: List[Experience] = Field(default_factory=list)
-    projects: List[Project] = Field(default_factory=list)
-    total_experience: str = Field(
-        default="0 years, 0 months", description="Total work experience duration"
-    )
-    skills: List[str] = Field(
-        default_factory=list, description="List of technical/professional skills"
-    )
+    total_experience: Optional[str] = None  # ✅ Already changed to string
+
+    notice_period: Optional[str] = None  # e.g., "Immediate", "30 days"
+    currency: Optional[str] = None  # e.g., "INR", "USD"
+    pay_duration: Optional[str] = None  # e.g., "monthly", "yearly"
+    current_salary: Optional[float] = None
+    hike: Optional[float] = None
+    expected_salary: Optional[float] = None  # Changed from required to optional
+    skills: List[str]
+    may_also_known_skills: List[str]
+    labels: Optional[List[str]] = None  # Added = None for consistency
+    experience: Optional[List[Experience]] = None
+    academic_details: Optional[List[Education]] = None
+    source: Optional[str] = None  # Source of the resume (e.g., "LinkedIn", "Naukri")
+    last_working_day: Optional[str] = None  # Should be ISO format date string
+    is_tier1_mba: Optional[bool] = None
+    is_tier1_engineering: Optional[bool] = None
+    comment: Optional[str] = None
+    exit_reason: Optional[str] = None
 
 
 # ===== Resume Parser Class =====
 class ResumeParser:
-    def __init__(self, api_keys: List[str] = None):
-        """Initialize ResumeParser with API keys.
+    def __init__(self, use_ollama: bool = None, api_keys: List[str] = None):
+        """Initialize ResumeParser with Ollama or API keys.
 
         Args:
-            api_keys (List[str], optional): List of API keys. If None, loads from environment.
+            use_ollama (bool): Whether to use Ollama or Groq API. If None, uses LLM_PROVIDER from config
+            api_keys (List[str], optional): List of API keys for Groq. Only used if use_ollama=False
         """
-        if api_keys is None:
-            self.api_keys = get_api_keys()
+        # Determine which LLM provider to use
+        if use_ollama is None:
+            use_ollama = config.LLM_PROVIDER.lower() == "ollama"
+
+        self.use_ollama = use_ollama
+        self.groq_config = get_groq_config()
+        self.ollama_config = get_ollama_config()
+
+        logger.info(
+            f"Initializing ResumeParser with {'Ollama' if use_ollama else 'Groq'}"
+        )
+
+        if use_ollama:
+            # Initialize Ollama
+            if not self._check_ollama_connection():
+                error_msg = (
+                    "Ollama is not running or accessible. Please start Ollama service."
+                )
+                logger.error(error_msg)
+                raise LLMProviderError(error_msg)
+
+            # Validate model availability
+            if not self._validate_ollama_model(self.ollama_config["primary_model"]):
+                logger.warning(
+                    f"{self.ollama_config['primary_model']} not found. Available models:"
+                )
+                available_models = self._get_available_ollama_models()
+                logger.info(f"Available models: {available_models}")
+
+                # Try backup model
+                if self.ollama_config["backup_model"] in available_models:
+                    logger.info(
+                        f"Using backup model: {self.ollama_config['backup_model']}"
+                    )
+                    self.ollama_config["primary_model"] = self.ollama_config[
+                        "backup_model"
+                    ]
+                elif self.ollama_config["fallback_model"] in available_models:
+                    logger.info(
+                        f"Using fallback model: {self.ollama_config['fallback_model']}"
+                    )
+                    self.ollama_config["primary_model"] = self.ollama_config[
+                        "fallback_model"
+                    ]
+                else:
+                    error_msg = (
+                        f"None of the configured models are available. "
+                        f"Please pull a compatible model using: ollama pull {self.ollama_config['primary_model']}"
+                    )
+                    logger.error(error_msg)
+                    raise LLMProviderError(error_msg)
+
+            # For Ollama, no API keys needed
+            self.api_keys = []
+            self.api_usage = {}
+            self.current_key_index = 0
+            self.processing_chain = self._setup_ollama_chain()
         else:
-            self.api_keys = [key.strip() for key in api_keys if key.strip()]
+            # Initialize Groq API
+            if api_keys is None:
+                self.api_keys = get_api_keys()
+            else:
+                self.api_keys = [key.strip() for key in api_keys if key.strip()]
 
-        if not self.api_keys:
-            raise ValueError("No API keys provided or found in environment variables.")
+            if not self.api_keys:
+                error_msg = (
+                    "No Groq API keys provided or found in environment variables."
+                )
+                logger.error(error_msg)
+                raise LLMProviderError(error_msg)
 
-        self.api_usage = {key: 0 for key in self.api_keys}
-        self.current_key_index = 0
-        self.processing_chain = self._setup_processing_chain(
-            self.api_keys[self.current_key_index]
-        )
+            self.api_usage = {key: 0 for key in self.api_keys}
+            self.current_key_index = 0
+            self.processing_chain = self._setup_groq_chain(
+                self.api_keys[self.current_key_index]
+            )
 
-    def _setup_processing_chain(self, api_key: str):
-        """Set up the LangChain processing chain."""
-        if not api_key:
-            raise ValueError("API key cannot be empty.")
+    def _setup_ollama_chain(self):
+        """Set up the LangChain processing chain for Ollama."""
+        try:
+            # Use Ollama local model with optimized settings for speed and reliability
+            model = OllamaLLM(
+                model=self.ollama_config["primary_model"],
+                temperature=self.ollama_config["temperature"],
+                format="json",
+                # Optimize for speed and consistency
+                num_predict=self.ollama_config["num_predict"],  # Limit response length
+                top_k=20,  # Reduce sampling space
+                top_p=0.8,  # Focus on most likely tokens
+                repeat_penalty=1.1,  # Prevent repetition
+                timeout=self.ollama_config["timeout"],  # timeout from config
+            )
+        except Exception as e:
+            logger.error(
+                f"Error initializing primary Ollama model ({self.ollama_config['primary_model']}): {e}"
+            )
+            try:
+                # Try backup model
+                model = OllamaLLM(
+                    model=self.ollama_config["backup_model"],
+                    temperature=self.ollama_config["temperature"],
+                    format="json",
+                    num_predict=self.ollama_config["num_predict"],
+                    top_k=20,
+                    top_p=0.8,
+                    repeat_penalty=1.1,
+                    timeout=self.ollama_config["timeout"],
+                )
+                logger.info(f"Using backup model: {self.ollama_config['backup_model']}")
+            except Exception as e2:
+                logger.error(f"Backup model also failed: {e2}")
+                # Final fallback without advanced parameters
+                model = OllamaLLM(
+                    model=self.ollama_config["primary_model"],
+                    temperature=self.ollama_config["temperature"],
+                )
 
-        # model = ChatGroq(
-        #     temperature=TEMPERATURE, model_name=DEFAULT_MODEL, api_key=api_key
-        # )
-        model = OllamaLLM(
-            temperature=TEMPERATURE,
-            model=OLLAMA_DEFAULT_MODEL,
-        )
+        # Simplified and more direct prompt for better JSON consistency
         parser = JsonOutputParser(pydantic_object=Resume)
 
         prompt_template = """Extract resume information strictly as JSON:
-            {format_instructions}
+                {format_instructions}
 
-            If experience is present, always calculate total experience.
-            Ensure the following fields are included: name, email, address, LinkedIn. If any are missing, add random placeholder values.
-            If there are projects, include them with details like name, description, technologies, role, start_date, end_date, and duration. Use empty values for missing fields.
+                If experience is present, always calculate total experience.
+                Ensure the following fields are included: name, email, address, LinkedIn. If any are missing, add random placeholder values.
+                If there are projects, include them with details like name, description, technologies, role, start_date, end_date, and duration. Use empty values for missing fields.
 
-            RESUME INPUT:
-            {resume_text}
+                RESUME INPUT:
+                {resume_text}
 
-            Return ONLY valid JSON without any additional text or explanations.
-            """
+                Return ONLY valid JSON without any additional text or explanations.
+                """
 
         prompt = PromptTemplate(
             template=prompt_template,
             input_variables=["resume_text"],
             partial_variables={"format_instructions": parser.get_format_instructions()},
         )
+
+        # Create chain
+        chain = prompt | model | parser
+        return chain
+
+    def _setup_groq_chain(self, api_key: str):
+        """Set up the LangChain processing chain for Groq."""
+        if not api_key:
+            raise ValueError("API key cannot be empty for Groq.")
+
+        model = ChatGroq(
+            temperature=self.groq_config["temperature"],
+            model_name=self.groq_config["primary_model"],
+            api_key=api_key,
+            max_tokens=self.groq_config["max_tokens"],
+            request_timeout=self.groq_config["request_timeout"],
+        )
+
+        parser = JsonOutputParser(pydantic_object=Resume)
+
+        prompt_template = """Extract resume information strictly as JSON:
+                {format_instructions}
+
+                If experience is present, always calculate total experience.
+                Ensure the following fields are included: name, email, address, LinkedIn. If any are missing, add random placeholder values.
+                If there are projects, include them with details like name, description, technologies, role, start_date, end_date, and duration. Use empty values for missing fields.
+
+                RESUME INPUT:
+                {resume_text}
+
+                Return ONLY valid JSON without any additional text or explanations.
+                """
+
+        prompt = PromptTemplate(
+            template=prompt_template,
+            input_variables=["resume_text"],
+            partial_variables={"format_instructions": parser.get_format_instructions()},
+        )
+
         return prompt | model | parser
 
-    def _clean_json_response(self, response) -> str:
-        """Clean and extract JSON from response."""
+    def _clean_and_parse_json(self, response) -> dict:
+        """Simplified JSON cleaning and parsing."""
         try:
+            # Handle different response types
             if isinstance(response, dict):
-                return json.dumps(response)
-            elif isinstance(response, str):
-                # Remove code block markers and clean whitespace
-                cleaned = re.sub(r"```[^`]*```", "", response, flags=re.DOTALL)
-                cleaned = cleaned.strip()
-                # Extract JSON object if wrapped in text
-                match = re.search(r"({[\s\S]*})", cleaned)
-                return match.group(1) if match else cleaned
-            else:
-                return str(response)
-        except Exception as e:
-            print(f"Error cleaning JSON response: {str(e)}")
-            return str(response)
+                return response
 
-    def _repair_json(self, malformed_json: str) -> str:
-        """Repair common JSON formatting issues."""
-        try:
-            # Remove trailing commas
-            repaired = re.sub(r",(\s*[}\]])", r"\1", malformed_json)
-            # Remove control characters
-            repaired = re.sub(r"[\x00-\x1f\x7f-\x9f]", "", repaired)
-            # Balance braces
-            open_braces = repaired.count("{")
-            close_braces = repaired.count("}")
-            if open_braces > close_braces:
-                repaired += "}" * (open_braces - close_braces)
-            elif close_braces > open_braces:
-                repaired = "{" * (close_braces - open_braces) + repaired
-            return repaired
-        except Exception as e:
-            print(f"Error repairing JSON: {str(e)}")
-            return malformed_json
+            if not isinstance(response, str):
+                response = str(response)
 
-    def _extract_json_object(self, text) -> str:
-        matches = re.findall(r"({.*?})", text, re.DOTALL)
-        if matches:
-            return max(matches, key=len)
-        return None
+            # Remove common prefixes and suffixes
+            response = response.strip()
 
-    def _repair_and_load_json(self, raw_json) -> dict:
-        cleaned_json = self._clean_json_response(raw_json)
-        try:
-            return json.loads(cleaned_json)
-        except json.JSONDecodeError:
-            repaired_json = self._repair_json(cleaned_json)
-            try:
-                return json.loads(repaired_json)
-            except Exception:
-                extracted_json = self._extract_json_object(cleaned_json)
-                if extracted_json:
-                    try:
-                        return json.loads(extracted_json)
-                    except Exception:
-                        pass
-                return {"error": "Failed to parse JSON", "raw_output": raw_json}
+            # Remove markdown code blocks
+            if "```json" in response:
+                response = re.sub(r"```json\s*", "", response)
+                response = re.sub(r"```\s*$", "", response)
+            elif "```" in response:
+                response = re.sub(r"```[^`]*", "", response)
+                response = re.sub(r"```", "", response)
+
+            # Find JSON object boundaries
+            start = response.find("{")
+            if start == -1:
+                raise ValueError("No JSON object found")
+
+            # Find the matching closing brace
+            brace_count = 0
+            end = start
+            for i, char in enumerate(response[start:], start):
+                if char == "{":
+                    brace_count += 1
+                elif char == "}":
+                    brace_count -= 1
+                    if brace_count == 0:
+                        end = i + 1
+                        break
+
+            if brace_count != 0:
+                # Try to balance braces
+                response = response[start:] + "}" * brace_count
+                end = len(response)
+
+            json_str = response[start:end]
+
+            # Basic cleaning
+            json_str = re.sub(r",(\s*[}\]])", r"\1", json_str)  # Remove trailing commas
+            json_str = re.sub(
+                r"[\x00-\x1f\x7f-\x9f]", "", json_str
+            )  # Remove control chars
+
+            # Parse JSON
+            return json.loads(json_str)
+
+        except (json.JSONDecodeError, ValueError) as e:
+            logger.error(f"JSON parsing failed: {e}")
+            # Return a basic structure instead of complex fallback
+            return {
+                "error": "JSON parsing failed",
+                "raw_response": str(response)[:200],
+                "fallback_used": True,
+            }
 
     def _parse_resume(self, resume_text: str) -> dict:
         """Parse resume text and return structured data."""
         try:
-            raw_output = self.processing_chain.invoke({"resume_text": resume_text})
-            if isinstance(raw_output, dict):
-                return raw_output
+            # Truncate very long resumes to improve speed
+            if len(resume_text) > 5000:
+                resume_text = resume_text[:5000] + "..."
+                logger.info("Resume text truncated for faster processing")
 
-            cleaned_json = self._clean_json_response(raw_output)
-            try:
-                return json.loads(cleaned_json)
-            except json.JSONDecodeError:
-                repaired_json = self._repair_json(cleaned_json)
-                try:
-                    return json.loads(repaired_json)
-                except json.JSONDecodeError as e:
-                    print(f"Failed to parse JSON: {str(e)}")
-                    return {
-                        "error": "Failed to parse response",
-                        "raw_output": str(raw_output),
-                    }
+            logger.info("Invoking Ollama model...")
+            start_time = time.time()
+
+            raw_output = self.processing_chain.invoke({"resume_text": resume_text})
+
+            end_time = time.time()
+            logger.info(f"Ollama response time: {end_time - start_time:.2f} seconds")
+            logger.debug(f"Raw output (first 500 chars): {str(raw_output)[:500]}")
+
+            # Use simplified JSON parsing
+            result = self._clean_and_parse_json(raw_output)
+
+            # Check if parsing failed
+            if "error" in result:
+                logger.warning("JSON parsing failed, using fallback parser")
+                return self._create_fallback_resume(resume_text)
+
+            # Post-process and validate result
+            return self._post_process_result(result)
+
         except Exception as e:
-            print(f"Error parsing resume: {str(e)}")
-            return {"error": str(e)}
+            logger.error(f"Error parsing resume: {str(e)}")
+            logger.error(f"Exception type: {type(e)}")
+            return {
+                "error": "Exception during parsing",
+                "exception": str(e),
+                "fallback_result": self._create_fallback_resume(resume_text),
+            }
 
     def process_resume(self, resume_text: str) -> Dict:
         """Process a resume and handle API key rotation if needed."""
-        while True:
+        if self.use_ollama:
+            # For Ollama, no API key rotation needed
             try:
-                parsed_data = self._parse_resume(resume_text)
-                self.api_usage[self.api_keys[self.current_key_index]] += 1
-                return parsed_data
+                return self._parse_resume(resume_text)
             except Exception as e:
-                error_msg = str(e).lower()
-                print(
-                    f"Error with API key {self.api_keys[self.current_key_index]}: {error_msg}"
-                )
+                return {
+                    "error": "Ollama processing failed",
+                    "details": str(e),
+                    "suggestion": "Check if Ollama is running and the model is available",
+                }
+        else:
+            # For Groq API, use the original rotation logic
+            while True:
+                try:
+                    parsed_data = self._parse_resume(resume_text)
+                    self.api_usage[self.api_keys[self.current_key_index]] += 1
+                    return parsed_data
+                except Exception as e:
+                    error_msg = str(e).lower()
+                    logger.error(
+                        f"Error with API key {self.api_keys[self.current_key_index]}: {error_msg}"
+                    )
 
-                if self._should_rotate_key(error_msg):
-                    if not self._rotate_to_next_key():
-                        return {
-                            "error": "All API keys exhausted",
-                            "api_usage": self.api_usage,
-                        }
-                else:
-                    return {"error": "Unexpected error", "details": error_msg}
+                    if self._should_rotate_key(error_msg):
+                        if not self._rotate_to_next_key():
+                            return {
+                                "error": "All API keys exhausted",
+                                "api_usage": self.api_usage,
+                            }
+                    else:
+                        return {"error": "Unexpected error", "details": error_msg}
 
     def _should_rotate_key(self, error_msg: str) -> bool:
         """Check if we should rotate to the next API key based on error message."""
@@ -254,14 +462,180 @@ class ResumeParser:
 
     def _rotate_to_next_key(self) -> bool:
         """Rotate to the next available API key."""
+        if self.use_ollama:
+            return False  # No rotation needed for Ollama
+
         self.current_key_index += 1
         if self.current_key_index < len(self.api_keys):
-            self.processing_chain = self._setup_processing_chain(
+            self.processing_chain = self._setup_groq_chain(
                 self.api_keys[self.current_key_index]
             )
-            print(f"Switched to new API key: {self.api_keys[self.current_key_index]}")
+            logger.info(
+                f"Switched to new API key: {self.api_keys[self.current_key_index]}"
+            )
             return True
         return False
+
+    def _create_fallback_resume(self, resume_text: str) -> dict:
+        """Create a basic resume structure when JSON parsing fails."""
+        # Simple regex patterns to extract basic information
+        email_pattern = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
+        phone_pattern = (
+            r"(\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}|\b[0-9]{10}\b)"
+        )
+
+        # Extract basic info
+        emails = re.findall(email_pattern, resume_text)
+        phones = re.findall(phone_pattern, resume_text)
+
+        # Extract name (assume first line or first capitalized words)
+        lines = resume_text.strip().split("\n")
+        name = "Unknown Candidate"
+        for line in lines[:5]:  # Check first 5 lines
+            line = line.strip()
+            if (
+                line
+                and len(line.split()) <= 4
+                and any(word[0].isupper() for word in line.split() if word)
+            ):
+                name = line
+                break
+
+        return {
+            "name": name,
+            "contact_details": {
+                "email": emails[0] if emails else "placeholder@example.com",
+                "phone": phones[0] if phones else "+1 123-456-7890",
+                "address": "Address not found",
+                "linkedin": "https://www.linkedin.com/in/placeholder",
+            },
+            "education": [],
+            "experience": [],
+            "projects": [],
+            "total_experience": "Experience calculation failed",
+            "skills": [],
+            "parsing_note": "Fallback parsing used due to JSON parsing failure",
+        }
+
+    def _post_process_result(self, result: dict) -> dict:
+        """Clean up the parsed result to fix common issues."""
+        try:
+            if not isinstance(result, dict):
+                return result
+
+            # Fix contact details if they contain too much text
+            if "contact_details" in result and isinstance(
+                result["contact_details"], dict
+            ):
+                contact = result["contact_details"]
+
+                # Clean phone number - extract just the number
+                if "phone" in contact and isinstance(contact["phone"], str):
+                    phone_text = contact["phone"]
+                    # Extract just phone numbers
+                    phone_matches = re.findall(
+                        r"(\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}|\b[0-9]{10}\b)",
+                        phone_text,
+                    )
+                    if phone_matches:
+                        contact["phone"] = phone_matches[0]
+                    elif len(phone_text) > 50:  # If too long, truncate
+                        contact["phone"] = "Phone number extraction failed"
+
+                # Clean address - extract just address portion
+                if "address" in contact and isinstance(contact["address"], str):
+                    address_text = contact["address"]
+                    if (
+                        len(address_text) > 200
+                    ):  # If too long, extract just the beginning
+                        # Try to find address-like content
+                        address_match = re.search(
+                            r"([^,]*,\s*[^,]*,\s*[^,]*)", address_text
+                        )
+                        if address_match:
+                            contact["address"] = address_match.group(1).strip()
+                        else:
+                            contact["address"] = address_text[:100] + "..."
+
+            # Ensure required fields exist with defaults
+            if "name" not in result or not result["name"]:
+                result["name"] = "Name not found"
+
+            if "total_experience" not in result:
+                result["total_experience"] = "Experience calculation needed"
+
+            if "skills" not in result:
+                result["skills"] = []
+
+            if "education" not in result:
+                result["education"] = []
+
+            if "experience" not in result:
+                result["experience"] = []
+
+            if "projects" not in result:
+                result["projects"] = []
+
+            return result
+
+        except Exception as e:
+            logger.error(f"Error in post-processing: {e}")
+            return result
+
+    def _check_ollama_connection(self) -> bool:
+        """Check if Ollama is running and accessible."""
+        try:
+            import requests
+
+            response = requests.get("http://localhost:11434/api/tags", timeout=5)
+            return response.status_code == 200
+        except Exception as e:
+            logger.error(f"Ollama connection check failed: {e}")
+            return False
+
+    def _validate_ollama_model(self, model_name: str) -> bool:
+        """Check if the specified model is available in Ollama."""
+        try:
+            import requests
+
+            response = requests.get("http://localhost:11434/api/tags", timeout=5)
+            if response.status_code == 200:
+                models = response.json().get("models", [])
+                available_models = [model["name"] for model in models]
+                return any(model_name in model for model in available_models)
+            return False
+        except Exception:
+            return False
+
+    def _get_available_ollama_models(self) -> List[str]:
+        """Get list of available Ollama models."""
+        try:
+            import requests
+
+            response = requests.get(
+                self.ollama_config["api_url"] + "/api/tags", timeout=5
+            )
+            if response.status_code == 200:
+                models = response.json().get("models", [])
+                return [model["name"] for model in models]
+            return []
+        except Exception as e:
+            logger.error(f"Error getting available Ollama models: {e}")
+            return []
+
+    def switch_provider(self, new_provider: str, api_keys: List[str] = None):
+        """Switch between LLM providers dynamically.
+
+        Args:
+            new_provider (str): New provider to use ('groq', 'ollama')
+            api_keys (List[str], optional): API keys for Groq provider
+        """
+        logger.info(
+            f"Switching LLM provider from {'Ollama' if self.use_ollama else 'Groq'} to {new_provider}"
+        )
+
+        # Reinitialize with new provider
+        self.__init__(use_ollama=(new_provider.lower() == "ollama"), api_keys=api_keys)
 
 
 def main():
@@ -271,12 +645,125 @@ def main():
     """
 
     try:
-        parser = ResumeParser()
+        # Option to run performance test
+        import sys
+
+        if len(sys.argv) > 1 and sys.argv[1] == "test":
+            test_ollama_speed()
+            return
+
+        # Use Ollama by default
+        print("Initializing Resume Parser with optimized Ollama settings...")
+        parser = ResumeParser(use_ollama=True)
+
+        print("Processing resume...")
+        start_time = time.time()
         result = parser.process_resume(sample_resume)
-        print(json.dumps(result, indent=2))
+        end_time = time.time()
+
+        print(f"\nProcessing completed in {end_time - start_time:.2f} seconds")
+        print("\n" + "=" * 50)
+        print("RESUME PARSING RESULT:")
+        print("=" * 50)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+
+        # Check if parsing was successful
+        if "error" not in result:
+            print("\n✅ Resume parsed successfully!")
+        elif "parsing_note" in result or "fallback_used" in result:
+            print("\n⚠️ Used fallback parsing due to JSON issues")
+        else:
+            print(f"\n❌ Parsing failed: {result.get('error', 'Unknown error')}")
+
+        # Suggest running performance test
+        print(f"\n💡 Tip: Run 'python {sys.argv[0]} test' to test performance")
+
+    except ConnectionError as e:
+        print(f"❌ Connection Error: {e}")
+        print("\n🔧 Troubleshooting:")
+        print("1. Make sure Ollama is installed and running")
+        print("2. Start Ollama: ollama serve")
+        print("3. Pull required model: ollama pull llama3.2:3b")
+
     except Exception as e:
-        print(f"Error: {str(e)}")
+        print(f"Error initializing or running parser: {str(e)}")
+        print("\nTrying fallback method...")
+        try:
+            # If Ollama fails, try with a simple fallback
+            parser = ResumeParser(use_ollama=True)
+            fallback_result = parser._create_fallback_resume(sample_resume)
+            print(json.dumps(fallback_result, indent=2, ensure_ascii=False))
+        except Exception as e2:
+            print(f"Fallback also failed: {str(e2)}")
+
+
+def test_ollama_speed():
+    """Test function to measure Ollama response speed."""
+    test_resume = """
+    John Doe
+    Email: john.doe@email.com
+    Phone: +1-555-123-4567
+    
+    EXPERIENCE:
+    Software Engineer at TechCorp (2020-2023)
+    - Developed web applications using Python and React
+    - Led team of 3 developers
+    
+    EDUCATION:
+    Bachelor of Computer Science, MIT (2016-2020)
+    
+    SKILLS: Python, JavaScript, React, SQL
+    """
+
+    try:
+        print("Testing Ollama speed and reliability...")
+        parser = ResumeParser(use_ollama=True)
+
+        # Run multiple tests
+        total_time = 0
+        successful_parses = 0
+
+        for i in range(3):
+            print(f"\nTest {i+1}/3:")
+            start_time = time.time()
+            result = parser.process_resume(test_resume)
+            end_time = time.time()
+
+            response_time = end_time - start_time
+            total_time += response_time
+
+            if "error" not in result or "fallback_used" not in result:
+                successful_parses += 1
+                print(f"✅ Success in {response_time:.2f}s")
+                print(f"Extracted name: {result.get('name', 'N/A')}")
+                print(
+                    f"Extracted email: {result.get('contact_details', {}).get('email', 'N/A')}"
+                )
+            else:
+                print(
+                    f"❌ Failed in {response_time:.2f}s: {result.get('error', 'Unknown error')}"
+                )
+
+        avg_time = total_time / 3
+        success_rate = (successful_parses / 3) * 100
+
+        print(f"\n{'='*50}")
+        print(f"PERFORMANCE SUMMARY:")
+        print(f"Average response time: {avg_time:.2f}s")
+        print(f"Success rate: {success_rate:.1f}%")
+        print(f"{'='*50}")
+
+        if avg_time < 10 and success_rate > 80:
+            print("✅ Performance looks good!")
+        elif avg_time > 15:
+            print("⚠️ Response time is slow. Consider using a smaller model.")
+        elif success_rate < 80:
+            print("⚠️ Success rate is low. Check model compatibility.")
+
+    except Exception as e:
+        print(f"Test failed: {e}")
 
 
 if __name__ == "__main__":
     main()
+    test_ollama_speed()
