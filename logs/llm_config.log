@@ -13,3 +13,8 @@
 2025-07-02 23:32:35 - llm_config - INFO - Ollama configuration validated successfully
 2025-07-02 23:33:31 - llm_config - INFO - Ollama configuration validated successfully
 2025-07-02 23:39:55 - llm_config - INFO - Ollama configuration validated successfully
+2025-07-18 22:25:10 - llm_config - INFO - Hugging Face configuration validated for model: microsoft/Phi-3-mini-4k-instruct
+2025-07-18 22:25:10 - llm_config - INFO - LLM provider set to: ollama
+2025-07-18 22:25:13 - llm_config - INFO - Ollama configuration validated successfully
+2025-07-18 22:25:13 - llm_config - INFO - LLM provider set to: huggingface
+2025-07-18 22:33:36 - llm_config - INFO - Ollama configuration validated successfully

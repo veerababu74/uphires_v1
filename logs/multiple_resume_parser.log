@@ -36,3 +36,5 @@
 2025-07-02 23:22:22 - multiple_resume_parser - INFO - Using fallback model: qwen:4b
 2025-07-02 23:38:23 - multiple_resume_parser - INFO - Initializing ResumeParser with Ollama
 2025-07-02 23:39:16 - multiple_resume_parser - INFO - Initializing ResumeParser with Ollama
+2025-07-18 22:33:34 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-18 22:33:37 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama

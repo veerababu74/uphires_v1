@@ -473,3 +473,9 @@ __root__
 2025-07-02 23:39:56 - rag_application - INFO - LLM initialized using ollama provider
 2025-07-02 23:39:56 - rag_application - INFO - Chain manager initialized successfully
 2025-07-02 23:39:56 - rag_application - INFO - RAG Application initialized successfully
+2025-07-18 22:21:53 - rag_application - INFO - Initializing RAG components...
+2025-07-18 22:33:23 - rag_application - INFO - Vectorizer initialized successfully
+2025-07-18 22:33:24 - rag_application - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-07-18 22:33:26 - rag_application - INFO - Vectorizer and embedding adapter initialized successfully
+2025-07-18 22:33:27 - rag_application - INFO - Connected to MongoDB database 'resume_db' and collection 'resumes'
+2025-07-18 22:33:27 - rag_application - INFO - LangChain vector store initialized successfully

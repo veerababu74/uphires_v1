@@ -4730,3 +4730,17 @@ __root__
 2025-07-02 23:48:19,924 - INFO - 1 change detected
 2025-07-02 23:48:20,340 - INFO - 1 change detected
 2025-07-02 23:48:20,695 - INFO - 1 change detected
+2025-07-18 22:33:27,515 - INFO - Initializing ResumeParser with ollama
+2025-07-18 22:33:32,078 - INFO - ResumeParser initialized successfully with ollama
+2025-07-18 22:33:32,112 - INFO - Use pytorch device_name: cpu
+2025-07-18 22:33:32,112 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-18 22:33:34,713 - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-18 22:33:36,777 - INFO - Ollama configuration validated successfully
+2025-07-18 22:33:37,211 - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-18 22:33:37,212 - INFO - Successfully initialized LLM with ollama
+2025-07-18 22:33:37,258 - INFO - Use pytorch device_name: cpu
+2025-07-18 22:33:37,259 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-18 22:33:39,931 - INFO - Initializing ResumeParser with ollama
+2025-07-18 22:33:44,473 - INFO - ResumeParser initialized successfully with ollama
+2025-07-18 22:33:44,509 - INFO - Use pytorch device_name: cpu
+2025-07-18 22:33:44,509 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2

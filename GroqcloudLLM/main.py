@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from langchain_groq import ChatGroq
 from langchain_ollama import ChatOllama, OllamaLLM
+from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_huggingface import HuggingFacePipeline
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 import requests
@@ -110,9 +113,9 @@ class ResumeParser:
         """Initialize ResumeParser with configurable LLM provider.
 
         Args:
-            llm_provider (str, optional): LLM provider ('groq', 'ollama').
+            llm_provider (str, optional): LLM provider ('groq', 'ollama', 'openai', 'google', 'huggingface').
                                         If None, uses LLM_PROVIDER from config.
-            api_keys (List[str], optional): List of API keys for Groq. Only used if provider is 'groq'.
+            api_keys (List[str], optional): List of API keys for API-based providers.
         """
         # Initialize LLM configuration manager
         self.llm_manager = LLMConfigManager()
@@ -120,84 +123,157 @@ class ResumeParser:
         # Determine which LLM provider to use
         if llm_provider is None:
             # Use config default
-            self.use_ollama = self.llm_manager.is_ollama_enabled()
+            self.provider = self.llm_manager.provider
         else:
-            self.use_ollama = llm_provider.lower() in ["ollama"]
-            # Override the manager's provider setting
-            if self.use_ollama:
-                self.llm_manager.provider = LLMProvider.OLLAMA
-            else:
-                self.llm_manager.provider = LLMProvider.GROQ_CLOUD
+            provider_map = {
+                "ollama": LLMProvider.OLLAMA,
+                "groq": LLMProvider.GROQ_CLOUD,
+                "groq_cloud": LLMProvider.GROQ_CLOUD,
+                "openai": LLMProvider.OPENAI,
+                "google": LLMProvider.GOOGLE_GEMINI,
+                "gemini": LLMProvider.GOOGLE_GEMINI,
+                "google_gemini": LLMProvider.GOOGLE_GEMINI,
+                "huggingface": LLMProvider.HUGGINGFACE,
+                "hf": LLMProvider.HUGGINGFACE,
+            }
 
-        logger.info(
-            f"Initializing ResumeParser with {'Ollama' if self.use_ollama else 'Groq Cloud'}"
-        )
+            if llm_provider.lower() not in provider_map:
+                raise LLMProviderError(f"Unsupported LLM provider: {llm_provider}")
 
-        if self.use_ollama:
-            # Initialize Ollama
-            self.ollama_config = self.llm_manager.ollama_config
-            if not self._check_ollama_connection():
-                error_msg = (
-                    "Ollama is not running or accessible. Please start Ollama service."
-                )
-                logger.error(error_msg)
-                raise LLMProviderError(error_msg)
+            self.provider = provider_map[llm_provider.lower()]
+            self.llm_manager.provider = self.provider
 
-            # Validate model availability
-            if not self._validate_ollama_model(self.ollama_config.primary_model):
-                logger.warning(f"{self.ollama_config.primary_model} not found.")
-                available_models = self._get_available_ollama_models()
-                logger.info(f"Available models: {available_models}")
+        logger.info(f"Initializing ResumeParser with {self.provider.value}")
 
-                # Try backup model
-                if self.ollama_config.backup_model in available_models:
-                    logger.info(
-                        f"Using backup model: {self.ollama_config.backup_model}"
-                    )
-                    self.ollama_config.primary_model = self.ollama_config.backup_model
-                elif self.ollama_config.fallback_model in available_models:
-                    logger.info(
-                        f"Using fallback model: {self.ollama_config.fallback_model}"
-                    )
-                    self.ollama_config.primary_model = self.ollama_config.fallback_model
-                else:
-                    error_msg = (
-                        f"None of the configured models are available. "
-                        f"Please pull a compatible model using: ollama pull {self.ollama_config.primary_model}"
-                    )
-                    logger.error(error_msg)
-                    raise LLMProviderError(error_msg)
-
-            # For Ollama, no API keys needed
-            self.api_keys = []
-            self.api_usage = {}
-            self.current_key_index = 0
-            self.processing_chain = self._setup_ollama_chain()
+        # Initialize provider-specific configurations
+        if self.provider == LLMProvider.OLLAMA:
+            self._setup_ollama()
+        elif self.provider == LLMProvider.GROQ_CLOUD:
+            self._setup_groq(api_keys)
+        elif self.provider == LLMProvider.OPENAI:
+            self._setup_openai(api_keys)
+        elif self.provider == LLMProvider.GOOGLE_GEMINI:
+            self._setup_google(api_keys)
+        elif self.provider == LLMProvider.HUGGINGFACE:
+            self._setup_huggingface()
         else:
-            # Initialize Groq API
-            self.groq_config = self.llm_manager.groq_config
+            raise LLMProviderError(f"Provider {self.provider.value} not implemented")
 
-            if api_keys is None:
-                self.api_keys = self.groq_config.api_keys
-            else:
-                self.api_keys = [key.strip() for key in api_keys if key.strip()]
+        logger.info(f"ResumeParser initialized successfully with {self.provider.value}")
 
-            if not self.api_keys:
-                error_msg = (
-                    "No Groq API keys provided or found in environment variables."
-                )
-                logger.error(error_msg)
-                raise LLMProviderError(error_msg)
-
-            self.api_usage = {key: 0 for key in self.api_keys}
-            self.current_key_index = 0
-            self.processing_chain = self._setup_groq_chain(
-                self.api_keys[self.current_key_index]
+    def _setup_ollama(self):
+        """Setup Ollama provider"""
+        self.ollama_config = self.llm_manager.ollama_config
+        if not self._check_ollama_connection():
+            error_msg = (
+                "Ollama is not running or accessible. Please start Ollama service."
             )
+            logger.error(error_msg)
+            raise LLMProviderError(error_msg)
 
-        logger.info(
-            f"ResumeParser initialized successfully with {len(self.api_keys) if not self.use_ollama else 0} API keys"
+        # Validate model availability
+        if not self._validate_ollama_model(self.ollama_config.primary_model):
+            logger.warning(f"{self.ollama_config.primary_model} not found.")
+            available_models = self._get_available_ollama_models()
+            logger.info(f"Available models: {available_models}")
+
+            # Try backup model
+            if self.ollama_config.backup_model in available_models:
+                logger.info(f"Using backup model: {self.ollama_config.backup_model}")
+                self.ollama_config.primary_model = self.ollama_config.backup_model
+            elif self.ollama_config.fallback_model in available_models:
+                logger.info(
+                    f"Using fallback model: {self.ollama_config.fallback_model}"
+                )
+                self.ollama_config.primary_model = self.ollama_config.fallback_model
+            else:
+                error_msg = (
+                    f"None of the configured models are available. "
+                    f"Please pull a compatible model using: ollama pull {self.ollama_config.primary_model}"
+                )
+                logger.error(error_msg)
+                raise LLMProviderError(error_msg)
+
+        self.api_keys = []
+        self.api_usage = {}
+        self.current_key_index = 0
+        self.processing_chain = self._setup_ollama_chain()
+
+    def _setup_groq(self, api_keys: List[str] = None):
+        """Setup Groq provider"""
+        self.groq_config = self.llm_manager.groq_config
+
+        if api_keys is None:
+            self.api_keys = self.groq_config.api_keys
+        else:
+            self.api_keys = [key.strip() for key in api_keys if key.strip()]
+
+        if not self.api_keys:
+            error_msg = "No Groq API keys provided or found in environment variables."
+            logger.error(error_msg)
+            raise LLMProviderError(error_msg)
+
+        self.api_usage = {key: 0 for key in self.api_keys}
+        self.current_key_index = 0
+        self.processing_chain = self._setup_groq_chain(
+            self.api_keys[self.current_key_index]
         )
+
+    def _setup_openai(self, api_keys: List[str] = None):
+        """Setup OpenAI provider"""
+        self.openai_config = self.llm_manager.openai_config
+
+        if api_keys is None:
+            self.api_keys = self.openai_config.api_keys
+        else:
+            self.api_keys = [key.strip() for key in api_keys if key.strip()]
+
+        if not self.api_keys:
+            error_msg = "No OpenAI API keys provided or found in environment variables."
+            logger.error(error_msg)
+            raise LLMProviderError(error_msg)
+
+        self.api_usage = {key: 0 for key in self.api_keys}
+        self.current_key_index = 0
+        self.processing_chain = self._setup_openai_chain(
+            self.api_keys[self.current_key_index]
+        )
+
+    def _setup_google(self, api_keys: List[str] = None):
+        """Setup Google Gemini provider"""
+        self.google_config = self.llm_manager.google_config
+
+        if api_keys is None:
+            self.api_keys = self.google_config.api_keys
+        else:
+            self.api_keys = [key.strip() for key in api_keys if key.strip()]
+
+        if not self.api_keys:
+            error_msg = "No Google API keys provided or found in environment variables."
+            logger.error(error_msg)
+            raise LLMProviderError(error_msg)
+
+        self.api_usage = {key: 0 for key in self.api_keys}
+        self.current_key_index = 0
+        self.processing_chain = self._setup_google_chain(
+            self.api_keys[self.current_key_index]
+        )
+
+    def _setup_huggingface(self):
+        """Setup Hugging Face provider"""
+        self.huggingface_config = self.llm_manager.huggingface_config
+
+        # For Hugging Face, no API keys needed (for public models)
+        self.api_keys = []
+        self.api_usage = {}
+        self.current_key_index = 0
+
+        try:
+            self.processing_chain = self._setup_huggingface_chain()
+        except Exception as e:
+            error_msg = f"Failed to initialize Hugging Face model: {str(e)}"
+            logger.error(error_msg)
+            raise LLMProviderError(error_msg)
 
     def _check_ollama_connection(self) -> bool:
         """Check if Ollama service is accessible."""
@@ -308,15 +384,147 @@ class ResumeParser:
             logger.error(f"Failed to setup Groq processing chain: {str(e)}")
             raise LLMProviderError(f"Failed to setup Groq processing chain: {str(e)}")
 
+    def _setup_openai_chain(self, api_key: str):
+        """Set up the LangChain processing chain for OpenAI."""
+        if not api_key:
+            raise LLMProviderError("API key cannot be empty.")
+
+        try:
+            # Update the OpenAI config with current API key
+            self.openai_config.api_keys[self.current_key_index] = api_key
+
+            model = ChatOpenAI(**self.openai_config.to_langchain_params())
+            parser = JsonOutputParser(pydantic_object=Resume)
+
+            prompt_template = """Extract resume information strictly as JSON:
+                {format_instructions}
+
+                If experience is present, always calculate total experience.
+                Ensure the following fields are included: name, email, address, LinkedIn. If any are missing, add random placeholder values.
+                If there are projects, include them with details like name, description, technologies, role, start_date, end_date, and duration. Use empty values for missing fields.
+
+                RESUME INPUT:
+                {resume_text}
+
+                Return ONLY valid JSON without any additional text or explanations.
+                """
+
+            prompt = PromptTemplate(
+                template=prompt_template,
+                input_variables=["resume_text"],
+                partial_variables={
+                    "format_instructions": parser.get_format_instructions()
+                },
+            )
+
+            logger.debug(
+                f"OpenAI processing chain setup complete for model: {self.openai_config.primary_model}"
+            )
+            return prompt | model | parser
+
+        except Exception as e:
+            logger.error(f"Failed to setup OpenAI processing chain: {str(e)}")
+            raise LLMProviderError(f"Failed to setup OpenAI processing chain: {str(e)}")
+
+    def _setup_google_chain(self, api_key: str):
+        """Set up the LangChain processing chain for Google Gemini."""
+        if not api_key:
+            raise LLMProviderError("API key cannot be empty.")
+
+        try:
+            # Update the Google config with current API key
+            self.google_config.api_keys[self.current_key_index] = api_key
+
+            model = ChatGoogleGenerativeAI(**self.google_config.to_langchain_params())
+            parser = JsonOutputParser(pydantic_object=Resume)
+
+            prompt_template = """Extract resume information strictly as JSON:
+                {format_instructions}
+
+                If experience is present, always calculate total experience.
+                Ensure the following fields are included: name, email, address, LinkedIn. If any are missing, add random placeholder values.
+                If there are projects, include them with details like name, description, technologies, role, start_date, end_date, and duration. Use empty values for missing fields.
+
+                RESUME INPUT:
+                {resume_text}
+
+                Return ONLY valid JSON without any additional text or explanations.
+                """
+
+            prompt = PromptTemplate(
+                template=prompt_template,
+                input_variables=["resume_text"],
+                partial_variables={
+                    "format_instructions": parser.get_format_instructions()
+                },
+            )
+
+            logger.debug(
+                f"Google Gemini processing chain setup complete for model: {self.google_config.primary_model}"
+            )
+            return prompt | model | parser
+
+        except Exception as e:
+            logger.error(f"Failed to setup Google processing chain: {str(e)}")
+            raise LLMProviderError(f"Failed to setup Google processing chain: {str(e)}")
+
+    def _setup_huggingface_chain(self):
+        """Set up the LangChain processing chain for Hugging Face."""
+        try:
+            # Import here to avoid dependency issues if not installed
+            try:
+                from langchain_huggingface import HuggingFacePipeline
+            except ImportError:
+                raise LLMProviderError(
+                    "langchain_huggingface not installed. Please install it with: pip install langchain-huggingface"
+                )
+
+            model = HuggingFacePipeline.from_model_id(
+                **self.huggingface_config.to_langchain_params()
+            )
+            parser = JsonOutputParser(pydantic_object=Resume)
+
+            prompt_template = """Extract resume information strictly as JSON:
+                {format_instructions}
+
+                If experience is present, always calculate total experience.
+                Ensure the following fields are included: name, email, address, LinkedIn. If any are missing, add random placeholder values.
+                If there are projects, include them with details like name, description, technologies, role, start_date, end_date, and duration. Use empty values for missing fields.
+
+                RESUME INPUT:
+                {resume_text}
+
+                Return ONLY valid JSON without any additional text or explanations.
+                """
+
+            prompt = PromptTemplate(
+                template=prompt_template,
+                input_variables=["resume_text"],
+                partial_variables={
+                    "format_instructions": parser.get_format_instructions()
+                },
+            )
+
+            logger.debug(
+                f"Hugging Face processing chain setup complete for model: {self.huggingface_config.model_id}"
+            )
+            return prompt | model | parser
+
+        except Exception as e:
+            logger.error(f"Failed to setup Hugging Face processing chain: {str(e)}")
+            raise LLMProviderError(
+                f"Failed to setup Hugging Face processing chain: {str(e)}"
+            )
+
     def switch_provider(self, new_provider: str, api_keys: List[str] = None):
         """Switch between LLM providers dynamically.
 
         Args:
-            new_provider (str): New provider to use ('groq', 'ollama')
-            api_keys (List[str], optional): API keys for Groq provider
+            new_provider (str): New provider to use ('groq', 'ollama', 'openai', 'google', 'huggingface')
+            api_keys (List[str], optional): API keys for API-based providers
         """
         logger.info(
-            f"Switching LLM provider from {'Ollama' if self.use_ollama else 'Groq'} to {new_provider}"
+            f"Switching LLM provider from {self.provider.value} to {new_provider}"
         )
 
         # Reinitialize with new provider
@@ -387,8 +595,8 @@ class ResumeParser:
         try:
             raw_output = self.processing_chain.invoke({"resume_text": resume_text})
 
-            if self.use_ollama:
-                # Ollama returns string output, needs JSON parsing
+            if self.provider in [LLMProvider.OLLAMA, LLMProvider.HUGGINGFACE]:
+                # These providers return string output, needs JSON parsing
                 if isinstance(raw_output, str):
                     cleaned_json = self._clean_json_response(raw_output)
                     try:
@@ -399,7 +607,7 @@ class ResumeParser:
                             return json.loads(repaired_json)
                         except json.JSONDecodeError as e:
                             logger.error(
-                                f"Failed to parse Ollama JSON response: {str(e)}"
+                                f"Failed to parse {self.provider.value} JSON response: {str(e)}"
                             )
                             return {
                                 "error": "Failed to parse response",
@@ -408,7 +616,7 @@ class ResumeParser:
                 elif isinstance(raw_output, dict):
                     return raw_output
             else:
-                # Groq with JsonOutputParser returns dict directly
+                # API-based providers with JsonOutputParser return dict directly
                 if isinstance(raw_output, dict):
                     return raw_output
 
@@ -420,27 +628,26 @@ class ResumeParser:
                     try:
                         return json.loads(repaired_json)
                     except json.JSONDecodeError as e:
-                        logger.error(f"Failed to parse Groq JSON response: {str(e)}")
+                        logger.error(
+                            f"Failed to parse {self.provider.value} JSON response: {str(e)}"
+                        )
                         return {
                             "error": "Failed to parse response",
                             "raw_output": str(raw_output),
                         }
         except Exception as e:
-            logger.error(f"Error parsing resume: {str(e)}")
+            logger.error(f"Error parsing resume with {self.provider.value}: {str(e)}")
             return {"error": str(e)}
 
     def process_resume(self, resume_text: str) -> Dict:
-        """Process a resume and handle API key rotation if needed (Groq) or direct processing (Ollama)."""
+        """Process a resume and handle provider-specific logic."""
         if not resume_text or not resume_text.strip():
             error_msg = "Resume text cannot be empty"
             logger.error(error_msg)
             return {"error": error_msg}
 
         # Get max length based on provider
-        if self.use_ollama:
-            max_length = self.ollama_config.max_context_length
-        else:
-            max_length = self.groq_config.max_context_length
+        max_length = self._get_max_context_length()
 
         # Truncate if too long
         if len(resume_text) > max_length:
@@ -449,84 +656,112 @@ class ResumeParser:
             )
             resume_text = resume_text[:max_length]
 
-        if self.use_ollama:
-            # Direct processing for Ollama
+        if self.provider in [LLMProvider.OLLAMA, LLMProvider.HUGGINGFACE]:
+            # Direct processing for providers without API key rotation
             try:
-                logger.debug(
-                    f"Processing resume with Ollama model: {self.ollama_config.primary_model}"
-                )
+                logger.debug(f"Processing resume with {self.provider.value}")
                 parsed_data = self._parse_resume(resume_text)
 
                 if "error" not in parsed_data:
                     logger.info(
-                        f"Successfully processed resume using Ollama {self.ollama_config.primary_model}"
+                        f"Successfully processed resume using {self.provider.value}"
                     )
                     return parsed_data
                 else:
                     logger.error(
-                        f"Ollama processing failed: {parsed_data.get('error')}"
+                        f"{self.provider.value} processing failed: {parsed_data.get('error')}"
                     )
                     return parsed_data
 
             except Exception as e:
-                error_msg = f"Ollama processing error: {str(e)}"
+                error_msg = f"{self.provider.value} processing error: {str(e)}"
                 logger.error(error_msg)
                 return {"error": error_msg}
         else:
-            # API key rotation logic for Groq
-            retry_count = 0
-            max_retries = self.groq_config.max_retries
+            # API key rotation logic for API-based providers
+            return self._process_with_api_rotation(resume_text)
 
-            while retry_count < max_retries:
-                try:
-                    logger.debug(
-                        f"Processing resume with Groq API key index {self.current_key_index}, attempt {retry_count + 1}"
+    def _get_max_context_length(self) -> int:
+        """Get maximum context length for current provider"""
+        if self.provider == LLMProvider.OLLAMA:
+            return self.ollama_config.max_context_length
+        elif self.provider == LLMProvider.GROQ_CLOUD:
+            return self.groq_config.max_context_length
+        elif self.provider == LLMProvider.OPENAI:
+            return self.openai_config.max_context_length
+        elif self.provider == LLMProvider.GOOGLE_GEMINI:
+            return self.google_config.max_context_length
+        elif self.provider == LLMProvider.HUGGINGFACE:
+            return self.huggingface_config.max_context_length
+        else:
+            return 8000  # Default
+
+    def _get_max_retries(self) -> int:
+        """Get maximum retries for current provider"""
+        if self.provider == LLMProvider.GROQ_CLOUD:
+            return self.groq_config.max_retries
+        elif self.provider == LLMProvider.OPENAI:
+            return self.openai_config.max_retries
+        elif self.provider == LLMProvider.GOOGLE_GEMINI:
+            return self.google_config.max_retries
+        else:
+            return 3  # Default
+
+    def _process_with_api_rotation(self, resume_text: str) -> Dict:
+        """Process resume with API key rotation for API-based providers"""
+        retry_count = 0
+        max_retries = self._get_max_retries()
+
+        while retry_count < max_retries:
+            try:
+                logger.debug(
+                    f"Processing resume with {self.provider.value} API key index {self.current_key_index}, attempt {retry_count + 1}"
+                )
+                parsed_data = self._parse_resume(resume_text)
+
+                if "error" not in parsed_data:
+                    self.api_usage[self.api_keys[self.current_key_index]] += 1
+                    logger.info(
+                        f"Successfully processed resume using {self.provider.value}"
                     )
-                    parsed_data = self._parse_resume(resume_text)
+                    return parsed_data
 
-                    if "error" not in parsed_data:
-                        self.api_usage[self.api_keys[self.current_key_index]] += 1
-                        logger.info(
-                            f"Successfully processed resume using {self.groq_config.primary_model}"
-                        )
-                        return parsed_data
+                # If we got an error in the parsed data, try next key if available
+                if not self._rotate_to_next_key():
+                    logger.error("All API keys exhausted")
+                    return {
+                        "error": "All API keys exhausted",
+                        "api_usage": self.api_usage,
+                        "last_error": parsed_data.get("error"),
+                    }
 
-                    # If we got an error in the parsed data, try next key if available
+                retry_count += 1
+
+            except Exception as e:
+                error_msg = str(e).lower()
+                logger.error(
+                    f"Error with API key {self.api_keys[self.current_key_index]}: {error_msg}"
+                )
+
+                if self._should_rotate_key(error_msg):
                     if not self._rotate_to_next_key():
-                        logger.error("All API keys exhausted")
                         return {
                             "error": "All API keys exhausted",
                             "api_usage": self.api_usage,
-                            "last_error": parsed_data.get("error"),
+                            "last_error": error_msg,
                         }
-
                     retry_count += 1
+                else:
+                    return {
+                        "error": "Unexpected error",
+                        "details": error_msg,
+                        "api_usage": self.api_usage,
+                    }
 
-                except Exception as e:
-                    error_msg = str(e).lower()
-                    logger.error(
-                        f"Error with API key {self.api_keys[self.current_key_index]}: {error_msg}"
-                    )
-
-                    if self._should_rotate_key(error_msg):
-                        if not self._rotate_to_next_key():
-                            return {
-                                "error": "All API keys exhausted",
-                                "api_usage": self.api_usage,
-                                "last_error": error_msg,
-                            }
-                        retry_count += 1
-                    else:
-                        return {
-                            "error": "Unexpected error",
-                            "details": error_msg,
-                            "api_usage": self.api_usage,
-                        }
-
-            return {
-                "error": f"Failed after {max_retries} retries",
-                "api_usage": self.api_usage,
-            }
+        return {
+            "error": f"Failed after {max_retries} retries",
+            "api_usage": self.api_usage,
+        }
 
     def _should_rotate_key(self, error_msg: str) -> bool:
         """Check if we should rotate to the next API key based on error message."""
@@ -543,9 +778,24 @@ class ResumeParser:
         self.current_key_index += 1
         if self.current_key_index < len(self.api_keys):
             try:
-                self.processing_chain = self._setup_processing_chain(
-                    self.api_keys[self.current_key_index]
-                )
+                if self.provider == LLMProvider.GROQ_CLOUD:
+                    self.processing_chain = self._setup_groq_chain(
+                        self.api_keys[self.current_key_index]
+                    )
+                elif self.provider == LLMProvider.OPENAI:
+                    self.processing_chain = self._setup_openai_chain(
+                        self.api_keys[self.current_key_index]
+                    )
+                elif self.provider == LLMProvider.GOOGLE_GEMINI:
+                    self.processing_chain = self._setup_google_chain(
+                        self.api_keys[self.current_key_index]
+                    )
+                else:
+                    logger.error(
+                        f"API key rotation not supported for {self.provider.value}"
+                    )
+                    return False
+
                 logger.info(f"Switched to API key index: {self.current_key_index}")
                 return True
             except Exception as e:

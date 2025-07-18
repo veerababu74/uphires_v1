@@ -132,3 +132,21 @@
 2025-07-02 23:39:23 - groqcloud_llm - INFO - Initializing ResumeParser with Ollama
 2025-07-02 23:39:28 - groqcloud_llm - INFO - ResumeParser initialized successfully with 0 API keys
 2025-07-02 23:46:05 - groqcloud_llm - INFO - Successfully processed resume using Ollama llama3.2:3b
+2025-07-18 22:29:51 - groqcloud_llm - INFO - Initializing ResumeParser with huggingface
+2025-07-18 22:29:52 - groqcloud_llm - ERROR - Failed to setup Hugging Face processing chain: There was a specific connection error when trying to load microsoft/Phi-3-mini-4k-instruct:
+401 Client Error: Unauthorized for url: https://huggingface.co/microsoft/Phi-3-mini-4k-instruct/resolve/main/config.json (Request ID: Root=1-687a7d88-0914612d119498882ad54219;02bfcf6c-9501-4640-91b0-c45cac5da201)
+
+Invalid credentials in Authorization header
+2025-07-18 22:29:52 - groqcloud_llm - ERROR - Failed to initialize Hugging Face model: Failed to setup Hugging Face processing chain: There was a specific connection error when trying to load microsoft/Phi-3-mini-4k-instruct:
+401 Client Error: Unauthorized for url: https://huggingface.co/microsoft/Phi-3-mini-4k-instruct/resolve/main/config.json (Request ID: Root=1-687a7d88-0914612d119498882ad54219;02bfcf6c-9501-4640-91b0-c45cac5da201)
+
+Invalid credentials in Authorization header
+2025-07-18 22:33:04 - groqcloud_llm - INFO - Initializing ResumeParser with ollama
+2025-07-18 22:33:09 - groqcloud_llm - INFO - ResumeParser initialized successfully with ollama
+2025-07-18 22:33:27 - groqcloud_llm - INFO - Initializing ResumeParser with ollama
+2025-07-18 22:33:32 - groqcloud_llm - INFO - ResumeParser initialized successfully with ollama
+2025-07-18 22:33:39 - groqcloud_llm - INFO - Initializing ResumeParser with ollama
+2025-07-18 22:33:44 - groqcloud_llm - INFO - ResumeParser initialized successfully with ollama
+2025-07-18 22:33:56 - groqcloud_llm - INFO - Initializing ResumeParser with ollama
+2025-07-18 22:42:24 - groqcloud_llm - INFO - Initializing ResumeParser with ollama
+2025-07-18 22:42:29 - groqcloud_llm - INFO - ResumeParser initialized successfully with ollama

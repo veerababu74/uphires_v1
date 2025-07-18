@@ -1,12 +1,11 @@
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser, BaseOutputParser
-from langchain_groq import ChatGroq
-from langchain_ollama import ChatOllama, OllamaLLM
+from langchain_core.language_models.base import BaseLanguageModel
 from .models import BestMatchResult, AllMatchesResult
 from .config import RAGConfig
 import json
 import re
-from typing import Any, Type
+from typing import Any, Type, Union
 from pydantic import Field
 from core.custom_logger import CustomLogger
 
@@ -270,7 +269,12 @@ IMPORTANT:
 class ChainManager:
     """Manages LangChain chains for RAG operations"""
 
-    def __init__(self, llm: OllamaLLM | ChatGroq):
+    def __init__(self, llm: BaseLanguageModel):
+        """Initialize ChainManager with any LangChain-compatible LLM.
+
+        Args:
+            llm: Any LangChain-compatible language model (Groq, Ollama, OpenAI, etc.)
+        """
         self.llm = llm
         self.retrieval_chain = None
         self.ranking_chain = None

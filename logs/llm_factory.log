@@ -1,3 +1,7 @@
 2025-07-02 23:32:36 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
 2025-07-02 23:33:31 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
 2025-07-02 23:39:56 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-18 22:25:10 - llm_factory - ERROR - Failed to create LLM with huggingface: langchain_huggingface not installed. Please install it with: pip install langchain-huggingface
+2025-07-18 22:25:10 - llm_factory - INFO - Attempting ollama as fallback for failed huggingface
+2025-07-18 22:25:13 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-18 22:33:37 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b

@@ -6,7 +6,12 @@ load_dotenv()
 
 
 class RAGConfig:
-    """Configuration for RAG application"""
+    """Configuration for RAG application
+
+    Note: RAG now uses the centralized LLM configuration system from core.llm_config
+    The LLM provider can be switched dynamically using LLMConfigManager.
+    The settings below are kept for backward compatibility and fallback scenarios.
+    """
 
     # MongoDB Configuration
     MONGODB_URI = AppConfig.MONGODB_URI

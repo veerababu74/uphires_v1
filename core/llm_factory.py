@@ -3,17 +3,22 @@ LLM Factory
 ===========
 
 Factory class for creating LLM instances based on configuration.
-Supports both Ollama and Groq Cloud providers with automatic fallbacks.
+Supports Ollama, Groq Cloud, OpenAI, Google Gemini, and Hugging Face providers with automatic fallbacks.
 """
 
 from typing import Union, Optional, Any
 from langchain_groq import ChatGroq
 from langchain_ollama import ChatOllama, OllamaLLM
+from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from core.llm_config import (
     get_llm_config,
     LLMProvider,
     OllamaConfig,
     GroqConfig,
+    OpenAIConfig,
+    GoogleGeminiConfig,
+    HuggingFaceConfig,
     llm_config_manager,
 )
 from core.custom_logger import CustomLogger
@@ -27,7 +32,7 @@ class LLMFactory:
     @staticmethod
     def create_llm(
         force_provider: Optional[LLMProvider] = None, **kwargs
-    ) -> Union[OllamaLLM, ChatGroq]:
+    ) -> Union[OllamaLLM, ChatGroq, ChatOpenAI, ChatGoogleGenerativeAI, Any]:
         """
         Create an LLM instance based on configuration
 
@@ -58,6 +63,18 @@ class LLMFactory:
                 )
             elif provider == LLMProvider.GROQ_CLOUD:
                 return LLMFactory._create_groq_llm(config_manager.groq_config, **kwargs)
+            elif provider == LLMProvider.OPENAI:
+                return LLMFactory._create_openai_llm(
+                    config_manager.openai_config, **kwargs
+                )
+            elif provider == LLMProvider.GOOGLE_GEMINI:
+                return LLMFactory._create_google_llm(
+                    config_manager.google_config, **kwargs
+                )
+            elif provider == LLMProvider.HUGGINGFACE:
+                return LLMFactory._create_huggingface_llm(
+                    config_manager.huggingface_config, **kwargs
+                )
             else:
                 raise ValueError(f"Unsupported provider: {provider}")
 
@@ -156,33 +173,192 @@ class LLMFactory:
                 raise
 
     @staticmethod
+    def _create_openai_llm(config: OpenAIConfig, **kwargs) -> ChatOpenAI:
+        """Create OpenAI LLM instance"""
+        # Merge config parameters with any overrides
+        params = config.to_langchain_params()
+        params.update(kwargs)
+
+        try:
+            # Try primary model first
+            llm = ChatOpenAI(**params)
+            logger.info(f"Created OpenAI LLM with model: {config.primary_model}")
+            return llm
+
+        except Exception as e:
+            logger.warning(f"Primary model {config.primary_model} failed: {e}")
+
+            # Try rotating API key if available
+            if config.rotate_api_key():
+                try:
+                    params = config.to_langchain_params()
+                    params.update(kwargs)
+                    llm = ChatOpenAI(**params)
+                    logger.info(f"Created OpenAI LLM with rotated API key")
+                    return llm
+                except Exception as e2:
+                    logger.warning(f"Rotated API key failed: {e2}")
+
+            # Try backup model
+            try:
+                params["model"] = config.backup_model
+                llm = ChatOpenAI(**params)
+                logger.info(
+                    f"Created OpenAI LLM with backup model: {config.backup_model}"
+                )
+                return llm
+
+            except Exception as e3:
+                logger.error(f"All OpenAI models failed: {e3}")
+                raise
+
+    @staticmethod
+    def _create_google_llm(
+        config: GoogleGeminiConfig, **kwargs
+    ) -> ChatGoogleGenerativeAI:
+        """Create Google Gemini LLM instance"""
+        # Merge config parameters with any overrides
+        params = config.to_langchain_params()
+        params.update(kwargs)
+
+        try:
+            # Try primary model first
+            llm = ChatGoogleGenerativeAI(**params)
+            logger.info(f"Created Google Gemini LLM with model: {config.primary_model}")
+            return llm
+
+        except Exception as e:
+            logger.warning(f"Primary model {config.primary_model} failed: {e}")
+
+            # Try rotating API key if available
+            if config.rotate_api_key():
+                try:
+                    params = config.to_langchain_params()
+                    params.update(kwargs)
+                    llm = ChatGoogleGenerativeAI(**params)
+                    logger.info(f"Created Google Gemini LLM with rotated API key")
+                    return llm
+                except Exception as e2:
+                    logger.warning(f"Rotated API key failed: {e2}")
+
+            # Try backup model
+            try:
+                params["model"] = config.backup_model
+                llm = ChatGoogleGenerativeAI(**params)
+                logger.info(
+                    f"Created Google Gemini LLM with backup model: {config.backup_model}"
+                )
+                return llm
+
+            except Exception as e3:
+                logger.error(f"All Google Gemini models failed: {e3}")
+                raise
+
+    @staticmethod
+    def _create_huggingface_llm(config: HuggingFaceConfig, **kwargs):
+        """Create Hugging Face LLM instance"""
+        try:
+            # Import here to avoid dependency issues if not installed
+            from langchain_huggingface import HuggingFacePipeline
+        except ImportError:
+            raise ValueError(
+                "langchain_huggingface not installed. Please install it with: pip install langchain-huggingface"
+            )
+
+        # Merge config parameters with any overrides
+        params = config.to_langchain_params()
+        params.update(kwargs)
+
+        try:
+            llm = HuggingFacePipeline.from_model_id(**params)
+            logger.info(f"Created Hugging Face LLM with model: {config.model_id}")
+            return llm
+
+        except Exception as e:
+            logger.error(f"Hugging Face model {config.model_id} failed: {e}")
+            raise
+
+    @staticmethod
     def _create_fallback_llm(
         failed_provider: LLMProvider, **kwargs
-    ) -> Union[OllamaLLM, ChatGroq]:
+    ) -> Union[OllamaLLM, ChatGroq, ChatOpenAI, ChatGoogleGenerativeAI, Any]:
         """Create fallback LLM when primary provider fails"""
         config_manager = get_llm_config()
 
-        if failed_provider == LLMProvider.OLLAMA:
-            # Try Groq as fallback
-            logger.info("Attempting Groq Cloud as fallback for failed Ollama")
-            try:
-                if config_manager._validate_groq():
-                    return LLMFactory._create_groq_llm(
-                        config_manager.groq_config, **kwargs
-                    )
-            except Exception as e:
-                logger.error(f"Groq fallback failed: {e}")
+        # Define fallback priority order
+        fallback_order = {
+            LLMProvider.OLLAMA: [
+                LLMProvider.HUGGINGFACE,
+                LLMProvider.GROQ_CLOUD,
+                LLMProvider.OPENAI,
+            ],
+            LLMProvider.GROQ_CLOUD: [
+                LLMProvider.OLLAMA,
+                LLMProvider.OPENAI,
+                LLMProvider.GOOGLE_GEMINI,
+            ],
+            LLMProvider.OPENAI: [
+                LLMProvider.GROQ_CLOUD,
+                LLMProvider.GOOGLE_GEMINI,
+                LLMProvider.OLLAMA,
+            ],
+            LLMProvider.GOOGLE_GEMINI: [
+                LLMProvider.OPENAI,
+                LLMProvider.GROQ_CLOUD,
+                LLMProvider.OLLAMA,
+            ],
+            LLMProvider.HUGGINGFACE: [
+                LLMProvider.OLLAMA,
+                LLMProvider.GROQ_CLOUD,
+                LLMProvider.OPENAI,
+            ],
+        }
 
-        elif failed_provider == LLMProvider.GROQ_CLOUD:
-            # Try Ollama as fallback
-            logger.info("Attempting Ollama as fallback for failed Groq Cloud")
+        fallback_providers = fallback_order.get(failed_provider, [])
+
+        for fallback_provider in fallback_providers:
             try:
-                if config_manager._validate_ollama():
+                logger.info(
+                    f"Attempting {fallback_provider.value} as fallback for failed {failed_provider.value}"
+                )
+
+                # Validate fallback provider
+                temp_provider = config_manager.provider
+                config_manager.provider = fallback_provider
+                is_valid = config_manager.validate_configuration()
+                config_manager.provider = temp_provider
+
+                if not is_valid:
+                    logger.warning(
+                        f"{fallback_provider.value} configuration is invalid, skipping"
+                    )
+                    continue
+
+                # Create fallback LLM
+                if fallback_provider == LLMProvider.OLLAMA:
                     return LLMFactory._create_ollama_llm(
                         config_manager.ollama_config, **kwargs
                     )
+                elif fallback_provider == LLMProvider.GROQ_CLOUD:
+                    return LLMFactory._create_groq_llm(
+                        config_manager.groq_config, **kwargs
+                    )
+                elif fallback_provider == LLMProvider.OPENAI:
+                    return LLMFactory._create_openai_llm(
+                        config_manager.openai_config, **kwargs
+                    )
+                elif fallback_provider == LLMProvider.GOOGLE_GEMINI:
+                    return LLMFactory._create_google_llm(
+                        config_manager.google_config, **kwargs
+                    )
+                elif fallback_provider == LLMProvider.HUGGINGFACE:
+                    return LLMFactory._create_huggingface_llm(
+                        config_manager.huggingface_config, **kwargs
+                    )
+
             except Exception as e:
-                logger.error(f"Ollama fallback failed: {e}")
+                logger.error(f"{fallback_provider.value} fallback failed: {e}")
+                continue
 
         raise ConnectionError(f"All LLM providers failed, no fallback available")
 

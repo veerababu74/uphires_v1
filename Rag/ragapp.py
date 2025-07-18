@@ -9,8 +9,6 @@ from pydantic import BaseModel, Field
 
 # Modern LangChain imports
 from langchain_community.vectorstores import MongoDBAtlasVectorSearch
-from langchain_groq import ChatGroq
-from langchain_ollama import ChatOllama, OllamaLLM
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -20,6 +18,9 @@ from langchain_core.documents import Document
 from core.custom_logger import CustomLogger
 from core.config import AppConfig
 from core.helpers import JSONEncoder
+from core.llm_factory import LLMFactory  # Use centralized LLM factory
+from core.llm_config import LLMConfigManager, LLMProvider
+from core.exceptions import LLMProviderError
 from dotenv import load_dotenv
 from properties.mango import MONGODB_URI, DB_NAME, COLLECTION_NAME
 
@@ -54,10 +55,12 @@ logger = logger_instance.get_logger("rag_application")
 
 # Configuration with fallbacks using AppConfig pattern
 MONGODB_URI = os.environ.get(
-    "MONGO_URI", AppConfig.MONGODB_CONNECTION_STRING or "YOUR_MONGO_URI_HERE"
+    "MONGO_URI", AppConfig.MONGODB_URI or "YOUR_MONGO_URI_HERE"
 )
-DB_NAME = os.environ.get("DB_NAME", "YOUR_DB_NAME_HERE")
-COLLECTION_NAME = os.environ.get("COLLECTION_NAME", "YOUR_COLLECTION_NAME_HERE")
+DB_NAME = os.environ.get("DB_NAME", AppConfig.DB_NAME or "YOUR_DB_NAME_HERE")
+COLLECTION_NAME = os.environ.get(
+    "COLLECTION_NAME", AppConfig.COLLECTION_NAME or "YOUR_COLLECTION_NAME_HERE"
+)
 VECTOR_FIELD = os.environ.get("VECTOR_FIELD", "combined_resume_vector")
 INDEX_NAME = "vector_search_index"
 GROQ_API_KEY = (
@@ -223,26 +226,20 @@ class RAGApplication:
             raise
 
     def _initialize_llm(self):
-        """Initialize Groq Cloud LLM model"""
-        if not GROQ_API_KEY:
-            logger.warning("Skipping LLM initialization due to missing Groq API key")
-            return
-
+        """Initialize LLM using centralized factory"""
         try:
-            # self.llm = ChatGroq(
-            #     api_key=GROQ_API_KEY,
-            #     model="gemma2-9b-it",  # Using same model as internal GroqcloudLLM
-            #     temperature=0.0,  # Low temp for precise extraction
-            # )/
-            # Initialize Ollama LLM
-            self.llm = OllamaLLM(
-                model="qwen:4b",  # Using Qwen 4B model
-                temperature=0.0,  # Low temp for precise extraction
-            )
-            logger.info("Ollama LLM (qwen:4b) initialized")
+            # Initialize LLM configuration manager
+            self.llm_manager = LLMConfigManager()
+
+            # Use the centralized LLM factory which handles provider selection
+            self.llm = LLMFactory.create_llm()
+
+            provider_name = self.llm_manager.provider.value
+            logger.info(f"RAGApp LLM initialized using {provider_name} provider")
+
         except Exception as e:
-            logger.error(f"Error initializing Groq LLM: {e}")
-            raise
+            logger.error(f"Error initializing LLM: {e}")
+            raise LLMProviderError(f"Failed to initialize RAGApp LLM: {e}")
 
     def _setup_retrieval_chain(self):
         """Setup the modern LangChain retrieval chain with LCEL"""
