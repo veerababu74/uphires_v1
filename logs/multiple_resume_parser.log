@@ -38,3 +38,47 @@
 2025-07-02 23:39:16 - multiple_resume_parser - INFO - Initializing ResumeParser with Ollama
 2025-07-18 22:33:34 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
 2025-07-18 22:33:37 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-18 23:49:29 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-18 23:49:32 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-18 23:49:56 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-18 23:49:58 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-18 23:55:04 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-18 23:55:07 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 19:51:18 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 19:51:21 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 21:47:52 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 21:47:54 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 21:56:09 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 21:56:11 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 21:56:38 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 21:56:40 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 21:59:33 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 21:59:36 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:00:03 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:00:06 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:02:34 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:03:12 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:03:52 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:03:55 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:04:14 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:04:17 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:04:40 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:04:43 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:05:09 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:05:11 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:07:28 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:07:31 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:07:55 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with ollama
+2025-07-19 22:07:57 - multiple_resume_parser - INFO - Successfully initialized LLM with ollama
+2025-07-19 22:10:08 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with groq_cloud
+2025-07-19 22:10:09 - multiple_resume_parser - INFO - Successfully initialized LLM with groq_cloud
+2025-07-19 22:10:20 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with groq_cloud
+2025-07-19 22:10:21 - multiple_resume_parser - INFO - Successfully initialized LLM with groq_cloud
+2025-07-19 22:13:06 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with groq_cloud
+2025-07-19 22:13:07 - multiple_resume_parser - INFO - Successfully initialized LLM with groq_cloud
+2025-07-19 22:13:29 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with groq_cloud
+2025-07-19 22:13:29 - multiple_resume_parser - INFO - Successfully initialized LLM with groq_cloud
+2025-07-19 22:14:28 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with groq_cloud
+2025-07-19 22:14:29 - multiple_resume_parser - INFO - Successfully initialized LLM with groq_cloud
+2025-07-19 22:17:32 - multiple_resume_parser - INFO - Initializing Multiple Resume Parser with groq_cloud
+2025-07-19 22:17:33 - multiple_resume_parser - INFO - Successfully initialized LLM with groq_cloud

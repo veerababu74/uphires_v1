@@ -207,8 +207,10 @@ class GroqConfig:
             "model": self.primary_model,
             "temperature": self.temperature,
             "max_tokens": self.max_tokens,
-            "top_p": self.top_p,
             "timeout": self.request_timeout,
+            "model_kwargs": {
+                "top_p": self.top_p,
+            },
         }
 
 

@@ -41,22 +41,22 @@ class SearchIndexManager:
                     "fields": {
                         "combined_resume_vector": {
                             "type": "knnVector",
-                            "dimensions": 384,
+                            "dimensions": 1024,
                             "similarity": "cosine",
                         },
                         "skills_vector": {
                             "type": "knnVector",
-                            "dimensions": 384,
+                            "dimensions": 1024,
                             "similarity": "cosine",
                         },
                         "experience_text_vector": {
                             "type": "knnVector",
-                            "dimensions": 384,
+                            "dimensions": 1024,
                             "similarity": "cosine",
                         },
                         "academic_details_vector": {
                             "type": "knnVector",
-                            "dimensions": 384,
+                            "dimensions": 1024,
                             "similarity": "cosine",
                         },
                     },
@@ -85,7 +85,7 @@ class SearchIndexManager:
     def delete_search_index(self, index_name):
         """Delete a search index"""
         try:
-            command = {"dropSearchIndex": COLLECTION_NAME, "index": index_name}
+            command = {"dropSearchIndexes": COLLECTION_NAME, "indexes": [index_name]}
             result = self.db.command(command)
             logger.info(f"Search index '{index_name}' deleted successfully: {result}")
             return True, result

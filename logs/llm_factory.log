@@ -5,3 +5,24 @@
 2025-07-18 22:25:10 - llm_factory - INFO - Attempting ollama as fallback for failed huggingface
 2025-07-18 22:25:13 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
 2025-07-18 22:33:37 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-18 23:49:32 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-18 23:49:58 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-18 23:55:07 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 19:51:21 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 21:47:54 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 21:56:11 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 21:56:40 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 21:59:36 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:00:06 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:03:55 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:04:17 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:04:43 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:05:11 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:07:31 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:07:57 - llm_factory - INFO - Created Ollama LLM with model: llama3.2:3b
+2025-07-19 22:10:09 - llm_factory - INFO - Created Groq LLM with model: gemma2-9b-it
+2025-07-19 22:10:21 - llm_factory - INFO - Created Groq LLM with model: gemma2-9b-it
+2025-07-19 22:13:07 - llm_factory - INFO - Created Groq LLM with model: gemma2-9b-it
+2025-07-19 22:13:29 - llm_factory - INFO - Created Groq LLM with model: gemma2-9b-it
+2025-07-19 22:14:29 - llm_factory - INFO - Created Groq LLM with model: gemma2-9b-it
+2025-07-19 22:17:33 - llm_factory - INFO - Created Groq LLM with model: gemma2-9b-it

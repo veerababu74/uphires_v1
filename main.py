@@ -22,6 +22,22 @@ warnings.filterwarnings(
     "ignore", category=DeprecationWarning, module="pymongo.pyopenssl_context"
 )
 
+# Fix Windows Unicode issues early
+import sys
+
+if sys.platform.startswith("win"):
+    try:
+        from fix_windows_unicode import fix_windows_unicode
+
+        fix_windows_unicode()
+    except ImportError:
+        # Fallback manual fix
+        import os
+
+        os.environ["PYTHONIOENCODING"] = "utf-8"
+        os.environ["PYTHONLEGACYWINDOWSSTDIO"] = "1"
+
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
@@ -57,6 +73,8 @@ from apis.resumerpaser import router as resume_parser_router
 # Import core modules
 from core.custom_logger import CustomLogger
 from core.config import config
+from core.auto_model_downloader import ensure_embedding_models_on_startup
+from core.production_models import get_deployment_models
 from main_functions import initialize_application_startup, handle_application_shutdown
 
 # Initialize logger
@@ -73,12 +91,46 @@ async def lifespan(app: FastAPI):
     global search_index_manager
 
     try:
+        # Step 1: Ensure embedding models are available
+        logger.info("Starting application initialization...")
+
+        # Get production models based on deployment configuration
+        # Options: "minimal", "balanced", "full", "complete"
+        # Change in core/production_models.py or set via environment
+        deployment_type = os.getenv("EMBEDDING_DEPLOYMENT", "balanced")
+        production_models = get_deployment_models(deployment_type)
+
+        logger.info(f"Using '{deployment_type}' deployment configuration")
+        logger.info(f"Models to ensure: {production_models}")
+
+        model_results = await ensure_embedding_models_on_startup(
+            required_models=production_models,
+            timeout_seconds=600,  # 10 minutes max for downloads
+        )
+
+        # Check if critical models are available
+        critical_models = ["BAAI/bge-large-en-v1.5", "BAAI/bge-large-zh-v1.5"]
+        missing_critical = [
+            model for model in critical_models if not model_results.get(model, False)
+        ]
+
+        if missing_critical:
+            logger.warning(
+                f"Some critical models failed to download: {missing_critical}"
+            )
+            logger.warning("Application will continue but some features may be limited")
+        else:
+            logger.info("All critical embedding models are ready!")
+
+        # Step 2: Initialize other application components
         search_index_manager, startup_success = await initialize_application_startup()
 
         # Set the search index manager in the API router
         from apisofmango.search_index_api import set_search_index_manager
 
         set_search_index_manager(search_index_manager)
+
+        logger.info("Application startup completed successfully!")
 
     except Exception as e:
         logger.error(f"Application startup failed: {str(e)}")
@@ -87,7 +139,9 @@ async def lifespan(app: FastAPI):
     yield
 
     # Shutdown
+    logger.info("🔄 Shutting down application...")
     handle_application_shutdown()
+    logger.info("👋 Application shutdown completed")
 
 
 app = FastAPI(

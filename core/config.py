@@ -13,7 +13,7 @@ class AppConfig:
     # MongoDB Configuration
     MONGODB_URI = os.getenv(
         "MONGODB_CONNECTION_STRING",
-        "mongodb+srv://veera:Babu7474@uphire-test.gbkcxnd.mongodb.net/?retryWrites=true&w=majority&appName=uphire-test",
+        "mongodb+srv://veera:Babu7474@uphire-test.aw2gzuy.mongodb.net/?retryWrites=true&w=majority&appName=uphire-test",
     )
     DB_NAME = os.getenv("DB_NAME", "resume_db")
     COLLECTION_NAME = os.getenv("COLLECTION_NAME", "resumes")

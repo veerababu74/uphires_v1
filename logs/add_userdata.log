@@ -1,0 +1,10 @@
+2025-07-19 22:07:59 - add_userdata - INFO - Starting submit_resume_details function
+2025-07-19 22:07:59 - add_userdata - INFO - Successfully converted and cleaned resume data
+2025-07-19 22:07:59 - add_userdata - INFO - Checking for existing records in database
+2025-07-19 22:07:59 - add_userdata - INFO - Database query completed. Found existing record: False
+2025-07-19 22:07:59 - add_userdata - INFO - Starting vector embeddings generation
+2025-07-19 22:08:04 - add_userdata - INFO - Vector embeddings generated successfully
+2025-07-19 22:08:04 - add_userdata - INFO - Inserting resume data into database
+2025-07-19 22:08:04 - add_userdata - INFO - Successfully inserted resume with ID: 687bc9ec05f065045059f618
+2025-07-19 22:08:05 - add_userdata - INFO - Added normalized skills: ['string', 'string']
+2025-07-19 22:08:05 - add_userdata - INFO - Added normalized experience titles: ['string']
